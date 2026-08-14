@@ -18,7 +18,7 @@
     <!-- ?v= muda a cada publicacao para o navegador nao servir folha velha.
          Sem isso, quem ja visitou o site continua vendo o CSS antigo e um
          botao novo aparece sem estilo nenhum. -->
-    <link rel="stylesheet" href="style.css?v=20260814b">
+    <link rel="stylesheet" href="style.css?v=20260814c">
 </head>
 <body>
 
@@ -254,6 +254,22 @@
         </div>
     </aside>
 
+    <!-- Convite da Onira. Fica fora do fluxo de compra de proposito: quem veio
+         pedir bebida nao pode tropecar nele. Dispensavel, e a escolha do
+         visitante fica guardada no navegador. -->
+    <div class="onira-cta" id="onira-cta">
+        <a class="onira-cta-link" href="proposta.html" rel="nofollow">
+            <i data-lucide="sparkles"></i>
+            <span class="onira-cta-text">
+                <span class="onira-cta-hook">Tá gostando do site?</span>
+                <span class="onira-cta-call">Ele pode ser seu — veja como</span>
+            </span>
+        </a>
+        <button type="button" class="onira-cta-close" id="onira-cta-close" aria-label="Dispensar convite">
+            <i data-lucide="x"></i>
+        </button>
+    </div>
+
     <!-- Confirmacao de limpar pedido. Substitui o confirm() do navegador, que
          aparece descolado do site e nao diz o que esta em jogo. -->
     <div class="confirm-overlay" id="confirm-clear" role="dialog" aria-modal="true"
@@ -297,7 +313,7 @@
          renderiza vazio. -->
     <script src="images.js?v=20260814"></script>
     <script src="bottles.js"></script>
-    <script src="app.js?v=20260814b"></script>
+    <script src="app.js?v=20260814c"></script>
     <script>
         if (window.lucide) {
             lucide.createIcons();

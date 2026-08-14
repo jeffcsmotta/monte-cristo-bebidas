@@ -607,6 +607,7 @@ document.addEventListener('DOMContentLoaded', () => {
     renderProducts();
     setupEventListeners();
     setupCartDrawerListeners();
+    setupOniraCta();
     updateCartUI();
 });
 
@@ -1168,6 +1169,33 @@ window.sendWhatsAppOrder = function() {
     const url = `https://wa.me/${CLIENT_WHATSAPP}?text=${encoded}`;
     window.open(url, '_blank');
 };
+
+/* Convite da Onira: aparece depois que a pessoa desceu um pouco no catalogo,
+   nao no primeiro segundo. Quem dispensa nao ve de novo. */
+function setupOniraCta() {
+    const cta = document.getElementById('onira-cta');
+    const fechar = document.getElementById('onira-cta-close');
+    if (!cta || !fechar) return;
+
+    const CHAVE = 'monte_cristo_cta_onira';
+    if (localStorage.getItem(CHAVE) === 'dispensado') return;
+
+    fechar.addEventListener('click', () => {
+        cta.style.display = 'none';
+        localStorage.setItem(CHAVE, 'dispensado');
+    });
+
+    let mostrado = false;
+    function talvezMostrar() {
+        if (mostrado || window.scrollY < 500) return;
+        mostrado = true;
+        cta.style.display = 'flex';
+        if (window.lucide) lucide.createIcons();
+        window.removeEventListener('scroll', talvezMostrar);
+    }
+    window.addEventListener('scroll', talvezMostrar, { passive: true });
+    talvezMostrar();
+}
 
 // Toast Notification
 function showToast(message) {
