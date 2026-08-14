@@ -1,0 +1,1979 @@
+{
+  "_meta": {
+    "descricao": "Camada de enriquecimento editorial do catálogo, indexada pelo id de PRODUCTS_DATA (app.js). Nome, volume, preço e categoria NÃO ficam aqui — são lidos de app.js, que segue como fonte da verdade comercial. Este arquivo guarda só o que o site ainda não tinha: marca, ficha técnica, origem, descrição, tags e pistas de busca de imagem.",
+    "atualizado_em": "2026-08-13",
+    "regras": [
+      "abv (teor alcoólico) só é preenchido quando o dado é público e estável. Onde há dúvida real, fica null e o campo entra em 'confirmar'.",
+      "unidades_por_caixa, EAN, estoque e preço de caixa NÃO aparecem aqui: são dados operacionais da Monte Cristo. O gerador cria os campos vazios para o Ivan preencher.",
+      "variante_critica: true marca rótulo que tem irmão parecido na mesma tabela. É o item onde trocar a imagem passa despercebido.",
+      "agrupado: true marca linha de tabela que representa vários SKUs ('todos os sabores'). Precisa de tratamento próprio no site."
+    ]
+  },
+  "fichas": {
+    "wh-1": {
+      "marca": "Firebird",
+      "expressao": "Canela",
+      "subcategoria": "aperitivo-de-whisky",
+      "tipo": "Aperitivo de malt whisky com canela",
+      "pais": "Brasil",
+      "regiao": null,
+      "abv": null,
+      "proprietaria": null,
+      "site_oficial": null,
+      "embalagem": "garrafa-vidro",
+      "descricao": "Aperitivo à base de malt whisky com canela, no perfil de dose gelada. Giro de balada e conveniência, preço de entrada.",
+      "servir": "Gelado, em dose pura.",
+      "tags": [
+        "nacional",
+        "entrada"
+      ],
+      "variante_critica": false,
+      "agrupado": false,
+      "confirmar": [
+        "abv",
+        "fabricante"
+      ],
+      "observacao": "Marca de menor divulgação: confirmar fabricante e teor no rótulo do estoque."
+    },
+    "wh-2": {
+      "marca": "Ballantine's",
+      "expressao": "Finest",
+      "subcategoria": "scotch-blended",
+      "tipo": "Blended Scotch Whisky",
+      "pais": "Escócia",
+      "regiao": null,
+      "abv": 40,
+      "proprietaria": "Pernod Ricard",
+      "site_oficial": "https://www.ballantines.com",
+      "embalagem": "garrafa-vidro",
+      "descricao": "Blended scotch de perfil leve e floral, um dos mais vendidos do mundo na faixa standard. Base confiável para whisky com gelo, água ou drinks longos.",
+      "servir": "Puro, com gelo ou em highball.",
+      "tags": [
+        "importado",
+        "para-drink",
+        "puro"
+      ],
+      "variante_critica": false,
+      "agrupado": false,
+      "confirmar": [],
+      "observacao": ""
+    },
+    "wh-3": {
+      "marca": "Black Stone",
+      "expressao": null,
+      "subcategoria": "whisky-nacional",
+      "tipo": "Whisky blended nacional",
+      "pais": "Brasil",
+      "regiao": null,
+      "abv": null,
+      "proprietaria": null,
+      "site_oficial": null,
+      "embalagem": "garrafa-vidro",
+      "descricao": "Whisky nacional de faixa econômica, posicionado para consumo em mistura. Item de volume, preço mais baixo da categoria na tabela.",
+      "servir": "Com gelo, refrigerante ou energético.",
+      "tags": [
+        "nacional",
+        "entrada",
+        "para-drink"
+      ],
+      "variante_critica": false,
+      "agrupado": false,
+      "confirmar": [
+        "abv",
+        "fabricante"
+      ],
+      "observacao": ""
+    },
+    "wh-4": {
+      "marca": "Chivas Regal",
+      "expressao": "12 Anos",
+      "subcategoria": "scotch-blended",
+      "tipo": "Blended Scotch Whisky 12 anos",
+      "pais": "Escócia",
+      "regiao": "Speyside",
+      "abv": 40,
+      "proprietaria": "Pernod Ricard",
+      "site_oficial": "https://www.chivas.com",
+      "embalagem": "garrafa-vidro",
+      "descricao": "Blended premium com no mínimo 12 anos de maturação, referência de presente e de consumo puro. É o item de maior ticket entre os whiskies da tabela.",
+      "servir": "Puro ou com uma pedra de gelo.",
+      "tags": [
+        "importado",
+        "premium",
+        "puro"
+      ],
+      "variante_critica": false,
+      "agrupado": false,
+      "confirmar": [],
+      "observacao": "",
+      "ean": "0080432400432",
+      "fonte_ficha": "Royal Bebidas (varejo), coletado em 2026-08-14"
+    },
+    "wh-5": {
+      "marca": "Jack Daniel's",
+      "expressao": "Tennessee Apple",
+      "subcategoria": "whiskey-americano",
+      "tipo": "Licor de whiskey com maçã",
+      "pais": "Estados Unidos",
+      "regiao": "Tennessee",
+      "abv": 35,
+      "proprietaria": "Brown-Forman",
+      "site_oficial": "https://www.jackdaniels.com",
+      "embalagem": "garrafa-vidro",
+      "descricao": "Jack Daniel's Old Nº 7 combinado com licor de maçã verde. Rótulo verde, perfil doce e mais leve que o original.",
+      "servir": "Gelado puro, com gelo ou com soda.",
+      "tags": [
+        "importado",
+        "para-drink"
+      ],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [],
+      "observacao": "Cinco Jack Daniel's na tabela. Rótulo verde — não confundir com Fire (vermelho), Honey (dourado), Blackberri (roxo) e Old Nº 7 (preto)."
+    },
+    "wh-6": {
+      "marca": "Jack Daniel's",
+      "expressao": "Tennessee Blackberri",
+      "subcategoria": "whiskey-americano",
+      "tipo": "Licor de whiskey com amora",
+      "pais": "Estados Unidos",
+      "regiao": "Tennessee",
+      "abv": 35,
+      "proprietaria": "Brown-Forman",
+      "site_oficial": "https://www.jackdaniels.com",
+      "embalagem": "garrafa-vidro",
+      "descricao": "Versão com licor de amora sobre a base do Old Nº 7. Rótulo roxo, o mais recente da família de saborizados.",
+      "servir": "Gelado puro ou com limão e soda.",
+      "tags": [
+        "importado",
+        "para-drink"
+      ],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [],
+      "observacao": "Rótulo roxo. Variante mais nova e a mais fácil de errar na busca de imagem."
+    },
+    "wh-7": {
+      "marca": "Jack Daniel's",
+      "expressao": "Tennessee Fire",
+      "subcategoria": "whiskey-americano",
+      "tipo": "Licor de whiskey com canela",
+      "pais": "Estados Unidos",
+      "regiao": "Tennessee",
+      "abv": 35,
+      "proprietaria": "Brown-Forman",
+      "site_oficial": "https://www.jackdaniels.com",
+      "embalagem": "garrafa-vidro",
+      "descricao": "Old Nº 7 com licor de canela, servido em dose gelada. Rótulo vermelho, forte no público de balada.",
+      "servir": "Congelado, em shot.",
+      "tags": [
+        "importado",
+        "para-drink"
+      ],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [],
+      "observacao": "Rótulo vermelho."
+    },
+    "wh-8": {
+      "marca": "Jack Daniel's",
+      "expressao": "Old Nº 7",
+      "subcategoria": "whiskey-americano",
+      "tipo": "Tennessee Whiskey",
+      "pais": "Estados Unidos",
+      "regiao": "Tennessee",
+      "abv": 40,
+      "proprietaria": "Brown-Forman",
+      "site_oficial": "https://www.jackdaniels.com",
+      "embalagem": "garrafa-vidro",
+      "descricao": "O Tennessee whiskey clássico, filtrado em carvão de bordo antes do barril. Rótulo preto, o mais reconhecido da categoria.",
+      "servir": "Puro, com gelo ou com cola.",
+      "tags": [
+        "importado",
+        "puro",
+        "para-drink"
+      ],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [],
+      "observacao": "Rótulo preto e branco. É o produto-âncora da família.",
+      "ean": "0082184089040",
+      "fonte_ficha": "Royal Bebidas (varejo), coletado em 2026-08-14"
+    },
+    "wh-9": {
+      "marca": "Jack Daniel's",
+      "expressao": "Tennessee Honey",
+      "subcategoria": "whiskey-americano",
+      "tipo": "Licor de whiskey com mel",
+      "pais": "Estados Unidos",
+      "regiao": "Tennessee",
+      "abv": 35,
+      "proprietaria": "Brown-Forman",
+      "site_oficial": "https://www.jackdaniels.com",
+      "embalagem": "garrafa-vidro",
+      "descricao": "Old Nº 7 com licor de mel, mais macio e adocicado. O saborizado de maior giro da linha.",
+      "servir": "Gelado puro, com gelo ou com limão.",
+      "tags": [
+        "importado",
+        "para-drink"
+      ],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [],
+      "observacao": "Rótulo dourado."
+    },
+    "wh-10": {
+      "marca": "Jim Beam",
+      "expressao": "White Label",
+      "subcategoria": "whiskey-americano",
+      "tipo": "Kentucky Straight Bourbon Whiskey",
+      "pais": "Estados Unidos",
+      "regiao": "Kentucky",
+      "abv": 40,
+      "proprietaria": "Beam Suntory",
+      "site_oficial": "https://www.jimbeam.com",
+      "embalagem": "garrafa-vidro",
+      "descricao": "Bourbon de Kentucky envelhecido em barril novo de carvalho tostado, com o dulçor de milho típico do estilo. Base de old fashioned e de whisky com cola.",
+      "servir": "Com gelo, em cola ou em coquetel clássico.",
+      "tags": [
+        "importado",
+        "para-drink"
+      ],
+      "variante_critica": false,
+      "agrupado": false,
+      "confirmar": [],
+      "observacao": ""
+    },
+    "wh-11": {
+      "marca": "Johnnie Walker",
+      "expressao": "Black Label",
+      "subcategoria": "scotch-blended",
+      "tipo": "Blended Scotch Whisky 12 anos",
+      "pais": "Escócia",
+      "regiao": "Escócia",
+      "abv": 40,
+      "proprietaria": "Diageo",
+      "site_oficial": "https://www.johnniewalker.com",
+      "embalagem": "garrafa-vidro",
+      "descricao": "Blend de maltes e grãos com no mínimo 12 anos, marcado por defumado suave e fruta escura. O scotch premium de maior reconhecimento no Brasil.",
+      "servir": "Puro, com gelo ou em highball.",
+      "tags": [
+        "importado",
+        "premium",
+        "puro"
+      ],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [],
+      "observacao": "Rótulo preto. Não trocar com o Red Label, que também está na tabela.",
+      "ean": "5000267125046",
+      "fonte_ficha": "Royal Bebidas (varejo), coletado em 2026-08-14"
+    },
+    "wh-12": {
+      "marca": "Johnnie Walker",
+      "expressao": "Red Label",
+      "subcategoria": "scotch-blended",
+      "tipo": "Blended Scotch Whisky",
+      "pais": "Escócia",
+      "regiao": "Escócia",
+      "abv": 40,
+      "proprietaria": "Diageo",
+      "site_oficial": "https://www.johnniewalker.com",
+      "embalagem": "garrafa-vidro",
+      "descricao": "Blend de entrada da casa, desenhado para aguentar mistura sem perder caráter. Padrão de whisky com água de coco e de highball.",
+      "servir": "Com gelo, soda ou água de coco.",
+      "tags": [
+        "importado",
+        "para-drink"
+      ],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [],
+      "observacao": "Rótulo vermelho.",
+      "ean": "5000267013602",
+      "fonte_ficha": "Royal Bebidas (varejo), coletado em 2026-08-14"
+    },
+    "wh-13": {
+      "marca": "Natu Nobilis",
+      "expressao": null,
+      "subcategoria": "whisky-nacional",
+      "tipo": "Aperitivo de whisky (classificação brasileira)",
+      "pais": "Brasil",
+      "regiao": null,
+      "abv": 39,
+      "proprietaria": "Pernod Ricard Brasil",
+      "site_oficial": null,
+      "embalagem": "garrafa-vidro",
+      "descricao": "Whisky nacional com destilados escoceses no blend, líder histórico do segmento no Brasil. Perfil suave, feito para mistura.",
+      "servir": "Com gelo, refrigerante ou energético.",
+      "tags": [
+        "nacional",
+        "para-drink"
+      ],
+      "variante_critica": false,
+      "agrupado": false,
+      "confirmar": [],
+      "observacao": ""
+    },
+    "wh-14": {
+      "marca": "Passport",
+      "expressao": "Scotch",
+      "subcategoria": "scotch-blended",
+      "tipo": "Blended Scotch Whisky",
+      "pais": "Escócia",
+      "regiao": "Escócia",
+      "abv": 40,
+      "proprietaria": "Pernod Ricard",
+      "site_oficial": null,
+      "embalagem": "garrafa-vidro",
+      "descricao": "Scotch de entrada em garrafa verde retangular, tradicional no consumo com energético e refrigerante. Custo-benefício da faixa importada.",
+      "servir": "Com gelo, energético ou refrigerante.",
+      "tags": [
+        "importado",
+        "entrada",
+        "para-drink"
+      ],
+      "variante_critica": false,
+      "agrupado": false,
+      "confirmar": [],
+      "observacao": "Garrafa verde retangular — traço visual que ajuda a validar a imagem.",
+      "ean": "7891050000101",
+      "fonte_ficha": "Royal Bebidas (varejo), coletado em 2026-08-14"
+    },
+    "wh-15": {
+      "marca": "White Horse",
+      "expressao": null,
+      "subcategoria": "scotch-blended",
+      "tipo": "Blended Scotch Whisky",
+      "pais": "Escócia",
+      "regiao": "Escócia",
+      "abv": 40,
+      "proprietaria": "Diageo",
+      "site_oficial": null,
+      "embalagem": "garrafa-vidro",
+      "descricao": "Blend com toque defumado de Islay na composição, tradicional na faixa standard importada. Bom equilíbrio entre preço e caráter.",
+      "servir": "Puro, com gelo ou em highball.",
+      "tags": [
+        "importado",
+        "puro",
+        "para-drink"
+      ],
+      "variante_critica": false,
+      "agrupado": false,
+      "confirmar": [],
+      "observacao": "",
+      "ean": "5000265090056",
+      "fonte_ficha": "Royal Bebidas (varejo), coletado em 2026-08-14"
+    },
+    "vk-1": {
+      "marca": "Absolut",
+      "expressao": "Original",
+      "subcategoria": "vodka-importada",
+      "tipo": "Vodka de trigo",
+      "pais": "Suécia",
+      "regiao": "Åhus",
+      "abv": 40,
+      "proprietaria": "Pernod Ricard",
+      "site_oficial": "https://www.absolut.com",
+      "embalagem": "garrafa-vidro",
+      "descricao": "Vodka sueca de trigo de inverno, destilação contínua, em garrafa de farmácia sem rótulo de papel. Padrão de bar para moscow mule e caipiroska.",
+      "servir": "Gelada em dose ou como base de coquetel.",
+      "tags": [
+        "importado",
+        "para-drink"
+      ],
+      "variante_critica": false,
+      "agrupado": false,
+      "confirmar": [],
+      "observacao": "Garrafa transparente com texto serigrafado — foto em fundo branco funciona melhor que PNG recortado.",
+      "ean": "7312040017034",
+      "fonte_ficha": "Royal Bebidas (varejo), coletado em 2026-08-14"
+    },
+    "vk-2": {
+      "marca": "Cîroc",
+      "expressao": "Original",
+      "subcategoria": "vodka-importada",
+      "tipo": "Vodka de uva",
+      "pais": "França",
+      "regiao": "Cognac / Gaillac",
+      "abv": 40,
+      "proprietaria": "Diageo",
+      "site_oficial": "https://www.ciroc.com",
+      "embalagem": "garrafa-vidro",
+      "descricao": "Vodka destilada a partir de uva, não de grão, cinco vezes destilada. É o item de maior ticket do catálogo inteiro.",
+      "servir": "Gelada pura ou em coquetel de assinatura.",
+      "tags": [
+        "importado",
+        "premium"
+      ],
+      "variante_critica": false,
+      "agrupado": false,
+      "confirmar": [],
+      "observacao": "",
+      "ean": "0088076161863",
+      "fonte_ficha": "Royal Bebidas (varejo), coletado em 2026-08-14"
+    },
+    "vk-3": {
+      "marca": "Grey Goose",
+      "expressao": "Original",
+      "subcategoria": "vodka-importada",
+      "tipo": "Vodka de trigo",
+      "pais": "França",
+      "regiao": "Cognac",
+      "abv": 40,
+      "proprietaria": "Bacardi",
+      "site_oficial": "https://www.greygoose.com",
+      "embalagem": "garrafa-vidro",
+      "descricao": "Vodka francesa de trigo de Picardia com água filtrada em calcário de Gensac. Referência premium em martini e vodka tônica.",
+      "servir": "Gelada pura, em martini ou tônica.",
+      "tags": [
+        "importado",
+        "premium"
+      ],
+      "variante_critica": false,
+      "agrupado": false,
+      "confirmar": [],
+      "observacao": "Garrafa fosca com gansos impressos.",
+      "ean": "5010677850209",
+      "fonte_ficha": "Royal Bebidas (varejo), coletado em 2026-08-14"
+    },
+    "vk-4": {
+      "marca": "Natasha",
+      "expressao": null,
+      "subcategoria": "vodka-nacional",
+      "tipo": "Vodka nacional",
+      "pais": "Brasil",
+      "regiao": null,
+      "abv": null,
+      "proprietaria": null,
+      "site_oficial": null,
+      "embalagem": "garrafa-vidro",
+      "descricao": "Vodka nacional de faixa econômica, tradicional em caipiroska e batida. Item de giro alto e preço de entrada.",
+      "servir": "Em caipiroska, batida ou com suco.",
+      "tags": [
+        "nacional",
+        "entrada",
+        "para-drink"
+      ],
+      "variante_critica": false,
+      "agrupado": false,
+      "confirmar": [
+        "abv",
+        "fabricante"
+      ],
+      "observacao": ""
+    },
+    "vk-5": {
+      "marca": "Orloff",
+      "expressao": null,
+      "subcategoria": "vodka-nacional",
+      "tipo": "Vodka nacional",
+      "pais": "Brasil",
+      "regiao": "Brasil",
+      "abv": 37.5,
+      "proprietaria": "Pernod Ricard Brasil",
+      "site_oficial": null,
+      "embalagem": "garrafa-vidro",
+      "descricao": "Vodka nacional tripla destilação, uma das mais vendidas do país. Perfil neutro que aceita bem fruta e refrigerante.",
+      "servir": "Em caipiroska, drinks longos ou com energético.",
+      "tags": [
+        "nacional",
+        "para-drink"
+      ],
+      "variante_critica": false,
+      "agrupado": false,
+      "confirmar": [],
+      "observacao": "",
+      "ean": "7891050000903",
+      "fonte_ficha": "Royal Bebidas (varejo), coletado em 2026-08-14"
+    },
+    "vk-6": {
+      "marca": "Rajska",
+      "expressao": "Traditional",
+      "subcategoria": "vodka-nacional",
+      "tipo": "Vodka nacional",
+      "pais": "Brasil",
+      "regiao": null,
+      "abv": 37.5,
+      "proprietaria": "Fante Bebidas",
+      "site_oficial": "https://www.fante.com.br",
+      "embalagem": "garrafa-vidro",
+      "descricao": "Versão tradicional da linha Rajska, sem saborização. Preço mais baixo entre as vodkas da tabela.",
+      "servir": "Em caipiroska ou drinks longos.",
+      "tags": [
+        "nacional",
+        "entrada",
+        "linha-completa"
+      ],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [],
+      "observacao": "Três Rajska na tabela: Traditional, Apple e Red Fruits. Conferir o rótulo pelo nome, não pela cor da garrafa."
+    },
+    "vk-7": {
+      "marca": "Rajska",
+      "expressao": "Apple",
+      "subcategoria": "vodka-saborizada",
+      "tipo": "Vodka saborizada de maçã",
+      "pais": "Brasil",
+      "regiao": null,
+      "abv": 35,
+      "proprietaria": "Fante Bebidas",
+      "site_oficial": "https://www.fante.com.br",
+      "embalagem": "garrafa-vidro",
+      "descricao": "Rajska saborizada com maçã verde, para dose gelada e drink doce.",
+      "servir": "Gelada em dose ou com soda.",
+      "tags": [
+        "nacional",
+        "entrada",
+        "linha-completa"
+      ],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [],
+      "observacao": "Não confundir com Traditional e Red Fruits."
+    },
+    "vk-8": {
+      "marca": "Rajska",
+      "expressao": "Red Fruits",
+      "subcategoria": "vodka-saborizada",
+      "tipo": "Vodka saborizada de frutas vermelhas",
+      "pais": "Brasil",
+      "regiao": null,
+      "abv": null,
+      "proprietaria": "Fante Bebidas",
+      "site_oficial": "https://www.fante.com.br",
+      "embalagem": "garrafa-vidro",
+      "descricao": "Rajska saborizada com frutas vermelhas, mesmo posicionamento de dose gelada da linha.",
+      "servir": "Gelada em dose ou com soda.",
+      "tags": [
+        "nacional",
+        "entrada",
+        "linha-completa"
+      ],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [
+        "abv"
+      ],
+      "observacao": "Não confundir com Traditional e Apple."
+    },
+    "vk-9": {
+      "marca": "Smirnoff",
+      "expressao": "Nº 21",
+      "subcategoria": "vodka-nacional",
+      "tipo": "Vodka tripla destilação",
+      "pais": "Brasil",
+      "regiao": null,
+      "abv": 37.5,
+      "proprietaria": "Diageo",
+      "site_oficial": "https://www.smirnoff.com",
+      "embalagem": "garrafa-vidro",
+      "descricao": "A vodka mais vendida do mundo, produzida no Brasil na versão 998ml. Tripla destilação e dez filtragens, perfil neutro para qualquer mistura.",
+      "servir": "Em caipiroska, drinks longos ou com energético.",
+      "tags": [
+        "nacional",
+        "para-drink"
+      ],
+      "variante_critica": false,
+      "agrupado": false,
+      "confirmar": [],
+      "observacao": "Volume 998ml indica produção nacional — buscar a imagem no e-commerce brasileiro, não no site global."
+    },
+    "gn-1": {
+      "marca": "Gordon's",
+      "expressao": "London Dry",
+      "subcategoria": "gin",
+      "tipo": "London Dry Gin",
+      "pais": "Reino Unido",
+      "regiao": "Inglaterra",
+      "abv": 37.5,
+      "proprietaria": "Diageo",
+      "site_oficial": "https://www.gordonsgin.com",
+      "embalagem": "garrafa-vidro",
+      "descricao": "London dry clássico de garrafa verde, receita de 1769 centrada em zimbro. O gin de gin-tônica mais vendido do mundo.",
+      "servir": "Em gin-tônica com limão.",
+      "tags": [
+        "importado",
+        "para-drink"
+      ],
+      "variante_critica": false,
+      "agrupado": false,
+      "confirmar": [],
+      "observacao": "Teor varia entre a versão brasileira e a europeia — confirmar no rótulo.",
+      "ean": "5000289020701",
+      "fonte_ficha": "Royal Bebidas (varejo), coletado em 2026-08-14"
+    },
+    "gn-2": {
+      "marca": "Rock's",
+      "expressao": "Traditional",
+      "subcategoria": "gin",
+      "tipo": "Gin nacional",
+      "pais": "Brasil",
+      "regiao": null,
+      "abv": null,
+      "proprietaria": null,
+      "site_oficial": null,
+      "embalagem": "garrafa-vidro",
+      "descricao": "Gin nacional de faixa de entrada, versão tradicional. Feito para gin-tônica de volume.",
+      "servir": "Em gin-tônica.",
+      "tags": [
+        "nacional",
+        "entrada",
+        "linha-completa"
+      ],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [
+        "abv",
+        "fabricante"
+      ],
+      "observacao": "Dois Rock's na tabela: Traditional e Strawberry."
+    },
+    "gn-3": {
+      "marca": "Rock's",
+      "expressao": "Strawberry",
+      "subcategoria": "gin",
+      "tipo": "Gin nacional saborizado com morango",
+      "pais": "Brasil",
+      "regiao": null,
+      "abv": null,
+      "proprietaria": null,
+      "site_oficial": null,
+      "embalagem": "garrafa-vidro",
+      "descricao": "Versão com morango da linha Rock's, para gin-tônica doce e drink de cor.",
+      "servir": "Em gin-tônica com frutas vermelhas.",
+      "tags": [
+        "nacional",
+        "entrada",
+        "linha-completa"
+      ],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [
+        "abv",
+        "fabricante"
+      ],
+      "observacao": "Não confundir com o Traditional."
+    },
+    "gn-4": {
+      "marca": "Seagers",
+      "expressao": "Original",
+      "subcategoria": "gin",
+      "tipo": "Gin nacional",
+      "pais": "Brasil",
+      "regiao": "Inglaterra",
+      "abv": 45.3,
+      "proprietaria": "Destilaria Stock",
+      "site_oficial": null,
+      "embalagem": "garrafa-vidro",
+      "descricao": "Gin nacional tradicional em garrafa marcante, presente em bar e distribuidora há décadas. Faixa intermediária entre o entrada e o importado.",
+      "servir": "Em gin-tônica ou com limão e gelo.",
+      "tags": [
+        "nacional",
+        "para-drink"
+      ],
+      "variante_critica": false,
+      "agrupado": false,
+      "confirmar": [
+        "abv"
+      ],
+      "observacao": "Versao brasileira sai com teor bem acima da inglesa (45,3% contra 37,5%). Conferir no rotulo do estoque.",
+      "ean": "7891121154009",
+      "fonte_ficha": "Royal Bebidas (varejo), coletado em 2026-08-14"
+    },
+    "gn-5": {
+      "marca": "Tanqueray",
+      "expressao": "London Dry",
+      "subcategoria": "gin",
+      "tipo": "London Dry Gin",
+      "pais": "Reino Unido",
+      "regiao": null,
+      "abv": null,
+      "proprietaria": "Diageo",
+      "site_oficial": "https://www.tanqueray.com",
+      "embalagem": "garrafa-vidro",
+      "descricao": "London dry de quatro botânicos em garrafa verde de coqueteleira, padrão de gin-tônica premium no Brasil. Perfil seco e de zimbro pronunciado.",
+      "servir": "Em gin-tônica com casca de limão.",
+      "tags": [
+        "importado",
+        "premium",
+        "para-drink"
+      ],
+      "variante_critica": false,
+      "agrupado": false,
+      "confirmar": [
+        "abv"
+      ],
+      "observacao": "Conferir se a garrafa da imagem é a London Dry verde e não a Sevilla, Rangpur ou Nº TEN."
+    },
+    "gn-6": {
+      "marca": "José Cuervo",
+      "expressao": "Especial Reposado",
+      "subcategoria": "tequila",
+      "tipo": "Tequila Reposado",
+      "pais": "México",
+      "regiao": "Jalisco",
+      "abv": 38,
+      "proprietaria": "Becle",
+      "site_oficial": "https://www.cuervo.com",
+      "embalagem": "garrafa-vidro",
+      "descricao": "Tequila descansada em barril de carvalho, de cor dourada e perfil mais redondo. É a tequila mais vendida do mundo.",
+      "servir": "Em dose, margarita ou paloma.",
+      "tags": [
+        "importado",
+        "para-drink"
+      ],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [
+        "abv"
+      ],
+      "observacao": "Rótulo dourado. Está na tabela junto com a Silver — imagem trocada é erro provável.",
+      "ean": "7501035010109",
+      "fonte_ficha": "Royal Bebidas (varejo), coletado em 2026-08-14"
+    },
+    "gn-7": {
+      "marca": "José Cuervo",
+      "expressao": "Especial Silver",
+      "subcategoria": "tequila",
+      "tipo": "Tequila Silver",
+      "pais": "México",
+      "regiao": "Jalisco",
+      "abv": 38,
+      "proprietaria": "Becle",
+      "site_oficial": "https://www.cuervo.com",
+      "embalagem": "garrafa-vidro",
+      "descricao": "Versão sem passagem por barril, transparente e mais direta no agave. Base de margarita e de tequila com limão e sal.",
+      "servir": "Em dose com limão e sal ou em margarita.",
+      "tags": [
+        "importado",
+        "para-drink"
+      ],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [
+        "abv"
+      ],
+      "observacao": "Rótulo prateado, líquido transparente.",
+      "ean": "7501035042322",
+      "fonte_ficha": "Royal Bebidas (varejo), coletado em 2026-08-14"
+    },
+    "rm-1": {
+      "marca": "Bacardi",
+      "expressao": "Big Apple",
+      "subcategoria": "rum-saborizado",
+      "tipo": "Bebida à base de rum com maçã",
+      "pais": "Brasil",
+      "regiao": null,
+      "abv": 35,
+      "proprietaria": "Bacardi",
+      "site_oficial": "https://www.bacardi.com",
+      "embalagem": "garrafa-vidro",
+      "descricao": "Rum Bacardi saborizado com maçã verde, para dose gelada e drink doce. Volume 700ml, menor que o das cartas tradicionais.",
+      "servir": "Gelado em dose ou com soda e limão.",
+      "tags": [
+        "para-drink",
+        "linha-completa"
+      ],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [
+        "origem",
+        "volume"
+      ],
+      "observacao": "Quatro Bacardi na tabela. O Big Apple é o único de 700ml — usar o volume para conferir a imagem. ATENCAO: o varejo lista o Big Apple em 980ml; a tabela do Ivan diz 700ml. Confirmar o volume antes de buscar imagem.",
+      "ean": "07610113026878",
+      "fonte_ficha": "Royal Bebidas (varejo), coletado em 2026-08-14"
+    },
+    "rm-2": {
+      "marca": "Bacardi",
+      "expressao": "Carta Blanca Superior",
+      "subcategoria": "rum",
+      "tipo": "Rum branco",
+      "pais": "Brasil",
+      "regiao": null,
+      "abv": null,
+      "proprietaria": "Bacardi",
+      "site_oficial": "https://www.bacardi.com",
+      "embalagem": "garrafa-vidro",
+      "descricao": "Rum branco filtrado em carvão, base histórica do daiquiri e do mojito. Rótulo branco com o morcego.",
+      "servir": "Em mojito, daiquiri ou cuba libre.",
+      "tags": [
+        "para-drink",
+        "linha-completa"
+      ],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [
+        "abv",
+        "origem"
+      ],
+      "observacao": "Rótulo branco. Não confundir com Gold (dourado) e Limón. Fontes de varejo divergem no teor (38% e 40%) — checar rotulo."
+    },
+    "rm-3": {
+      "marca": "Bacardi",
+      "expressao": "Carta Oro / Gold",
+      "subcategoria": "rum",
+      "tipo": "Rum dourado",
+      "pais": "Brasil",
+      "regiao": null,
+      "abv": null,
+      "proprietaria": "Bacardi",
+      "site_oficial": "https://www.bacardi.com",
+      "embalagem": "garrafa-vidro",
+      "descricao": "Rum envelhecido em barril de carvalho, de cor âmbar e corpo maior que o Carta Blanca. Vai bem em cuba libre e drinks com fruta escura.",
+      "servir": "Em cuba libre ou com gelo.",
+      "tags": [
+        "para-drink",
+        "linha-completa"
+      ],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [
+        "abv",
+        "origem"
+      ],
+      "observacao": "Rótulo dourado."
+    },
+    "rm-4": {
+      "marca": "Bacardi",
+      "expressao": "Limón",
+      "subcategoria": "rum-saborizado",
+      "tipo": "Bebida à base de rum com limão",
+      "pais": "Brasil",
+      "regiao": null,
+      "abv": null,
+      "proprietaria": "Bacardi",
+      "site_oficial": "https://www.bacardi.com",
+      "embalagem": "garrafa-vidro",
+      "descricao": "Bacardi com sabor cítrico de limão, o saborizado mais antigo da linha. Feito para dose gelada e long drink.",
+      "servir": "Gelado com soda ou tônica.",
+      "tags": [
+        "para-drink",
+        "linha-completa"
+      ],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [
+        "abv",
+        "origem"
+      ],
+      "observacao": "Rótulo amarelo-esverdeado."
+    },
+    "rm-5": {
+      "marca": "Malibu",
+      "expressao": "Coconut",
+      "subcategoria": "rum-saborizado",
+      "tipo": "Licor de rum com coco",
+      "pais": "Barbados",
+      "regiao": "Caribe",
+      "abv": 21,
+      "proprietaria": "Pernod Ricard",
+      "site_oficial": "https://www.maliburumdrinks.com",
+      "embalagem": "garrafa-vidro",
+      "descricao": "Licor de rum caribenho com coco, em garrafa branca opaca. Teor mais baixo que rum puro, feito para drink tropical.",
+      "servir": "Com abacaxi, coco ou em piña colada.",
+      "tags": [
+        "importado",
+        "para-drink"
+      ],
+      "variante_critica": false,
+      "agrupado": false,
+      "confirmar": [],
+      "observacao": "Garrafa branca opaca — recorte em fundo branco pode sumir com o contorno. Preferir fundo transparente.",
+      "ean": "0089540468709",
+      "fonte_ficha": "Royal Bebidas (varejo), coletado em 2026-08-14"
+    },
+    "rm-6": {
+      "marca": "Montilla",
+      "expressao": "Carta Cristal",
+      "subcategoria": "rum",
+      "tipo": "Rum branco nacional",
+      "pais": "Brasil",
+      "regiao": null,
+      "abv": null,
+      "proprietaria": "Pernod Ricard Brasil",
+      "site_oficial": null,
+      "embalagem": "garrafa-vidro",
+      "descricao": "Rum branco nacional, o mais vendido do país. Base de caipirinha de rum e de drinks de bar em volume.",
+      "servir": "Em caipirinha, mojito ou cuba libre.",
+      "tags": [
+        "nacional",
+        "para-drink",
+        "linha-completa"
+      ],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [
+        "abv"
+      ],
+      "observacao": "Rótulo claro. Está na tabela junto com o Carta Ouro."
+    },
+    "rm-7": {
+      "marca": "Montilla",
+      "expressao": "Carta Ouro",
+      "subcategoria": "rum",
+      "tipo": "Rum dourado nacional",
+      "pais": "Brasil",
+      "regiao": "Brasil",
+      "abv": 38,
+      "proprietaria": "Pernod Ricard Brasil",
+      "site_oficial": null,
+      "embalagem": "garrafa-vidro",
+      "descricao": "Versão envelhecida do Montilla, de cor âmbar e sabor mais encorpado. Mesmo preço do Cristal na tabela.",
+      "servir": "Com gelo ou em cuba libre.",
+      "tags": [
+        "nacional",
+        "para-drink",
+        "linha-completa"
+      ],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [],
+      "observacao": "Rótulo dourado.",
+      "ean": "7891050004208",
+      "fonte_ficha": "Royal Bebidas (varejo), coletado em 2026-08-14"
+    },
+    "rm-8": {
+      "marca": "Doble W",
+      "expressao": null,
+      "subcategoria": "steinhaeger",
+      "tipo": "Steinhäger",
+      "pais": "Brasil",
+      "regiao": null,
+      "abv": null,
+      "proprietaria": null,
+      "site_oficial": null,
+      "embalagem": "garrafa-vidro",
+      "descricao": "Steinhäger de destilado de zimbro, tradicional no Sul do país em dose gelada. Categoria própria, próxima do gin mas de perfil mais seco.",
+      "servir": "Congelado, em dose pura.",
+      "tags": [
+        "nacional",
+        "puro"
+      ],
+      "variante_critica": false,
+      "agrupado": false,
+      "confirmar": [
+        "abv",
+        "fabricante",
+        "origem"
+      ],
+      "observacao": "Consumo forte no RS — vale destacar na vitrine regional."
+    },
+    "lc-1": {
+      "marca": "Aperol",
+      "expressao": null,
+      "subcategoria": "aperitivo-bitter",
+      "tipo": "Aperitivo italiano",
+      "pais": "Itália",
+      "regiao": "Brasil",
+      "abv": 11,
+      "proprietaria": "Campari Group",
+      "site_oficial": "https://www.aperol.com",
+      "embalagem": "garrafa-vidro",
+      "descricao": "Aperitivo laranja de ruibarbo e genciana, base do spritz. Teor baixo, feito para ser alongado com prosecco e soda.",
+      "servir": "Em spritz: 3 partes de prosecco, 2 de Aperol, 1 de soda.",
+      "tags": [
+        "importado",
+        "para-drink"
+      ],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [
+        "variante"
+      ],
+      "observacao": "A tabela diz 'Aperol Spritz'. Existe o Aperol garrafa (aperitivo) e o Aperol Spritz pronto para beber, que são produtos diferentes. O volume 750ml indica o aperitivo tradicional — confirmar com o Ivan antes de fechar a imagem.",
+      "ean": "7891136057012",
+      "fonte_ficha": "Royal Bebidas (varejo), coletado em 2026-08-14"
+    },
+    "lc-2": {
+      "marca": "Licor 43",
+      "expressao": "Cuarenta y Tres",
+      "subcategoria": "licor-frutas",
+      "tipo": "Licor de baunilha e cítricos",
+      "pais": "Espanha",
+      "regiao": "Cartagena",
+      "abv": 31,
+      "proprietaria": "Diego Zamora",
+      "site_oficial": "https://www.licor43.com",
+      "embalagem": "garrafa-vidro",
+      "descricao": "Licor espanhol de 43 ingredientes, com baunilha no centro do aroma. Base do carajillo e do 43 com leite.",
+      "servir": "Com gelo, leite ou café.",
+      "tags": [
+        "importado",
+        "premium"
+      ],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [],
+      "observacao": "Está na tabela junto com a Chocolate Edition."
+    },
+    "lc-3": {
+      "marca": "Licor 43",
+      "expressao": "Chocolate Edition",
+      "subcategoria": "licor-creme",
+      "tipo": "Licor de chocolate e baunilha",
+      "pais": "Espanha",
+      "regiao": "Cartagena",
+      "abv": null,
+      "proprietaria": "Diego Zamora",
+      "site_oficial": "https://www.licor43.com",
+      "embalagem": "garrafa-vidro",
+      "descricao": "Versão com chocolate sobre a base do Licor 43 original, de textura mais cremosa e teor mais baixo.",
+      "servir": "Gelado puro, com gelo ou sobre sorvete.",
+      "tags": [
+        "importado",
+        "premium"
+      ],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [
+        "abv"
+      ],
+      "observacao": "Rótulo escuro. Não usar a foto do 43 tradicional."
+    },
+    "lc-4": {
+      "marca": "Amarula",
+      "expressao": "Cream",
+      "subcategoria": "licor-creme",
+      "tipo": "Licor cremoso de marula",
+      "pais": "África do Sul",
+      "regiao": null,
+      "abv": 17,
+      "proprietaria": "Distell",
+      "site_oficial": "https://www.amarula.com",
+      "embalagem": "garrafa-vidro",
+      "descricao": "Licor cremoso do fruto da marula, com o elefante no rótulo. Serve puro gelado e vai bem em sobremesa e café.",
+      "servir": "Gelado puro, com gelo ou no café.",
+      "tags": [
+        "importado",
+        "puro"
+      ],
+      "variante_critica": false,
+      "agrupado": false,
+      "confirmar": [],
+      "observacao": ""
+    },
+    "lc-5": {
+      "marca": "Dell Orso",
+      "expressao": "Amaretto",
+      "subcategoria": "licor-frutas",
+      "tipo": "Licor de amêndoa",
+      "pais": null,
+      "regiao": "Itália",
+      "abv": 28,
+      "proprietaria": null,
+      "site_oficial": null,
+      "embalagem": "garrafa-vidro",
+      "descricao": "Amaretto de perfil doce e amendoado, usado puro em sobremesa e como modificador em coquetel clássico.",
+      "servir": "Com gelo, no café ou em sour.",
+      "tags": [],
+      "variante_critica": false,
+      "agrupado": false,
+      "confirmar": [
+        "origem",
+        "fabricante"
+      ],
+      "observacao": "Marca de menor divulgação: origem e fabricante precisam de confirmação no rótulo.",
+      "ean": "0000078901612",
+      "fonte_ficha": "Royal Bebidas (varejo), coletado em 2026-08-14"
+    },
+    "lc-6": {
+      "marca": "Don Luiz",
+      "expressao": "Doce de Leite",
+      "subcategoria": "licor-creme",
+      "tipo": "Licor cremoso de doce de leite",
+      "pais": null,
+      "regiao": "Brasil",
+      "abv": 13,
+      "proprietaria": null,
+      "site_oficial": null,
+      "embalagem": "garrafa-vidro",
+      "descricao": "Licor cremoso de doce de leite, de consumo puro e gelado. Forte em sobremesa e em presente de fim de ano.",
+      "servir": "Gelado puro ou sobre sorvete.",
+      "tags": [],
+      "variante_critica": false,
+      "agrupado": false,
+      "confirmar": [
+        "origem",
+        "fabricante"
+      ],
+      "observacao": "",
+      "ean": "7898994771012",
+      "fonte_ficha": "Royal Bebidas (varejo), coletado em 2026-08-14"
+    },
+    "lc-7": {
+      "marca": "Cointreau",
+      "expressao": null,
+      "subcategoria": "licor-frutas",
+      "tipo": "Triple sec",
+      "pais": "França",
+      "regiao": "Angers",
+      "abv": 40,
+      "proprietaria": "Rémy Cointreau",
+      "site_oficial": "https://www.cointreau.com",
+      "embalagem": "garrafa-vidro",
+      "descricao": "Triple sec de casca de laranja doce e amarga, em garrafa âmbar quadrada. Insumo obrigatório de margarita, cosmopolitan e sidecar.",
+      "servir": "Em margarita, cosmopolitan ou sidecar.",
+      "tags": [
+        "importado",
+        "premium",
+        "insumo-bar"
+      ],
+      "variante_critica": false,
+      "agrupado": false,
+      "confirmar": [],
+      "observacao": ""
+    },
+    "lc-8": {
+      "marca": "Jägermeister",
+      "expressao": null,
+      "subcategoria": "licor-ervas",
+      "tipo": "Licor de ervas",
+      "pais": "Alemanha",
+      "regiao": "Wolfenbüttel",
+      "abv": 35,
+      "proprietaria": "Mast-Jägermeister",
+      "site_oficial": "https://www.jagermeister.com",
+      "embalagem": "garrafa-vidro",
+      "descricao": "Licor de 56 ervas, raízes e especiarias, em garrafa verde com o cervo. Servido a −18°C, é o shot de balada por excelência.",
+      "servir": "Congelado, em shot, ou com energético.",
+      "tags": [
+        "importado",
+        "para-drink"
+      ],
+      "variante_critica": false,
+      "agrupado": false,
+      "confirmar": [],
+      "observacao": "Garrafa verde escura — foto em fundo branco costuma render melhor.",
+      "ean": "4067700011015",
+      "fonte_ficha": "Royal Bebidas (varejo), coletado em 2026-08-14"
+    },
+    "lc-9": {
+      "marca": "Stock",
+      "expressao": "Sortido",
+      "subcategoria": "licor-frutas",
+      "tipo": "Licor nacional (linha de sabores)",
+      "pais": "Brasil",
+      "regiao": null,
+      "abv": null,
+      "proprietaria": null,
+      "site_oficial": null,
+      "embalagem": "garrafa-vidro",
+      "descricao": "Linha de licores nacionais em vários sabores, com preço único na tabela. Tradicional em bar de bairro e em drink doce.",
+      "servir": "Com gelo ou em coquetel doce.",
+      "tags": [
+        "nacional",
+        "sortido"
+      ],
+      "variante_critica": false,
+      "agrupado": true,
+      "confirmar": [
+        "abv",
+        "sabores_disponiveis"
+      ],
+      "observacao": "Item agrupado: representa vários SKUs. Levantar com o Ivan quais sabores a Monte Cristo realmente estoca antes de virar página de produto."
+    },
+    "cc-1": {
+      "marca": "51",
+      "expressao": "Pirassununga",
+      "subcategoria": "cachaca",
+      "tipo": "Cachaça",
+      "pais": "Brasil",
+      "regiao": "Pirassununga/SP",
+      "abv": 40,
+      "proprietaria": "Companhia Müller de Bebidas",
+      "site_oficial": null,
+      "embalagem": "garrafa-vidro",
+      "descricao": "A cachaça mais vendida do Brasil, padrão de caipirinha em bar e evento. Item de giro alto e preço baixo.",
+      "servir": "Em caipirinha ou batida.",
+      "tags": [
+        "nacional",
+        "entrada",
+        "para-drink"
+      ],
+      "variante_critica": false,
+      "agrupado": false,
+      "confirmar": [],
+      "observacao": "",
+      "ean": "7896002100014",
+      "fonte_ficha": "Royal Bebidas (varejo), coletado em 2026-08-14"
+    },
+    "cc-2": {
+      "marca": "Velho Barreiro",
+      "expressao": null,
+      "subcategoria": "cachaca",
+      "tipo": "Cachaça",
+      "pais": "Brasil",
+      "regiao": "São Paulo",
+      "abv": 39,
+      "proprietaria": null,
+      "site_oficial": null,
+      "embalagem": "garrafa-vidro",
+      "descricao": "Cachaça tradicional de perfil suave, presença forte na caipirinha de bar. É o item mais barato de toda a tabela.",
+      "servir": "Em caipirinha ou batida.",
+      "tags": [
+        "nacional",
+        "entrada",
+        "para-drink"
+      ],
+      "variante_critica": false,
+      "agrupado": false,
+      "confirmar": [
+        "fabricante"
+      ],
+      "observacao": "",
+      "ean": "7896050200124",
+      "fonte_ficha": "Royal Bebidas (varejo), coletado em 2026-08-14"
+    },
+    "cc-3": {
+      "marca": "Ypióca",
+      "expressao": "Brasilizar Ouro",
+      "subcategoria": "cachaca",
+      "tipo": "Cachaça envelhecida",
+      "pais": "Brasil",
+      "regiao": "Ceará",
+      "abv": null,
+      "proprietaria": "Diageo",
+      "site_oficial": null,
+      "embalagem": "garrafa-vidro",
+      "descricao": "Cachaça cearense envelhecida em tonel de umburana, de cor dourada e sabor amadeirado. Versão para consumo puro.",
+      "servir": "Pura, em dose, ou em caipirinha encorpada.",
+      "tags": [
+        "nacional",
+        "linha-completa"
+      ],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [
+        "abv"
+      ],
+      "observacao": "Ouro e Prata estão na tabela com o mesmo preço. Diferenciar pela cor do líquido e do rótulo."
+    },
+    "cc-4": {
+      "marca": "Ypióca",
+      "expressao": "Brasilizar Prata",
+      "subcategoria": "cachaca",
+      "tipo": "Cachaça branca",
+      "pais": "Brasil",
+      "regiao": "Ceará",
+      "abv": null,
+      "proprietaria": "Diageo",
+      "site_oficial": null,
+      "embalagem": "garrafa-vidro",
+      "descricao": "Versão branca da Ypióca, sem passagem por madeira. Mais direta na cana, feita para caipirinha.",
+      "servir": "Em caipirinha.",
+      "tags": [
+        "nacional",
+        "linha-completa",
+        "para-drink"
+      ],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [
+        "abv"
+      ],
+      "observacao": "Líquido transparente. Não confundir com a Ouro."
+    },
+    "cc-5": {
+      "marca": "Casa Bucco",
+      "expressao": "Artesanal",
+      "subcategoria": "cachaca-artesanal",
+      "tipo": "Cachaça artesanal",
+      "pais": "Brasil",
+      "regiao": null,
+      "abv": null,
+      "proprietaria": "Casa Bucco",
+      "site_oficial": null,
+      "embalagem": "garrafa-vidro",
+      "descricao": "Cachaça artesanal de produção pequena, com preço bem acima das industriais da tabela. Item de vitrine e de presente.",
+      "servir": "Pura, em dose, à temperatura ambiente.",
+      "tags": [
+        "nacional",
+        "premium",
+        "puro"
+      ],
+      "variante_critica": false,
+      "agrupado": false,
+      "confirmar": [
+        "abv",
+        "regiao",
+        "envelhecimento"
+      ],
+      "observacao": "Se for produtor gaúcho, vira argumento de vitrine regional. Confirmar com o Ivan e, sendo o caso, pedir a foto oficial direto ao produtor — é a imagem mais fácil de licenciar do catálogo inteiro."
+    },
+    "cc-6": {
+      "marca": "Domecq",
+      "expressao": null,
+      "subcategoria": "conhaque",
+      "tipo": "Conhaque / brandy nacional",
+      "pais": "Brasil",
+      "regiao": "Espanha",
+      "abv": 36,
+      "proprietaria": null,
+      "site_oficial": null,
+      "embalagem": "garrafa-vidro",
+      "descricao": "Brandy de perfil tradicional, consumido puro ou com gelo. Categoria de público fiel e giro constante.",
+      "servir": "Puro ou com gelo.",
+      "tags": [
+        "nacional",
+        "puro"
+      ],
+      "variante_critica": false,
+      "agrupado": false,
+      "confirmar": [
+        "fabricante"
+      ],
+      "observacao": "",
+      "ean": "7896080001401",
+      "fonte_ficha": "Royal Bebidas (varejo), coletado em 2026-08-14"
+    },
+    "cc-7": {
+      "marca": "Dreher",
+      "expressao": null,
+      "subcategoria": "conhaque",
+      "tipo": "Conhaque nacional",
+      "pais": "Brasil",
+      "regiao": "Brasil",
+      "abv": 38,
+      "proprietaria": "Campari Group",
+      "site_oficial": null,
+      "embalagem": "garrafa-vidro",
+      "descricao": "Conhaque nacional clássico, base do rabo de galo e do consumo puro no inverno. Marca centenária no Brasil.",
+      "servir": "Puro, com gelo ou em rabo de galo.",
+      "tags": [
+        "nacional",
+        "puro"
+      ],
+      "variante_critica": false,
+      "agrupado": false,
+      "confirmar": [],
+      "observacao": "",
+      "ean": "7896010002133",
+      "fonte_ficha": "Royal Bebidas (varejo), coletado em 2026-08-14"
+    },
+    "cc-8": {
+      "marca": "Presidente",
+      "expressao": null,
+      "subcategoria": "conhaque",
+      "tipo": "Conhaque nacional",
+      "pais": "Brasil",
+      "regiao": "Brasil",
+      "abv": 35,
+      "proprietaria": null,
+      "site_oficial": null,
+      "embalagem": "garrafa-vidro",
+      "descricao": "Conhaque de faixa econômica, tradicional em bar de bairro. Preço de entrada da categoria.",
+      "servir": "Puro ou com gelo.",
+      "tags": [
+        "nacional",
+        "entrada"
+      ],
+      "variante_critica": false,
+      "agrupado": false,
+      "confirmar": [
+        "fabricante"
+      ],
+      "observacao": "",
+      "ean": "7896023080487",
+      "fonte_ficha": "Royal Bebidas (varejo), coletado em 2026-08-14"
+    },
+    "cv-1": {
+      "marca": "Norteña",
+      "expressao": "Garrafa",
+      "subcategoria": "cerveja",
+      "tipo": "Cerveja lager uruguaia",
+      "pais": "Uruguai",
+      "regiao": "Paysandú",
+      "abv": null,
+      "proprietaria": null,
+      "site_oficial": null,
+      "embalagem": "garrafa-vidro",
+      "descricao": "Lager uruguaia em garrafa grande, presença forte na fronteira e no churrasco gaúcho. Formato de litrão para mesa.",
+      "servir": "Bem gelada, em copo pequeno.",
+      "tags": [
+        "uruguaia",
+        "importado",
+        "linha-completa"
+      ],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [
+        "abv",
+        "fabricante"
+      ],
+      "observacao": "Existe versão garrafa e latão na tabela. A imagem tem que ser da GARRAFA. Lager uruguaia de Paysandu, desde 1947."
+    },
+    "cv-2": {
+      "marca": "Norteña",
+      "expressao": "Latão",
+      "subcategoria": "cerveja",
+      "tipo": "Cerveja lager uruguaia",
+      "pais": "Uruguai",
+      "regiao": "Paysandú",
+      "abv": null,
+      "proprietaria": null,
+      "site_oficial": null,
+      "embalagem": "lata",
+      "descricao": "Mesma lager uruguaia no formato latão de 473ml, para consumo individual e evento.",
+      "servir": "Bem gelada.",
+      "tags": [
+        "uruguaia",
+        "importado",
+        "linha-completa"
+      ],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [
+        "abv",
+        "fabricante"
+      ],
+      "observacao": "A imagem tem que ser da LATA, não da garrafa."
+    },
+    "cv-3": {
+      "marca": "Patricia",
+      "expressao": "Garrafa",
+      "subcategoria": "cerveja",
+      "tipo": "Cerveja lager uruguaia",
+      "pais": "Uruguai",
+      "regiao": null,
+      "abv": null,
+      "proprietaria": null,
+      "site_oficial": null,
+      "embalagem": "garrafa-vidro",
+      "descricao": "Lager uruguaia de perfil mais encorpado, tradicional entre quem cruza a fronteira. Garrafa grande para mesa.",
+      "servir": "Bem gelada, em copo pequeno.",
+      "tags": [
+        "uruguaia",
+        "importado",
+        "linha-completa"
+      ],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [
+        "abv",
+        "fabricante"
+      ],
+      "observacao": "Versão garrafa. Existe latão na mesma tabela."
+    },
+    "cv-4": {
+      "marca": "Patricia",
+      "expressao": "Latão",
+      "subcategoria": "cerveja",
+      "tipo": "Cerveja lager uruguaia",
+      "pais": "Uruguai",
+      "regiao": null,
+      "abv": null,
+      "proprietaria": null,
+      "site_oficial": null,
+      "embalagem": "lata",
+      "descricao": "Patricia no latão de 473ml, formato de consumo individual.",
+      "servir": "Bem gelada.",
+      "tags": [
+        "uruguaia",
+        "importado",
+        "linha-completa"
+      ],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [
+        "abv",
+        "fabricante"
+      ],
+      "observacao": "A imagem tem que ser da LATA."
+    },
+    "cv-5": {
+      "marca": "Pilsen",
+      "expressao": "Garrafa",
+      "subcategoria": "cerveja",
+      "tipo": "Cerveja lager",
+      "pais": null,
+      "regiao": null,
+      "abv": null,
+      "proprietaria": null,
+      "site_oficial": null,
+      "embalagem": "garrafa-vidro",
+      "descricao": "Lager leve em garrafa grande, item de preço por litro na mesa.",
+      "servir": "Bem gelada, em copo pequeno.",
+      "tags": [],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [
+        "marca_exata",
+        "origem",
+        "abv"
+      ],
+      "observacao": "Atenção: 'Pilsen' aqui pode ser a marca uruguaia Pilsen (da mesma casa de Norteña e Patricia) ou uma pilsen genérica. O volume 960ml sugere a uruguaia. CONFIRMAR com o Ivan antes de buscar imagem — é o item de maior risco de erro do catálogo."
+    },
+    "cv-6": {
+      "marca": "Zillertal",
+      "expressao": "Garrafa",
+      "subcategoria": "cerveja",
+      "tipo": "Cerveja lager uruguaia",
+      "pais": "Uruguai",
+      "regiao": null,
+      "abv": null,
+      "proprietaria": null,
+      "site_oficial": null,
+      "embalagem": "garrafa-vidro",
+      "descricao": "Lager uruguaia de rótulo alpino, a de maior preço entre as cervejas da tabela. Garrafa grande de 970ml.",
+      "servir": "Bem gelada, em copo pequeno.",
+      "tags": [
+        "uruguaia",
+        "importado",
+        "linha-completa"
+      ],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [
+        "abv",
+        "fabricante"
+      ],
+      "observacao": "Versão garrafa."
+    },
+    "cv-7": {
+      "marca": "Zillertal",
+      "expressao": "Latão",
+      "subcategoria": "cerveja",
+      "tipo": "Cerveja lager uruguaia",
+      "pais": "Uruguai",
+      "regiao": null,
+      "abv": null,
+      "proprietaria": null,
+      "site_oficial": null,
+      "embalagem": "lata",
+      "descricao": "Zillertal no latão de 473ml.",
+      "servir": "Bem gelada.",
+      "tags": [
+        "uruguaia",
+        "importado",
+        "linha-completa"
+      ],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [
+        "abv",
+        "fabricante"
+      ],
+      "observacao": "A imagem tem que ser da LATA."
+    },
+    "es-1": {
+      "marca": "Salton",
+      "expressao": "Brut",
+      "subcategoria": "espumante",
+      "tipo": "Espumante brut",
+      "pais": "Brasil",
+      "regiao": "Bento Gonçalves/RS",
+      "abv": null,
+      "proprietaria": "Vinícola Salton",
+      "site_oficial": "https://www.salton.com.br",
+      "embalagem": "garrafa-vidro",
+      "descricao": "Espumante brut da Serra Gaúcha, seco e de borbulha fina. Produzido a menos de 40km de Caxias do Sul.",
+      "servir": "Gelado a 6-8°C, em taça flute.",
+      "tags": [
+        "nacional",
+        "regional-rs"
+      ],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [
+        "abv"
+      ],
+      "observacao": "Item regional: a proximidade com Caxias é argumento de venda. A Salton mantém material oficial de imprensa — é a foto mais fácil de licenciar do catálogo."
+    },
+    "es-2": {
+      "marca": "Salton",
+      "expressao": "Série (todas as variedades)",
+      "subcategoria": "espumante",
+      "tipo": "Espumante (linha de variedades)",
+      "pais": "Brasil",
+      "regiao": "Bento Gonçalves/RS",
+      "abv": null,
+      "proprietaria": "Vinícola Salton",
+      "site_oficial": "https://www.salton.com.br",
+      "embalagem": "garrafa-vidro",
+      "descricao": "Linha de espumantes Salton com preço único na tabela, em várias variedades. Faixa de entrada da vinícola.",
+      "servir": "Gelado a 6-8°C, em taça flute.",
+      "tags": [
+        "nacional",
+        "regional-rs",
+        "sortido"
+      ],
+      "variante_critica": false,
+      "agrupado": true,
+      "confirmar": [
+        "variedades_disponiveis",
+        "abv"
+      ],
+      "observacao": "Item agrupado. Levantar quais rótulos da linha a Monte Cristo estoca."
+    },
+    "vb-1": {
+      "marca": "Brasilberg",
+      "expressao": "Original",
+      "subcategoria": "aperitivo-bitter",
+      "tipo": "Aperitivo",
+      "pais": "Brasil",
+      "regiao": "Brasil",
+      "abv": 42,
+      "proprietaria": null,
+      "site_oficial": null,
+      "embalagem": "garrafa-vidro",
+      "descricao": "Aperitivo nacional de perfil herbal, consumido gelado em dose. Categoria com público próprio no Sul.",
+      "servir": "Gelado, em dose pura.",
+      "tags": [
+        "nacional",
+        "puro"
+      ],
+      "variante_critica": false,
+      "agrupado": false,
+      "confirmar": [
+        "fabricante",
+        "perfil"
+      ],
+      "observacao": "Marca de menor divulgação: confirmar dados no rótulo do estoque.",
+      "ean": "7896019302012",
+      "fonte_ficha": "Royal Bebidas (varejo), coletado em 2026-08-14"
+    },
+    "vb-2": {
+      "marca": "Campari",
+      "expressao": "Bitter",
+      "subcategoria": "bitter",
+      "tipo": "Bitter italiano",
+      "pais": "Brasil",
+      "regiao": null,
+      "abv": null,
+      "proprietaria": "Campari Group",
+      "site_oficial": "https://www.campari.com",
+      "embalagem": "garrafa-vidro",
+      "descricao": "Bitter vermelho de ervas e frutas amargas, insumo obrigatório de negroni, americano e caipirinha de Campari. Versão nacional de 998ml.",
+      "servir": "Em negroni, com laranja ou em spritz.",
+      "tags": [
+        "insumo-bar",
+        "para-drink"
+      ],
+      "variante_critica": false,
+      "agrupado": false,
+      "confirmar": [
+        "abv"
+      ],
+      "observacao": "Volume 998ml indica produção nacional — buscar imagem em e-commerce brasileiro."
+    },
+    "vb-3": {
+      "marca": "Martini",
+      "expressao": "Bianco",
+      "subcategoria": "vermouth",
+      "tipo": "Vermute branco doce",
+      "pais": "Itália",
+      "regiao": "Turim",
+      "abv": 16,
+      "proprietaria": "Bacardi",
+      "site_oficial": "https://www.martini.com",
+      "embalagem": "garrafa-vidro",
+      "descricao": "Vermute branco de perfil doce e baunilhado, o mais vendido da linha. Serve gelado com tônica ou puro com limão.",
+      "servir": "Com gelo e tônica, ou puro gelado.",
+      "tags": [
+        "importado",
+        "linha-completa",
+        "insumo-bar"
+      ],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [],
+      "observacao": "Quatro Martini na tabela, todos a R$ 50 e 750ml. Conferir cada rótulo pelo nome: Bianco (rótulo claro), Rosso (rótulo escuro), Rosato e Extra Dry.",
+      "ean": "7891125000074",
+      "fonte_ficha": "Royal Bebidas (varejo), coletado em 2026-08-14"
+    },
+    "vb-4": {
+      "marca": "Martini",
+      "expressao": "Extra Dry",
+      "subcategoria": "vermouth",
+      "tipo": "Vermute seco",
+      "pais": "Itália",
+      "regiao": "Turim",
+      "abv": 16,
+      "proprietaria": "Bacardi",
+      "site_oficial": "https://www.martini.com",
+      "embalagem": "garrafa-vidro",
+      "descricao": "Vermute seco de baixa doçura, o componente clássico do dry martini junto do gin.",
+      "servir": "Em dry martini ou com gelo e azeitona.",
+      "tags": [
+        "importado",
+        "linha-completa",
+        "insumo-bar"
+      ],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [],
+      "observacao": "Não confundir com Bianco — ambos são claros.",
+      "ean": "7891125000098",
+      "fonte_ficha": "Royal Bebidas (varejo), coletado em 2026-08-14"
+    },
+    "vb-5": {
+      "marca": "Martini",
+      "expressao": "Rosato",
+      "subcategoria": "vermouth",
+      "tipo": "Vermute rosado",
+      "pais": "Itália",
+      "regiao": "Turim",
+      "abv": 16,
+      "proprietaria": "Bacardi",
+      "site_oficial": "https://www.martini.com",
+      "embalagem": "garrafa-vidro",
+      "descricao": "Vermute rosado, entre o Bianco e o Rosso em doçura, com toque de canela e cravo.",
+      "servir": "Com gelo, tônica e casca de laranja.",
+      "tags": [
+        "importado",
+        "linha-completa",
+        "insumo-bar"
+      ],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [],
+      "observacao": "É o menos comum da linha — o mais provável de vir com imagem errada.",
+      "ean": "7891125000081",
+      "fonte_ficha": "Royal Bebidas (varejo), coletado em 2026-08-14"
+    },
+    "vb-6": {
+      "marca": "Martini",
+      "expressao": "Rosso",
+      "subcategoria": "vermouth",
+      "tipo": "Vermute tinto doce",
+      "pais": "Itália",
+      "regiao": "Turim",
+      "abv": 16,
+      "proprietaria": "Bacardi",
+      "site_oficial": "https://www.martini.com",
+      "embalagem": "garrafa-vidro",
+      "descricao": "Vermute tinto doce de 1863, base do negroni e do americano. Amargor de ervas com dulçor de caramelo.",
+      "servir": "Em negroni, manhattan ou puro com gelo.",
+      "tags": [
+        "importado",
+        "linha-completa",
+        "insumo-bar"
+      ],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [],
+      "observacao": "Rótulo escuro.",
+      "ean": "7891125000104",
+      "fonte_ficha": "Royal Bebidas (varejo), coletado em 2026-08-14"
+    },
+    "en-1": {
+      "marca": "Baly",
+      "expressao": "Tradicional",
+      "subcategoria": "energetico",
+      "tipo": "Bebida energética",
+      "pais": "Brasil",
+      "regiao": null,
+      "abv": 0,
+      "proprietaria": "Baly",
+      "site_oficial": null,
+      "embalagem": "garrafa-pet",
+      "descricao": "Energético em PET de 2 litros, formato de melhor custo por mililitro para mistura com destilado. Sabor tradicional.",
+      "servir": "Gelado, puro ou com vodka e whisky.",
+      "tags": [
+        "sem-alcool",
+        "para-drink",
+        "linha-completa"
+      ],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [],
+      "observacao": "Cinco sabores Baly na tabela, todos 2L e R$ 11,90. A imagem tem que ser a PET de 2L, não a lata."
+    },
+    "en-2": {
+      "marca": "Baly",
+      "expressao": "Frutas Tropicais",
+      "subcategoria": "energetico",
+      "tipo": "Bebida energética",
+      "pais": "Brasil",
+      "regiao": null,
+      "abv": 0,
+      "proprietaria": "Baly",
+      "site_oficial": null,
+      "embalagem": "garrafa-pet",
+      "descricao": "Versão de frutas tropicais da linha Baly, em PET de 2 litros.",
+      "servir": "Gelado, puro ou em drink.",
+      "tags": [
+        "sem-alcool",
+        "para-drink",
+        "linha-completa"
+      ],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [],
+      "observacao": "PET 2L. Conferir o sabor no rótulo."
+    },
+    "en-3": {
+      "marca": "Baly",
+      "expressao": "Maçã Verde",
+      "subcategoria": "energetico",
+      "tipo": "Bebida energética",
+      "pais": "Brasil",
+      "regiao": null,
+      "abv": 0,
+      "proprietaria": "Baly",
+      "site_oficial": null,
+      "embalagem": "garrafa-pet",
+      "descricao": "Versão de maçã verde da linha Baly, em PET de 2 litros.",
+      "servir": "Gelado, puro ou em drink.",
+      "tags": [
+        "sem-alcool",
+        "para-drink",
+        "linha-completa"
+      ],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [],
+      "observacao": "PET 2L. Conferir o sabor no rótulo."
+    },
+    "en-4": {
+      "marca": "Baly",
+      "expressao": "Melancia",
+      "subcategoria": "energetico",
+      "tipo": "Bebida energética",
+      "pais": "Brasil",
+      "regiao": null,
+      "abv": 0,
+      "proprietaria": "Baly",
+      "site_oficial": null,
+      "embalagem": "garrafa-pet",
+      "descricao": "Versão de melancia da linha Baly, em PET de 2 litros.",
+      "servir": "Gelado, puro ou em drink.",
+      "tags": [
+        "sem-alcool",
+        "para-drink",
+        "linha-completa"
+      ],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [],
+      "observacao": "PET 2L. Conferir o sabor no rótulo."
+    },
+    "en-5": {
+      "marca": "Baly",
+      "expressao": "Morango e Pêssego",
+      "subcategoria": "energetico",
+      "tipo": "Bebida energética",
+      "pais": "Brasil",
+      "regiao": null,
+      "abv": 0,
+      "proprietaria": "Baly",
+      "site_oficial": null,
+      "embalagem": "garrafa-pet",
+      "descricao": "Versão de morango com pêssego da linha Baly, em PET de 2 litros.",
+      "servir": "Gelado, puro ou em drink.",
+      "tags": [
+        "sem-alcool",
+        "para-drink",
+        "linha-completa"
+      ],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [],
+      "observacao": "PET 2L. Conferir o sabor no rótulo."
+    },
+    "en-6": {
+      "marca": "Red Bull",
+      "expressao": "Energy Drink",
+      "subcategoria": "energetico",
+      "tipo": "Bebida energética",
+      "pais": "Áustria",
+      "regiao": null,
+      "abv": 0,
+      "proprietaria": "Red Bull GmbH",
+      "site_oficial": "https://www.redbull.com",
+      "embalagem": "lata",
+      "descricao": "A lata azul e prata de 250ml, padrão mundial da categoria. Mistura obrigatória com vodka e whisky.",
+      "servir": "Gelado, puro ou em drink.",
+      "tags": [
+        "importado",
+        "sem-alcool",
+        "para-drink",
+        "linha-completa"
+      ],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [],
+      "observacao": "A imagem tem que ser da LATA de 250ml. Duas versões Red Bull na tabela."
+    },
+    "en-7": {
+      "marca": "Red Bull",
+      "expressao": "Tropical Edition",
+      "subcategoria": "energetico",
+      "tipo": "Bebida energética saborizada",
+      "pais": "Áustria",
+      "regiao": null,
+      "abv": 0,
+      "proprietaria": "Red Bull GmbH",
+      "site_oficial": "https://www.redbull.com",
+      "embalagem": "lata",
+      "descricao": "Edição de sabor tropical da linha Red Bull, em lata de 250ml.",
+      "servir": "Gelado, puro ou em drink.",
+      "tags": [
+        "importado",
+        "sem-alcool",
+        "para-drink",
+        "linha-completa"
+      ],
+      "variante_critica": true,
+      "agrupado": false,
+      "confirmar": [],
+      "observacao": "LATA amarela da Tropical Edition — não usar a lata azul tradicional."
+    },
+    "xr-1": {
+      "marca": "Fórmula",
+      "expressao": "Sortido",
+      "subcategoria": "xarope-bar",
+      "tipo": "Xarope para bar (linha de sabores)",
+      "pais": "Brasil",
+      "regiao": null,
+      "abv": 0,
+      "proprietaria": null,
+      "site_oficial": null,
+      "embalagem": "garrafa-vidro",
+      "descricao": "Linha de xaropes para coquetelaria e cafeteria, com preço único na tabela. Insumo de bar, não de consumo direto.",
+      "servir": "Como insumo de drink, café e soda italiana.",
+      "tags": [
+        "sem-alcool",
+        "insumo-bar",
+        "sortido"
+      ],
+      "variante_critica": false,
+      "agrupado": true,
+      "confirmar": [
+        "sabores_disponiveis",
+        "preco"
+      ],
+      "observacao": "Item agrupado. O preço de R$ 45 está acima do Monin (R$ 11,90) na mesma tabela — vale conferir com o Ivan se não houve inversão."
+    },
+    "xr-2": {
+      "marca": "Monin",
+      "expressao": "Sortido",
+      "subcategoria": "xarope-bar",
+      "tipo": "Xarope para bar (linha de sabores)",
+      "pais": "França",
+      "regiao": "Bourges",
+      "abv": 0,
+      "proprietaria": "Monin",
+      "site_oficial": "https://www.monin.com",
+      "embalagem": "garrafa-vidro",
+      "descricao": "Xarope francês de referência em coquetelaria e cafeteria, com mais de cem sabores no catálogo global. Insumo de bar profissional.",
+      "servir": "Como insumo de drink, café e soda italiana.",
+      "tags": [
+        "importado",
+        "sem-alcool",
+        "insumo-bar",
+        "sortido"
+      ],
+      "variante_critica": false,
+      "agrupado": true,
+      "confirmar": [
+        "sabores_disponiveis",
+        "preco"
+      ],
+      "observacao": "Item agrupado. Preço de R$ 11,90 está bem abaixo do praticado no varejo para Monin 700ml — conferir com o Ivan."
+    }
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "_meta": {
+    "descricao": "Taxonomia de navegação do catálogo Monte Cristo. Categoria = filtro da barra do site (bate com data-category no index.html). Subcategoria = nível de detalhe que e-commerce de destilado usa para filtro facetado e breadcrumb.",
+    "atualizado_em": "2026-08-13"
+  },
+
+  "categorias": [
+    {
+      "slug": "whisky",
+      "nome": "Whisky",
+      "nome_plural": "Whiskies",
+      "ordem": 1,
+      "subcategorias": [
+        { "slug": "scotch-blended", "nome": "Scotch Blended" },
+        { "slug": "whiskey-americano", "nome": "Whiskey Americano" },
+        { "slug": "whisky-nacional", "nome": "Whisky Nacional" },
+        { "slug": "aperitivo-de-whisky", "nome": "Aperitivo de Whisky" }
+      ]
+    },
+    {
+      "slug": "vodka",
+      "nome": "Vodka",
+      "nome_plural": "Vodkas",
+      "ordem": 2,
+      "subcategorias": [
+        { "slug": "vodka-importada", "nome": "Vodka Importada" },
+        { "slug": "vodka-nacional", "nome": "Vodka Nacional" },
+        { "slug": "vodka-saborizada", "nome": "Vodka Saborizada" }
+      ]
+    },
+    {
+      "slug": "gin-tequila",
+      "nome": "Gin, Tequila e Rum",
+      "nome_plural": "Gin, Tequila e Rum",
+      "ordem": 3,
+      "subcategorias": [
+        { "slug": "gin", "nome": "Gin" },
+        { "slug": "tequila", "nome": "Tequila" },
+        { "slug": "rum", "nome": "Rum" },
+        { "slug": "rum-saborizado", "nome": "Rum Saborizado" },
+        { "slug": "steinhaeger", "nome": "Steinhäger" }
+      ]
+    },
+    {
+      "slug": "licores",
+      "nome": "Licores e Aperitivos",
+      "nome_plural": "Licores",
+      "ordem": 4,
+      "subcategorias": [
+        { "slug": "licor-creme", "nome": "Licor Cremoso" },
+        { "slug": "licor-frutas", "nome": "Licor de Frutas" },
+        { "slug": "licor-ervas", "nome": "Licor de Ervas" },
+        { "slug": "aperitivo-bitter", "nome": "Aperitivo" }
+      ]
+    },
+    {
+      "slug": "cachaca-conhaque",
+      "nome": "Cachaça, Conhaque, Cerveja e Espumante",
+      "nome_plural": "Cachaça e Cerveja",
+      "ordem": 5,
+      "subcategorias": [
+        { "slug": "cachaca", "nome": "Cachaça" },
+        { "slug": "cachaca-artesanal", "nome": "Cachaça Artesanal" },
+        { "slug": "conhaque", "nome": "Conhaque" },
+        { "slug": "cerveja", "nome": "Cerveja" },
+        { "slug": "espumante", "nome": "Espumante" }
+      ]
+    },
+    {
+      "slug": "vermouth-bitter",
+      "nome": "Vermouth e Bitter",
+      "nome_plural": "Vermouth e Bitter",
+      "ordem": 6,
+      "subcategorias": [
+        { "slug": "vermouth", "nome": "Vermouth" },
+        { "slug": "bitter", "nome": "Bitter" },
+        { "slug": "aperitivo-bitter", "nome": "Aperitivo" }
+      ]
+    },
+    {
+      "slug": "energeticos",
+      "nome": "Energéticos",
+      "nome_plural": "Energéticos",
+      "ordem": 7,
+      "subcategorias": [
+        { "slug": "energetico", "nome": "Energético" }
+      ]
+    },
+    {
+      "slug": "xaropes",
+      "nome": "Xaropes",
+      "nome_plural": "Xaropes",
+      "ordem": 8,
+      "subcategorias": [
+        { "slug": "xarope-bar", "nome": "Xarope para Bar" }
+      ]
+    }
+  ],
+
+  "faixas_preco": [
+    { "slug": "ate-30", "nome": "Até R$ 30", "min": 0, "max": 30 },
+    { "slug": "30-60", "nome": "R$ 30 a R$ 60", "min": 30, "max": 60 },
+    { "slug": "60-100", "nome": "R$ 60 a R$ 100", "min": 60, "max": 100 },
+    { "slug": "100-180", "nome": "R$ 100 a R$ 180", "min": 100, "max": 180 },
+    { "slug": "acima-180", "nome": "Acima de R$ 180", "min": 180, "max": null }
+  ],
+
+  "tags": {
+    "importado": "Produto importado",
+    "nacional": "Produto nacional",
+    "regional-rs": "Produzido no Rio Grande do Sul",
+    "uruguaia": "Cerveja uruguaia",
+    "premium": "Faixa premium",
+    "entrada": "Faixa de entrada / giro alto",
+    "para-drink": "Base de coquetelaria",
+    "puro": "Consumo puro ou com gelo",
+    "sem-alcool": "Sem álcool",
+    "insumo-bar": "Insumo de bar e cozinha",
+    "sortido": "Vendido em variedade de sabores",
+    "linha-completa": "Marca com várias variantes na tabela"
+  },
+
+  "embalagens": {
+    "garrafa-vidro": { "nome": "Garrafa de vidro", "unidade_venda": "garrafa" },
+    "garrafa-pet": { "nome": "Garrafa PET", "unidade_venda": "garrafa" },
+    "lata": { "nome": "Lata", "unidade_venda": "lata" }
+  }
+}

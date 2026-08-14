@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# A proposta comercial nao e bloqueada aqui de proposito: o buscador precisa
+# poder ler a pagina para enxergar a meta tag noindex dela. Bloquear por
+# robots.txt teria o efeito contrario, deixando a URL aparecer na busca sem
+# que o Google jamais leia o noindex.

@@ -1,0 +1,46 @@
+{
+  "_meta": {
+    "descricao": "Correspondências que o casamento automático não pega, porque a Royal chama o produto por outro nome. Entram com prioridade e travam a URL para os demais. Editar à mão é o uso esperado deste arquivo.",
+    "como_usar": "id do nosso catálogo -> URL completa da página na Royal Bebidas",
+    "atualizado_em": "2026-08-13"
+  },
+  "correspondencias": {
+    "wh-8": "https://www.royalbebidas.com/destilados/whisky/whiskey-jack-daniels-tenessee-1l",
+    "gn-2": "https://www.royalbebidas.com/destilados/gins/gin-rocks-seco-tradicional-1l",
+    "gn-3": "https://www.royalbebidas.com/destilados/gins/gin-rocks-stramberry-1l",
+    "gn-6": "https://www.royalbebidas.com/destilados/tequilas/tequila-jose-cuervo-ouro-750ml",
+    "gn-7": "https://www.royalbebidas.com/destilados/tequilas/tequila-jose-cuervo-prata-750ml",
+    "rm-5": "https://www.royalbebidas.com/destilados/runs/rum-malibu-coco-750ml",
+    "en-5": "https://www.royalbebidas.com/nao-alcoolicos/energeticos/energetico-baly-morango-e-pessego-das-galaxias-2l"
+  },
+  "_notas_das_manuais": {
+    "wh-8": "a Royal chama o Old Nº 7 de 'Jack Daniels Tennessee'",
+    "gn-2": "no site é 'Rock's Seco Tradicional'",
+    "gn-3": "o site escreve 'stramberry', com erro de digitação",
+    "gn-6": "Cuervo Especial Ouro é a versão Reposado",
+    "gn-7": "Cuervo Prata é a versão Silver",
+    "rm-5": "no site é 'Malibu Coco'",
+    "en-5": "no site é 'Morango e Pêssego das Galáxias'"
+  },
+  "_nao_existem_na_royal": {
+    "descricao": "Verificado no sitemap: estas marcas não têm página no site. Precisam de outra fonte de imagem.",
+    "itens": [
+      "wh-1 Firebird",
+      "wh-6 Jack Daniel's Blackberri",
+      "vk-4 Natasha",
+      "vk-6/7/8 Rajska (buscar em fante.com.br, a fabricante)",
+      "rm-8 Doble W",
+      "cc-4 Ypióca Prata",
+      "cv-1 a cv-7 cervejas uruguaias (Norteña, Patricia, Pilsen, Zillertal)",
+      "en-2 Baly Frutas Tropicais",
+      "en-5 Baly Morango e Pêssego"
+    ]
+  },
+  "_ambiguos": {
+    "descricao": "Existem na Royal, mas em mais de uma versão. Precisam da definição do Ivan sobre qual a Monte Cristo vende.",
+    "itens": [
+      "cc-3 Ypióca Ouro: o site tem 'brasilizar-ouro-armaz' e 'brasilizar-ouro-empalhada'",
+      "cc-5 Casa Bucco: o site tem bálsamo, amburana, 8 madeiras e extra premium — nenhuma chamada só de 'artesanal'"
+    ]
+  }
+}

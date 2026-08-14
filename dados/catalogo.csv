@@ -1,0 +1,81 @@
+﻿sku;id;nome;marca;expressao;categoria;subcategoria;tipo;pais;teor_alcoolico;embalagem;volume_ml;volume;preco_unitario;preco_por_litro;unidades_por_caixa;ean;imagem_status;confirmar_antes_de_publicar;confirmar_se_sobrar_tempo
+MC-WH-001;wh-1;Aperitivo Malt Whisky Canela Firebird;Firebird;Canela;Whisky;Aperitivo de Whisky;Aperitivo de malt whisky com canela;Brasil;;Garrafa de vidro;950;950ml;25,00;26,32;;;pendente;;abv | fabricante
+MC-WH-002;wh-2;Whisky Ballantines Finest;Ballantine's;Finest;Whisky;Scotch Blended;Blended Scotch Whisky;Escócia;40;Garrafa de vidro;1000;1L;99,00;99,00;;;ok;;
+MC-WH-003;wh-3;Whisky Black Stone;Black Stone;;Whisky;Whisky Nacional;Whisky blended nacional;Brasil;;Garrafa de vidro;1000;1L;23,50;23,50;;;pendente;;abv | fabricante
+MC-WH-004;wh-4;Whisky Chivas Regal 12 Anos;Chivas Regal;12 Anos;Whisky;Scotch Blended;Blended Scotch Whisky 12 anos;Escócia;40;Garrafa de vidro;1000;1L;170,43;170,43;;;ok;;
+MC-WH-005;wh-5;Whisky Jack Daniel's Apple;Jack Daniel's;Tennessee Apple;Whisky;Whiskey Americano;Licor de whiskey com maçã;Estados Unidos;35;Garrafa de vidro;1000;1L;155,00;155,00;;;pendente;;
+MC-WH-006;wh-6;Whisky Jack Daniel's Blackberri;Jack Daniel's;Tennessee Blackberri;Whisky;Whiskey Americano;Licor de whiskey com amora;Estados Unidos;35;Garrafa de vidro;1000;1L;165,00;165,00;;;pendente;;
+MC-WH-007;wh-7;Whisky Jack Daniel's Fire;Jack Daniel's;Tennessee Fire;Whisky;Whiskey Americano;Licor de whiskey com canela;Estados Unidos;35;Garrafa de vidro;1000;1L;155,00;155,00;;;ok;;
+MC-WH-008;wh-8;Whisky Jack Daniel's Old Nº 7;Jack Daniel's;Old Nº 7;Whisky;Whiskey Americano;Tennessee Whiskey;Estados Unidos;40;Garrafa de vidro;1000;1L;155,00;155,00;;;ok;;
+MC-WH-009;wh-9;Whisky Jack Daniel's Honey;Jack Daniel's;Tennessee Honey;Whisky;Whiskey Americano;Licor de whiskey com mel;Estados Unidos;35;Garrafa de vidro;1000;1L;155,00;155,00;;;ok;;
+MC-WH-010;wh-10;Whisky Jim Beam Bourbon;Jim Beam;White Label;Whisky;Whiskey Americano;Kentucky Straight Bourbon Whiskey;Estados Unidos;40;Garrafa de vidro;1000;1L;119,90;119,90;;;ok;;
+MC-WH-011;wh-11;Whisky Johnnie Walker Black Label;Johnnie Walker;Black Label;Whisky;Scotch Blended;Blended Scotch Whisky 12 anos;Escócia;40;Garrafa de vidro;1000;1L;179,90;179,90;;;ok;;
+MC-WH-012;wh-12;Whisky Johnnie Walker Red Label;Johnnie Walker;Red Label;Whisky;Scotch Blended;Blended Scotch Whisky;Escócia;40;Garrafa de vidro;1000;1L;99,90;99,90;;;ok;;
+MC-WH-013;wh-13;Whisky Natu Nobilis;Natu Nobilis;;Whisky;Whisky Nacional;Aperitivo de whisky (classificação brasileira);Brasil;39;Garrafa de vidro;1000;1L;55,00;55,00;;;pendente;;
+MC-WH-014;wh-14;Whisky Passport;Passport;Scotch;Whisky;Scotch Blended;Blended Scotch Whisky;Escócia;40;Garrafa de vidro;1000;1L;58,00;58,00;;;ok;;
+MC-WH-015;wh-15;Whisky White Horse;White Horse;;Whisky;Scotch Blended;Blended Scotch Whisky;Escócia;40;Garrafa de vidro;1000;1L;89,90;89,90;;;ok;;
+MC-VK-001;vk-1;Vodka Absolut;Absolut;Original;Vodka;Vodka Importada;Vodka de trigo;Suécia;40;Garrafa de vidro;1000;1L;99,90;99,90;;;ok;;
+MC-VK-002;vk-2;Vodka Cîroc Original;Cîroc;Original;Vodka;Vodka Importada;Vodka de uva;França;40;Garrafa de vidro;750;750ml;275,00;366,67;;;ok;;
+MC-VK-003;vk-3;Vodka Grey Goose;Grey Goose;Original;Vodka;Vodka Importada;Vodka de trigo;França;40;Garrafa de vidro;750;750ml;175,00;233,33;;;ok;;
+MC-VK-004;vk-4;Vodka Natasha;Natasha;;Vodka;Vodka Nacional;Vodka nacional;Brasil;;Garrafa de vidro;900;900ml;25,00;27,78;;;pendente;;abv | fabricante
+MC-VK-005;vk-5;Vodka Orloff;Orloff;;Vodka;Vodka Nacional;Vodka nacional;Brasil;37.5;Garrafa de vidro;1000;1L;35,70;35,70;;;ok;;
+MC-VK-006;vk-6;Vodka Rajska Traditional;Rajska;Traditional;Vodka;Vodka Nacional;Vodka nacional;Brasil;37.5;Garrafa de vidro;1000;1L;22,00;22,00;;;pendente;;
+MC-VK-007;vk-7;Vodka Rajska Apple;Rajska;Apple;Vodka;Vodka Saborizada;Vodka saborizada de maçã;Brasil;35;Garrafa de vidro;1000;1L;28,00;28,00;;;pendente;;
+MC-VK-008;vk-8;Vodka Rajska Red Fruits;Rajska;Red Fruits;Vodka;Vodka Saborizada;Vodka saborizada de frutas vermelhas;Brasil;;Garrafa de vidro;1000;1L;28,00;28,00;;;pendente;;abv
+MC-VK-009;vk-9;Vodka Smirnoff 21;Smirnoff;Nº 21;Vodka;Vodka Nacional;Vodka tripla destilação;Brasil;37.5;Garrafa de vidro;998;998ml;40,00;40,08;;;ok;;
+MC-GN-001;gn-1;Gin Gordon's London Dry;Gordon's;London Dry;Gin, Tequila e Rum;Gin;London Dry Gin;Reino Unido;37.5;Garrafa de vidro;750;750ml;89,90;119,87;;;ok;;
+MC-GN-002;gn-2;Gin Rock's Traditional;Rock's;Traditional;Gin, Tequila e Rum;Gin;Gin nacional;Brasil;;Garrafa de vidro;1000;1L;35,00;35,00;;;pendente;;abv | fabricante
+MC-GN-003;gn-3;Gin Rock's Strawberry;Rock's;Strawberry;Gin, Tequila e Rum;Gin;Gin nacional saborizado com morango;Brasil;;Garrafa de vidro;1000;1L;35,00;35,00;;;pendente;;abv | fabricante
+MC-GN-004;gn-4;Gin Seagers Original;Seagers;Original;Gin, Tequila e Rum;Gin;Gin nacional;Brasil;45.3;Garrafa de vidro;1000;1L;59,00;59,00;;;ok;;abv
+MC-GN-005;gn-5;Gin Tanqueray London Dry;Tanqueray;London Dry;Gin, Tequila e Rum;Gin;London Dry Gin;Reino Unido;;Garrafa de vidro;750;750ml;133,90;178,53;;;ok;;abv
+MC-GN-006;gn-6;Tequila Jose Cuervo Reposado;José Cuervo;Especial Reposado;Gin, Tequila e Rum;Tequila;Tequila Reposado;México;38;Garrafa de vidro;750;750ml;139,90;186,53;;;ok;;abv
+MC-GN-007;gn-7;Tequila Jose Cuervo Silver;José Cuervo;Especial Silver;Gin, Tequila e Rum;Tequila;Tequila Silver;México;38;Garrafa de vidro;750;750ml;139,90;186,53;;;ok;;abv
+MC-RM-001;rm-1;Rum Bacardi Big Apple;Bacardi;Big Apple;Gin, Tequila e Rum;Rum Saborizado;Bebida à base de rum com maçã;Brasil;35;Garrafa de vidro;700;700ml;55,00;78,57;;;ok;volume;origem
+MC-RM-002;rm-2;Rum Bacardi Carta Blanca Superior;Bacardi;Carta Blanca Superior;Gin, Tequila e Rum;Rum;Rum branco;Brasil;;Garrafa de vidro;980;980ml;52,50;53,57;;;ok;;abv | origem
+MC-RM-003;rm-3;Rum Bacardi Gold;Bacardi;Carta Oro / Gold;Gin, Tequila e Rum;Rum;Rum dourado;Brasil;;Garrafa de vidro;980;980ml;55,00;56,12;;;ok;;abv | origem
+MC-RM-004;rm-4;Rum Bacardi Limon;Bacardi;Limón;Gin, Tequila e Rum;Rum Saborizado;Bebida à base de rum com limão;Brasil;;Garrafa de vidro;980;980ml;55,00;56,12;;;pendente;;abv | origem
+MC-RM-005;rm-5;Rum Malibu Coconut;Malibu;Coconut;Gin, Tequila e Rum;Rum Saborizado;Licor de rum com coco;Barbados;21;Garrafa de vidro;750;750ml;69,90;93,20;;;ok;;
+MC-RM-006;rm-6;Rum Montilla Carta Cristal;Montilla;Carta Cristal;Gin, Tequila e Rum;Rum;Rum branco nacional;Brasil;;Garrafa de vidro;1000;1L;36,90;36,90;;;ok;;abv
+MC-RM-007;rm-7;Rum Montilla Carta Ouro;Montilla;Carta Ouro;Gin, Tequila e Rum;Rum;Rum dourado nacional;Brasil;38;Garrafa de vidro;1000;1L;36,90;36,90;;;ok;;
+MC-RM-008;rm-8;Steinhaeger Doble W;Doble W;;Gin, Tequila e Rum;Steinhäger;Steinhäger;Brasil;;Garrafa de vidro;900;900ml;52,90;58,78;;;pendente;;abv | fabricante | origem
+MC-LC-001;lc-1;Aperitivo Aperol Spritz;Aperol;;Licores e Aperitivos;Aperitivo;Aperitivo italiano;Itália;11;Garrafa de vidro;750;750ml;64,50;86,00;;;ok;variante;
+MC-LC-002;lc-2;Licor 43 Cuarenta y Tres;Licor 43;Cuarenta y Tres;Licores e Aperitivos;Licor de Frutas;Licor de baunilha e cítricos;Espanha;31;Garrafa de vidro;700;700ml;169,90;242,71;;;pendente;;
+MC-LC-003;lc-3;Licor 43 Chocolate Edition;Licor 43;Chocolate Edition;Licores e Aperitivos;Licor Cremoso;Licor de chocolate e baunilha;Espanha;;Garrafa de vidro;700;700ml;180,00;257,14;;;ok;;abv
+MC-LC-004;lc-4;Licor Amarula Cream;Amarula;Cream;Licores e Aperitivos;Licor Cremoso;Licor cremoso de marula;África do Sul;17;Garrafa de vidro;750;750ml;99,90;133,20;;;ok;;
+MC-LC-005;lc-5;Licor Amaretto Dell Orso;Dell Orso;Amaretto;Licores e Aperitivos;Licor de Frutas;Licor de amêndoa;;28;Garrafa de vidro;700;700ml;99,80;142,57;;;ok;;origem | fabricante
+MC-LC-006;lc-6;Licor Don Luiz Doce de Leite;Don Luiz;Doce de Leite;Licores e Aperitivos;Licor Cremoso;Licor cremoso de doce de leite;;13;Garrafa de vidro;750;750ml;89,90;119,87;;;ok;;origem | fabricante
+MC-LC-007;lc-7;Licor Cointreau Liqueur;Cointreau;;Licores e Aperitivos;Licor de Frutas;Triple sec;França;40;Garrafa de vidro;700;700ml;169,90;242,71;;;ok;;
+MC-LC-008;lc-8;Licor Jagermeister Herb;Jägermeister;;Licores e Aperitivos;Licor de Ervas;Licor de ervas;Alemanha;35;Garrafa de vidro;700;700ml;159,90;228,43;;;ok;;
+MC-LC-009;lc-9;Licor Stock (Todos os Sabores);Stock;Sortido;Licores e Aperitivos;Licor de Frutas;Licor nacional (linha de sabores);Brasil;;Garrafa de vidro;700;700ml;59,90;85,57;;;pendente;sabores_disponiveis;abv
+MC-CC-001;cc-1;Cachaça 51 Pirassununga;51;Pirassununga;Cachaça, Conhaque, Cerveja e Espumante;Cachaça;Cachaça;Brasil;40;Garrafa de vidro;965;965ml;18,90;19,59;;;ok;;
+MC-CC-002;cc-2;Cachaça Velho Barreiro;Velho Barreiro;;Cachaça, Conhaque, Cerveja e Espumante;Cachaça;Cachaça;Brasil;39;Garrafa de vidro;910;910ml;17,49;19,22;;;ok;;fabricante
+MC-CC-003;cc-3;Cachaça Ypióca Brasilizar Ouro;Ypióca;Brasilizar Ouro;Cachaça, Conhaque, Cerveja e Espumante;Cachaça;Cachaça envelhecida;Brasil;;Garrafa de vidro;965;965ml;32,50;33,68;;;ok;;abv
+MC-CC-004;cc-4;Cachaça Ypióca Brasilizar Prata;Ypióca;Brasilizar Prata;Cachaça, Conhaque, Cerveja e Espumante;Cachaça;Cachaça branca;Brasil;;Garrafa de vidro;965;965ml;32,50;33,68;;;pendente;;abv
+MC-CC-005;cc-5;Cachaça Casa Bucco Artesanal;Casa Bucco;Artesanal;Cachaça, Conhaque, Cerveja e Espumante;Cachaça Artesanal;Cachaça artesanal;Brasil;;Garrafa de vidro;750;750ml;65,00;86,67;;;pendente;;abv | regiao | envelhecimento
+MC-CC-006;cc-6;Conhaque Domecq;Domecq;;Cachaça, Conhaque, Cerveja e Espumante;Conhaque;Conhaque / brandy nacional;Brasil;36;Garrafa de vidro;1000;1L;55,00;55,00;;;ok;;fabricante
+MC-CC-007;cc-7;Conhaque Dreher;Dreher;;Cachaça, Conhaque, Cerveja e Espumante;Conhaque;Conhaque nacional;Brasil;38;Garrafa de vidro;900;900ml;30,00;33,33;;;ok;;
+MC-CC-008;cc-8;Conhaque Presidente;Presidente;;Cachaça, Conhaque, Cerveja e Espumante;Conhaque;Conhaque nacional;Brasil;35;Garrafa de vidro;900;900ml;20,00;22,22;;;ok;;fabricante
+MC-CV-001;cv-1;Cerveja Norteña Garrafa;Norteña;Garrafa;Cachaça, Conhaque, Cerveja e Espumante;Cerveja;Cerveja lager uruguaia;Uruguai;;Garrafa de vidro;960;960ml;28,00;29,17;;;pendente;;abv | fabricante
+MC-CV-002;cv-2;Cerveja Norteña Latão;Norteña;Latão;Cachaça, Conhaque, Cerveja e Espumante;Cerveja;Cerveja lager uruguaia;Uruguai;;Lata;473;473ml;8,90;18,82;;;pendente;;abv | fabricante
+MC-CV-003;cv-3;Cerveja Patricia Garrafa;Patricia;Garrafa;Cachaça, Conhaque, Cerveja e Espumante;Cerveja;Cerveja lager uruguaia;Uruguai;;Garrafa de vidro;960;960ml;23,50;24,48;;;pendente;;abv | fabricante
+MC-CV-004;cv-4;Cerveja Patricia Latão;Patricia;Latão;Cachaça, Conhaque, Cerveja e Espumante;Cerveja;Cerveja lager uruguaia;Uruguai;;Lata;473;473ml;6,90;14,59;;;pendente;;abv | fabricante
+MC-CV-005;cv-5;Cerveja Pilsen Garrafa;Pilsen;Garrafa;Cachaça, Conhaque, Cerveja e Espumante;Cerveja;Cerveja lager;;;Garrafa de vidro;960;960ml;23,50;24,48;;;pendente;marca_exata;origem | abv
+MC-CV-006;cv-6;Cerveja Zillertal Garrafa;Zillertal;Garrafa;Cachaça, Conhaque, Cerveja e Espumante;Cerveja;Cerveja lager uruguaia;Uruguai;;Garrafa de vidro;970;970ml;30,00;30,93;;;pendente;;abv | fabricante
+MC-CV-007;cv-7;Cerveja Zillertal Latão;Zillertal;Latão;Cachaça, Conhaque, Cerveja e Espumante;Cerveja;Cerveja lager uruguaia;Uruguai;;Lata;473;473ml;8,90;18,82;;;pendente;;abv | fabricante
+MC-ES-001;es-1;Espumante Salton Brut;Salton;Brut;Cachaça, Conhaque, Cerveja e Espumante;Espumante;Espumante brut;Brasil;;Garrafa de vidro;750;750ml;35,90;47,87;;;pendente;;abv
+MC-ES-002;es-2;Espumante Salton Series (Todas Variedades);Salton;Série (todas as variedades);Cachaça, Conhaque, Cerveja e Espumante;Espumante;Espumante (linha de variedades);Brasil;;Garrafa de vidro;750;750ml;23,50;31,33;;;pendente;variedades_disponiveis;abv
+MC-VB-001;vb-1;Brasilberg Original Aperitivo;Brasilberg;Original;Vermouth e Bitter;Aperitivo;Aperitivo;Brasil;42;Garrafa de vidro;920;920ml;66,90;72,72;;;ok;;fabricante | perfil
+MC-VB-002;vb-2;Bitter Campari Red;Campari;Bitter;Vermouth e Bitter;Bitter;Bitter italiano;Brasil;;Garrafa de vidro;998;998ml;69,90;70,04;;;ok;;abv
+MC-VB-003;vb-3;Vermouth Martini Bianco;Martini;Bianco;Vermouth e Bitter;Vermouth;Vermute branco doce;Itália;16;Garrafa de vidro;750;750ml;50,00;66,67;;;ok;;
+MC-VB-004;vb-4;Vermouth Martini Extra Dry;Martini;Extra Dry;Vermouth e Bitter;Vermouth;Vermute seco;Itália;16;Garrafa de vidro;750;750ml;50,00;66,67;;;ok;;
+MC-VB-005;vb-5;Vermouth Martini Rosato;Martini;Rosato;Vermouth e Bitter;Vermouth;Vermute rosado;Itália;16;Garrafa de vidro;750;750ml;50,00;66,67;;;ok;;
+MC-VB-006;vb-6;Vermouth Martini Rosso;Martini;Rosso;Vermouth e Bitter;Vermouth;Vermute tinto doce;Itália;16;Garrafa de vidro;750;750ml;50,00;66,67;;;ok;;
+MC-EN-001;en-1;Energético Baly Tradicional;Baly;Tradicional;Energéticos;Energético;Bebida energética;Brasil;0;Garrafa PET;2000;2L;11,90;5,95;;;pendente;;
+MC-EN-002;en-2;Energético Baly Frutas Tropicais;Baly;Frutas Tropicais;Energéticos;Energético;Bebida energética;Brasil;0;Garrafa PET;2000;2L;11,90;5,95;;;pendente;;
+MC-EN-003;en-3;Energético Baly Maçã Verde;Baly;Maçã Verde;Energéticos;Energético;Bebida energética;Brasil;0;Garrafa PET;2000;2L;11,90;5,95;;;pendente;;
+MC-EN-004;en-4;Energético Baly Melancia;Baly;Melancia;Energéticos;Energético;Bebida energética;Brasil;0;Garrafa PET;2000;2L;11,90;5,95;;;pendente;;
+MC-EN-005;en-5;Energético Baly Morango e Pêssego;Baly;Morango e Pêssego;Energéticos;Energético;Bebida energética;Brasil;0;Garrafa PET;2000;2L;11,90;5,95;;;pendente;;
+MC-EN-006;en-6;Energético Red Bull Energy Drink;Red Bull;Energy Drink;Energéticos;Energético;Bebida energética;Áustria;0;Lata;250;250ml;9,49;37,96;;;pendente;;
+MC-EN-007;en-7;Energético Red Bull Tropical Edition;Red Bull;Tropical Edition;Energéticos;Energético;Bebida energética saborizada;Áustria;0;Lata;250;250ml;11,49;45,96;;;pendente;;
+MC-XR-001;xr-1;Xarope Formula (Todos os Sabores);Fórmula;Sortido;Xaropes;Xarope para Bar;Xarope para bar (linha de sabores);Brasil;0;Garrafa de vidro;750;750ml;45,00;60,00;;;pendente;sabores_disponiveis | preco;
+MC-XR-002;xr-2;Xarope Monin (Todos os Sabores);Monin;Sortido;Xaropes;Xarope para Bar;Xarope para bar (linha de sabores);França;0;Garrafa de vidro;700;700ml;11,90;17,00;;;pendente;sabores_disponiveis | preco;

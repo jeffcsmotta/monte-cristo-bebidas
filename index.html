@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monte Cristo | Distribuidora de Bebidas & Destilados em Caxias do Sul</title>
+    <meta name="description" content="🍷 Monte Cristo Distribuidora de Bebidas — Whiskies, Vodkas, Gins, Licores, Energéticos e Cervejas em Caxias do Sul com preços diretos de tabela. Pedidos rápidos via WhatsApp!">
+    <meta name="keywords" content="Distribuidora de Bebidas Caxias do Sul, Monte Cristo Bebidas, Whisky Caxias do Sul, Licor 43 Caxias, Red Bull Atacado, Vodka Cîroc">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- ?v= muda a cada publicacao para o navegador nao servir folha velha.
+         Sem isso, quem ja visitou o site continua vendo o CSS antigo e um
+         botao novo aparece sem estilo nenhum. -->
+    <link rel="stylesheet" href="style.css?v=20260814b">
+</head>
+<body>
+
+    <!-- Top Announcement Bar -->
+    <div class="top-bar">
+        <div class="container top-bar-content">
+            <div class="top-info">
+                <span><i data-lucide="map-pin"></i> Caxias do Sul e Região - RS</span>
+                <span class="divider">|</span>
+                <span><i data-lucide="calendar"></i> Tabela Válida até 30/08/2026</span>
+                <span class="divider">|</span>
+                <span><i data-lucide="shield-check"></i> Rótulos 100% Originais & Lacrados</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="#" class="logo" aria-label="Página Inicial do Monte Cristo Bebidas">
+                <img src="assets/logo.png" alt="Monte Cristo Bebidas Logo" class="brand-logo-img">
+            </a>
+
+            <nav class="nav-links">
+                <a href="#cardapio" class="nav-link active">Catálogo de Bebidas</a>
+            </nav>
+
+            <div class="header-actions">
+                <div id="status-badge" class="status-badge">
+                    <span class="status-dot"></span>
+                    <span class="status-text">Distribuição Aberta</span>
+                </div>
+                <!-- Lixeira a ESQUERDA do Pedido de proposito: o botao principal
+                     continua na ponta, onde a mao procura, e a acao destrutiva
+                     nao encosta na borda da tela. So aparece com itens. -->
+                <button type="button" class="cart-clear-btn" id="cart-clear-header" onclick="window.clearCart()"
+                        title="Limpar pedido" aria-label="Limpar pedido">
+                    <i data-lucide="trash-2"></i>
+                </button>
+                <button class="cart-toggle-btn" id="cart-toggle" onclick="window.toggleCartDrawer(true)">
+                    <i data-lucide="shopping-bag"></i>
+                    <span>Pedido</span>
+                    <span class="cart-count" id="cart-badge-count">0</span>
+                    <span class="cart-total-header" id="cart-total-header" style="font-size:0.82rem; margin-left:4px;">R$ 0,00</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Barra de compra fixa: busca + categorias direto na primeira dobra -->
+    <div class="shop-bar" id="shop-bar">
+        <div class="container">
+            <div class="shop-bar-row">
+                <div class="shop-search">
+                    <i data-lucide="search" class="shop-search-icon"></i>
+                    <input type="text" id="search-input" class="shop-search-input" autocomplete="off"
+                           placeholder="Buscar bebida, marca ou volume — ex: Jack, Baly, 1L">
+                    <button type="button" class="shop-search-clear" id="search-clear" aria-label="Limpar busca">
+                        <i data-lucide="x"></i>
+                    </button>
+                </div>
+                <div class="shop-view">
+                    <button class="btn-view-mode active" id="btn-mode-cards" onclick="window.setViewMode('cards')" aria-label="Ver em grade">
+                        <i data-lucide="layout-grid"></i>
+                    </button>
+                    <button class="btn-view-mode" id="btn-mode-table" onclick="window.setViewMode('table')" aria-label="Ver em lista">
+                        <i data-lucide="list"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="category-filters" id="category-filters">
+                <button class="filter-btn active" data-category="all">Todos</button>
+                <button class="filter-btn" data-category="com-foto">Com foto</button>
+                <button class="filter-btn" data-category="whisky">Whisky</button>
+                <button class="filter-btn" data-category="vodka">Vodka</button>
+                <button class="filter-btn" data-category="gin-tequila">Gin, Tequila &amp; Rum</button>
+                <button class="filter-btn" data-category="licores">Licores</button>
+                <button class="filter-btn" data-category="cachaca-conhaque">Cachaça &amp; Cerveja</button>
+                <button class="filter-btn" data-category="vermouth-bitter">Vermouth</button>
+                <button class="filter-btn" data-category="energeticos">Energéticos</button>
+                <button class="filter-btn" data-category="xaropes">Xaropes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menu Section (Catálogo Completo de Bebidas) -->
+    <section class="shop-section" id="cardapio">
+        <div class="container">
+            <div class="shop-meta">
+                <span id="results-count">80 rótulos</span>
+                <span class="shop-meta-note">Preços da tabela oficial • válida até 30/08/2026</span>
+            </div>
+
+            <!-- Products Grid or Table (Dynamic via app.js) -->
+            <div class="menu-grid" id="products-grid">
+                <!-- Javascript populated -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <img src="assets/logo.png" alt="Monte Cristo Logo" style="height: 54px; object-fit: contain;">
+                </div>
+                <div style="font-size:0.9rem; color:#E2E8F0;">
+                    Monte Cristo Bebidas — Distribuidora de Destilados & Bebidas Finas em Caxias do Sul
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 Monte Cristo Distribuidora de Bebidas. Todos os direitos reservados.</span>
+                <span>Desenvolvido com excelência por <strong>Onira Labs</strong></span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Drawer Overlay -->
+    <div class="cart-overlay" id="cart-overlay" onclick="window.closeCart()"></div>
+
+    <!-- Cart Drawer (Padrão Master CLAEM - Onira Labs) -->
+    <aside class="cart-drawer" id="cart-drawer">
+        <!-- Header fixo: título + voltar ao catálogo -->
+        <div class="cart-header">
+            <div class="cart-title">
+                <i data-lucide="shopping-bag"></i>
+                <span>Seu Pedido Monte Cristo</span>
+            </div>
+            <button type="button" class="btn-continue-shopping" onclick="window.closeCart()" aria-label="Continuar Escolhendo">
+                <i data-lucide="arrow-left" style="width:14px; height:14px;"></i>
+                <span>Continuar Escolhendo</span>
+            </button>
+        </div>
+
+        <!-- Corpo único rolável -->
+        <div class="cart-body">
+            <!-- 1. Itens -->
+            <div class="cart-section">
+                <div class="cart-section-title">Itens do Pedido</div>
+                <div class="cart-items-container" id="cart-items-container">
+                    <!-- Javascript populated -->
+                </div>
+            </div>
+
+            <!-- 2. Entrega ou retirada -->
+            <div class="cart-option-group">
+                <label>Forma de Entrega / Retirada:</label>
+                <div class="delivery-toggle">
+                    <button type="button" class="del-btn active" data-type="entrega">
+                        <i data-lucide="truck"></i> Entrega / Delivery
+                        <small class="del-btn-fee">+ R$ 10,00</small>
+                    </button>
+                    <button type="button" class="del-btn" data-type="retirada">
+                        <i data-lucide="store"></i> Retirada no Balcão
+                    </button>
+                </div>
+            </div>
+
+            <!-- 3. Dados do cliente -->
+            <div class="cart-option-group" id="address-box">
+                <label>Seus Dados para Entrega:</label>
+                <input type="text" id="input-client-name" class="input-dark" placeholder="Seu Nome Completo / Razão Social" style="margin-bottom:8px;">
+                <input type="text" id="input-address" class="input-dark" placeholder="Endereço Completo de Entrega (Rua, Nº, Bairro)">
+            </div>
+
+            <!-- 4. Pagamento -->
+            <div class="cart-option-group">
+                <label>Forma de Pagamento:</label>
+                <div class="payment-toggle">
+                    <button type="button" class="pay-btn active" data-pay="Pix">
+                        <i data-lucide="qr-code"></i> Pix
+                    </button>
+                    <button type="button" class="pay-btn" data-pay="Cartão">
+                        <i data-lucide="credit-card"></i> Cartão
+                    </button>
+                    <button type="button" class="pay-btn" data-pay="Dinheiro">
+                        <i data-lucide="banknote"></i> Dinheiro
+                    </button>
+                </div>
+
+                <div id="cash-change-box" style="display:none; margin-top:8px;">
+                    <input type="text" id="cash-change-val" class="input-dark" placeholder="Troco para quanto? Ex: R$ 200,00">
+                </div>
+
+                <div id="pix-lock-box" class="pix-lock-box">
+                    <div class="pix-lock-title">
+                        <i data-lucide="shield-check"></i>
+                        <span>Pix Copia e Cola &amp; QR Code (Valor Travado)</span>
+                    </div>
+                    <div class="pix-qr-container">
+                        <img id="pix-qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&amp;data=54999692859" alt="Pix QR Code Monte Cristo" class="pix-qr-code">
+                        <div class="pix-qr-info">
+                            <p class="pix-lock-desc">
+                                Valor exato: <strong id="pix-locked-amount" style="color:#FFF;">R$ 0,00</strong>.<br>
+                                Escaneie a imagem com o aplicativo do seu banco ou copie a chave abaixo.
+                            </p>
+                            <button type="button" class="btn-copy-pix" onclick="window.copyPixKey()" id="btn-copy-pix-key">
+                                <i data-lucide="copy"></i> Copiar Chave Pix
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. Resumo -->
+            <div class="cart-summary">
+                <div class="summary-line">
+                    <span>Subtotal:</span>
+                    <span id="cart-subtotal">R$ 0,00</span>
+                </div>
+                <div class="summary-line">
+                    <span>Entrega:</span>
+                    <span id="cart-delivery-fee">A combinar</span>
+                </div>
+                <div class="summary-line total">
+                    <span>Total Estimado:</span>
+                    <span id="cart-total-price">R$ 0,00</span>
+                </div>
+            </div>
+
+            <!-- 6. Envio -->
+            <button type="button" class="btn btn-whatsapp btn-block" onclick="window.sendWhatsAppOrder()" id="btn-send-whatsapp">
+                <i data-lucide="send"></i>
+                <span>Enviar Pedido via WhatsApp</span>
+            </button>
+
+
+            <div class="onira-signature">
+                <span>Tecnologia por <strong>Onira Labs</strong></span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Confirmacao de limpar pedido. Substitui o confirm() do navegador, que
+         aparece descolado do site e nao diz o que esta em jogo. -->
+    <div class="confirm-overlay" id="confirm-clear" role="dialog" aria-modal="true"
+         aria-labelledby="confirm-clear-title" hidden>
+        <div class="confirm-box">
+            <div class="confirm-icon"><i data-lucide="trash-2"></i></div>
+            <h3 class="confirm-title" id="confirm-clear-title">Limpar o pedido?</h3>
+            <p class="confirm-text" id="confirm-clear-text"></p>
+            <p class="confirm-warning">Esta ação não pode ser desfeita.</p>
+            <div class="confirm-actions">
+                <button type="button" class="confirm-btn confirm-cancel" id="confirm-clear-no">
+                    Manter o pedido
+                </button>
+                <button type="button" class="confirm-btn confirm-ok" id="confirm-clear-yes">
+                    Sim, limpar tudo
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Mobile Cart Bar -->
+    <div class="floating-cart-bar" id="floating-cart-bar">
+        <div class="floating-cart-info">
+            <span class="floating-count" id="floating-cart-count">0 itens</span>
+            <span class="floating-total" id="floating-cart-total">R$ 0,00</span>
+        </div>
+        <button type="button" class="btn-open-cart-floating" onclick="window.openCart()">
+            <span>Ver Pedido</span>
+            <i data-lucide="arrow-right"></i>
+        </button>
+    </div>
+
+    <!-- Floating WhatsApp Customer Service Button -->
+    <a href="https://wa.me/5554999692859?text=Ol%C3%A1!%20Gostaria%20de%20atendimento%20no%20Monte%20Cristo%20Bebidas." target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Falar com atendimento no WhatsApp">
+        <i data-lucide="message-circle" aria-hidden="true"></i>
+    </a>
+
+    <!-- JS Scripts -->
+    <!-- bottles.js precisa vir ANTES do app.js: define window.bottleSVG, usado
+         no render dos cards e das miniaturas do pedido. Sem ele, todo card
+         renderiza vazio. -->
+    <script src="images.js?v=20260814"></script>
+    <script src="bottles.js"></script>
+    <script src="app.js?v=20260814b"></script>
+    <script>
+        if (window.lucide) {
+            lucide.createIcons();
+        }
+    </script>
+</body>
+</html>

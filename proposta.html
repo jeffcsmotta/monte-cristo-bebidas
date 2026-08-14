@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proposta Comercial | Monte Cristo Bebidas & Onira Labs</title>
+    <meta name="description" content="Proposta comercial de desenvolvimento web e catálogo interativo de bebidas para a Monte Cristo Distribuidora de Bebidas em Caxias do Sul.">
+
+    <!-- Página de proposta: acessível por link direto, mas fora dos buscadores. -->
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex, nofollow">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --bg-page: #FAFCFF;
+            --bg-card: #FFFFFF;
+            --text-dark: #0E4663;
+            --text-main: #334155;
+            --text-muted: #64748B;
+            
+            --primary: #0E4663;
+            --primary-hover: #083248;
+            
+            --teal: #1B7588;
+            --teal-light: #EBF6F8;
+            
+            --emerald: #059669;
+            --emerald-light: #ECFDF5;
+            
+            --amber: #D97706;
+            --amber-light: #FFFBEB;
+            
+            --border: #E2E8F0;
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+            
+            --radius-md: 6px;
+            --radius-lg: 8px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.55;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Nav */
+        .proposal-nav {
+            background: #FFFFFF;
+            border-bottom: 1px solid var(--border);
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand-logo-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 9px 18px;
+            background: var(--teal-light);
+            border: 1px solid rgba(27, 117, 136, 0.3);
+            border-radius: var(--radius-md);
+            color: var(--teal);
+            font-size: 0.88rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .back-link:hover {
+            background: var(--primary);
+            color: #FFFFFF;
+        }
+
+        /* Main Hero Offer */
+        .offer-hero { padding: 32px 0 24px 0; }
+
+        .offer-card-main {
+            background: linear-gradient(135deg, #0E4663 0%, #164E63 100%);
+            color: #FFFFFF;
+            border-radius: var(--radius-lg);
+            padding: 44px 36px;
+            box-shadow: 0 12px 30px rgba(14, 70, 99, 0.2);
+            text-align: center;
+            position: relative;
+        }
+
+        .offer-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background: rgba(56, 189, 248, 0.15);
+            border: 1px solid #38BDF8;
+            border-radius: var(--radius-md);
+            color: #38BDF8;
+            font-size: 0.82rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .offer-title {
+            font-family: var(--font-heading);
+            font-size: 2.4rem;
+            font-weight: 900;
+            line-height: 1.2;
+            color: #FFFFFF;
+            margin-bottom: 14px;
+        }
+
+        .offer-title span { color: #34D399; }
+
+        .offer-desc { 
+            font-size: 1.08rem; 
+            color: #E2E8F0; 
+            max-width: 660px; 
+            margin: 0 auto;
+        }
+
+        /* Domain Strip */
+        .domain-strip {
+            background: var(--emerald-light);
+            border: 1.5px solid rgba(5, 150, 105, 0.4);
+            border-radius: var(--radius-md);
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin: 28px 0;
+        }
+
+        .domain-name { 
+            font-family: var(--font-heading); 
+            font-size: 1.35rem; 
+            font-weight: 800; 
+            color: #0F172A; 
+        }
+
+        .domain-price strong { 
+            font-size: 1.15rem; 
+            color: #047857; 
+            display: block; 
+            text-align: right;
+        }
+
+        .domain-price span { 
+            font-size: 0.78rem; 
+            color: var(--text-muted); 
+        }
+
+        /* Section Card */
+        .section-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i { color: var(--teal); }
+
+        /* Feature List */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .feature-box {
+            background: var(--bg-page);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            padding: 16px 18px;
+        }
+
+        .feature-box h4 {
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            color: var(--primary);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .feature-box p {
+            font-size: 0.88rem;
+            color: var(--text-main);
+            line-height: 1.5;
+        }
+
+        /* Pricing Card */
+        .price-card {
+            background: linear-gradient(180deg, #FFFFFF 0%, var(--bg-page) 100%);
+            border: 2px solid var(--primary);
+            border-radius: var(--radius-lg);
+            padding: 36px;
+            text-align: center;
+            position: relative;
+        }
+
+        .price-tag {
+            font-family: var(--font-heading);
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: var(--primary);
+            margin: 14px 0;
+        }
+
+        .price-tag small {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .btn-cta-proposal {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 16px;
+            background: #059669;
+            color: #FFFFFF;
+            border: none;
+            border-radius: var(--radius-md);
+            font-weight: 800;
+            font-size: 1.05rem;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 20px;
+        }
+
+        .btn-cta-proposal:hover {
+            background: #047857;
+        }
+
+        @media (max-width: 640px) {
+            .feature-grid { grid-template-columns: 1fr; }
+            .offer-title { font-size: 1.8rem; }
+            .domain-strip { flex-direction: column; text-align: center; }
+            .domain-price strong { text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Nav -->
+    <nav class="proposal-nav">
+        <div class="container nav-wrapper">
+            <a href="index.html" class="brand-logo-link">
+                <img src="assets/logo.svg" alt="Monte Cristo Logo" style="height: 42px;">
+            </a>
+            <a href="index.html" class="back-link">
+                <i data-lucide="eye"></i> Ver Site Demonstração
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <main class="container" style="padding-top: 20px; padding-bottom: 60px;">
+        
+        <!-- Offer Hero Card -->
+        <section class="offer-hero">
+            <div class="offer-card-main">
+                <span class="offer-badge"><i data-lucide="sparkles"></i> PROPOSTA DE PARCERIA COMERCIAL</span>
+                <h1 class="offer-title">
+                    Transforme a Tabela da Monte Cristo em um <span>Catálogo Interativo de Vendas! 🍷</span>
+                </h1>
+                <p class="offer-desc">
+                    Apresentação do projeto completo de site catálogo, carrinho de compras e sistema de pedidos via WhatsApp para os proprietários e equipe de vendas da Monte Cristo Bebidas.
+                </p>
+            </div>
+        </section>
+
+        <!-- Reserved Domain Strip -->
+        <div class="domain-strip">
+            <div>
+                <span style="font-size: 0.78rem; color: #047857; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;">DOMÍNIO E INFRAESTRUTURA RESERVADOS</span>
+                <div class="domain-name">www.montecristobebidas.com.br</div>
+            </div>
+            <div class="domain-price">
+                <strong>Incluso no Projeto</strong>
+                <span>Hospedagem de Alta Performance + SSL</span>
+            </div>
+        </div>
+
+        <!-- Scope & Features Section -->
+        <section class="section-card">
+            <h3 class="section-title">
+                <i data-lucide="layers"></i> O Que Está Incluído no Projeto
+            </h3>
+            
+            <div class="feature-grid">
+                <div class="feature-box">
+                    <h4><i data-lucide="grid"></i> Catálogo Completo 80+ Itens</h4>
+                    <p>Todas as bebidas da tabela PDF cadastradas individualmente, cada uma com ilustração vetorial própria da garrafa, preço oficial e volume.</p>
+                </div>
+                <div class="feature-box">
+                    <h4><i data-lucide="search"></i> Busca & Filtros Inteligentes</h4>
+                    <p>Pesquisa por nome da marca (Jack, Baly, Absolut) e navegação por categorias (Whiskies, Vodkas, Licores, Gins, etc.).</p>
+                </div>
+                <div class="feature-box">
+                    <h4><i data-lucide="message-square"></i> Disparo via WhatsApp</h4>
+                    <p>Pedidos chegam formatados diretamente no WhatsApp dos vendedores (Ivan e Michele) com todos os itens e totais somados.</p>
+                </div>
+                <div class="feature-box">
+                    <h4><i data-lucide="qr-code"></i> Pagamento e Entrega no Pedido</h4>
+                    <p>O cliente escolhe entrega ou retirada e a forma de pagamento (Pix, cartão ou dinheiro com troco). A chave Pix se copia em 1 clique.</p>
+                </div>
+                <div class="feature-box">
+                    <h4><i data-lucide="smartphone"></i> Experiência de Aplicativo</h4>
+                    <p>Abre direto no catálogo, com busca e categorias fixas no topo. No celular funciona como um app de compra, sem cadastro e sem login.</p>
+                </div>
+                <div class="feature-box">
+                    <h4><i data-lucide="refresh-cw"></i> Atualizações de Tabela</h4>
+                    <p>Atualizações mensais de preços e inclusão de novos rótulos sem custo adicional de manutenção.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Investment Section -->
+        <section class="section-card">
+            <h3 class="section-title">
+                <i data-lucide="dollar-sign"></i> Investimento & Condições
+            </h3>
+            
+            <div class="price-card">
+                <span style="font-size: 0.8rem; font-weight: 800; color: var(--teal); text-transform: uppercase; letter-spacing: 1px;">SITE NOVO DA MONTE CRISTO</span>
+
+                <div class="price-tag">
+                    R$ 2.400 <small>/ site novo, em 2x</small>
+                </div>
+
+                <p style="font-size: 0.95rem; color: var(--text-main); margin-bottom: 12px;">
+                    Não é taxa de implantação de um sistema de prateleira: é o <strong>site novo da Monte Cristo</strong>,
+                    com o sistema de pedidos já acoplado. Simples de usar, <strong>sem cadastro e sem login</strong> —
+                    o cliente entra, escolhe, envia. Nada trava a venda.
+                </p>
+
+                <p style="font-size: 0.95rem; color: var(--text-main); margin-bottom: 12px;">
+                    <strong>50% de entrada</strong> para iniciar e <strong>50% na entrega</strong> do site publicado e funcionando.
+                </p>
+
+                <p style="font-size: 0.95rem; color: var(--text-main); margin-bottom: 12px;">
+                    + <strong>R$ 100,00 / mês</strong>: servidor do site, certificado SSL e atualizações da tabela de preços
+                    sempre que a Monte Cristo precisar.
+                </p>
+
+                <a href="https://wa.me/5554999692859?text=Ol%C3%A1!%20Gostaria%20de%20aprovar%20a%20proposta%20do%20site%20para%20a%20Monte%20Cristo%20Bebidas." target="_blank" class="btn-cta-proposal">
+                    <i data-lucide="check-circle-2"></i> Aprovar Proposta & Iniciar Projeto
+                </a>
+            </div>
+        </section>
+
+        <!-- Developer Signature -->
+        <div style="text-align: center; color: var(--text-muted); font-size: 0.85rem; margin-top: 40px;">
+            <p>Proposta comercial elaborada por <strong>Onira Labs</strong> • Soluções Web & Inteligência de Vendas</p>
+        </div>
+    </main>
+
+    <script>
+        if (window.lucide) {
+            lucide.createIcons();
+        }
+    </script>
+</body>
+</html>
