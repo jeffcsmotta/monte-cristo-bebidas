@@ -18,7 +18,7 @@
     <!-- ?v= muda a cada publicacao para o navegador nao servir folha velha.
          Sem isso, quem ja visitou o site continua vendo o CSS antigo e um
          botao novo aparece sem estilo nenhum. -->
-    <link rel="stylesheet" href="style.css?v=20260814c">
+    <link rel="stylesheet" href="style.css?v=20260814d">
 </head>
 <body>
 
@@ -259,10 +259,10 @@
          visitante fica guardada no navegador. -->
     <div class="onira-cta" id="onira-cta">
         <a class="onira-cta-link" href="proposta.html" rel="nofollow">
-            <i data-lucide="sparkles"></i>
+            <img src="assets/jeff-avatar.webp" alt="Jefferson Motta, Onira Labs" class="onira-cta-avatar" width="40" height="40">
             <span class="onira-cta-text">
-                <span class="onira-cta-hook">Tá gostando do site?</span>
-                <span class="onira-cta-call">Ele pode ser seu — veja como</span>
+                <span class="onira-cta-hook">Gostou do site?</span>
+                <span class="onira-cta-call">Saiba como funciona meu trabalho</span>
             </span>
         </a>
         <button type="button" class="onira-cta-close" id="onira-cta-close" aria-label="Dispensar convite">
@@ -302,18 +302,13 @@
         </button>
     </div>
 
-    <!-- Floating WhatsApp Customer Service Button -->
-    <a href="https://wa.me/5554999692859?text=Ol%C3%A1!%20Gostaria%20de%20atendimento%20no%20Monte%20Cristo%20Bebidas." target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Falar com atendimento no WhatsApp">
-        <i data-lucide="message-circle" aria-hidden="true"></i>
-    </a>
-
     <!-- JS Scripts -->
     <!-- bottles.js precisa vir ANTES do app.js: define window.bottleSVG, usado
          no render dos cards e das miniaturas do pedido. Sem ele, todo card
          renderiza vazio. -->
     <script src="images.js?v=20260814"></script>
     <script src="bottles.js"></script>
-    <script src="app.js?v=20260814c"></script>
+    <script src="app.js?v=20260814d"></script>
     <script>
         if (window.lucide) {
             lucide.createIcons();

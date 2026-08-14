@@ -1730,6 +1730,16 @@ body {
     color: inherit;
 }
 
+/* Rosto no lugar do icone: convite de pessoa, nao de banner. */
+.onira-cta-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 2px solid rgba(255, 255, 255, 0.35);
+}
+
 .onira-cta-text {
     display: flex;
     flex-direction: column;
@@ -1976,49 +1986,7 @@ button:focus-visible, a:focus-visible, input:focus-visible {
     outline-offset: 2px !important;
 }
 
-/* Floating WhatsApp Customer Service Button */
-.whatsapp-float {
-    position: fixed;
-    bottom: 24px;
-    left: 24px; /* Positioned left to avoid overlap with proposal badge on right */
-    width: 56px;
-    height: 56px;
-    background: #25D366;
-    color: #FFFFFF;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 16px rgba(37, 211, 102, 0.4);
-    z-index: 1500;
-    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-    text-decoration: none;
-}
 
-.whatsapp-float i {
-    width: 28px;
-    height: 28px;
-    color: #FFFFFF;
-}
-
-.whatsapp-float:hover {
-    background: #20BA5A;
-    transform: scale(1.08);
-    box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
-}
-
-@media (max-width: 480px) {
-    .whatsapp-float {
-        bottom: 80px;
-        left: 16px;
-        width: 48px;
-        height: 48px;
-    }
-    .whatsapp-float i {
-        width: 24px;
-        height: 24px;
-    }
-}
 
 /* Mobile First: Oculta Hero no Mobile para focar direto no Cardápio / Catálogo */
 @media (max-width: 768px) {
