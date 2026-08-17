@@ -275,30 +275,33 @@
             font-size: 1.05rem;
             text-decoration: none;
             cursor: pointer;
-            transition: background 0.2s;
+            transition: background 0.2s, transform 0.2s;
             margin-top: 20px;
         }
 
         .btn-cta-proposal:hover {
             background: #047857;
+            transform: translateY(-2px);
         }
 
-        /* Developer Profile & Studio Container (Standard Component) */
+        /* ==========================================================================
+           DEVELOPER & STUDIO PROFILE CONTAINER (ONIRA LABS MASTER STANDARD)
+           ========================================================================== */
         .dev-profile-card {
-            background: linear-gradient(135deg, #091E2C 0%, #0E344A 100%);
+            background: #0F172A;
             border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: var(--radius-lg);
             padding: 32px;
+            margin-bottom: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
             color: #FFFFFF;
-            margin-top: 24px;
-            box-shadow: 0 10px 30px rgba(14, 70, 99, 0.2);
         }
 
         .dev-profile-header {
             display: flex;
             align-items: center;
             gap: 20px;
-            margin-bottom: 18px;
+            margin-bottom: 20px;
         }
 
         .dev-profile-avatar-wrap {
@@ -307,29 +310,13 @@
         }
 
         .dev-profile-avatar {
-            width: 80px;
-            height: 80px;
+            width: 78px;
+            height: 78px;
             border-radius: 50%;
             object-fit: cover;
-            border: 3px solid #38BDF8;
-            box-shadow: 0 0 16px rgba(56, 189, 248, 0.4);
+            border: 2.5px solid #38BDF8;
+            box-shadow: 0 0 20px rgba(56, 189, 248, 0.35);
             display: block;
-        }
-
-        .dev-profile-badge {
-            position: absolute;
-            bottom: -6px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: #0284C7;
-            color: #FFFFFF;
-            font-size: 0.65rem;
-            font-weight: 800;
-            padding: 2px 8px;
-            border-radius: 9999px;
-            white-space: nowrap;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
         }
 
         .dev-profile-main-info {
@@ -379,8 +366,8 @@
 
         .dev-links-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 10px;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 12px;
             margin-bottom: 24px;
         }
 
@@ -388,13 +375,13 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            padding: 10px 14px;
+            padding: 12px 16px;
             background: rgba(255, 255, 255, 0.06);
             border: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: var(--radius-md);
             color: #E2E8F0;
             text-decoration: none;
-            font-size: 0.84rem;
+            font-size: 0.88rem;
             transition: all 0.2s ease;
         }
 
@@ -406,8 +393,8 @@
         }
 
         .dev-link-pill i {
-            width: 18px;
-            height: 18px;
+            width: 20px;
+            height: 20px;
             flex-shrink: 0;
         }
 
@@ -493,10 +480,11 @@
             50% { box-shadow: 0 8px 35px rgba(37, 211, 102, 0.75); }
         }
 
-        @media (max-width: 600px) {
-            .hero-proposal h1 { font-size: 1.8rem; }
-            .price-tag { font-size: 2.2rem; }
+        @media (max-width: 640px) {
             .feature-grid { grid-template-columns: 1fr; }
+            .offer-title { font-size: 1.8rem; }
+            .domain-strip { flex-direction: column; text-align: center; }
+            .domain-price strong { text-align: center; }
             .dev-profile-header { flex-direction: column; text-align: center; }
             .dev-profile-city { justify-content: center; }
             .floating-whatsapp-btn {
@@ -510,50 +498,47 @@
 </head>
 <body>
 
-    <!-- Header Navigation -->
-    <header class="proposal-header">
-        <div class="proposal-container header-flex">
+    <!-- Header Nav -->
+    <nav class="proposal-nav">
+        <div class="container nav-wrapper">
             <a href="index.html" class="brand-logo-link">
-                <img src="assets/logo.png" alt="Monte Cristo Bebidas" style="height: 38px; width: auto;">
+                <img src="assets/logo.png" alt="Monte Cristo Logo" style="height: 42px; width: auto;">
             </a>
-            <a href="index.html" class="btn-back">
-                <i data-lucide="arrow-left"></i> Voltar ao Catálogo
+            <a href="index.html" class="back-link">
+                <i data-lucide="eye"></i> Ver Site Demonstração
             </a>
         </div>
-    </header>
+    </nav>
 
-    <main class="proposal-container">
-        <!-- Hero Section -->
-        <section class="hero-proposal">
-            <span class="badge-proposal">
-                <i data-lucide="sparkles"></i> Proposta Comercial Exclusiva
-            </span>
-            <h1>Catálogo Digital & Canal de Pedidos <strong>Monte Cristo</strong></h1>
-            <p>
-                Uma estrutura de vendas direta no WhatsApp, sem intermediários, sem taxas sobre pedidos
-                e pronta para transformar a consulta do cliente em pedido fechado em segundos.
-            </p>
-        </section>
-
-        <!-- Current Problem vs Solution -->
-        <section class="section-card">
-            <h3 class="section-title">
-                <i data-lucide="target"></i> Do PDF Estático ao Canal de Alta Conversão
-            </h3>
-
-            <div class="comparison-grid">
-                <div class="comp-box comp-bad">
-                    <span class="comp-label">❌ Como funciona hoje (Tabela PDF)</span>
-                    <p>O cliente recebe um PDF pesado de várias páginas, precisa dar zoom para ler códigos e preços, calcular o total na mão e digitar tudo do zero no WhatsApp.</p>
-                </div>
-                <div class="comp-box comp-good">
-                    <span class="comp-label">✓ Com o Catálogo Online</span>
-                    <p>O cliente abre no celular, busca a marca em 1 segundo, vê a foto da garrafa, monta o carrinho e envia o pedido pronto e somado direto para o vendedor.</p>
-                </div>
+    <!-- Main Container -->
+    <main class="container" style="padding-top: 20px; padding-bottom: 60px;">
+        
+        <!-- Offer Hero Card -->
+        <section class="offer-hero">
+            <div class="offer-card-main">
+                <span class="offer-badge"><i data-lucide="sparkles"></i> PROPOSTA DE PARCERIA COMERCIAL</span>
+                <h1 class="offer-title">
+                    Transforme a Tabela da Monte Cristo em um <span>Catálogo Interativo de Vendas! 🍷</span>
+                </h1>
+                <p class="offer-desc">
+                    Apresentação do projeto completo de site catálogo, carrinho de compras e sistema de pedidos via WhatsApp para os proprietários e equipe de vendas da Monte Cristo Bebidas.
+                </p>
             </div>
         </section>
 
-        <!-- Features Included -->
+        <!-- Reserved Domain Strip -->
+        <div class="domain-strip">
+            <div>
+                <span style="font-size: 0.78rem; color: #047857; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;">DOMÍNIO E INFRAESTRUTURA RESERVADOS</span>
+                <div class="domain-name">www.montecristobebidas.com.br</div>
+            </div>
+            <div class="domain-price">
+                <strong>Incluso no Projeto</strong>
+                <span>Hospedagem de Alta Performance + SSL</span>
+            </div>
+        </div>
+
+        <!-- Scope & Features Section -->
         <section class="section-card">
             <h3 class="section-title">
                 <i data-lucide="layers"></i> O Que Está Incluído no Projeto
