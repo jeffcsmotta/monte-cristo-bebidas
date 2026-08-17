@@ -1170,8 +1170,8 @@ window.sendWhatsAppOrder = function() {
     window.open(url, '_blank');
 };
 
-/* Convite da Onira: aparece depois que a pessoa desceu um pouco no catalogo,
-   nao no primeiro segundo. Quem dispensa nao ve de novo. */
+/* Convite da Onira (Floating Proposal Widget):
+   Aparece com rolagem suave (> 200px) ou após 2.5 segundos, conectando o visitante à proposta. */
 function setupOniraCta() {
     const cta = document.getElementById('onira-cta');
     const fechar = document.getElementById('onira-cta-close');
@@ -1180,21 +1180,30 @@ function setupOniraCta() {
     const CHAVE = 'monte_cristo_cta_onira';
     if (localStorage.getItem(CHAVE) === 'dispensado') return;
 
-    fechar.addEventListener('click', () => {
+    fechar.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
         cta.style.display = 'none';
         localStorage.setItem(CHAVE, 'dispensado');
     });
 
     let mostrado = false;
-    function talvezMostrar() {
-        if (mostrado || window.scrollY < 500) return;
+    function mostrarCTA() {
+        if (mostrado) return;
         mostrado = true;
         cta.style.display = 'flex';
         if (window.lucide) lucide.createIcons();
-        window.removeEventListener('scroll', talvezMostrar);
+        window.removeEventListener('scroll', verificarScroll);
     }
-    window.addEventListener('scroll', talvezMostrar, { passive: true });
-    talvezMostrar();
+
+    function verificarScroll() {
+        if (window.scrollY > 180) {
+            mostrarCTA();
+        }
+    }
+
+    window.addEventListener('scroll', verificarScroll, { passive: true });
+    setTimeout(mostrarCTA, 2200);
 }
 
 // Toast Notification
