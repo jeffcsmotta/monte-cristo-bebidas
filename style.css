@@ -1978,8 +1978,8 @@ body {
     .onira-cta {
         bottom: 74px;
         right: 16px;
-        left: 76px;             /* nao encosta no botao do WhatsApp */
-        max-width: none;
+        left: auto;
+        max-width: calc(100vw - 32px);
     }
     .onira-cta-hook { font-size: 0.72rem; }
     .onira-cta-call { font-size: 0.82rem; }

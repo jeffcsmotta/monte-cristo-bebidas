@@ -1171,21 +1171,24 @@ window.sendWhatsAppOrder = function() {
 };
 
 /* Convite da Onira (Floating Proposal Widget):
-   Aparece com rolagem suave (> 200px) ou após 2.5 segundos, conectando o visitante à proposta. */
+   Aparece de forma elegante e confiável conectando o visitante à proposta comercial. */
 function setupOniraCta() {
     const cta = document.getElementById('onira-cta');
     const fechar = document.getElementById('onira-cta-close');
-    if (!cta || !fechar) return;
+    if (!cta) return;
 
-    const CHAVE = 'monte_cristo_cta_onira';
-    if (localStorage.getItem(CHAVE) === 'dispensado') return;
+    if (fechar) {
+        fechar.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            cta.style.display = 'none';
+            sessionStorage.setItem('monte_cristo_cta_dispensado', 'true');
+        });
+    }
 
-    fechar.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        cta.style.display = 'none';
-        localStorage.setItem(CHAVE, 'dispensado');
-    });
+    if (sessionStorage.getItem('monte_cristo_cta_dispensado') === 'true') {
+        return;
+    }
 
     let mostrado = false;
     function mostrarCTA() {
@@ -1197,13 +1200,13 @@ function setupOniraCta() {
     }
 
     function verificarScroll() {
-        if (window.scrollY > 180) {
+        if (window.scrollY > 50) {
             mostrarCTA();
         }
     }
 
     window.addEventListener('scroll', verificarScroll, { passive: true });
-    setTimeout(mostrarCTA, 2200);
+    setTimeout(mostrarCTA, 800);
 }
 
 // Toast Notification
