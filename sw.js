@@ -1,4 +1,4 @@
-const CACHE_NAME = 'monte-cristo-cache-v1';
+const CACHE_NAME = 'monte-cristo-cache-v2';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
@@ -7,7 +7,8 @@ const ASSETS_TO_CACHE = [
   './bottles.js',
   './images.js',
   './manifest.json',
-  './assets/icon.svg'
+  './assets/favicon.svg',
+  './assets/simbolo-monte.svg'
 ];
 
 self.addEventListener('install', (event) => {
