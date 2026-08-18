@@ -815,15 +815,15 @@ function renderProducts() {
             return `
                 <div class="product-card" data-id="${item.id}">
                     <div class="product-image-box">
-                        <span class="product-category-badge">${getCategoryName(item.category)} • ${item.volume}</span>
+                        <span class="product-category-badge">${getCategoryName(item.category)}</span>
                         ${productThumb(item)}
                     </div>
                     <div class="product-info">
-                        <h3 class="product-title">${item.name}</h3>
+                        <h3 class="product-title">${item.name} <small style="font-weight:600; color:var(--text-muted); font-size:0.8rem;">(${item.volume})</small></h3>
 
                         <div class="card-unit-tabs" data-id="${item.id}">
                             <button type="button" class="card-tab ${!isBox ? 'active' : ''}" data-unit="unit" onclick="window.setCardUnit('${item.id}', 'unit')">
-                                🍾 Garrafa Avulsa
+                                🍾 Garrafa
                             </button>
                             <button type="button" class="card-tab ${isBox ? 'active' : ''}" data-unit="box" onclick="window.setCardUnit('${item.id}', 'box')">
                                 📦 Caixa (${bSize}un)
@@ -834,20 +834,20 @@ function renderProducts() {
                             <div class="price-amount-display">
                                 ${isBox
                                     ? `R$ ${formatMoney(bUnitPrice)} <small>/un na caixa</small>`
-                                    : `R$ ${formatMoney(item.price)} <small>/unid. avulsa</small>`
+                                    : `R$ ${formatMoney(item.price)} <small>/garrafa avulsa</small>`
                                 }
                             </div>
                             <div class="price-subtext-display">
                                 ${isBox
                                     ? `Total da Caixa (${bSize}un): <strong>R$ ${formatMoney(bTotalPrice)}</strong>`
-                                    : `Venda unitária (garrafa avulsa)`
+                                    : `Venda unitária de tabela`
                                 }
                             </div>
                         </div>
 
                         <button type="button" class="btn-add-main ${isBox ? 'box-mode' : 'unit-mode'}" onclick="addToCart('${item.id}', '${currentUnit}')">
                             <i data-lucide="${isBox ? 'package' : 'plus'}"></i>
-                            <span>${isBox ? `Adicionar Caixa com ${bSize}un` : 'Adicionar 1 Garrafa'}</span>
+                            <span>${isBox ? `Adicionar Caixa (${bSize}un)` : 'Adicionar 1 Garrafa'}</span>
                         </button>
                     </div>
                 </div>
@@ -1204,7 +1204,7 @@ window.sendWhatsAppOrder = function() {
 };
 
 /* Convite da Onira (Floating Proposal Widget):
-   Aparece de forma elegante e confiável conectando o visitante à proposta comercial. */
+   Comportamento inteligente: esmaece ao rolar para baixo e esconde automaticamente quando o carrinho estiver aberto. */
 function setupOniraCta() {
     const cta = document.getElementById('onira-cta');
     const fechar = document.getElementById('onira-cta-close');
@@ -1224,22 +1224,59 @@ function setupOniraCta() {
     }
 
     let mostrado = false;
-    function mostrarCTA() {
-        if (mostrado) return;
-        mostrado = true;
-        cta.style.display = 'flex';
-        if (window.lucide) lucide.createIcons();
-        window.removeEventListener('scroll', verificarScroll);
-    }
+    let lastScrollY = window.scrollY;
+    let scrollTimer = null;
 
-    function verificarScroll() {
-        if (window.scrollY > 50) {
-            mostrarCTA();
+    function mostrarCTA() {
+        if (!mostrado) {
+            mostrado = true;
+            cta.style.display = 'flex';
+            if (window.lucide) lucide.createIcons();
         }
     }
 
-    window.addEventListener('scroll', verificarScroll, { passive: true });
-    setTimeout(mostrarCTA, 800);
+    function handleSmartScroll() {
+        if (window.scrollY > 50 && !mostrado) {
+            mostrarCTA();
+        }
+
+        if (!mostrado) return;
+
+        const cartDrawer = document.getElementById('cart-drawer');
+        const isCartOpen = cartDrawer && (cartDrawer.classList.contains('active') || cartDrawer.classList.contains('open'));
+
+        // Se o carrinho estiver aberto, esconde o widget para nao sobrepor botoes
+        if (isCartOpen) {
+            cta.style.opacity = '0';
+            cta.style.pointerEvents = 'none';
+            cta.style.transform = 'translateY(20px) scale(0.9)';
+            return;
+        }
+
+        // Se estiver rolando para baixo, esmaece suavemente para nao atrapalhar
+        const currentScrollY = window.scrollY;
+        if (currentScrollY > lastScrollY && currentScrollY > 150) {
+            cta.style.opacity = '0.35';
+            cta.style.transform = 'translateY(8px) scale(0.95)';
+        } else {
+            cta.style.opacity = '1';
+            cta.style.pointerEvents = 'auto';
+            cta.style.transform = 'translateY(0) scale(1)';
+        }
+        lastScrollY = currentScrollY;
+
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(() => {
+            if (!isCartOpen) {
+                cta.style.opacity = '1';
+                cta.style.pointerEvents = 'auto';
+                cta.style.transform = 'translateY(0) scale(1)';
+            }
+        }, 600);
+    }
+
+    window.addEventListener('scroll', handleSmartScroll, { passive: true });
+    setTimeout(mostrarCTA, 1200);
 }
 
 // Toast Notification

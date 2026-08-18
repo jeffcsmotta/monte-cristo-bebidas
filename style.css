@@ -593,26 +593,34 @@ body {
 .card-unit-tabs {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4px;
+    gap: 3px;
     background: #F1F5F9;
     padding: 3px;
     border-radius: var(--radius-sm);
     margin-bottom: 10px;
     border: 1px solid var(--border);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .card-tab {
-    padding: 6px 4px;
+    padding: 6px 2px;
     border-radius: var(--radius-xs);
     border: none;
     background: transparent;
-    font-size: 0.72rem;
+    font-size: 0.73rem;
     font-weight: 700;
     color: var(--text-muted);
     cursor: pointer;
     transition: all 0.2s ease;
     white-space: nowrap;
     text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
 }
 
 .card-tab:hover {
