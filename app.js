@@ -580,20 +580,36 @@ const PRODUCTS_DATA = [
     }
 ];
 
+// Wholesale vs Retail calculation helpers
+function getBoxSize(item) {
+    if (item.boxSize) return item.boxSize;
+    if (item.category === 'energeticos' || item.category === 'xaropes') return 12;
+    if (item.category === 'cachaca-conhaque' && item.volume && item.volume.includes('Lata')) return 24;
+    if (item.category === 'licores' || item.id === 'wh-11' || item.id === 'wh-4') return 6;
+    return 12;
+}
+
+function getBoxUnitPrice(item) {
+    const discount = item.boxDiscount || 0.08; // 8% OFF na caixa fechada
+    return Math.round((item.price * (1 - discount)) * 100) / 100;
+}
+
+function getBoxTotalPrice(item) {
+    const size = getBoxSize(item);
+    const uPrice = getBoxUnitPrice(item);
+    return Math.round(size * uPrice * 100) / 100;
+}
+
 // App State
 let cart = JSON.parse(localStorage.getItem('monte_cristo_cart')) || [];
 let activeCategory = 'all';
 let searchQuery = '';
-let orderType = 'entrega'; // 'entrega' or 'retirada'
+let orderType = 'receber-48h'; // 'receber-48h', 'receber-hoje', 'retirar-loja'
 
-/* Taxa fixa de entrega em Caxias. Retirada no balcao nao paga.
-   Um lugar so: resumo do carrinho, valor do Pix, QR e mensagem do WhatsApp
-   leem daqui, entao nao ha como um deles ficar para tras. */
-const DELIVERY_FEE = 10.00;
 function deliveryFeeFor(tipo) {
-    return tipo === 'entrega' ? DELIVERY_FEE : 0;
+    return 0; // faturamento/frete a combinar com atendente Monte Cristo
 }
-let paymentMethod = 'Pix'; // 'Pix' | 'Cartão' | 'Dinheiro'
+let paymentMethod = 'Pix'; // 'Pix' | 'Cartão' | 'Dinheiro/Faturado'
 let viewMode = 'cards'; // 'cards' or 'table'
 
 // Expose PRODUCTS_DATA globally for external table pages
@@ -733,14 +749,16 @@ function renderProducts() {
                             <th>Bebida / Rótulo</th>
                             <th>Categoria</th>
                             <th>Embalagem</th>
-                            <th>Preço Tabela PDF</th>
-                            <th style="text-align:right;">Ação</th>
+                            <th>Varejo (Avulso)</th>
+                            <th>Atacado (Caixa Fechada)</th>
+                            <th style="text-align:right;">Adicionar</th>
                         </tr>
                     </thead>
                     <tbody>
                         ${filtered.map(item => {
-                            const cartItem = cart.find(c => c.id === item.id);
-                            const qtyInCart = cartItem ? cartItem.quantity : 0;
+                            const bSize = getBoxSize(item);
+                            const bUnitPrice = getBoxUnitPrice(item);
+
                             return `
                                 <tr>
                                     <td>
@@ -756,20 +774,20 @@ function renderProducts() {
                                         <span class="table-volume">${item.volume}</span>
                                     </td>
                                     <td>
-                                        <span class="table-price">R$ ${formatMoney(item.price)}</span>
+                                        <span class="table-price">R$ ${formatMoney(item.price)} <small style="font-size:0.7rem; color:var(--text-muted);">/un</small></span>
+                                    </td>
+                                    <td>
+                                        <span class="table-price" style="color:#16A34A; font-size:0.95rem;">R$ ${formatMoney(bUnitPrice)} <small style="font-size:0.7rem;">/un (${bSize} un)</small></span>
                                     </td>
                                     <td style="text-align:right;">
-                                        ${qtyInCart > 0 ? `
-                                            <div class="card-qty-control" style="display:inline-flex;">
-                                                <button class="card-qty-btn" onclick="updateQuantity('${item.id}', ${qtyInCart - 1})">-</button>
-                                                <span class="card-qty-val">${qtyInCart}</span>
-                                                <button class="card-qty-btn" onclick="updateQuantity('${item.id}', ${qtyInCart + 1})">+</button>
-                                            </div>
-                                        ` : `
-                                            <button class="btn-add-card" onclick="addToCart('${item.id}')">
-                                                <i data-lucide="plus" style="width:14px; height:14px;"></i> Adicionar
+                                        <div style="display:inline-flex; gap:4px;">
+                                            <button class="btn-add-unit" onclick="addToCart('${item.id}', 'unit')" title="Garrafa Avulsa">
+                                                + 🍾 Garrafa
                                             </button>
-                                        `}
+                                            <button class="btn-add-box" onclick="addToCart('${item.id}', 'box')" title="Caixa Fechada (${bSize} un)">
+                                                + 📦 Caixa (${bSize})
+                                            </button>
+                                        </div>
                                     </td>
                                 </tr>
                             `;
@@ -781,8 +799,8 @@ function renderProducts() {
     } else {
         grid.style.display = 'grid';
         grid.innerHTML = filtered.map(item => {
-            const cartItem = cart.find(c => c.id === item.id);
-            const qtyInCart = cartItem ? cartItem.quantity : 0;
+            const bSize = getBoxSize(item);
+            const bUnitPrice = getBoxUnitPrice(item);
 
             return `
                 <div class="product-card" data-id="${item.id}">
@@ -796,22 +814,23 @@ function renderProducts() {
                             <i data-lucide="package" style="width:14px; height:14px; color:var(--teal);"></i>
                             <span>Embalagem: <strong>${item.volume}</strong></span>
                         </div>
-                        <div class="product-price-row">
-                            <div class="product-price">
-                                <span class="price-label">Preço</span>
-                                <span class="price-amount">R$ ${formatMoney(item.price)}</span>
+                        <div class="product-price-box">
+                            <div class="price-row">
+                                <span class="price-retail-label">Varejo:</span>
+                                <span class="price-amount">R$ ${formatMoney(item.price)} <small>/un</small></span>
                             </div>
-                            ${qtyInCart > 0 ? `
-                                <div class="card-qty-control">
-                                    <button class="card-qty-btn" onclick="updateQuantity('${item.id}', ${qtyInCart - 1})">-</button>
-                                    <span class="card-qty-val">${qtyInCart}</span>
-                                    <button class="card-qty-btn" onclick="updateQuantity('${item.id}', ${qtyInCart + 1})">+</button>
-                                </div>
-                            ` : `
-                                <button class="btn-add-card" onclick="addToCart('${item.id}')">
-                                    <i data-lucide="plus" style="width:15px; height:15px;"></i> Adicionar
-                                </button>
-                            `}
+                            <div class="wholesale-strip">
+                                <span>Atacado: <strong>R$ ${formatMoney(bUnitPrice)}/un</strong> na cx</span>
+                                <span class="discount-tag">8% OFF</span>
+                            </div>
+                        </div>
+                        <div class="card-add-actions">
+                            <button class="btn-add-unit" onclick="addToCart('${item.id}', 'unit')">
+                                <i data-lucide="plus"></i> 🍾 Garrafa
+                            </button>
+                            <button class="btn-add-box" onclick="addToCart('${item.id}', 'box')">
+                                <i data-lucide="package"></i> 📦 Caixa (${bSize})
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -836,29 +855,48 @@ function getCategoryName(cat) {
     return map[cat] || 'Bebida';
 }
 
-// Cart Functions
-function addToCart(productId) {
+// Cart Functions (Varejo x Atacado)
+function addToCart(productId, unitType = 'unit') {
     const product = PRODUCTS_DATA.find(p => p.id === productId);
     if (!product) return;
 
-    const existing = cart.find(c => c.id === productId);
+    const cartItemId = `${productId}-${unitType}`;
+    const existing = cart.find(c => (c.cartItemId === cartItemId) || (c.id === productId && c.unitType === unitType));
+
+    const bSize = getBoxSize(product);
+    const bUnitPrice = getBoxUnitPrice(product);
+    const bTotalPrice = getBoxTotalPrice(product);
+
     if (existing) {
         existing.quantity += 1;
     } else {
-        cart.push({ ...product, quantity: 1 });
+        cart.push({
+            cartItemId: cartItemId,
+            id: product.id,
+            name: product.name,
+            volume: product.volume,
+            category: product.category,
+            image: product.image,
+            unitType: unitType, // 'unit' | 'box'
+            boxSize: bSize,
+            unitPrice: unitType === 'box' ? bUnitPrice : product.price,
+            price: unitType === 'box' ? bTotalPrice : product.price,
+            quantity: 1
+        });
     }
 
     saveCart();
     updateCartUI();
     renderProducts();
-    showToast(`✓ ${product.name} adicionado ao pedido!`);
+    const label = unitType === 'box' ? `Caixa de ${product.name} (${bSize} un)` : product.name;
+    showToast(`✓ ${label} adicionado ao pedido!`);
 }
 
-function updateQuantity(productId, newQty) {
+function updateQuantity(cartItemId, newQty) {
     if (newQty <= 0) {
-        cart = cart.filter(c => c.id !== productId);
+        cart = cart.filter(c => (c.cartItemId || c.id) !== cartItemId);
     } else {
-        const item = cart.find(c => c.id === productId);
+        const item = cart.find(c => (c.cartItemId || c.id) === cartItemId);
         if (item) item.quantity = newQty;
     }
 
@@ -871,10 +909,6 @@ function saveCart() {
     localStorage.setItem('monte_cristo_cart', JSON.stringify(cart));
 }
 
-/* Esvazia o pedido inteiro. A confirmacao e uma caixa do proprio site, nao o
-   confirm() do navegador: precisa dizer quantas bebidas e quanto dinheiro
-   estao em jogo antes de apagar. O carrinho vive no localStorage e sobrevive
-   a fechar o navegador, entao nao existe desfazer. */
 window.clearCart = function() {
     if (cart.length === 0) return;
 
@@ -884,15 +918,14 @@ window.clearCart = function() {
     const overlay = document.getElementById('confirm-clear');
     const texto = document.getElementById('confirm-clear-text');
 
-    // Sem a caixa no HTML, ainda assim nao apaga nada em silencio
     if (!overlay || !texto) {
         if (confirm(`Remover ${itens} ${itens === 1 ? 'bebida' : 'bebidas'} do pedido?`)) aplicarLimpeza();
         return;
     }
 
     texto.innerHTML = itens === 1
-        ? `Você vai remover <strong>1 bebida</strong>, no valor de <strong>R$ ${formatMoney(valor)}</strong>.`
-        : `Você vai remover <strong>${itens} bebidas</strong>, no valor de <strong>R$ ${formatMoney(valor)}</strong>.`;
+        ? `Você vai remover <strong>1 item</strong>, no valor de <strong>R$ ${formatMoney(valor)}</strong>.`
+        : `Você vai remover <strong>${itens} itens</strong>, no valor de <strong>R$ ${formatMoney(valor)}</strong>.`;
 
     abrirConfirmacao(overlay);
 };
@@ -920,7 +953,7 @@ function abrirConfirmacao(overlay) {
         if (e.key === 'Escape') fechar();
     }
     function aoClicarFora(e) {
-        if (e.target === overlay) fechar();   // clique no escuro cancela
+        if (e.target === overlay) fechar();
     }
 
     sim.onclick = () => { fechar(); aplicarLimpeza(); };
@@ -930,7 +963,7 @@ function abrirConfirmacao(overlay) {
 
     overlay.hidden = false;
     if (window.lucide) lucide.createIcons();
-    nao.focus();   // o foco comeca no caminho seguro
+    nao.focus();
 }
 
 function updateCartUI() {
@@ -965,7 +998,6 @@ function updateCartUI() {
 
     if (cartSubtotalEl) cartSubtotalEl.textContent = `R$ ${formatMoney(subtotal)}`;
 
-    // Sem itens não há o que limpar
     const clearBtn = document.getElementById('cart-clear-header');
     if (clearBtn) clearBtn.style.display = cart.length ? 'inline-flex' : 'none';
 
@@ -984,16 +1016,20 @@ function updateCartUI() {
                     <div class="cart-item-img">${productThumb(item, 'cart-thumb-img')}</div>
                     <div class="cart-item-info">
                         <div class="cart-item-name">${item.name} (${item.volume})</div>
-                        <div class="cart-item-unit">R$ ${formatMoney(item.price)} un.</div>
-                        <div class="cart-item-price">Total: R$ ${formatMoney(item.price * item.quantity)}</div>
+                        ${item.unitType === 'box' ? `
+                            <div class="cart-item-tag box-tag">📦 Caixa Fechada (${item.boxSize} un) · R$ ${formatMoney(item.unitPrice)}/un</div>
+                        ` : `
+                            <div class="cart-item-tag unit-tag">🍾 Garrafa Avulsa · R$ ${formatMoney(item.unitPrice)}/un</div>
+                        `}
+                        <div class="cart-item-price">Subtotal: R$ ${formatMoney(item.price * item.quantity)}</div>
                     </div>
                     <div class="cart-item-actions">
                         <div class="cart-controls">
-                            <button type="button" class="cart-qty-btn" onclick="updateQuantity('${item.id}', ${item.quantity - 1})" aria-label="Diminuir quantidade">-</button>
-                            <span class="cart-qty-num">${item.quantity} un</span>
-                            <button type="button" class="cart-qty-btn" onclick="updateQuantity('${item.id}', ${item.quantity + 1})" aria-label="Aumentar quantidade">+</button>
+                            <button type="button" class="cart-qty-btn" onclick="updateQuantity('${item.cartItemId || item.id}', ${item.quantity - 1})" aria-label="Diminuir quantidade">-</button>
+                            <span class="cart-qty-num">${item.quantity} ${item.unitType === 'box' ? 'cx' : 'un'}</span>
+                            <button type="button" class="cart-qty-btn" onclick="updateQuantity('${item.cartItemId || item.id}', ${item.quantity + 1})" aria-label="Aumentar quantidade">+</button>
                         </div>
-                        <button type="button" class="btn-remove-item" onclick="updateQuantity('${item.id}', 0)" aria-label="Remover item">
+                        <button type="button" class="btn-remove-item" onclick="updateQuantity('${item.cartItemId || item.id}', 0)" aria-label="Remover item">
                             <i data-lucide="trash-2" style="width:16px; height:16px;"></i>
                         </button>
                     </div>
@@ -1002,28 +1038,14 @@ function updateCartUI() {
         }
     }
 
-    // Modalidade e valor do Pix acompanham o pedido
-    const deliveryFee = deliveryFeeFor(orderType);
-    const orderTotal = subtotal + deliveryFee;
-
     const deliveryFeeEl = document.getElementById('cart-delivery-fee');
     if (deliveryFeeEl) {
-        deliveryFeeEl.textContent = deliveryFee > 0
-            ? `R$ ${formatMoney(deliveryFee)}`
-            : 'Grátis (Balcão)';
+        if (orderType === 'receber-48h') deliveryFeeEl.textContent = 'A combinar (Serra Gaúcha)';
+        else if (orderType === 'receber-hoje') deliveryFeeEl.textContent = 'Atendimento Urgente Hoje';
+        else deliveryFeeEl.textContent = 'Sem Custo (Retirada Loja)';
     }
 
-    // O total do pedido inclui a entrega; o subtotal segue sendo só as bebidas
-    if (cartTotalEl) cartTotalEl.textContent = `R$ ${formatMoney(orderTotal)}`;
-
-    const pixAmount = document.getElementById('pix-locked-amount');
-    if (pixAmount) pixAmount.textContent = `R$ ${formatMoney(orderTotal)}`;
-
-    const pixQrImg = document.getElementById('pix-qr-img');
-    if (pixQrImg) {
-        const qrData = encodeURIComponent(`Chave Pix Monte Cristo: 54999692859 | Valor: R$ ${formatMoney(orderTotal)}`);
-        pixQrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${qrData}`;
-    }
+    if (cartTotalEl) cartTotalEl.textContent = `R$ ${formatMoney(subtotal)}`;
 
     if (window.lucide) lucide.createIcons();
 }
@@ -1051,23 +1073,32 @@ window.closeCart = function() {
     window.toggleCartDrawer(false);
 };
 
-// Alternadores de entrega e pagamento (padrão CLAEM)
+// Alternadores de entrega e pagamento Monte Cristo
 function setupCartDrawerListeners() {
     document.querySelectorAll('.del-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             document.querySelectorAll('.del-btn').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
-            orderType = btn.dataset.type || 'entrega';
+            orderType = btn.dataset.type || 'receber-48h';
 
-            const addressBox = document.getElementById('address-box');
             const addressInput = document.getElementById('input-address');
-            if (addressBox) {
-                // Na retirada o nome continua sendo pedido; só o endereço sai de cena.
-                addressBox.querySelector('label').textContent = orderType === 'entrega'
-                    ? 'Seus Dados para Entrega:'
-                    : 'Seus Dados para Retirada:';
+            const labelClientData = document.getElementById('label-client-data');
+            const expressBox = document.getElementById('express-today-box');
+
+            if (labelClientData) {
+                labelClientData.textContent = orderType === 'retirar-loja'
+                    ? 'Seus Dados para Retirada na Loja:'
+                    : 'Seus Dados para Envio:';
             }
-            if (addressInput) addressInput.style.display = orderType === 'entrega' ? 'block' : 'none';
+
+            if (addressInput) {
+                addressInput.style.display = orderType === 'retirar-loja' ? 'none' : 'block';
+            }
+
+            if (expressBox) {
+                expressBox.style.display = orderType === 'receber-hoje' ? 'flex' : 'none';
+            }
+
             updateCartUI();
         });
     });
@@ -1079,30 +1110,10 @@ function setupCartDrawerListeners() {
             paymentMethod = btn.dataset.pay || 'Pix';
 
             const cashBox = document.getElementById('cash-change-box');
-            const pixBox = document.getElementById('pix-lock-box');
-            if (cashBox) cashBox.style.display = paymentMethod === 'Dinheiro' ? 'block' : 'none';
-            if (pixBox) pixBox.style.display = paymentMethod === 'Pix' ? 'block' : 'none';
+            if (cashBox) cashBox.style.display = paymentMethod.includes('Dinheiro') ? 'block' : 'none';
         });
     });
 }
-
-// Copy Pix Key
-window.copyPixKey = function() {
-    const pixKey = "54999692859"; // Official phone key
-    navigator.clipboard.writeText(pixKey).then(() => {
-        const btn = document.getElementById('btn-copy-pix-key');
-        if (btn) {
-            btn.classList.add('copied');
-            btn.innerHTML = `<i data-lucide="check"></i> ✓ Chave Pix Copiada!`;
-            setTimeout(() => {
-                btn.classList.remove('copied');
-                btn.innerHTML = `<i data-lucide="copy"></i> Copiar Chave Pix`;
-                if (window.lucide) lucide.createIcons();
-            }, 2500);
-        }
-        showToast("✓ Chave Pix copiada com sucesso!");
-    });
-};
 
 // WhatsApp Order Dispatch
 window.sendWhatsAppOrder = function() {
@@ -1123,7 +1134,7 @@ window.sendWhatsAppOrder = function() {
         return;
     }
 
-    if (orderType === 'entrega' && !address) {
+    if (orderType !== 'retirar-loja' && !address) {
         showToast("⚠️ Por favor, informe o Endereço Completo de Entrega.");
         if (addressInput) addressInput.focus();
         return;
@@ -1132,38 +1143,43 @@ window.sendWhatsAppOrder = function() {
     const cashChangeInput = document.getElementById('cash-change-val');
     const cashChange = cashChangeInput ? cashChangeInput.value.trim() : '';
 
-    let msg = `*NOVO PEDIDO DE BEBIDAS — MONTE CRISTO*\n`;
+    let msg = `*SOLICITAÇÃO DE RESERVA COMERCIAL — MONTE CRISTO*\n`;
     msg += `------------------------------------\n`;
-    msg += `👤 *Cliente/Estabelecimento:* ${clientName}\n`;
-    msg += `📍 *Modalidade:* ${orderType === 'entrega' ? 'Entrega / Delivery' : 'Retirada no Balcão'}\n`;
-    if (orderType === 'entrega') {
+    msg += `👤 *Cliente/Razão Social:* ${clientName}\n`;
+    msg += `🚚 *Modalidade de Envio:* `;
+    if (orderType === 'receber-48h') {
+        msg += `Receber em casa (prazo médio 48h na Serra Gaúcha)\n`;
+    } else if (orderType === 'receber-hoje') {
+        msg += `Receber ainda hoje (Atendimento urgente)\n`;
+    } else {
+        msg += `Retirar na loja (Sem custo - Balcão)\n`;
+    }
+
+    if (orderType !== 'retirar-loja') {
         msg += `🏠 *Endereço:* ${address}\n`;
     }
     msg += `------------------------------------\n`;
-    msg += `🍷 *ITENS DO PEDIDO (Tabela 2026):*\n`;
+    msg += `🍷 *ITENS SOLICITADOS (Varejo & Atacado):*\n`;
 
     cart.forEach(item => {
-        msg += `• *${item.quantity}x* ${item.name} (${item.volume}) — R$ ${formatMoney(item.price * item.quantity)}\n`;
+        if (item.unitType === 'box') {
+            msg += `• *${item.quantity}x Caixa Fechada (${item.boxSize} un)* — ${item.name} (${item.volume})\n`;
+            msg += `   └ Valor: R$ ${formatMoney(item.price * item.quantity)} (R$ ${formatMoney(item.unitPrice)}/un - Atacado)\n`;
+        } else {
+            msg += `• *${item.quantity}x Garrafa Avulsa* — ${item.name} (${item.volume}) — R$ ${formatMoney(item.price * item.quantity)}\n`;
+        }
     });
 
     const subtotalVal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    const deliveryVal = deliveryFeeFor(orderType);
-    const totalVal = subtotalVal + deliveryVal;
     msg += `------------------------------------\n`;
-    msg += `💰 *Subtotal:* R$ ${formatMoney(subtotalVal)}\n`;
-    msg += `🛵 *Entrega:* ${deliveryVal > 0 ? `R$ ${formatMoney(deliveryVal)}` : 'Retirada no balcão'}\n`;
-    msg += `💰 *TOTAL:* R$ ${formatMoney(totalVal)}\n`;
+    msg += `💰 *TOTAL ESTIMADO DO PEDIDO:* R$ ${formatMoney(subtotalVal)}\n`;
     msg += `------------------------------------\n`;
-    msg += `💳 *FORMA DE PAGAMENTO:*\n`;
-    if (paymentMethod === 'Pix') {
-        msg += `⚡ Pix — chave 54999692859 (Monte Cristo), valor R$ ${formatMoney(totalVal)}\n`;
-    } else if (paymentMethod === 'Dinheiro') {
-        msg += `💵 Dinheiro ${cashChange ? `(troco para ${cashChange})` : '(sem troco)'}\n`;
-    } else {
-        msg += `💳 Cartão de Crédito/Débito (levar maquininha)\n`;
+    msg += `💳 *Forma de Pagamento:* ${paymentMethod}\n`;
+    if (cashChange) {
+        msg += `📝 *Observações/Faturamento:* ${cashChange}\n`;
     }
     msg += `------------------------------------\n`;
-    msg += `_Pedido gerado via Catálogo Online Monte Cristo Bebidas_`;
+    msg += `_Solicitação de cotação/reserva comercial via Catálogo Monte Cristo (Atendimento B2B & Distribuição)_`;
 
     const encoded = encodeURIComponent(msg);
     const url = `https://wa.me/${CLIENT_WHATSAPP}?text=${encoded}`;

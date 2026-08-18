@@ -589,26 +589,113 @@ body {
     font-weight: 700;
 }
 
-/* Card Add Button */
-.btn-add-card {
-    padding: 8px 14px;
-    background: var(--primary-light);
-    border: 1px solid var(--teal);
-    border-radius: var(--radius-sm);
-    color: var(--primary);
+/* Seletor Varejo x Atacado no Card */
+.product-price-box {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 8px;
+    width: 100%;
+}
+
+.price-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+.price-retail-label {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.wholesale-strip {
+    background: #F0FDF4;
+    border: 1px solid #BBF7D0;
+    border-radius: var(--radius-xs);
+    padding: 3px 6px;
+    font-size: 0.7rem;
+    color: #166534;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.wholesale-strip strong {
+    color: #15803D;
     font-weight: 800;
-    font-size: 0.82rem;
+}
+
+.discount-tag {
+    background: #16A34A;
+    color: #FFFFFF;
+    font-size: 0.62rem;
+    font-weight: 800;
+    padding: 1px 4px;
+    border-radius: 3px;
+}
+
+.card-add-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    margin-top: 6px;
+    width: 100%;
+}
+
+.btn-add-unit, .btn-add-box {
+    padding: 7px 6px;
+    border-radius: var(--radius-sm);
+    font-weight: 800;
+    font-size: 0.74rem;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    transition: all 0.2s;
+    justify-content: center;
+    gap: 4px;
+    transition: all 0.2s ease;
+    white-space: nowrap;
 }
 
-.btn-add-card:hover {
+.btn-add-unit {
+    background: var(--primary-light);
+    border: 1px solid var(--teal);
+    color: var(--primary);
+}
+
+.btn-add-unit:hover {
     background: var(--primary);
     color: #FFFFFF;
-    border-color: var(--primary);
+}
+
+.btn-add-box {
+    background: #0E4663;
+    border: 1px solid #0E4663;
+    color: #FFFFFF;
+}
+
+.btn-add-box:hover {
+    background: #1B7588;
+    border-color: #1B7588;
+}
+
+/* Badges do item no carrinho */
+.cart-item-tag {
+    font-size: 0.74rem;
+    font-weight: 700;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.cart-item-tag.box-tag {
+    color: #34D399;
+}
+
+.cart-item-tag.unit-tag {
+    color: #9CA3AF;
 }
 
 /* Quantity selector inside card when added */
@@ -1436,6 +1523,121 @@ body {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 8px;
+}
+
+/* Alternador Triplo Monte Cristo: Receber 48h | Receber Hoje | Retirar */
+.delivery-toggle-triple {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.delivery-toggle-triple .del-btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 10px 14px;
+    text-align: left;
+    background: #18181B;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: var(--radius-md);
+}
+
+.delivery-toggle-triple .del-btn.active {
+    background: rgba(27, 117, 136, 0.25) !important;
+    border-color: #38BDF8 !important;
+    color: #FFFFFF !important;
+}
+
+.del-btn-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1.25;
+}
+
+.del-btn-info strong {
+    font-size: 0.88rem;
+    color: #E4E4E7;
+}
+
+.del-btn.active .del-btn-info strong {
+    color: #FFFFFF;
+}
+
+.del-btn-info small {
+    font-size: 0.74rem;
+    color: #9CA3AF;
+    font-weight: 500;
+}
+
+.del-btn.active .del-btn-info small {
+    color: #7DD3FC;
+}
+
+/* Aviso B2B Reserva Comercial */
+.cart-b2b-notice {
+    background: rgba(27, 117, 136, 0.12);
+    border: 1px solid rgba(27, 117, 136, 0.3);
+    border-radius: var(--radius-md);
+    padding: 12px 14px;
+    margin-bottom: 8px;
+}
+
+.notice-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.76rem;
+    font-weight: 800;
+    color: #38BDF8;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+}
+
+.notice-badge i {
+    width: 14px;
+    height: 14px;
+}
+
+.notice-text {
+    font-size: 0.81rem;
+    color: #D1D5DB;
+    line-height: 1.45;
+    margin: 0;
+}
+
+.notice-text strong {
+    color: #FFFFFF;
+}
+
+/* Caixa de Urgência Hoje */
+.express-today-box {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: rgba(245, 158, 11, 0.12);
+    border: 1px solid rgba(245, 158, 11, 0.35);
+    border-radius: var(--radius-md);
+    padding: 10px 12px;
+    color: #FDE68A;
+    font-size: 0.82rem;
+    line-height: 1.4;
+}
+
+.express-today-box i {
+    width: 18px;
+    height: 18px;
+    color: #F59E0B;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.express-today-box a {
+    color: #F59E0B;
+    text-decoration: underline;
 }
 
 .payment-toggle {

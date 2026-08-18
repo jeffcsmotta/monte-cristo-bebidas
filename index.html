@@ -255,9 +255,23 @@
 
         <!-- Corpo único rolável -->
         <div class="cart-body">
+            <!-- 0. Aviso de Distribuidora B2B / Reserva Comercial -->
+            <div class="cart-b2b-notice">
+                <div class="notice-badge">
+                    <i data-lucide="shield-alert"></i>
+                    <span>Distribuidora Direta de Bebidas</span>
+                </div>
+                <p class="notice-text">
+                    Ao enviar o pedido, nossos vendedores confirmam a disponibilidade em estoque, agendamento e faturamento via WhatsApp. <strong>Este serviço não é uma tele-entrega automatizada de aplicativo.</strong>
+                </p>
+            </div>
+
             <!-- 1. Itens -->
             <div class="cart-section">
-                <div class="cart-section-title">Itens do Pedido</div>
+                <div class="cart-section-title" style="display:flex; justify-content:space-between; align-items:center;">
+                    <span>Itens do Pedido (Varejo & Atacado)</span>
+                    <button type="button" class="btn-clear-cart" onclick="window.clearCart()" id="cart-clear-header" style="background:none; border:none; color:#EF4444; font-size:0.75rem; font-weight:700; cursor:pointer;">Limpar tudo</button>
+                </div>
                 <div class="cart-items-container" id="cart-items-container">
                     <!-- Javascript populated -->
                 </div>
@@ -265,28 +279,50 @@
 
             <!-- 2. Entrega ou retirada -->
             <div class="cart-option-group">
-                <label>Forma de Entrega / Retirada:</label>
-                <div class="delivery-toggle">
-                    <button type="button" class="del-btn active" data-type="entrega">
-                        <i data-lucide="truck"></i> Entrega / Delivery
-                        <small class="del-btn-fee">+ R$ 10,00</small>
+                <label>Forma de Envio / Retirada:</label>
+                <div class="delivery-toggle-triple">
+                    <button type="button" class="del-btn active" data-type="receber-48h">
+                        <i data-lucide="truck"></i>
+                        <div class="del-btn-info">
+                            <strong>Receber em casa</strong>
+                            <small>prazo médio 48h na Serra Gaúcha</small>
+                        </div>
                     </button>
-                    <button type="button" class="del-btn" data-type="retirada">
-                        <i data-lucide="store"></i> Retirada no Balcão
+                    <button type="button" class="del-btn" data-type="receber-hoje">
+                        <i data-lucide="zap"></i>
+                        <div class="del-btn-info">
+                            <strong>Receber ainda hoje</strong>
+                            <small>ligar agora (atendimento urgente)</small>
+                        </div>
                     </button>
+                    <button type="button" class="del-btn" data-type="retirar-loja">
+                        <i data-lucide="store"></i>
+                        <div class="del-btn-info">
+                            <strong>Retirar na loja</strong>
+                            <small>sem custo (retirada no balcão)</small>
+                        </div>
+                    </button>
+                </div>
+
+                <div id="express-today-box" class="express-today-box" style="display:none; margin-top:10px;">
+                    <i data-lucide="phone-call"></i>
+                    <div>
+                        <strong>Precisa receber ainda hoje?</strong>
+                        <p>Para agendar entrega com prioridade para hoje, contate diretamente o vendedor Ivan: <a href="https://wa.me/5554999692859?text=Ol%C3%A1%20Ivan!%20Preciso%20receber%20um%20pedido%20de%20bebidas%20ainda%20hoje." target="_blank"><strong>(54) 99969-2859</strong></a>.</p>
+                    </div>
                 </div>
             </div>
 
             <!-- 3. Dados do cliente -->
             <div class="cart-option-group" id="address-box">
-                <label>Seus Dados para Entrega:</label>
-                <input type="text" id="input-client-name" class="input-dark" placeholder="Seu Nome Completo / Razão Social" style="margin-bottom:8px;">
-                <input type="text" id="input-address" class="input-dark" placeholder="Endereço Completo de Entrega (Rua, Nº, Bairro)">
+                <label id="label-client-data">Seus Dados para Envio:</label>
+                <input type="text" id="input-client-name" class="input-dark" placeholder="Seu Nome Completo / Razão Social *" style="margin-bottom:8px;">
+                <input type="text" id="input-address" class="input-dark" placeholder="Endereço Completo de Entrega (Rua, Nº, Bairro) *">
             </div>
 
             <!-- 4. Pagamento -->
             <div class="cart-option-group">
-                <label>Forma de Pagamento:</label>
+                <label>Forma de Pagamento Pretendida:</label>
                 <div class="payment-toggle">
                     <button type="button" class="pay-btn active" data-pay="Pix">
                         <i data-lucide="qr-code"></i> Pix
@@ -294,32 +330,18 @@
                     <button type="button" class="pay-btn" data-pay="Cartão">
                         <i data-lucide="credit-card"></i> Cartão
                     </button>
-                    <button type="button" class="pay-btn" data-pay="Dinheiro">
-                        <i data-lucide="banknote"></i> Dinheiro
+                    <button type="button" class="pay-btn" data-pay="Dinheiro/Faturado">
+                        <i data-lucide="banknote"></i> Dinheiro / Faturado B2B
                     </button>
                 </div>
 
                 <div id="cash-change-box" style="display:none; margin-top:8px;">
-                    <input type="text" id="cash-change-val" class="input-dark" placeholder="Troco para quanto? Ex: R$ 200,00">
+                    <input type="text" id="cash-change-val" class="input-dark" placeholder="Troco para quanto ou dados de faturamento CNPJ">
                 </div>
 
-                <div id="pix-lock-box" class="pix-lock-box">
-                    <div class="pix-lock-title">
-                        <i data-lucide="shield-check"></i>
-                        <span>Pix Copia e Cola &amp; QR Code (Valor Travado)</span>
-                    </div>
-                    <div class="pix-qr-container">
-                        <img id="pix-qr-img" src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&amp;data=54999692859" alt="Pix QR Code Monte Cristo" class="pix-qr-code">
-                        <div class="pix-qr-info">
-                            <p class="pix-lock-desc">
-                                Valor exato: <strong id="pix-locked-amount" style="color:#FFF;">R$ 0,00</strong>.<br>
-                                Escaneie a imagem com o aplicativo do seu banco ou copie a chave abaixo.
-                            </p>
-                            <button type="button" class="btn-copy-pix" onclick="window.copyPixKey()" id="btn-copy-pix-key">
-                                <i data-lucide="copy"></i> Copiar Chave Pix
-                            </button>
-                        </div>
-                    </div>
+                <div class="payment-info-box" style="margin-top:10px; padding:10px 14px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:8px; font-size:0.8rem; color:#A1A1AA;">
+                    <i data-lucide="shield-check" style="width:14px; height:14px; color:var(--teal); display:inline-block; vertical-align:middle; margin-right:4px;"></i>
+                    As condições finais de faturamento e chaves de pagamento serão confirmadas diretamente pelos nossos atendentes no WhatsApp.
                 </div>
             </div>
 
