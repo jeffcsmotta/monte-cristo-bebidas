@@ -273,45 +273,18 @@
                 </div>
             </div>
 
-            <!-- 2. Entrega ou retirada -->
+            <!-- 2. Informação de entrega -->
             <div class="cart-option-group">
-                <label>Forma de Envio / Retirada:</label>
-                <div class="delivery-toggle-triple">
-                    <button type="button" class="del-btn active" data-type="receber-48h">
-                        <i data-lucide="truck"></i>
-                        <div class="del-btn-info">
-                            <strong>Receber em casa</strong>
-                            <small>prazo médio 48h na Serra Gaúcha</small>
-                        </div>
-                    </button>
-                    <button type="button" class="del-btn" data-type="receber-hoje">
-                        <i data-lucide="zap"></i>
-                        <div class="del-btn-info">
-                            <strong>Receber ainda hoje</strong>
-                            <small>ligar agora (atendimento urgente)</small>
-                        </div>
-                    </button>
-                    <button type="button" class="del-btn" data-type="retirar-loja">
-                        <i data-lucide="store"></i>
-                        <div class="del-btn-info">
-                            <strong>Retirar na loja</strong>
-                            <small>sem custo (retirada no balcão)</small>
-                        </div>
-                    </button>
-                </div>
-
-                <div id="express-today-box" class="express-today-box" style="display:none; margin-top:10px;">
-                    <i data-lucide="phone-call"></i>
-                    <div>
-                        <strong>Precisa receber ainda hoje?</strong>
-                        <p>Para agendar entrega com prioridade para hoje, contate diretamente o vendedor Ivan: <a href="https://wa.me/5554999692859?text=Ol%C3%A1%20Ivan!%20Preciso%20receber%20um%20pedido%20de%20bebidas%20ainda%20hoje." target="_blank"><strong>(54) 99969-2859</strong></a>.</p>
-                    </div>
+                <label>Entrega:</label>
+                <div class="delivery-info-box">
+                    <i data-lucide="truck"></i>
+                    <p>Entrega em até 48h num raio de 200km, dependendo da disponibilidade do estoque.</p>
                 </div>
             </div>
 
             <!-- 3. Dados do cliente -->
             <div class="cart-option-group" id="address-box">
-                <label id="label-client-data">Seus Dados para Envio:</label>
+                <label>Seus Dados para Envio:</label>
                 <input type="text" id="input-client-name" class="input-dark" placeholder="Seu Nome Completo / Razão Social *" style="margin-bottom:8px;">
                 <input type="text" id="input-address" class="input-dark" placeholder="Endereço Completo de Entrega (Rua, Nº, Bairro) *">
             </div>
@@ -326,13 +299,13 @@
                     <button type="button" class="pay-btn" data-pay="Cartão">
                         <i data-lucide="credit-card"></i> Cartão
                     </button>
-                    <button type="button" class="pay-btn" data-pay="Dinheiro/Faturado">
-                        <i data-lucide="banknote"></i> Dinheiro / Faturado B2B
+                    <button type="button" class="pay-btn" data-pay="Boleto">
+                        <i data-lucide="barcode"></i> Boleto
                     </button>
                 </div>
 
                 <div id="cash-change-box" style="display:none; margin-top:8px;">
-                    <input type="text" id="cash-change-val" class="input-dark" placeholder="Troco para quanto ou dados de faturamento CNPJ">
+                    <input type="text" id="cash-change-val" class="input-dark" placeholder="CNPJ / Razão Social para emissão do boleto">
                 </div>
 
                 <div class="payment-info-box" style="margin-top:10px; padding:10px 14px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:8px; font-size:0.8rem; color:#A1A1AA;">

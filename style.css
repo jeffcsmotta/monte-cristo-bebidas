@@ -1558,55 +1558,30 @@ body {
     gap: 8px;
 }
 
-/* Alternador Triplo Monte Cristo: Receber 48h | Receber Hoje | Retirar */
-.delivery-toggle-triple {
+/* Informação fixa de entrega (sem seletor: politica unica de 48h/200km) */
+.delivery-info-box {
     display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.delivery-toggle-triple .del-btn {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 12px;
-    padding: 10px 14px;
-    text-align: left;
+    align-items: flex-start;
+    gap: 10px;
     background: #18181B;
     border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: var(--radius-md);
+    padding: 10px 14px;
 }
 
-.delivery-toggle-triple .del-btn.active {
-    background: rgba(27, 117, 136, 0.25) !important;
-    border-color: #38BDF8 !important;
-    color: #FFFFFF !important;
+.delivery-info-box i {
+    width: 16px;
+    height: 16px;
+    color: #38BDF8;
+    flex-shrink: 0;
+    margin-top: 2px;
 }
 
-.del-btn-info {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    line-height: 1.25;
-}
-
-.del-btn-info strong {
-    font-size: 0.88rem;
-    color: #E4E4E7;
-}
-
-.del-btn.active .del-btn-info strong {
-    color: #FFFFFF;
-}
-
-.del-btn-info small {
-    font-size: 0.74rem;
-    color: #9CA3AF;
-    font-weight: 500;
-}
-
-.del-btn.active .del-btn-info small {
-    color: #7DD3FC;
+.delivery-info-box p {
+    margin: 0;
+    font-size: 0.82rem;
+    color: #D1D5DB;
+    line-height: 1.45;
 }
 
 /* Aviso B2B Reserva Comercial */
@@ -1646,40 +1621,13 @@ body {
     color: #FFFFFF;
 }
 
-/* Caixa de Urgência Hoje */
-.express-today-box {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    background: rgba(245, 158, 11, 0.12);
-    border: 1px solid rgba(245, 158, 11, 0.35);
-    border-radius: var(--radius-md);
-    padding: 10px 12px;
-    color: #FDE68A;
-    font-size: 0.82rem;
-    line-height: 1.4;
-}
-
-.express-today-box i {
-    width: 18px;
-    height: 18px;
-    color: #F59E0B;
-    flex-shrink: 0;
-    margin-top: 2px;
-}
-
-.express-today-box a {
-    color: #F59E0B;
-    text-decoration: underline;
-}
-
 .payment-toggle {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 8px;
 }
 
-.del-btn, .pay-btn {
+.pay-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -1696,31 +1644,18 @@ body {
     transition: all 0.2s ease;
 }
 
-/* Preco da entrega no proprio botao: o cliente ve o custo na hora de escolher
-   a modalidade, nao so la embaixo no resumo. */
-.del-btn-fee {
-    font-size: 0.72rem;
-    font-weight: 800;
-    opacity: 0.75;
-    white-space: nowrap;
-}
-
-.del-btn.active .del-btn-fee {
-    opacity: 1;
-}
-
-.del-btn i, .pay-btn i {
+.pay-btn i {
     width: 16px;
     height: 16px;
     flex-shrink: 0;
 }
 
-.del-btn:hover, .pay-btn:hover {
+.pay-btn:hover {
     border-color: rgba(255, 255, 255, 0.28);
     color: #FFFFFF;
 }
 
-.del-btn.active, .pay-btn.active {
+.pay-btn.active {
     background: rgba(56, 189, 248, 0.14);
     border-color: #38BDF8;
     color: #38BDF8;

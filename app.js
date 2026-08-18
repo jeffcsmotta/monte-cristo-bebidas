@@ -605,12 +605,7 @@ let cart = JSON.parse(localStorage.getItem('monte_cristo_cart')) || [];
 let cardUnits = {}; // map productId -> 'unit' | 'box'
 let activeCategory = 'all';
 let searchQuery = '';
-let orderType = 'receber-48h'; // 'receber-48h', 'receber-hoje', 'retirar-loja'
-
-function deliveryFeeFor(tipo) {
-    return 0; // faturamento/frete a combinar com atendente Monte Cristo
-}
-let paymentMethod = 'Pix'; // 'Pix' | 'Cartão' | 'Dinheiro/Faturado'
+let paymentMethod = 'Pix'; // 'Pix' | 'Cartão' | 'Boleto'
 let viewMode = 'cards'; // 'cards' or 'table'
 
 // Alternador dinâmico de modalidade no card (Garrafa vs Caixa)
@@ -1055,13 +1050,6 @@ function updateCartUI() {
         }
     }
 
-    const deliveryFeeEl = document.getElementById('cart-delivery-fee');
-    if (deliveryFeeEl) {
-        if (orderType === 'receber-48h') deliveryFeeEl.textContent = 'A combinar (Serra Gaúcha)';
-        else if (orderType === 'receber-hoje') deliveryFeeEl.textContent = 'Atendimento Urgente Hoje';
-        else deliveryFeeEl.textContent = 'Sem Custo (Retirada Loja)';
-    }
-
     if (cartTotalEl) cartTotalEl.textContent = `R$ ${formatMoney(subtotal)}`;
 
     if (window.lucide) lucide.createIcons();
@@ -1090,36 +1078,8 @@ window.closeCart = function() {
     window.toggleCartDrawer(false);
 };
 
-// Alternadores de entrega e pagamento Monte Cristo
+// Alternador de forma de pagamento Monte Cristo
 function setupCartDrawerListeners() {
-    document.querySelectorAll('.del-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.del-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            orderType = btn.dataset.type || 'receber-48h';
-
-            const addressInput = document.getElementById('input-address');
-            const labelClientData = document.getElementById('label-client-data');
-            const expressBox = document.getElementById('express-today-box');
-
-            if (labelClientData) {
-                labelClientData.textContent = orderType === 'retirar-loja'
-                    ? 'Seus Dados para Retirada na Loja:'
-                    : 'Seus Dados para Envio:';
-            }
-
-            if (addressInput) {
-                addressInput.style.display = orderType === 'retirar-loja' ? 'none' : 'block';
-            }
-
-            if (expressBox) {
-                expressBox.style.display = orderType === 'receber-hoje' ? 'flex' : 'none';
-            }
-
-            updateCartUI();
-        });
-    });
-
     document.querySelectorAll('.pay-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             document.querySelectorAll('.pay-btn').forEach(b => b.classList.remove('active'));
@@ -1127,7 +1087,7 @@ function setupCartDrawerListeners() {
             paymentMethod = btn.dataset.pay || 'Pix';
 
             const cashBox = document.getElementById('cash-change-box');
-            if (cashBox) cashBox.style.display = paymentMethod.includes('Dinheiro') ? 'block' : 'none';
+            if (cashBox) cashBox.style.display = paymentMethod === 'Boleto' ? 'block' : 'none';
         });
     });
 }
@@ -1151,7 +1111,7 @@ window.sendWhatsAppOrder = function() {
         return;
     }
 
-    if (orderType !== 'retirar-loja' && !address) {
+    if (!address) {
         showToast("⚠️ Por favor, informe o Endereço Completo de Entrega.");
         if (addressInput) addressInput.focus();
         return;
@@ -1163,18 +1123,8 @@ window.sendWhatsAppOrder = function() {
     let msg = `*SOLICITAÇÃO DE RESERVA COMERCIAL — MONTE CRISTO*\n`;
     msg += `------------------------------------\n`;
     msg += `👤 *Cliente/Razão Social:* ${clientName}\n`;
-    msg += `🚚 *Modalidade de Envio:* `;
-    if (orderType === 'receber-48h') {
-        msg += `Receber em casa (prazo médio 48h na Serra Gaúcha)\n`;
-    } else if (orderType === 'receber-hoje') {
-        msg += `Receber ainda hoje (Atendimento urgente)\n`;
-    } else {
-        msg += `Retirar na loja (Sem custo - Balcão)\n`;
-    }
-
-    if (orderType !== 'retirar-loja') {
-        msg += `🏠 *Endereço:* ${address}\n`;
-    }
+    msg += `🏠 *Endereço:* ${address}\n`;
+    msg += `🚚 *Entrega:* Em até 48h, raio de 200km, sujeito a disponibilidade de estoque\n`;
     msg += `------------------------------------\n`;
     msg += `🍷 *ITENS SOLICITADOS (Varejo & Atacado):*\n`;
 
