@@ -602,6 +602,7 @@ function getBoxTotalPrice(item) {
 
 // App State
 let cart = JSON.parse(localStorage.getItem('monte_cristo_cart')) || [];
+let cardUnits = {}; // map productId -> 'unit' | 'box'
 let activeCategory = 'all';
 let searchQuery = '';
 let orderType = 'receber-48h'; // 'receber-48h', 'receber-hoje', 'retirar-loja'
@@ -611,6 +612,47 @@ function deliveryFeeFor(tipo) {
 }
 let paymentMethod = 'Pix'; // 'Pix' | 'Cartão' | 'Dinheiro/Faturado'
 let viewMode = 'cards'; // 'cards' or 'table'
+
+// Alternador dinâmico de modalidade no card (Garrafa vs Caixa)
+window.setCardUnit = function(productId, unitType) {
+    cardUnits[productId] = unitType;
+    const card = document.querySelector(`.product-card[data-id="${productId}"]`);
+    if (!card) return;
+
+    const product = PRODUCTS_DATA.find(p => p.id === productId);
+    if (!product) return;
+
+    const bSize = getBoxSize(product);
+    const bUnitPrice = getBoxUnitPrice(product);
+    const bTotalPrice = getBoxTotalPrice(product);
+
+    const tabs = card.querySelectorAll('.card-tab');
+    tabs.forEach(t => t.classList.toggle('active', t.dataset.unit === unitType));
+
+    const priceAmountEl = card.querySelector('.price-amount-display');
+    const priceSubtextEl = card.querySelector('.price-subtext-display');
+    const addBtnEl = card.querySelector('.btn-add-main');
+
+    if (unitType === 'box') {
+        if (priceAmountEl) priceAmountEl.innerHTML = `R$ ${formatMoney(bUnitPrice)} <small>/un na caixa</small>`;
+        if (priceSubtextEl) priceSubtextEl.innerHTML = `Total da Caixa (${bSize}un): <strong>R$ ${formatMoney(bTotalPrice)}</strong>`;
+        if (addBtnEl) {
+            addBtnEl.className = 'btn-add-main box-mode';
+            addBtnEl.setAttribute('onclick', `addToCart('${productId}', 'box')`);
+            addBtnEl.innerHTML = `<i data-lucide="package"></i><span>Adicionar Caixa com ${bSize}un</span>`;
+        }
+    } else {
+        if (priceAmountEl) priceAmountEl.innerHTML = `R$ ${formatMoney(product.price)} <small>/unid. avulsa</small>`;
+        if (priceSubtextEl) priceSubtextEl.innerHTML = `Venda unitária (garrafa avulsa)`;
+        if (addBtnEl) {
+            addBtnEl.className = 'btn-add-main unit-mode';
+            addBtnEl.setAttribute('onclick', `addToCart('${productId}', 'unit')`);
+            addBtnEl.innerHTML = `<i data-lucide="plus"></i><span>Adicionar 1 Garrafa</span>`;
+        }
+    }
+
+    if (window.lucide) lucide.createIcons();
+};
 
 // Expose PRODUCTS_DATA globally for external table pages
 window.PRODUCTS_DATA = PRODUCTS_DATA;
@@ -801,37 +843,47 @@ function renderProducts() {
         grid.innerHTML = filtered.map(item => {
             const bSize = getBoxSize(item);
             const bUnitPrice = getBoxUnitPrice(item);
+            const bTotalPrice = getBoxTotalPrice(item);
+            const currentUnit = cardUnits[item.id] || 'unit';
+            const isBox = currentUnit === 'box';
 
             return `
                 <div class="product-card" data-id="${item.id}">
                     <div class="product-image-box">
-                        <span class="product-category-badge">${getCategoryName(item.category)}</span>
+                        <span class="product-category-badge">${getCategoryName(item.category)} • ${item.volume}</span>
                         ${productThumb(item)}
                     </div>
                     <div class="product-info">
                         <h3 class="product-title">${item.name}</h3>
-                        <div class="product-volume-strip">
-                            <i data-lucide="package" style="width:14px; height:14px; color:var(--teal);"></i>
-                            <span>Embalagem: <strong>${item.volume}</strong></span>
+
+                        <div class="card-unit-tabs" data-id="${item.id}">
+                            <button type="button" class="card-tab ${!isBox ? 'active' : ''}" data-unit="unit" onclick="window.setCardUnit('${item.id}', 'unit')">
+                                🍾 Garrafa Avulsa
+                            </button>
+                            <button type="button" class="card-tab ${isBox ? 'active' : ''}" data-unit="box" onclick="window.setCardUnit('${item.id}', 'box')">
+                                📦 Caixa (${bSize}un)
+                            </button>
                         </div>
+
                         <div class="product-price-box">
-                            <div class="price-row">
-                                <span class="price-retail-label">Varejo:</span>
-                                <span class="price-amount">R$ ${formatMoney(item.price)} <small>/un</small></span>
+                            <div class="price-amount-display">
+                                ${isBox
+                                    ? `R$ ${formatMoney(bUnitPrice)} <small>/un na caixa</small>`
+                                    : `R$ ${formatMoney(item.price)} <small>/unid. avulsa</small>`
+                                }
                             </div>
-                            <div class="wholesale-strip">
-                                <span>Atacado: <strong>R$ ${formatMoney(bUnitPrice)}/un</strong> na cx</span>
-                                <span class="discount-tag">8% OFF</span>
+                            <div class="price-subtext-display">
+                                ${isBox
+                                    ? `Total da Caixa (${bSize}un): <strong>R$ ${formatMoney(bTotalPrice)}</strong>`
+                                    : `Venda unitária (garrafa avulsa)`
+                                }
                             </div>
                         </div>
-                        <div class="card-add-actions">
-                            <button class="btn-add-unit" onclick="addToCart('${item.id}', 'unit')">
-                                <i data-lucide="plus"></i> 🍾 Garrafa
-                            </button>
-                            <button class="btn-add-box" onclick="addToCart('${item.id}', 'box')">
-                                <i data-lucide="package"></i> 📦 Caixa (${bSize})
-                            </button>
-                        </div>
+
+                        <button type="button" class="btn-add-main ${isBox ? 'box-mode' : 'unit-mode'}" onclick="addToCart('${item.id}', '${currentUnit}')">
+                            <i data-lucide="${isBox ? 'package' : 'plus'}"></i>
+                            <span>${isBox ? `Adicionar Caixa com ${bSize}un` : 'Adicionar 1 Garrafa'}</span>
+                        </button>
                     </div>
                 </div>
             `;
