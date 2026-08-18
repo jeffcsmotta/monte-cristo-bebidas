@@ -616,42 +616,7 @@ let viewMode = 'cards'; // 'cards' or 'table'
 // Alternador dinâmico de modalidade no card (Garrafa vs Caixa)
 window.setCardUnit = function(productId, unitType) {
     cardUnits[productId] = unitType;
-    const card = document.querySelector(`.product-card[data-id="${productId}"]`);
-    if (!card) return;
-
-    const product = PRODUCTS_DATA.find(p => p.id === productId);
-    if (!product) return;
-
-    const bSize = getBoxSize(product);
-    const bUnitPrice = getBoxUnitPrice(product);
-    const bTotalPrice = getBoxTotalPrice(product);
-
-    const tabs = card.querySelectorAll('.card-tab');
-    tabs.forEach(t => t.classList.toggle('active', t.dataset.unit === unitType));
-
-    const priceAmountEl = card.querySelector('.price-amount-display');
-    const priceSubtextEl = card.querySelector('.price-subtext-display');
-    const addBtnEl = card.querySelector('.btn-add-main');
-
-    if (unitType === 'box') {
-        if (priceAmountEl) priceAmountEl.innerHTML = `R$ ${formatMoney(bUnitPrice)} <small>/un na caixa</small>`;
-        if (priceSubtextEl) priceSubtextEl.innerHTML = `Total da Caixa (${bSize}un): <strong>R$ ${formatMoney(bTotalPrice)}</strong>`;
-        if (addBtnEl) {
-            addBtnEl.className = 'btn-add-main box-mode';
-            addBtnEl.setAttribute('onclick', `addToCart('${productId}', 'box')`);
-            addBtnEl.innerHTML = `<i data-lucide="package"></i><span>Adicionar Caixa com ${bSize}un</span>`;
-        }
-    } else {
-        if (priceAmountEl) priceAmountEl.innerHTML = `R$ ${formatMoney(product.price)} <small>/unid. avulsa</small>`;
-        if (priceSubtextEl) priceSubtextEl.innerHTML = `Venda unitária (garrafa avulsa)`;
-        if (addBtnEl) {
-            addBtnEl.className = 'btn-add-main unit-mode';
-            addBtnEl.setAttribute('onclick', `addToCart('${productId}', 'unit')`);
-            addBtnEl.innerHTML = `<i data-lucide="plus"></i><span>Adicionar 1 Garrafa</span>`;
-        }
-    }
-
-    if (window.lucide) lucide.createIcons();
+    renderProducts();
 };
 
 // Expose PRODUCTS_DATA globally for external table pages
