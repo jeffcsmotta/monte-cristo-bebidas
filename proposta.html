@@ -260,6 +260,50 @@
             font-weight: 600;
         }
 
+        .price-old {
+            display: block;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-decoration: line-through;
+            text-decoration-color: #DC2626;
+            text-decoration-thickness: 2px;
+        }
+
+        .discount-badge {
+            display: inline-block;
+            background: var(--emerald);
+            color: #FFFFFF;
+            font-size: 0.72rem;
+            font-weight: 900;
+            letter-spacing: 0.5px;
+            padding: 5px 14px;
+            border-radius: 999px;
+            margin-bottom: 14px;
+        }
+
+        .courtesy-box {
+            background: var(--emerald-light);
+            border: 1.5px solid rgba(5, 150, 105, 0.35);
+            border-radius: var(--radius-lg);
+            padding: 22px 26px;
+            margin-top: 18px;
+            position: relative;
+        }
+
+        .courtesy-tag {
+            position: absolute;
+            top: -12px;
+            left: 20px;
+            background: var(--emerald);
+            color: #FFFFFF;
+            font-size: 0.72rem;
+            font-weight: 900;
+            padding: 4px 12px;
+            border-radius: 999px;
+            letter-spacing: 0.5px;
+        }
+
         .btn-cta-proposal {
             display: inline-flex;
             align-items: center;
@@ -579,10 +623,13 @@
             </h3>
             
             <div class="price-card">
+                <span class="discount-badge">PARCERIA MONTE CRISTO · -33%</span>
+
                 <span style="font-size: 0.8rem; font-weight: 800; color: var(--teal); text-transform: uppercase; letter-spacing: 1px;">ONIRA.FLY — SITE NOVO DA MONTE CRISTO</span>
 
                 <div class="price-tag">
-                    R$ 2.400 <small>/ site novo, em 2x</small>
+                    <span class="price-old">R$ 2.400</span>
+                    R$ 1.600 <small>/ site novo, em 2x</small>
                 </div>
 
                 <p style="font-size: 0.95rem; color: var(--text-main); margin-bottom: 12px;">
@@ -603,6 +650,16 @@
                 <a href="https://wa.me/5554996862169?text=Ol%C3%A1%20Jeff!%20Gostaria%20de%20aprovar%20a%20proposta%20do%20Onira.fly%20para%20a%20Monte%20Cristo%20Bebidas." target="_blank" class="btn-cta-proposal">
                     <i data-lucide="check-circle-2"></i> Aprovar Proposta & Iniciar Projeto
                 </a>
+            </div>
+
+            <div class="courtesy-box">
+                <span class="courtesy-tag">🎁 CORTESIA ONIRA</span>
+                <span style="font-size: 0.8rem; font-weight: 800; color: #047857; text-transform: uppercase; letter-spacing: 1px;">Consultoria Google Meu Negócio</span>
+                <p style="font-size: 0.95rem; color: var(--text-main); margin: 10px 0 0 0;">
+                    Depois de duas identidades visuais construídas juntos, esse ajuste é por conta da casa: deixo o perfil
+                    da Monte Cristo no Google redondo — fotos, categorias, horários e informações todas certas — pra
+                    quando fizer sentido investir em Google Ads, o terreno já estar pronto.
+                </p>
             </div>
         </section>
 
