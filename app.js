@@ -1120,33 +1120,51 @@ window.sendWhatsAppOrder = function() {
     const cashChangeInput = document.getElementById('cash-change-val');
     const cashChange = cashChangeInput ? cashChangeInput.value.trim() : '';
 
-    let msg = `*SOLICITAÇÃO DE RESERVA COMERCIAL — MONTE CRISTO*\n`;
-    msg += `------------------------------------\n`;
-    msg += `👤 *Cliente/Razão Social:* ${clientName}\n`;
-    msg += `🏠 *Endereço:* ${address}\n`;
-    msg += `🚚 *Entrega:* Em até 48h, raio de 200km, sujeito a disponibilidade de estoque\n`;
-    msg += `------------------------------------\n`;
-    msg += `🍷 *ITENS SOLICITADOS (Varejo & Atacado):*\n`;
+    let msg = `Reserva Comercial · Atacado & Varejo
+
+`;
 
     cart.forEach(item => {
         if (item.unitType === 'box') {
-            msg += `• *${item.quantity}x Caixa Fechada (${item.boxSize} un)* — ${item.name} (${item.volume})\n`;
-            msg += `   └ Valor: R$ ${formatMoney(item.price * item.quantity)} (R$ ${formatMoney(item.unitPrice)}/un - Atacado)\n`;
+            msg += `*${item.quantity}x* Caixa Fechada (${item.boxSize} un) · ${item.name} (${item.volume})
+`;
+            msg += `+ R$ ${formatMoney(item.unitPrice)}/un (Preço Atacado)
+`;
+            msg += `*R$ ${formatMoney(item.price * item.quantity)}*
+
+`;
         } else {
-            msg += `• *${item.quantity}x Garrafa Avulsa* — ${item.name} (${item.volume}) — R$ ${formatMoney(item.price * item.quantity)}\n`;
+            msg += `*${item.quantity}x* Garrafa Avulsa · ${item.name} (${item.volume})
+`;
+            msg += `*R$ ${formatMoney(item.price * item.quantity)}*
+
+`;
         }
     });
 
     const subtotalVal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    msg += `------------------------------------\n`;
-    msg += `💰 *TOTAL ESTIMADO DO PEDIDO:* R$ ${formatMoney(subtotalVal)}\n`;
-    msg += `------------------------------------\n`;
-    msg += `💳 *Forma de Pagamento:* ${paymentMethod}\n`;
+    msg += `*Itens: R$ ${formatMoney(subtotalVal)}*
+`;
+    msg += `Entrega: Em até 48h (raio 200km)
+`;
+    msg += `*Total Estimado: R$ ${formatMoney(subtotalVal)}*
+
+`;
+
+    if (clientName) msg += `*${clientName}*
+`;
+    if (address) msg += `${address}
+`;
+
+    msg += `Pagamento: ${paymentMethod}
+`;
     if (cashChange) {
-        msg += `📝 *Observações/Faturamento:* ${cashChange}\n`;
+        msg += `Obs/Faturamento: ${cashChange}
+`;
     }
-    msg += `------------------------------------\n`;
-    msg += `_Solicitação de cotação/reserva comercial via Catálogo Monte Cristo (Atendimento B2B & Distribuição)_`;
+
+    msg += `
+_Enviado pelo catálogo da Monte Cristo Bebidas_`;
 
     const encoded = encodeURIComponent(msg);
     const url = `https://wa.me/${CLIENT_WHATSAPP}?text=${encoded}`;
