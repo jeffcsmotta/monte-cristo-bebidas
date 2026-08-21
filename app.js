@@ -1164,7 +1164,7 @@ window.sendWhatsAppOrder = function() {
     }
 
     msg += `
-_Enviado pelo catálogo da Monte Cristo Bebidas_`;
+_Enviado pelo site da Monte Cristo Bebidas_`;
 
     const encoded = encodeURIComponent(msg);
     const url = `https://wa.me/${CLIENT_WHATSAPP}?text=${encoded}`;
