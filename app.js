@@ -1120,7 +1120,9 @@ window.sendWhatsAppOrder = function() {
     const cashChangeInput = document.getElementById('cash-change-val');
     const cashChange = cashChangeInput ? cashChangeInput.value.trim() : '';
 
-    let msg = `Reserva Comercial · Atacado & Varejo
+    let msg = `_pedido via site by Onira.fly_
+
+Solicitação de Reserva Comercial · Atacado & Varejo
 
 `;
 
