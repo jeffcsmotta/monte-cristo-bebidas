@@ -334,11 +334,12 @@
         .dev-profile-card {
             background: #0F172A;
             border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: var(--radius-lg);
+            border-radius: 16px;
             padding: 32px;
             margin-bottom: 24px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
             color: #FFFFFF;
+            text-align: left;
         }
 
         .dev-profile-header {
@@ -354,12 +355,12 @@
         }
 
         .dev-profile-avatar {
-            width: 78px;
-            height: 78px;
-            border-radius: 50%;
+            width: 84px;
+            height: 84px;
+            border-radius: 8px;
             object-fit: cover;
             border: 2.5px solid #38BDF8;
-            box-shadow: 0 0 20px rgba(56, 189, 248, 0.35);
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.35);
             display: block;
         }
 
@@ -377,7 +378,7 @@
         }
 
         .dev-profile-name {
-            font-family: var(--font-heading);
+            font-family: inherit;
             font-size: 1.4rem;
             font-weight: 900;
             color: #FFFFFF;
@@ -400,12 +401,16 @@
         }
 
         .dev-profile-bio {
-            font-size: 0.92rem;
-            color: #CBD5E1;
+            font-size: 0.93rem;
+            color: #E2E8F0;
             line-height: 1.6;
             margin-bottom: 22px;
             border-left: 3px solid #38BDF8;
-            padding-left: 14px;
+            padding: 14px 18px;
+            font-style: italic;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 0 8px 8px 0;
+            text-align: left;
         }
 
         .dev-links-grid {
@@ -422,7 +427,7 @@
             padding: 12px 16px;
             background: rgba(255, 255, 255, 0.06);
             border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: var(--radius-md);
+            border-radius: 8px;
             color: #E2E8F0;
             text-decoration: none;
             font-size: 0.88rem;
@@ -485,7 +490,7 @@
             color: #64748B;
         }
 
-        /* Floating WhatsApp Button */
+        /* Floating WhatsApp Action Button */
         .floating-whatsapp-btn {
             position: fixed;
             bottom: 24px;
@@ -497,7 +502,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
-            font-family: var(--font-heading);
+            font-family: inherit;
             font-size: 0.9rem;
             font-weight: 800;
             text-decoration: none;
@@ -525,10 +530,6 @@
         }
 
         @media (max-width: 640px) {
-            .feature-grid { grid-template-columns: 1fr; }
-            .offer-title { font-size: 1.8rem; }
-            .domain-strip { flex-direction: column; text-align: center; }
-            .domain-price strong { text-align: center; }
             .dev-profile-header { flex-direction: column; text-align: center; }
             .dev-profile-city { justify-content: center; }
             .floating-whatsapp-btn {
@@ -663,26 +664,28 @@
             </div>
         </section>
 
-        <!-- Developer & Studio Profile Container (Standard Component) -->
+        
+    
+        <!-- Developer & Studio Profile Container (Onira Labs Master Standard) -->
         <div class="dev-profile-card">
             <div class="dev-profile-header">
                 <div class="dev-profile-avatar-wrap">
-                    <img src="assets/jeff-avatar.webp" alt="Jefferson Motta (Jeff)" class="dev-profile-avatar" style="border-radius: 8px; width: 84px; height: 84px;">
+                    <img src="assets/jeff-avatar.webp" alt="Jefferson Motta (Jeff)" class="dev-profile-avatar">
                 </div>
                 <div class="dev-profile-main-info">
                     <div class="dev-profile-tag">FUNDADOR & PRODUCT DESIGNER</div>
                     <h3 class="dev-profile-name">Jefferson Motta (Jeff)</h3>
                     <p class="dev-profile-role">Lead Product Designer & Software Architect • Founder Onira Labs</p>
                     <p class="dev-profile-city">
-                        <i data-lucide="map-pin" style="width: 14px; height: 14px; color: #38BDF8;"></i>
+                        <i data-lucide="map-pin" style="width: 14px; height: 14px; color: #F59E0B;"></i>
                         Caxias do Sul - RS • Serra Gaúcha
                     </p>
                 </div>
             </div>
 
             <!-- Citação do Manifesto Onira.fly -->
-            <div style="background: rgba(255, 255, 255, 0.05); border-left: 3px solid #38BDF8; border-radius: 6px; padding: 16px 20px; margin-bottom: 20px; font-size: 0.93rem; color: #E2E8F0; line-height: 1.6; font-style: italic;">
-                "É isso que buscamos quando desenhamos um site como este: o cliente entra, vê o catálogo com preços claros de varejo e atacado, monta o pedido <strong>sem precisar cadastro nem login</strong> — e esse pedido chega prontinho, já organizado, direto no WhatsApp da Monte Cristo. Pressão baixíssima sobre quem compra, atrito quase zero, e um fluxo comercial pensado para converter."
+            <div class="dev-profile-bio">
+                "É isso que buscamos quando desenhamos um site como este: o cliente entra, vê o catálogo com preços claros de varejo e atacado, monta o pedido sem precisar cadastro nem login — e esse pedido chega prontinho, já organizado, direto no WhatsApp da Monte Cristo. Pressão baixíssima sobre quem compra, atrito quase zero, e um fluxo comercial pensado para converter."
             </div>
 
             <div class="dev-links-grid">
@@ -706,21 +709,28 @@
         </div>
 
         <!-- Developer Signature -->
-        <div style="text-align: center; color: var(--text-muted); font-size: 0.85rem; margin-top: 40px;">
+        <div style="text-align: center; color: var(--text-muted, #64748B); font-size: 0.85rem; margin-top: 32px; margin-bottom: 24px;">
             <p>Proposta comercial Onira.fly elaborada por <strong>Onira Labs</strong> • Soluções Web & Inteligência de Vendas</p>
         </div>
+
     </main>
 
+    
+
+    
+
     <!-- Floating WhatsApp Action Button -->
-    <a href="https://wa.me/5554996862169?text=Ol%C3%A1%20Jeff%2C%20vi%20a%20proposta%20do%20Onira.fly!" target="_blank" rel="noopener noreferrer" class="floating-whatsapp-btn" id="floating-whatsapp-btn" aria-label="Falar com Jeff no WhatsApp">
+    <a href="https://wa.me/5554996862169?text=Ol%C3%A1%20Jeff!%20Li%20a%20proposta%20do%20Onira.fly%20para%20a%20Monte%20Cristo%20e%20quero%20ativar%20o%20canal%20pr%C3%B3prio!" target="_blank" rel="noopener noreferrer" class="floating-whatsapp-btn" id="floating-whatsapp-btn" aria-label="Falar com Jeff no WhatsApp">
         <i data-lucide="message-circle"></i>
         <span>Falar com o Jeff</span>
     </a>
+
 
     <script>
         if (window.lucide) {
             lucide.createIcons();
         }
     </script>
+
 </body>
 </html>
