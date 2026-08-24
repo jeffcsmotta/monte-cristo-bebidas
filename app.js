@@ -614,9 +614,8 @@ window.setCardUnit = function(productId, unitType) {
     renderProducts();
 };
 
-// Google Sheets Live Data Source ID
-const MONTE_CRISTO_SHEET_ID = '1VNZ0aC7kO7nodGcG0m5-rs33FdxzvmOyqprZNQgP3yQ';
-const MONTE_CRISTO_SHEET_URL = `https://docs.google.com/spreadsheets/d/${MONTE_CRISTO_SHEET_ID}/gviz/tq?tqx=out:csv`;
+// Google Sheets Live Data Source ID (Oficial Publicado)
+const MONTE_CRISTO_SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT7wGWevLALQ0P9Q73gBQFvUpveuRL-Jgnk-TlzqNwW0E4A7GYS9sxyRkoWABSBFY_TP3mm4fIbaelo/pub?output=csv';
 
 function parseCsvPrice(valStr) {
     if (!valStr) return null;
@@ -630,15 +629,31 @@ function parseCsvPrice(valStr) {
     return isNaN(num) || num <= 0 ? null : num;
 }
 
+function parseCSVLine(text) {
+    const result = [];
+    let cur = '';
+    let inQuotes = false;
+    for (let i = 0; i < text.length; i++) {
+        const ch = text[i];
+        if (ch === '"') {
+            inQuotes = !inQuotes;
+        } else if ((ch === ',' || ch === ';') && !inQuotes) {
+            result.push(cur.trim().replace(/^"|"$/g, ''));
+            cur = '';
+        } else {
+            cur += ch;
+        }
+    }
+    result.push(cur.trim().replace(/^"|"$/g, ''));
+    return result;
+}
+
 function parseAndApplyCsvPrices(csvText) {
     if (!csvText || typeof csvText !== 'string') return;
     const lines = csvText.split(/\r?\n/).filter(line => line.trim().length > 0);
     if (lines.length <= 1) return;
 
-    const header = lines[0];
-    const delimiter = header.includes(';') ? ';' : ',';
-    const headerCols = header.split(delimiter).map(c => c.trim().replace(/^"|"$/g, '').toUpperCase());
-
+    const headerCols = parseCSVLine(lines[0]).map(c => c.toUpperCase());
     const idIdx = headerCols.findIndex(c => c === 'ID' || c.includes('ID') || c === 'SKU');
     const priceIdx = headerCols.findIndex(c => c.includes('PRECO') || c.includes('VALOR') || c.includes('VAREJO'));
     const statusIdx = headerCols.findIndex(c => c.includes('STATUS') || c.includes('ESTOQUE') || c.includes('DISPONIVEL'));
@@ -647,14 +662,8 @@ function parseAndApplyCsvPrices(csvText) {
     const remoteOverrides = {};
 
     for (let i = 1; i < lines.length; i++) {
-        const rawLine = lines[i];
-        let cols = [];
-        if (delimiter === ';') {
-            cols = rawLine.split(';').map(c => c.trim().replace(/^"|"$/g, ''));
-        } else {
-            cols = rawLine.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g) || rawLine.split(',');
-            cols = cols.map(c => c.trim().replace(/^"|"$/g, ''));
-        }
+        const cols = parseCSVLine(lines[i]);
+        if (cols.length < 2) continue;
 
         const id = (cols[idIdx >= 0 ? idIdx : 0] || '').trim();
         const priceRaw = cols[priceIdx >= 0 ? priceIdx : 4];
@@ -690,12 +699,7 @@ function parseAndApplyCsvPrices(csvText) {
 
 async function syncPricesFromGoogleSheet() {
     const customUrl = localStorage.getItem('monte_cristo_custom_sheet_url');
-    const urlsToTry = customUrl 
-        ? [customUrl] 
-        : [
-            `https://docs.google.com/spreadsheets/d/${MONTE_CRISTO_SHEET_ID}/gviz/tq?tqx=out:csv`,
-            `https://docs.google.com/spreadsheets/d/${MONTE_CRISTO_SHEET_ID}/export?format=csv&gid=0`
-          ];
+    const targetUrl = customUrl || MONTE_CRISTO_SHEET_URL;
 
     // 1. Render instantâneo com cache local (0ms)
     try {
@@ -712,25 +716,23 @@ async function syncPricesFromGoogleSheet() {
         }
     } catch(e) {}
 
-    // 2. Consulta em segundo plano no Google Sheets (Stale-While-Revalidate)
-    for (const targetUrl of urlsToTry) {
-        try {
-            const response = await fetch(targetUrl);
-            if (response.ok) {
-                const csvText = await response.text();
-                if (csvText && (csvText.includes('ID') || csvText.includes('wh-') || csvText.includes('vk-') || csvText.includes('PRODUTO'))) {
-                    parseAndApplyCsvPrices(csvText);
-                    applyPriceOverrides();
-                    renderProducts();
-                    updateCartUI();
-                    break;
-                }
+    // 2. Consulta em tempo real no Google Sheets (Stale-While-Revalidate)
+    try {
+        const response = await fetch(targetUrl);
+        if (response.ok) {
+            const csvText = await response.text();
+            if (csvText && (csvText.includes('ID') || csvText.includes('wh-') || csvText.includes('vk-') || csvText.includes('PRODUTO'))) {
+                parseAndApplyCsvPrices(csvText);
+                applyPriceOverrides();
+                renderProducts();
+                updateCartUI();
             }
-        } catch(err) {
-            // Tentará próxima URL
         }
+    } catch(err) {
+        console.warn('Falha silenciosa ao sincronizar planilha:', err);
     }
 }
+
 
 
 // Dynamic Pricing & Stock Overrides Engine (Local + Remote)
