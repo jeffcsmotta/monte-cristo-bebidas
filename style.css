@@ -2172,3 +2172,76 @@ button:focus-visible, a:focus-visible, input:focus-visible {
         padding-top: 20px !important;
     }
 }
+
+/* Dynamic Pricing & Stock Simulation Styles */
+.product-card.is-paused {
+    opacity: 0.72;
+    filter: grayscale(0.2);
+}
+
+.product-status-tag-paused {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: #EF4444;
+    color: #FFFFFF;
+    font-size: 0.72rem;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    z-index: 4;
+    box-shadow: 0 2px 6px rgba(239, 68, 68, 0.4);
+}
+
+.btn-add-main.paused-btn {
+    background: #F1F5F9 !important;
+    color: #94A3B8 !important;
+    border: 1px solid #CBD5E1 !important;
+    cursor: not-allowed !important;
+    box-shadow: none !important;
+}
+
+.sim-floating-bar {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    background: #0F172A;
+    color: #FFFFFF;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-left: 4px solid #10B981;
+    border-radius: 8px;
+    padding: 10px 16px;
+    font-size: 0.84rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 9998;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    animation: fadeIn 0.3s ease;
+}
+
+.sim-floating-bar a {
+    color: #38BDF8;
+    text-decoration: underline;
+    cursor: pointer;
+    font-weight: 800;
+}
+
+.sim-floating-bar .btn-reset-sim {
+    background: rgba(255, 255, 255, 0.12);
+    color: #FFFFFF;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.76rem;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.sim-floating-bar .btn-reset-sim:hover {
+    background: #EF4444;
+}
+

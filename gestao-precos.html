@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Gestão de Preços | Monte Cristo Bebidas</title>
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --primary: #0E4663;
+            --primary-dark: #0A3247;
+            --teal: #1B7588;
+            --teal-light: #EBF6F8;
+            --accent-green: #10B981;
+            --accent-amber: #F59E0B;
+            --accent-red: #EF4444;
+            --text-dark: #0F172A;
+            --text-muted: #64748B;
+            --border: #E2E8F0;
+            --bg-page: #F8FAFC;
+            --card-bg: #FFFFFF;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: var(--bg-page);
+            color: var(--text-dark);
+            padding: 24px 16px 80px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1180px;
+            margin: 0 auto;
+        }
+
+        /* Top Header */
+        .header-card {
+            background: #FFFFFF;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .header-brand {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .brand-logo {
+            height: 46px;
+            width: auto;
+        }
+
+        .brand-text h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.45rem;
+            font-weight: 900;
+            color: var(--primary);
+            letter-spacing: -0.3px;
+        }
+
+        .brand-text p {
+            font-size: 0.88rem;
+            color: var(--teal);
+            font-weight: 600;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #FFFFFF;
+            box-shadow: 0 4px 12px rgba(14, 70, 99, 0.25);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: #FFFFFF;
+            color: var(--primary);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            background: #F1F5F9;
+        }
+
+        .btn-danger {
+            background: #FEE2E2;
+            color: var(--accent-red);
+            border: 1px solid #FECACA;
+        }
+
+        .btn-danger:hover {
+            background: #FCA5A5;
+            color: #991B1B;
+        }
+
+        /* Instructions & Info Card */
+        .info-card {
+            background: linear-gradient(135deg, #0E4663 0%, #1B7588 100%);
+            color: #FFFFFF;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 6px 20px rgba(14, 70, 99, 0.2);
+        }
+
+        .info-card h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .info-card p {
+            font-size: 0.92rem;
+            line-height: 1.6;
+            opacity: 0.95;
+            max-width: 900px;
+            margin-bottom: 16px;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 16px;
+            margin-top: 14px;
+        }
+
+        .step-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            padding: 14px 16px;
+        }
+
+        .step-num {
+            display: inline-block;
+            background: #FFFFFF;
+            color: var(--primary);
+            font-weight: 900;
+            font-size: 0.78rem;
+            padding: 2px 8px;
+            border-radius: 99px;
+            margin-bottom: 6px;
+        }
+
+        .step-title {
+            font-weight: 800;
+            font-size: 0.92rem;
+            margin-bottom: 4px;
+        }
+
+        .step-desc {
+            font-size: 0.82rem;
+            opacity: 0.88;
+            line-height: 1.4;
+        }
+
+        /* Filter & Search Bar */
+        .controls-card {
+            background: #FFFFFF;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 18px 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .search-box {
+            position: relative;
+            flex: 1;
+            min-width: 260px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 14px 10px 38px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            font-size: 0.9rem;
+            outline: none;
+            transition: border-color 0.2s;
+            font-family: inherit;
+        }
+
+        .search-box input:focus {
+            border-color: var(--teal);
+            box-shadow: 0 0 0 3px rgba(27, 117, 136, 0.12);
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            width: 18px;
+            height: 18px;
+        }
+
+        .filter-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .filter-tag {
+            padding: 7px 14px;
+            background: #F1F5F9;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .filter-tag.active {
+            background: var(--primary);
+            color: #FFFFFF;
+            border-color: var(--primary);
+        }
+
+        /* Main Table */
+        .table-card {
+            background: #FFFFFF;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th {
+            background: #F8FAFC;
+            color: var(--primary);
+            font-family: 'Outfit', sans-serif;
+            font-weight: 800;
+            padding: 14px 18px;
+            border-bottom: 2px solid var(--border);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 14px 18px;
+            border-bottom: 1px solid #F1F5F9;
+            vertical-align: middle;
+            font-size: 0.92rem;
+        }
+
+        tr:hover {
+            background: #FAFCFF;
+        }
+
+        tr.paused-row {
+            background: #FFFBEB;
+            opacity: 0.75;
+        }
+
+        .product-meta {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .product-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
+            background: #F1F5F9;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        .product-title {
+            font-weight: 800;
+            color: var(--primary);
+            font-size: 0.95rem;
+            margin-bottom: 2px;
+        }
+
+        .product-sub {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .badge-cat {
+            display: inline-block;
+            padding: 4px 10px;
+            background: var(--teal-light);
+            border: 1px solid rgba(27, 117, 136, 0.2);
+            border-radius: 6px;
+            color: var(--teal);
+            font-size: 0.74rem;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        /* Price Input Box */
+        .price-input-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .currency-prefix {
+            font-weight: 800;
+            color: var(--primary);
+            font-size: 0.95rem;
+        }
+
+        .input-price {
+            width: 100px;
+            padding: 8px 10px;
+            border-radius: 6px;
+            border: 1.5px solid var(--border);
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 900;
+            color: var(--primary);
+            outline: none;
+            transition: all 0.2s ease;
+        }
+
+        .input-price:focus {
+            border-color: var(--accent-green);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+            background: #F0FDF4;
+        }
+
+        .input-price.changed {
+            border-color: var(--accent-amber);
+            background: #FFFBEB;
+        }
+
+        /* Toggle Switch */
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 48px;
+            height: 26px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            inset: 0;
+            background-color: #CBD5E1;
+            transition: .3s;
+            border-radius: 99px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .3s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--accent-green);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(22px);
+        }
+
+        .status-badge {
+            font-size: 0.78rem;
+            font-weight: 800;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .status-active {
+            background: #DCFCE7;
+            color: #15803D;
+        }
+
+        .status-paused {
+            background: #FEE2E2;
+            color: #991B1B;
+        }
+
+        /* Toast Feedback */
+        .toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: #0F172A;
+            color: #FFFFFF;
+            padding: 14px 20px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: none;
+            z-index: 99999;
+            border-left: 4px solid var(--accent-green);
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Quick Adjustment Buttons */
+        .quick-btn {
+            padding: 4px 8px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            border: 1px solid var(--border);
+            background: #FFFFFF;
+            border-radius: 4px;
+            cursor: pointer;
+            color: var(--text-dark);
+            transition: all 0.15s;
+        }
+
+        .quick-btn:hover {
+            background: var(--primary);
+            color: #FFFFFF;
+            border-color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            body { padding: 16px 10px 80px; }
+            .header-card { flex-direction: column; align-items: flex-start; }
+            .header-actions { width: 100%; }
+            .btn { flex: 1; justify-content: center; }
+            .table-card { overflow-x: auto; }
+            table { min-width: 700px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <!-- Top Header -->
+        <div class="header-card">
+            <div class="header-brand">
+                <img src="assets/logo.svg" alt="Monte Cristo Logo" class="brand-logo">
+                <div class="brand-text">
+                    <h1>Simulador de Autonomia de Preços</h1>
+                    <p>Monte Cristo Bebidas • Demonstração de Atualização em Tempo Real</p>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button type="button" class="btn btn-secondary" onclick="exportCsv()">
+                    <i data-lucide="download"></i> Baixar Tabela CSV
+                </button>
+                <button type="button" class="btn btn-danger" onclick="resetDefaults()">
+                    <i data-lucide="rotate-ccw"></i> Restaurar Padrões
+                </button>
+                <a href="index.html" target="_blank" class="btn btn-primary">
+                    <i data-lucide="external-link"></i> Abrir Catálogo ao Vivo
+                </a>
+            </div>
+        </div>
+
+        <!-- Info / How it works -->
+        <div class="info-card">
+            <h2>
+                <i data-lucide="zap"></i> Como funciona a sua autonomia no dia a dia:
+            </h2>
+            <p>
+                Nesta demonstração, você pode alterar os preços de qualquer bebida ou desativar produtos temporariamente. 
+                Qualquer número alterado abaixo é salvo instantaneamente e reflete em menos de 1 segundo no catálogo dos clientes, sem necessidade de suporte técnico ou servidor próprio.
+            </p>
+
+            <div class="steps-grid">
+                <div class="step-item">
+                    <span class="step-num">Passo 1</span>
+                    <div class="step-title">Alteração Rápida</div>
+                    <div class="step-desc">Digite o novo valor na célula da Smirnoff ou do Red Label diretamente pelo celular.</div>
+                </div>
+                <div class="step-item">
+                    <span class="step-num">Passo 2</span>
+                    <div class="step-title">Pausa de Estoque</div>
+                    <div class="step-desc">Se uma garrafa esgotou, mude a chave para "Pausado" e o botão de compra sai do ar na hora.</div>
+                </div>
+                <div class="step-item">
+                    <span class="step-num">Passo 3</span>
+                    <div class="step-title">Zero Manutenção</div>
+                    <div class="step-desc">A Onira Labs garante o site no ar 24h/7d, com segurança SSL e velocidade máxima de carregamento.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Controls / Search / Filter -->
+        <div class="controls-card">
+            <div class="search-box">
+                <i data-lucide="search"></i>
+                <input type="text" id="search-input" placeholder="Buscar por bebida (ex: Smirnoff, Red Label, Gin, Cîroc)...">
+            </div>
+
+            <div class="filter-tags">
+                <button type="button" class="filter-tag active" data-cat="all">Todos (<span id="total-count">0</span>)</button>
+                <button type="button" class="filter-tag" data-cat="whisky">Whiskies</button>
+                <button type="button" class="filter-tag" data-cat="vodka">Vodkas</button>
+                <button type="button" class="filter-tag" data-cat="gin-tequila">Gin & Tequila</button>
+                <button type="button" class="filter-tag" data-cat="licores">Licores</button>
+                <button type="button" class="filter-tag" data-cat="energeticos">Energéticos</button>
+            </div>
+        </div>
+
+        <!-- Price Table -->
+        <div class="table-card">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Produto & Rótulo</th>
+                        <th>Categoria</th>
+                        <th>Preço Tabela Varejo (R$)</th>
+                        <th>Ajuste Rápido</th>
+                        <th>Disponibilidade no Site</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    <!-- Loaded dynamically from app.js / localStorage -->
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast">
+        <i data-lucide="check-circle" style="color:#10B981; width:20px; height:20px;"></i>
+        <span id="toast-text">Preço atualizado com sucesso!</span>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        let currentFilter = 'all';
+        let currentSearch = '';
+        let overrides = JSON.parse(localStorage.getItem('monte_cristo_price_overrides')) || {};
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderTable();
+            setupTableControls();
+            if (window.lucide) lucide.createIcons();
+        });
+
+        function setupTableControls() {
+            const searchEl = document.getElementById('search-input');
+            if (searchEl) {
+                searchEl.addEventListener('input', (e) => {
+                    currentSearch = e.target.value.toLowerCase().trim();
+                    renderTable();
+                });
+            }
+
+            document.querySelectorAll('.filter-tag').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    document.querySelectorAll('.filter-tag').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentFilter = btn.dataset.cat;
+                    renderTable();
+                });
+            });
+        }
+
+        function getCategoryLabel(cat) {
+            const map = {
+                'whisky': 'Whisky',
+                'vodka': 'Vodka',
+                'gin-tequila': 'Gin & Tequila',
+                'licores': 'Licor & Aperitivo',
+                'cachaca-conhaque': 'Cachaça & Conhaque',
+                'vermouth-bitter': 'Vermouth & Bitter',
+                'energeticos': 'Energético',
+                'xaropes': 'Xarope & Outros'
+            };
+            return map[cat] || cat;
+        }
+
+        function getCategoryIcon(cat) {
+            if (cat === 'whisky') return '🥃';
+            if (cat === 'vodka') return '🍸';
+            if (cat === 'gin-tequila') return '🍹';
+            if (cat === 'licores') return '🍷';
+            if (cat === 'energeticos') return '⚡';
+            if (cat === 'cachaca-conhaque') return '🥂';
+            return '🍾';
+        }
+
+        function renderTable() {
+            const tbody = document.getElementById('table-body');
+            const data = window.PRODUCTS_DATA || [];
+            if (!tbody || !data.length) return;
+
+            const filtered = data.filter(item => {
+                const matchesCat = currentFilter === 'all' || item.category === currentFilter;
+                const matchesSearch = item.name.toLowerCase().includes(currentSearch) || item.volume.toLowerCase().includes(currentSearch);
+                return matchesCat && matchesSearch;
+            });
+
+            document.getElementById('total-count').textContent = data.length;
+
+            tbody.innerHTML = filtered.map(item => {
+                const currentOverride = overrides[item.id] || {};
+                const effectivePrice = typeof currentOverride.price === 'number' ? currentOverride.price : item.price;
+                const isAvailable = currentOverride.active !== false;
+                const isChanged = typeof currentOverride.price === 'number' && currentOverride.price !== item.originalPrice;
+
+                return `
+                    <tr class="${!isAvailable ? 'paused-row' : ''}" id="row-${item.id}">
+                        <td>
+                            <div class="product-meta">
+                                <div class="product-icon">${getCategoryIcon(item.category)}</div>
+                                <div>
+                                    <div class="product-title">${item.name}</div>
+                                    <div class="product-sub">Embalagem: ${item.volume} • ID: ${item.id}</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="badge-cat">${getCategoryLabel(item.category)}</span>
+                        </td>
+                        <td>
+                            <div class="price-input-wrapper">
+                                <span class="currency-prefix">R$</span>
+                                <input type="number" 
+                                       step="0.10" 
+                                       min="1" 
+                                       class="input-price ${isChanged ? 'changed' : ''}" 
+                                       value="${effectivePrice.toFixed(2)}" 
+                                       id="price-${item.id}"
+                                       onchange="updateProductPrice('${item.id}', this.value)"
+                                       onfocus="this.select()">
+                            </div>
+                        </td>
+                        <td>
+                            <div style="display:flex; gap:4px; flex-wrap:wrap;">
+                                <button type="button" class="quick-btn" onclick="quickAdjust('${item.id}', -2)">- R$ 2</button>
+                                <button type="button" class="quick-btn" onclick="quickAdjust('${item.id}', 2)">+ R$ 2</button>
+                                <button type="button" class="quick-btn" onclick="quickAdjust('${item.id}', -5)">- R$ 5</button>
+                                <button type="button" class="quick-btn" onclick="quickAdjust('${item.id}', 5)">+ R$ 5</button>
+                            </div>
+                        </td>
+                        <td>
+                            <div style="display:flex; align-items:center; gap:10px;">
+                                <label class="toggle-switch">
+                                    <input type="checkbox" ${isAvailable ? 'checked' : ''} onchange="toggleProductStatus('${item.id}', this.checked)">
+                                    <span class="slider"></span>
+                                </label>
+                                <span class="status-badge ${isAvailable ? 'status-active' : 'status-paused'}" id="status-badge-${item.id}">
+                                    ${isAvailable ? '✓ Disponível' : '✕ Pausado'}
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+
+            if (window.lucide) lucide.createIcons();
+        }
+
+        window.updateProductPrice = function(id, val) {
+            const num = parseFloat(val);
+            if (isNaN(num) || num <= 0) return;
+
+            if (!overrides[id]) overrides[id] = {};
+            overrides[id].price = Math.round(num * 100) / 100;
+            localStorage.setItem('monte_cristo_price_overrides', JSON.stringify(overrides));
+
+            const input = document.getElementById(`price-${id}`);
+            if (input) input.classList.add('changed');
+
+            const item = (window.PRODUCTS_DATA || []).find(p => p.id === id);
+            const name = item ? item.name : id;
+            showToast(`✓ Preço de "${name}" atualizado para R$ ${num.toFixed(2)}!`);
+        };
+
+        window.quickAdjust = function(id, delta) {
+            const input = document.getElementById(`price-${id}`);
+            if (!input) return;
+            let current = parseFloat(input.value) || 0;
+            let updated = Math.max(1, current + delta);
+            input.value = updated.toFixed(2);
+            updateProductPrice(id, updated);
+        };
+
+        window.toggleProductStatus = function(id, isChecked) {
+            if (!overrides[id]) overrides[id] = {};
+            overrides[id].active = isChecked;
+            localStorage.setItem('monte_cristo_price_overrides', JSON.stringify(overrides));
+
+            const row = document.getElementById(`row-${id}`);
+            const badge = document.getElementById(`status-badge-${id}`);
+            if (row) row.classList.toggle('paused-row', !isChecked);
+            if (badge) {
+                badge.className = `status-badge ${isChecked ? 'status-active' : 'status-paused'}`;
+                badge.textContent = isChecked ? '✓ Disponível' : '✕ Pausado';
+            }
+
+            const item = (window.PRODUCTS_DATA || []).find(p => p.id === id);
+            const name = item ? item.name : id;
+            showToast(`${isChecked ? '✓' : '✕'} "${name}" marcado como ${isChecked ? 'Disponível' : 'Pausado no Estoque'}.`);
+        };
+
+        window.resetDefaults = function() {
+            if (!confirm('Deseja restaurar todos os preços para os valores padrão de tabela?')) return;
+            localStorage.removeItem('monte_cristo_price_overrides');
+            overrides = {};
+            renderTable();
+            showToast('✓ Todos os preços foram restaurados para os valores padrão!');
+        };
+
+        window.exportCsv = function() {
+            const data = window.PRODUCTS_DATA || [];
+            let csv = "ID;PRODUTO;CATEGORIA;VOLUME;PRECO_VAREJO;DISPONIVEL\n";
+            data.forEach(item => {
+                const ov = overrides[item.id] || {};
+                const p = typeof ov.price === 'number' ? ov.price : item.price;
+                const st = ov.active === false ? 'NAO' : 'SIM';
+                csv += `${item.id};${item.name};${item.category};${item.volume};${p.toFixed(2).replace('.', ',')};${st}\n`;
+            });
+
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `tabela-precos-monte-cristo-${new Date().toISOString().slice(0,10)}.csv`;
+            link.click();
+        };
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            const text = document.getElementById('toast-text');
+            if (!toast || !text) return;
+            text.textContent = msg;
+            toast.classList.add('show');
+            clearTimeout(window._toastTimer);
+            window._toastTimer = setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

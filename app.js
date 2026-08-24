@@ -614,6 +614,164 @@ window.setCardUnit = function(productId, unitType) {
     renderProducts();
 };
 
+// Google Sheets Live Data Source ID
+const MONTE_CRISTO_SHEET_ID = '1VNZ0aC7kO7nodGcG0m5-rs33FdxzvmOyqprZNQgP3yQ';
+const MONTE_CRISTO_SHEET_URL = `https://docs.google.com/spreadsheets/d/${MONTE_CRISTO_SHEET_ID}/gviz/tq?tqx=out:csv`;
+
+function parseCsvPrice(valStr) {
+    if (!valStr) return null;
+    let clean = valStr.toString().trim().replace(/['"R$\s]/g, '');
+    if (clean.includes(',') && clean.includes('.')) {
+        clean = clean.replace(/\./g, '').replace(',', '.');
+    } else if (clean.includes(',')) {
+        clean = clean.replace(',', '.');
+    }
+    const num = parseFloat(clean);
+    return isNaN(num) || num <= 0 ? null : num;
+}
+
+function parseAndApplyCsvPrices(csvText) {
+    if (!csvText || typeof csvText !== 'string') return;
+    const lines = csvText.split(/\r?\n/).filter(line => line.trim().length > 0);
+    if (lines.length <= 1) return;
+
+    const header = lines[0];
+    const delimiter = header.includes(';') ? ';' : ',';
+    const headerCols = header.split(delimiter).map(c => c.trim().replace(/^"|"$/g, '').toUpperCase());
+
+    const idIdx = headerCols.findIndex(c => c === 'ID' || c.includes('ID') || c === 'SKU');
+    const priceIdx = headerCols.findIndex(c => c.includes('PRECO') || c.includes('VALOR') || c.includes('VAREJO'));
+    const statusIdx = headerCols.findIndex(c => c.includes('STATUS') || c.includes('ESTOQUE') || c.includes('DISPONIVEL'));
+
+    let updatedCount = 0;
+    const remoteOverrides = {};
+
+    for (let i = 1; i < lines.length; i++) {
+        const rawLine = lines[i];
+        let cols = [];
+        if (delimiter === ';') {
+            cols = rawLine.split(';').map(c => c.trim().replace(/^"|"$/g, ''));
+        } else {
+            cols = rawLine.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g) || rawLine.split(',');
+            cols = cols.map(c => c.trim().replace(/^"|"$/g, ''));
+        }
+
+        const id = (cols[idIdx >= 0 ? idIdx : 0] || '').trim();
+        const priceRaw = cols[priceIdx >= 0 ? priceIdx : 4];
+        const statusRaw = cols[statusIdx >= 0 ? statusIdx : 5];
+
+        if (!id) continue;
+
+        const product = PRODUCTS_DATA.find(p => p.id.toLowerCase() === id.toLowerCase());
+        if (product) {
+            const parsedPrice = parseCsvPrice(priceRaw);
+            const isAvailable = !statusRaw || !['NAO', 'NÃO', 'PAUSADO', 'ESGOTADO', '0', 'FALSE'].includes(statusRaw.toUpperCase().trim());
+
+            if (parsedPrice !== null) {
+                product.price = parsedPrice;
+            }
+            product.active = isAvailable;
+
+            remoteOverrides[product.id] = {
+                price: parsedPrice !== null ? parsedPrice : product.price,
+                active: isAvailable
+            };
+            updatedCount++;
+        }
+    }
+
+    if (updatedCount > 0) {
+        localStorage.setItem('monte_cristo_sheet_cache', JSON.stringify({
+            timestamp: Date.now(),
+            overrides: remoteOverrides
+        }));
+    }
+}
+
+async function syncPricesFromGoogleSheet() {
+    const customUrl = localStorage.getItem('monte_cristo_custom_sheet_url');
+    const targetUrl = customUrl || MONTE_CRISTO_SHEET_URL;
+
+    // 1. Render instantâneo com cache local (0ms)
+    try {
+        const cache = JSON.parse(localStorage.getItem('monte_cristo_sheet_cache'));
+        if (cache && cache.overrides) {
+            PRODUCTS_DATA.forEach(item => {
+                if (!item.originalPrice) item.originalPrice = item.price;
+                if (cache.overrides[item.id]) {
+                    if (typeof cache.overrides[item.id].price === 'number') item.price = cache.overrides[item.id].price;
+                    if (typeof cache.overrides[item.id].active === 'boolean') item.active = cache.overrides[item.id].active;
+                }
+            });
+        }
+    } catch(e) {}
+
+    // 2. Consulta em segundo plano no Google Sheets (Stale-While-Revalidate)
+    try {
+        const response = await fetch(targetUrl);
+        if (response.ok) {
+            const csvText = await response.text();
+            parseAndApplyCsvPrices(csvText);
+            applyPriceOverrides();
+            renderProducts();
+            updateCartUI();
+        }
+    } catch(err) {
+        // Fallback silencioso sem travar o visitante
+    }
+}
+
+// Dynamic Pricing & Stock Overrides Engine (Local + Remote)
+function applyPriceOverrides() {
+    try {
+        const overrides = JSON.parse(localStorage.getItem('monte_cristo_price_overrides')) || {};
+        PRODUCTS_DATA.forEach(item => {
+            if (!item.originalPrice) item.originalPrice = item.price;
+            const ov = overrides[item.id];
+            if (ov) {
+                if (typeof ov.price === 'number' && !isNaN(ov.price)) {
+                    item.price = ov.price;
+                }
+                if (typeof ov.active === 'boolean') {
+                    item.active = ov.active;
+                }
+            }
+        });
+    } catch(e) {
+        console.warn('Erro ao carregar overrides de preços:', e);
+    }
+}
+
+function updateSimulationBanner() {
+    let existingBanner = document.getElementById('sim-banner');
+    const overrides = JSON.parse(localStorage.getItem('monte_cristo_price_overrides')) || {};
+    const hasOverrides = Object.keys(overrides).length > 0;
+
+    if (hasOverrides) {
+        if (!existingBanner) {
+            existingBanner = document.createElement('div');
+            existingBanner.id = 'sim-banner';
+            existingBanner.className = 'sim-floating-bar';
+            document.body.appendChild(existingBanner);
+        }
+        existingBanner.innerHTML = `
+            <span>🧪 <strong>Simulação de Preços Ativa:</strong> ${Object.keys(overrides).length} item(ns) alterado(s)</span>
+            <a href="gestao-precos.html" target="_blank">Ajustar Preços</a>
+            <button type="button" class="btn-reset-sim" onclick="resetSimOverrides()">Restaurar</button>
+        `;
+    } else if (existingBanner) {
+        existingBanner.remove();
+    }
+}
+
+window.resetSimOverrides = function() {
+    localStorage.removeItem('monte_cristo_price_overrides');
+    applyPriceOverrides();
+    renderProducts();
+    updateSimulationBanner();
+    if (typeof showToast === 'function') showToast('✓ Preços restaurados para os valores padrão.');
+};
+
 // Expose PRODUCTS_DATA globally for external table pages
 window.PRODUCTS_DATA = PRODUCTS_DATA;
 
@@ -622,12 +780,26 @@ const CLIENT_WHATSAPP = '5554999692859';
 
 // Init App
 document.addEventListener('DOMContentLoaded', () => {
+    applyPriceOverrides();
     renderProducts();
+    updateSimulationBanner();
     setupEventListeners();
     setupCartDrawerListeners();
     setupOniraCta();
     updateCartUI();
+    syncPricesFromGoogleSheet();
 });
+
+
+// Real-time synchronization across multiple tabs
+window.addEventListener('storage', (e) => {
+    if (e.key === 'monte_cristo_price_overrides') {
+        applyPriceOverrides();
+        renderProducts();
+        updateSimulationBanner();
+    }
+});
+
 
 function setupEventListeners() {
     // Search input listener
@@ -748,11 +920,11 @@ function renderProducts() {
                     <thead>
                         <tr>
                             <th>Foto</th>
-                            <th>Bebida / Rótulo</th>
+                            <th>Bebida / Rótulo Oficial</th>
                             <th>Categoria</th>
                             <th>Embalagem</th>
-                            <th>Varejo (Avulso)</th>
-                            <th>Atacado (Caixa Fechada)</th>
+                            <th>Preço Unitário</th>
+                            <th>Preço Caixa Fechada</th>
                             <th style="text-align:right;">Adicionar</th>
                         </tr>
                     </thead>
@@ -760,36 +932,49 @@ function renderProducts() {
                         ${filtered.map(item => {
                             const bSize = getBoxSize(item);
                             const bUnitPrice = getBoxUnitPrice(item);
+                            const isAvailable = item.active !== false;
 
                             return `
-                                <tr>
+                                <tr class="${!isAvailable ? 'is-paused' : ''}">
                                     <td>
-                                        <div class="table-thumb">${productThumb(item, 'table-img')}</div>
+                                        <div style="width: 44px; height: 44px; display: flex; align-items: center; justify-content: center; position: relative;">
+                                            ${productThumb(item)}
+                                            ${!isAvailable ? '<span class="product-status-tag-paused" style="font-size:0.6rem; padding:1px 4px; top:0; right:0;">Esgotado</span>' : ''}
+                                        </div>
                                     </td>
                                     <td>
-                                        <div class="table-name">${item.name}</div>
+                                        <strong style="color:var(--primary); font-weight:700;">${item.name}</strong>
                                     </td>
                                     <td>
-                                        <span class="product-category-badge" style="position:static;">${getCategoryName(item.category)}</span>
+                                        <span class="product-category-badge" style="position:static; display:inline-block;">${getCategoryName(item.category)}</span>
+                                    </td>
+                                    <td style="color:var(--text-muted); font-weight:600;">
+                                        ${item.volume}
                                     </td>
                                     <td>
-                                        <span class="table-volume">${item.volume}</span>
+                                        <span style="font-family:var(--font-heading); font-weight:800; color:var(--primary); font-size:1.05rem;">
+                                            R$ ${formatMoney(item.price)}
+                                        </span>
                                     </td>
                                     <td>
-                                        <span class="table-price">R$ ${formatMoney(item.price)} <small style="font-size:0.7rem; color:var(--text-muted);">/un</small></span>
-                                    </td>
-                                    <td>
-                                        <span class="table-price" style="color:#16A34A; font-size:0.95rem;">R$ ${formatMoney(bUnitPrice)} <small style="font-size:0.7rem;">/un (${bSize} un)</small></span>
+                                        <span style="font-family:var(--font-heading); font-weight:800; color:var(--accent-green); font-size:1.05rem;">
+                                            R$ ${formatMoney(bUnitPrice)}
+                                        </span>
+                                        <small style="display:block; color:var(--text-muted); font-size:0.75rem;">(${bSize} un)</small>
                                     </td>
                                     <td style="text-align:right;">
-                                        <div style="display:inline-flex; gap:4px;">
-                                            <button class="btn-add-unit" onclick="addToCart('${item.id}', 'unit')" title="Garrafa Avulsa">
-                                                + 🍾 Garrafa
-                                            </button>
-                                            <button class="btn-add-box" onclick="addToCart('${item.id}', 'box')" title="Caixa Fechada (${bSize} un)">
-                                                + 📦 Caixa (${bSize})
-                                            </button>
-                                        </div>
+                                        ${isAvailable ? `
+                                            <div style="display:inline-flex; gap:4px;">
+                                                <button class="btn-add-unit" onclick="addToCart('${item.id}', 'unit')" title="Garrafa Avulsa">
+                                                    + 🍾 Garrafa
+                                                </button>
+                                                <button class="btn-add-box" onclick="addToCart('${item.id}', 'box')" title="Caixa Fechada (${bSize} un)">
+                                                    + 📦 Caixa (${bSize})
+                                                </button>
+                                            </div>
+                                        ` : `
+                                            <span style="font-size:0.8rem; font-weight:800; color:#EF4444;">Esgotado</span>
+                                        `}
                                     </td>
                                 </tr>
                             `;
@@ -806,11 +991,13 @@ function renderProducts() {
             const bTotalPrice = getBoxTotalPrice(item);
             const currentUnit = cardUnits[item.id] || 'unit';
             const isBox = currentUnit === 'box';
+            const isAvailable = item.active !== false;
 
             return `
-                <div class="product-card" data-id="${item.id}">
+                <div class="product-card ${!isAvailable ? 'is-paused' : ''}" data-id="${item.id}">
                     <div class="product-image-box">
                         <span class="product-category-badge">${getCategoryName(item.category)}</span>
+                        ${!isAvailable ? '<span class="product-status-tag-paused">Esgotado</span>' : ''}
                         ${productThumb(item)}
                     </div>
                     <div class="product-info">
@@ -840,10 +1027,17 @@ function renderProducts() {
                             </div>
                         </div>
 
-                        <button type="button" class="btn-add-main ${isBox ? 'box-mode' : 'unit-mode'}" onclick="addToCart('${item.id}', '${currentUnit}')">
-                            <i data-lucide="${isBox ? 'package' : 'plus'}"></i>
-                            <span>${isBox ? `Adicionar Caixa (${bSize}un)` : 'Adicionar 1 Garrafa'}</span>
-                        </button>
+                        ${isAvailable ? `
+                            <button type="button" class="btn-add-main ${isBox ? 'box-mode' : 'unit-mode'}" onclick="addToCart('${item.id}', '${currentUnit}')">
+                                <i data-lucide="${isBox ? 'package' : 'plus'}"></i>
+                                <span>${isBox ? `Adicionar Caixa (${bSize}un)` : 'Adicionar 1 Garrafa'}</span>
+                            </button>
+                        ` : `
+                            <button type="button" class="btn-add-main paused-btn" disabled>
+                                <i data-lucide="slash"></i>
+                                <span>Esgotado no Estoque</span>
+                            </button>
+                        `}
                     </div>
                 </div>
             `;
