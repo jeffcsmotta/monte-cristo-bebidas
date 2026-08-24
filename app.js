@@ -690,7 +690,12 @@ function parseAndApplyCsvPrices(csvText) {
 
 async function syncPricesFromGoogleSheet() {
     const customUrl = localStorage.getItem('monte_cristo_custom_sheet_url');
-    const targetUrl = customUrl || MONTE_CRISTO_SHEET_URL;
+    const urlsToTry = customUrl 
+        ? [customUrl] 
+        : [
+            `https://docs.google.com/spreadsheets/d/${MONTE_CRISTO_SHEET_ID}/gviz/tq?tqx=out:csv`,
+            `https://docs.google.com/spreadsheets/d/${MONTE_CRISTO_SHEET_ID}/export?format=csv&gid=0`
+          ];
 
     // 1. Render instantâneo com cache local (0ms)
     try {
@@ -703,23 +708,30 @@ async function syncPricesFromGoogleSheet() {
                     if (typeof cache.overrides[item.id].active === 'boolean') item.active = cache.overrides[item.id].active;
                 }
             });
+            renderProducts();
         }
     } catch(e) {}
 
     // 2. Consulta em segundo plano no Google Sheets (Stale-While-Revalidate)
-    try {
-        const response = await fetch(targetUrl);
-        if (response.ok) {
-            const csvText = await response.text();
-            parseAndApplyCsvPrices(csvText);
-            applyPriceOverrides();
-            renderProducts();
-            updateCartUI();
+    for (const targetUrl of urlsToTry) {
+        try {
+            const response = await fetch(targetUrl);
+            if (response.ok) {
+                const csvText = await response.text();
+                if (csvText && (csvText.includes('ID') || csvText.includes('wh-') || csvText.includes('vk-') || csvText.includes('PRODUTO'))) {
+                    parseAndApplyCsvPrices(csvText);
+                    applyPriceOverrides();
+                    renderProducts();
+                    updateCartUI();
+                    break;
+                }
+            }
+        } catch(err) {
+            // Tentará próxima URL
         }
-    } catch(err) {
-        // Fallback silencioso sem travar o visitante
     }
 }
+
 
 // Dynamic Pricing & Stock Overrides Engine (Local + Remote)
 function applyPriceOverrides() {
