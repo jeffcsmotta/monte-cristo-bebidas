@@ -332,21 +332,38 @@
            DEVELOPER & STUDIO PROFILE CONTAINER (ONIRA LABS MASTER STANDARD)
            ========================================================================== */
         .dev-profile-card {
-            background: #0F172A;
-            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: linear-gradient(145deg, #09192E 0%, #061224 100%);
+            border: 1px solid rgba(56, 116, 203, 0.32);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(24px);
             border-radius: 16px;
-            padding: 32px;
+            padding: 36px;
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+            position: relative;
+            overflow: hidden;
+            margin-top: 40px;
             margin-bottom: 24px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-            color: #FFFFFF;
             text-align: left;
+        }
+
+        .dev-profile-card::before {
+            content: '';
+            position: absolute;
+            top: -80px;
+            right: -80px;
+            width: 280px;
+            height: 280px;
+            background: radial-gradient(circle, rgba(10, 102, 194, 0.22) 0%, transparent 70%);
+            pointer-events: none;
         }
 
         .dev-profile-header {
             display: flex;
             align-items: center;
             gap: 20px;
-            margin-bottom: 20px;
+            margin-bottom: 0;
         }
 
         .dev-profile-avatar-wrap {
@@ -355,139 +372,126 @@
         }
 
         .dev-profile-avatar {
-            width: 84px;
-            height: 84px;
-            border-radius: 8px;
+            width: 76px;
+            height: 76px;
+            border-radius: 50%;
             object-fit: cover;
-            border: 2.5px solid #38BDF8;
-            box-shadow: 0 0 20px rgba(245, 158, 11, 0.35);
+            border: 2px solid #0A66C2;
+            box-shadow: 0 0 20px rgba(10, 102, 194, 0.4);
             display: block;
         }
 
         .dev-profile-main-info {
-            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
         }
 
         .dev-profile-tag {
-            font-size: 0.72rem;
-            font-weight: 800;
+            font-family: monospace;
+            font-size: 0.6875rem;
+            font-weight: 700;
             color: #38BDF8;
-            letter-spacing: 1px;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
-            margin-bottom: 3px;
+            margin-bottom: 0;
         }
 
         .dev-profile-name {
             font-family: inherit;
-            font-size: 1.4rem;
-            font-weight: 900;
+            font-size: 1.35rem;
+            font-weight: 800;
             color: #FFFFFF;
-            margin-bottom: 3px;
+            margin: 0;
         }
 
         .dev-profile-role {
-            font-size: 0.88rem;
-            color: #E2E8F0;
-            font-weight: 600;
-            margin-bottom: 4px;
+            font-size: 0.875rem;
+            color: #94A3B8;
+            font-weight: 500;
+            margin: 0;
         }
 
-        .dev-profile-city {
-            font-size: 0.78rem;
-            color: #94A3B8;
-            display: flex;
-            align-items: center;
-            gap: 4px;
+        .dev-profile-role strong {
+            color: #F8FAFC;
         }
 
         .dev-profile-bio {
-            font-size: 0.93rem;
+            font-size: 0.95rem;
             color: #E2E8F0;
-            line-height: 1.6;
-            margin-bottom: 22px;
-            border-left: 3px solid #38BDF8;
-            padding: 14px 18px;
+            line-height: 1.7;
+            margin: 0;
+            border-left: 3px solid #0A66C2;
+            padding: 0 0 0 18px;
             font-style: italic;
-            background: rgba(255, 255, 255, 0.04);
-            border-radius: 0 8px 8px 0;
+            background: transparent;
+            border-radius: 0;
             text-align: left;
         }
 
+        .studio-signature-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 18px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
         .dev-links-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 12px;
-            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 0;
         }
 
         .dev-link-pill {
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            gap: 10px;
-            padding: 12px 16px;
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            border-radius: 8px;
-            color: #E2E8F0;
+            gap: 6px;
+            color: #94A3B8;
             text-decoration: none;
-            font-size: 0.88rem;
-            transition: all 0.2s ease;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            transition: color 0.2s ease;
+            background: none;
+            border: none;
+            padding: 0;
         }
 
         .dev-link-pill:hover {
-            background: rgba(255, 255, 255, 0.12);
-            border-color: #38BDF8;
-            color: #FFFFFF;
-            transform: translateY(-2px);
-        }
-
-        .dev-link-pill i {
-            width: 20px;
-            height: 20px;
-            flex-shrink: 0;
-        }
-
-        .dev-link-ext {
-            margin-left: auto;
-            width: 14px !important;
-            height: 14px !important;
-            color: #64748B;
-        }
-
-        .studio-signature-box {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 18px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 6px;
+            background: none;
+            border: none;
+            color: #38BDF8;
+            transform: none;
         }
 
         .studio-logo-img {
-            height: 32px;
-            width: auto;
-            max-width: 190px;
+            height: 22px;
+            max-width: 160px;
             object-fit: contain;
-            opacity: 0.95;
-            transition: opacity 0.2s ease;
+            opacity: 0.9;
         }
 
-        .studio-logo-img:hover {
-            opacity: 1;
-        }
-
-        .studio-motto {
-            font-size: 0.76rem;
-            color: #94A3B8;
-            letter-spacing: 0.8px;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-
-        .studio-location {
-            font-size: 0.72rem;
-            color: #64748B;
+        @media (max-width: 768px) {
+            .dev-profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            .dev-profile-bio {
+                padding-left: 0;
+                border-left: none;
+                border-top: 2px solid #0A66C2;
+                padding-top: 14px;
+                text-align: center;
+            }
+            .studio-signature-box {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
         }
 
         /* Floating WhatsApp Action Button */
@@ -666,45 +670,36 @@
 
         
     
-        <!-- Developer & Studio Profile Container (Onira Labs Master Standard) -->
+        <!-- Developer & Studio Profile Container (Padrão Oficial LinkedIn Navy) -->
         <div class="dev-profile-card">
             <div class="dev-profile-header">
                 <div class="dev-profile-avatar-wrap">
-                    <img src="assets/jeff-avatar.webp" alt="Jefferson Motta (Jeff)" class="dev-profile-avatar">
+                    <img src="assets/jeff-avatar.webp" alt="Jefferson Motta" class="dev-profile-avatar" width="76" height="76">
                 </div>
                 <div class="dev-profile-main-info">
-                    <div class="dev-profile-tag">FUNDADOR & PRODUCT DESIGNER</div>
-                    <h3 class="dev-profile-name">Jefferson Motta (Jeff)</h3>
-                    <p class="dev-profile-role">Lead Product Designer & Software Architect • Founder Onira Labs</p>
-                    <p class="dev-profile-city">
-                        <i data-lucide="map-pin" style="width: 14px; height: 14px; color: #F59E0B;"></i>
-                        Caxias do Sul - RS • Serra Gaúcha
-                    </p>
+                    <span class="dev-profile-tag">SERVICE DESIGN & AI BUSINESS INTELLIGENCE</span>
+                    <h3 class="dev-profile-name">Jefferson Motta</h3>
+                    <p class="dev-profile-role">Service Designer e A.I Business Intelligence na <strong>Onira Labs</strong> • Caxias do Sul - Serra Gaúcha</p>
                 </div>
             </div>
 
-            <!-- Citação do Manifesto Onira.fly -->
-            <div class="dev-profile-bio">
-                "É isso que buscamos quando desenhamos um site como este: o cliente entra, vê o catálogo com preços claros de varejo e atacado, monta o pedido sem precisar cadastro nem login — e esse pedido chega prontinho, já organizado, direto no WhatsApp da Monte Cristo. Pressão baixíssima sobre quem compra, atrito quase zero, e um fluxo comercial pensado para converter."
-            </div>
-
-            <div class="dev-links-grid">
-                <a href="https://www.linkedin.com/in/jeff-motta" target="_blank" rel="noopener noreferrer" class="dev-link-pill">
-                    <i data-lucide="linkedin" style="color: #0A66C2;"></i>
-                    <span>LinkedIn: <strong>/in/jeff-motta</strong></span>
-                    <i data-lucide="external-link" class="dev-link-ext"></i>
-                </a>
-                <a href="https://jeffmotta.framer.website" target="_blank" rel="noopener noreferrer" class="dev-link-pill">
-                    <i data-lucide="globe" style="color: #EA580C;"></i>
-                    <span>Portfólio: <strong>jeffmotta.framer.website</strong></span>
-                    <i data-lucide="external-link" class="dev-link-ext"></i>
-                </a>
-            </div>
+            <!-- Citação do Manifesto Onira.fly adaptada para Monte Cristo -->
+            <blockquote class="dev-profile-bio">
+                “É isso que buscamos quando desenhamos um site como este: o cliente entra, vê o catálogo com preços claros de varejo e atacado, monta o pedido sem precisar de cadastro nem login — e esse pedido chega prontinho, já organizado, direto no WhatsApp da Monte Cristo. Pressão baixíssima sobre quem compra, atrito quase zero, e um fluxo comercial pensado para converter.”
+            </blockquote>
 
             <div class="studio-signature-box">
+                <div class="dev-links-grid">
+                    <a href="https://www.linkedin.com/in/jeff-motta" target="_blank" rel="noopener noreferrer" class="dev-link-pill">
+                        <i data-lucide="linkedin" style="color: #0A66C2;"></i>
+                        <span>LinkedIn Oficial</span>
+                    </a>
+                    <a href="https://jeffmotta.framer.website/" target="_blank" rel="noopener noreferrer" class="dev-link-pill">
+                        <i data-lucide="globe" style="color: #38BDF8;"></i>
+                        <span>Portfólio & Metodologia</span>
+                    </a>
+                </div>
                 <img src="assets/logo_onira_branco.png" alt="Onira Labs" class="studio-logo-img">
-                <div class="studio-motto">Onira.fly • High Conversion Digital Channels</div>
-                <div class="studio-location">Caxias do Sul - RS • Brasil</div>
             </div>
         </div>
 
