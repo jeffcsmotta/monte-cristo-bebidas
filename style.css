@@ -1571,27 +1571,46 @@ body {
 /* Informação fixa de entrega (sem seletor: politica de entrega após as 24h úteis) */
 .delivery-info-box {
     display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    background: rgba(8, 38, 54, 0.72);
-    border: 1px solid rgba(255, 255, 255, 0.15);
+    align-items: center;
+    gap: 14px;
+    background: rgba(8, 38, 54, 0.85);
+    border: 1px solid rgba(56, 189, 248, 0.28);
     border-radius: var(--radius-md);
     padding: 12px 14px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
-.delivery-info-box i {
-    width: 16px;
-    height: 16px;
-    color: #38BDF8;
+.delivery-icon-wrap {
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    border-radius: 8px;
+    background: rgba(56, 189, 248, 0.14);
+    border: 1px solid rgba(56, 189, 248, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-shrink: 0;
-    margin-top: 2px;
+}
+
+.delivery-info-box i,
+.delivery-info-box svg,
+.delivery-icon-wrap i,
+.delivery-icon-wrap svg {
+    width: 24px !important;
+    height: 24px !important;
+    color: #38BDF8 !important;
+    stroke: #38BDF8 !important;
+    stroke-width: 2.2 !important;
+    flex-shrink: 0;
 }
 
 .delivery-info-box p {
     margin: 0;
-    font-size: 0.82rem;
-    color: #E2E8F0;
+    font-size: 0.83rem;
+    color: #F1F5F9;
     line-height: 1.45;
+    font-weight: 500;
 }
 
 /* Aviso B2B Reserva Comercial */
