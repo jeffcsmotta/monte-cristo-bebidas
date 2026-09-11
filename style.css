@@ -1568,7 +1568,7 @@ body {
     gap: 8px;
 }
 
-/* Informação fixa de entrega (sem seletor: politica de ate 48h) */
+/* Informação fixa de entrega (sem seletor: politica de entrega após as 24h úteis) */
 .delivery-info-box {
     display: flex;
     align-items: flex-start;
