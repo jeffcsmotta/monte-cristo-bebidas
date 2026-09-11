@@ -2127,9 +2127,12 @@ body {
 }
 
 @media (max-width: 640px) {
+    .container {
+        padding: 0 10px; /* Reduz padding lateral da página de 20px para 10px, dando 20px a mais de respiro */
+    }
     .menu-grid {
         grid-template-columns: repeat(2, 1fr) !important;
-        gap: 10px;
+        gap: 8px;
     }
     .product-image-box {
         height: 124px;
@@ -2158,14 +2161,24 @@ body {
         padding: 9px 10px;
     }
     .product-info {
-        padding: 10px;
+        padding: 10px 8px;
+    }
+
+    /* Seletor Varejo x Atacado no Card (Garrafa vs Caixa) desobstruído */
+    .card-unit-tabs {
+        padding: 2px;
+        gap: 2px;
+        margin-bottom: 8px;
+    }
+    .card-tab {
+        padding: 5px 2px;
+        font-size: 0.70rem;
+        letter-spacing: -0.15px;
+        gap: 2px;
     }
 
     .hero-title {
         font-size: 2rem;
-    }
-    .menu-grid {
-        grid-template-columns: 1fr;
     }
     /* No celular o header só comporta logo + botão de pedido */
     .status-badge,
@@ -2195,6 +2208,9 @@ button:focus-visible, a:focus-visible, input:focus-visible {
 
 /* Mobile First: Oculta Hero no Mobile para focar direto no Cardápio / Catálogo */
 @media (max-width: 768px) {
+    .container {
+        padding: 0 14px;
+    }
     .hero, .hero-section {
         display: none !important;
     }
