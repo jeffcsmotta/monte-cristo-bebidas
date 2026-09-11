@@ -895,10 +895,9 @@ function renderProducts() {
     if (!grid) return;
 
     const filtered = PRODUCTS_DATA.filter(item => {
-        const matchesCategory = (activeCategory === 'all') || (activeCategory === 'com-foto') || (item.category === activeCategory);
-        const matchesPhoto = (activeCategory !== 'com-foto') || hasPhoto(item);
+        const matchesCategory = (activeCategory === 'all') || (item.category === activeCategory);
         const matchesSearch = item.name.toLowerCase().includes(searchQuery) || item.volume.toLowerCase().includes(searchQuery);
-        return matchesCategory && matchesPhoto && matchesSearch;
+        return matchesCategory && matchesSearch;
     })
         /* Foto na frente. A vitrine abre pelo que tem imagem de verdade; o que
            ainda usa a garrafa vetorial vem depois, na ordem original do
@@ -907,11 +906,7 @@ function renderProducts() {
 
     const countEl = document.getElementById('results-count');
     if (countEl) {
-        const comFoto = filtered.filter(hasPhoto).length;
-        const base = filtered.length === 1 ? '1 rótulo' : `${filtered.length} rótulos`;
-        countEl.textContent = comFoto && comFoto < filtered.length
-            ? `${base} · ${comFoto} com foto`
-            : base;
+        countEl.textContent = filtered.length === 1 ? '1 rótulo' : `${filtered.length} rótulos`;
     }
 
     if (filtered.length === 0) {
@@ -1330,7 +1325,7 @@ window.sendWhatsAppOrder = function() {
 
     let msg = `_pedido via site by Onira.fly_
 
-Solicitação de Reserva Comercial · Atacado & Varejo
+Solicitação de Distribuição · Reserva de Estoque
 
 `;
 
@@ -1353,9 +1348,9 @@ Solicitação de Reserva Comercial · Atacado & Varejo
     });
 
     const subtotalVal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    msg += `*Itens: R$ ${formatMoney(subtotalVal)}*
+    msg += `*Subtotal Estimado: R$ ${formatMoney(subtotalVal)}*
 `;
-    msg += `Entrega: Em até 48h (raio 200km)
+    msg += `Logística: Entrega em até 48h úteis (a validar rota e estoque)
 `;
     msg += `*Total Estimado: R$ ${formatMoney(subtotalVal)}*
 
@@ -1374,7 +1369,7 @@ Solicitação de Reserva Comercial · Atacado & Varejo
     }
 
     msg += `
-_Enviado pelo site da Monte Cristo Bebidas_`;
+_Enviado pelo canal oficial Monte Cristo Bebidas_`;
 
     const encoded = encodeURIComponent(msg);
     const url = `https://wa.me/${CLIENT_WHATSAPP}?text=${encoded}`;

@@ -104,7 +104,7 @@
     <!-- ?v= muda a cada publicacao para o navegador nao servir folha velha.
          Sem isso, quem ja visitou o site continua vendo o CSS antigo e um
          botao novo aparece sem estilo nenhum. -->
-    <link rel="stylesheet" href="style.css?v=20260814d">
+    <link rel="stylesheet" href="style.css?v=20260911_v1">
 </head>
 <body>
 
@@ -137,7 +137,7 @@
     <header class="header">
         <div class="container header-container">
             <a href="#" class="logo" aria-label="Página Inicial do Monte Cristo Bebidas">
-                <img src="assets/logo.png" alt="Monte Cristo Bebidas Logo" class="brand-logo-img">
+                <img src="assets/logo_horizontal_montecristo_gradient.svg" alt="Monte Cristo Bebidas" class="brand-logo-img">
             </a>
 
             <div class="header-actions">
@@ -186,7 +186,6 @@
 
             <div class="category-filters" id="category-filters">
                 <button class="filter-btn active" data-category="all">Todos</button>
-                <button class="filter-btn" data-category="com-foto">Com foto</button>
                 <button class="filter-btn" data-category="whisky">Whisky</button>
                 <button class="filter-btn" data-category="vodka">Vodka</button>
                 <button class="filter-btn" data-category="gin-tequila">Gin, Tequila &amp; Rum</button>
@@ -219,7 +218,7 @@
         <div class="container">
             <div class="footer-grid">
                 <div>
-                    <img src="assets/logo.png" alt="Monte Cristo Logo" style="height: 54px; object-fit: contain;">
+                    <img src="assets/logo_branco_footer_montecristo.svg" alt="Monte Cristo Bebidas" style="height: 52px; max-width: 260px; object-fit: contain;">
                 </div>
                 <div style="font-size:0.9rem; color:#E2E8F0;">
                     Monte Cristo Bebidas — Distribuidora de Destilados & Bebidas Finas em Caxias do Sul
@@ -243,8 +242,8 @@
         <!-- Header fixo: título + voltar ao catálogo -->
         <div class="cart-header">
             <div class="cart-title">
-                <i data-lucide="shopping-bag"></i>
-                <span>Seu Pedido Monte Cristo</span>
+                <img src="assets/logo_branco_montecristo.svg" alt="Monte Cristo" class="cart-header-logo">
+                <span>Seu Pedido</span>
             </div>
             <button type="button" class="btn-continue-shopping" onclick="window.closeCart()" aria-label="Continuar Escolhendo">
                 <i data-lucide="arrow-left" style="width:14px; height:14px;"></i>
@@ -254,21 +253,21 @@
 
         <!-- Corpo único rolável -->
         <div class="cart-body">
-            <!-- 0. Aviso de Distribuidora B2B / Reserva Comercial -->
+            <!-- 0. Posicionamento Canal Direto de Distribuição -->
             <div class="cart-b2b-notice">
                 <div class="notice-badge">
-                    <i data-lucide="shield-alert"></i>
-                    <span>Distribuidora Direta de Bebidas</span>
+                    <i data-lucide="shield-check"></i>
+                    <span>Canal Direto de Distribuição</span>
                 </div>
                 <p class="notice-text">
-                    Ao enviar o pedido, nossos vendedores confirmam a disponibilidade em estoque, agendamento e faturamento via WhatsApp. <strong>Este serviço não é uma tele-entrega automatizada de aplicativo.</strong>
+                    Atendimento comercial de distribuidora. Ao enviar sua seleção, nossa equipe confirma a disponibilidade dos itens em estoque, as condições de faturamento e agenda a entrega.
                 </p>
             </div>
 
             <!-- 1. Itens -->
             <div class="cart-section">
                 <div class="cart-section-title" style="display:flex; justify-content:space-between; align-items:center;">
-                    <span>Itens do Pedido (Varejo & Atacado)</span>
+                    <span>Itens do Pedido (Varejo &amp; Atacado)</span>
                     <button type="button" class="btn-clear-cart" onclick="window.clearCart()" id="cart-clear-header" style="background:none; border:none; color:#EF4444; font-size:0.75rem; font-weight:700; cursor:pointer;">Limpar tudo</button>
                 </div>
                 <div class="cart-items-container" id="cart-items-container">
@@ -278,10 +277,10 @@
 
             <!-- 2. Informação de entrega -->
             <div class="cart-option-group">
-                <label>Entrega:</label>
+                <label>Prazo &amp; Logística:</label>
                 <div class="delivery-info-box">
                     <i data-lucide="truck"></i>
-                    <p>Entrega em até 48h num raio de 200km, dependendo da disponibilidade do estoque.</p>
+                    <p>Entregas realizadas em até 48h úteis após a confirmação do pedido com nosso atendente. O agendamento e a rota são validados conforme a disponibilidade dos itens em estoque.</p>
                 </div>
             </div>
 
@@ -311,9 +310,9 @@
                     <input type="text" id="cash-change-val" class="input-dark" placeholder="CNPJ / Razão Social para emissão do boleto">
                 </div>
 
-                <div class="payment-info-box" style="margin-top:10px; padding:10px 14px; background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.08); border-radius:8px; font-size:0.8rem; color:#A1A1AA;">
-                    <i data-lucide="shield-check" style="width:14px; height:14px; color:var(--teal); display:inline-block; vertical-align:middle; margin-right:4px;"></i>
-                    As condições finais de faturamento e chaves de pagamento serão confirmadas diretamente pelos nossos atendentes no WhatsApp.
+                <div class="payment-info-box" style="margin-top:10px; padding:10px 14px; background:rgba(0,0,0,0.25); border:1px solid rgba(255,255,255,0.15); border-radius:8px; font-size:0.8rem; color:#D1D5DB;">
+                    <i data-lucide="shield-check" style="width:14px; height:14px; color:#38BDF8; display:inline-block; vertical-align:middle; margin-right:4px;"></i>
+                    Condições de faturamento e dados para pagamento são alinhados diretamente com a nossa equipe no atendimento, após a conferência do pedido.
                 </div>
             </div>
 
@@ -324,8 +323,8 @@
                     <span id="cart-subtotal">R$ 0,00</span>
                 </div>
                 <div class="summary-line">
-                    <span>Entrega:</span>
-                    <span id="cart-delivery-fee">A combinar</span>
+                    <span>Logística:</span>
+                    <span id="cart-delivery-fee" style="color:#38BDF8;">A alinhar no atendimento</span>
                 </div>
                 <div class="summary-line total">
                     <span>Total Estimado:</span>
@@ -338,7 +337,6 @@
                 <i data-lucide="send"></i>
                 <span>Enviar Pedido via WhatsApp</span>
             </button>
-
 
             <div class="onira-signature">
                 <span>Tecnologia por <strong>Onira Labs</strong></span>
@@ -400,7 +398,7 @@
          renderiza vazio. -->
     <script src="images.js?v=20260823"></script>
     <script src="bottles.js?v=20260823"></script>
-    <script src="app.js?v=20260823_sheets_v3"></script>
+    <script src="app.js?v=20260911_v1"></script>
     <script>
         if (window.lucide) {
             lucide.createIcons();
