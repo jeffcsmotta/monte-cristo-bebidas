@@ -1350,7 +1350,7 @@ Solicitação de Distribuição · Reserva de Estoque
     const subtotalVal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     msg += `*Subtotal Estimado: R$ ${formatMoney(subtotalVal)}*
 `;
-    msg += `Logística: Entrega em até 48h úteis (a validar rota e estoque)
+    msg += `Logística: Entrega após as 24h úteis à confirmação do pedido
 `;
     msg += `*Total Estimado: R$ ${formatMoney(subtotalVal)}*
 
