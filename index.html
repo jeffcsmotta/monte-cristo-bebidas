@@ -126,7 +126,7 @@
             <div class="top-info">
                 <span><i data-lucide="map-pin"></i> Caxias do Sul e Região - RS</span>
                 <span class="divider">|</span>
-                <span><i data-lucide="phone"></i> WhatsApp / Pedidos: <a href="https://wa.me/5554999692859" target="_blank" rel="noopener noreferrer" style="color:inherit; text-decoration:underline; font-weight:700;">(54) 99969-2859</a></span>
+                <span><i data-lucide="phone"></i> WhatsApp / Pedidos: <a id="top-bar-wa-link" href="https://wa.me/5554999692859" target="_blank" rel="noopener noreferrer" style="color:inherit; text-decoration:underline; font-weight:700;">(54) 99969-2859</a></span>
                 <span class="divider">|</span>
                 <span><i data-lucide="shield-check"></i> Rótulos 100% Originais & Lacrados</span>
             </div>
@@ -202,8 +202,8 @@
     <section class="shop-section" id="cardapio">
         <div class="container">
             <div class="shop-meta">
-                <span id="results-count">80 rótulos</span>
-                <span class="shop-meta-note">Preços da tabela oficial • válida até 30/08/2026</span>
+                <span id="results-count">Carregando catálogo...</span>
+                <span class="shop-meta-note">Preços da tabela oficial • válida até 30/09/2026</span>
             </div>
 
             <!-- Products Grid or Table (Dynamic via app.js) -->
@@ -213,22 +213,157 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
+    <!-- Pilares de Atendimento & Diferenciais Comerciais -->
+    <section class="pillars-section" id="diferenciais">
         <div class="container">
-            <div class="footer-grid">
-                <div>
-                    <img src="assets/logo_branco_footer_montecristo.svg" alt="Monte Cristo Bebidas" style="height: 52px; max-width: 260px; object-fit: contain;">
+            <div class="pillars-header">
+                <div class="pillars-tag">
+                    <i data-lucide="award" style="width:14px; height:14px;"></i> Diferenciais de Distribuição
                 </div>
-                <div style="font-size:0.9rem; color:#E2E8F0;">
-                    Monte Cristo Bebidas — Distribuidora de Destilados & Bebidas Finas em Caxias do Sul
+                <h2 class="pillars-title">Soluções Sob Medida para o Seu Negócio</h2>
+                <p class="pillars-subtitle">
+                    A Monte Cristo Bebidas combina mais de 20 anos de tradição com agilidade logística, atendimento B2B especializado e condições exclusivas para bares, restaurantes e grandes eventos.
+                </p>
+            </div>
+
+            <div class="pillars-grid">
+                <!-- Card 1: Bares e Casas Noturnas -->
+                <div class="pillar-card">
+                    <div class="pillar-icon-box">
+                        <i data-lucide="store" style="width:26px; height:26px;"></i>
+                    </div>
+                    <h3 class="pillar-card-title">Bares & Casas Noturnas</h3>
+                    <p class="pillar-card-desc">
+                        Atendimento CNPJ especializado para bares, restaurantes e casas noturnas. Seja iniciando sua operação ou repondo compras periódicas e semanais, garantimos estabilidade de fornecimento e nota fiscal com conformidade tributária.
+                    </p>
+                    <div class="pillar-card-footer">
+                        <i data-lucide="clock" style="width:16px; height:16px;"></i> Entregas em 24h úteis
+                    </div>
+                </div>
+
+                <!-- Card 2: Eventos com Consignação de 20% (DESTAQUE) -->
+                <div class="pillar-card highlight">
+                    <span class="pillar-badge-top">Exclusivo Eventos</span>
+                    <div class="pillar-icon-box">
+                        <i data-lucide="sparkles" style="width:26px; height:26px;"></i>
+                    </div>
+                    <h3 class="pillar-card-title">Eventos & Casamentos</h3>
+                    <p class="pillar-card-desc">
+                        Para que você não precise se preocupar com falta de bebidas durante casamentos, formaturas ou convenções empresariais: <strong>disponibilizamos consignação de até 20% do seu pedido</strong>. O que sobrar lacrado, o valor equivalente é estornado e devolvido para a sua conta!
+                    </p>
+                    <div class="pillar-card-footer" style="color:#0284C7;">
+                        <i data-lucide="shield-check" style="width:16px; height:16px;"></i> Devolução garantida de sobras
+                    </div>
+                </div>
+
+                <!-- Card 3: Logística Regional e Interestadual -->
+                <div class="pillar-card">
+                    <div class="pillar-icon-box">
+                        <i data-lucide="truck" style="width:26px; height:26px;"></i>
+                    </div>
+                    <h3 class="pillar-card-title">Logística Especializada</h3>
+                    <p class="pillar-card-desc">
+                        Entregas rápidas em até 24h úteis após a confirmação do pedido em Caxias do Sul e toda a Serra Gaúcha. Para clientes fora do Rio Grande do Sul, oferecemos envio seguro via transportadora parceira mediante cotação e aprovação ágil de frete.
+                    </p>
+                    <div class="pillar-card-footer">
+                        <i data-lucide="map-pin" style="width:16px; height:16px;"></i> Serra Gaúcha & Todo o Brasil
+                    </div>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <span>© 2026 Monte Cristo Distribuidora de Bebidas. Todos os direitos reservados.</span>
+        </div>
+    </section>
+
+    <!-- Footer Institucional Master -->
+    <footer class="footer" id="sobre">
+        <div class="container">
+            <div class="footer-master-grid">
+                <!-- Coluna 1: Sobre e Tradição -->
+                <div class="footer-col-brand">
+                    <img src="assets/logo_branco_footer_montecristo.svg" alt="Monte Cristo Bebidas" class="footer-logo">
+                    <p>
+                        A <strong>Monte Cristo Bebidas LTDA</strong> é a distribuidora referência na Serra Gaúcha - RS, com mais de 1.000 itens em portfólio. Criada para suprir a demanda de um trabalho sólido desenvolvido há mais de 20 anos no mercado de bebidas finas e destilados.
+                    </p>
+                    <div class="footer-trust-badge">
+                        <i data-lucide="shield-check" style="width:18px; height:18px; color:#38BDF8;"></i>
+                        <span>Distribuição Oficial • Rótulos Originais & Lacrados</span>
+                    </div>
+                </div>
+
+                <!-- Coluna 2: Institucional (Missão, Visão, Valores) -->
                 <div>
-                    <a href="gestao-precos.html" style="color:#38BDF8; font-weight:700; text-decoration:none; margin-right:16px;" target="_blank">⚙️ Gestão de Preços em Tempo Real</a>
-                    <span>Desenvolvido com excelência por <strong>Onira Labs</strong></span>
+                    <h4 class="footer-col-title">Institucional</h4>
+                    <ul class="footer-nav-list">
+                        <li><a href="#diferenciais"><i data-lucide="chevron-right" style="width:14px; height:14px;"></i> Áreas de Atendimento</a></li>
+                        <li><a href="#diferenciais"><i data-lucide="chevron-right" style="width:14px; height:14px;"></i> Consignação para Eventos</a></li>
+                        <li><a href="#cardapio"><i data-lucide="chevron-right" style="width:14px; height:14px;"></i> Catálogo de Destilados</a></li>
+                        <li><a href="#cardapio"><i data-lucide="chevron-right" style="width:14px; height:14px;"></i> Condições de Atacado & Caixa</a></li>
+                    </ul>
+                    <div style="margin-top:16px; font-size:0.8rem; color:#94A3B8; line-height:1.5;">
+                        <strong style="color:#E2E8F0;">Valores:</strong> Ética absoluta nas relações comerciais e compromisso total com o sucesso de nossos clientes e parceiros.
+                    </div>
+                </div>
+
+                <!-- Coluna 3: Áreas Atendidas -->
+                <div>
+                    <h4 class="footer-col-title">Segmentos B2B</h4>
+                    <ul class="footer-nav-list">
+                        <li><a href="javascript:void(0)"><i data-lucide="check" style="width:14px; height:14px; color:#38BDF8;"></i> Bares & Pubs</a></li>
+                        <li><a href="javascript:void(0)"><i data-lucide="check" style="width:14px; height:14px; color:#38BDF8;"></i> Casas Noturnas</a></li>
+                        <li><a href="javascript:void(0)"><i data-lucide="check" style="width:14px; height:14px; color:#38BDF8;"></i> Restaurantes & Hotéis</a></li>
+                        <li><a href="javascript:void(0)"><i data-lucide="check" style="width:14px; height:14px; color:#38BDF8;"></i> Casamentos & Formaturas</a></li>
+                        <li><a href="javascript:void(0)"><i data-lucide="check" style="width:14px; height:14px; color:#38BDF8;"></i> Eventos Corporativos</a></li>
+                    </ul>
+                </div>
+
+                <!-- Coluna 4: Contato Oficial & Redes -->
+                <div>
+                    <h4 class="footer-col-title">Atendimento Oficial</h4>
+                    <div class="footer-contact-list">
+                        <div class="footer-contact-item">
+                            <i data-lucide="phone"></i>
+                            <div>
+                                <span style="display:block; font-size:0.75rem; color:#64748B;">WhatsApp / Pedidos:</span>
+                                <a id="footer-wa-link" href="https://wa.me/5554999692859" target="_blank" rel="noopener noreferrer">(54) 99969-2859</a>
+                            </div>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i data-lucide="mail"></i>
+                            <div>
+                                <span style="display:block; font-size:0.75rem; color:#64748B;">E-mail Comercial:</span>
+                                <a href="mailto:contato@montecristobebidas.com.br">contato@montecristobebidas.com.br</a>
+                            </div>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i data-lucide="map-pin"></i>
+                            <div>
+                                <span style="display:block; font-size:0.75rem; color:#64748B;">Localização:</span>
+                                <span>Caxias do Sul e Serra Gaúcha - RS</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-top:16px;">
+                        <span style="font-size:0.75rem; color:#64748B; display:block; margin-bottom:6px;">Siga-nos nas redes:</span>
+                        <div class="footer-social-links">
+                            <a href="https://instagram.com/monte_cristo_bebidas" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="Instagram Oficial">
+                                <i data-lucide="instagram" style="width:14px; height:14px;"></i> Instagram
+                            </a>
+                            <a href="https://facebook.com/montecristobebidas" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="Facebook Oficial">
+                                <i data-lucide="facebook" style="width:14px; height:14px;"></i> Facebook
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom Bar -->
+            <div class="footer-bottom">
+                <span>© 2026 Monte Cristo Bebidas LTDA • CNPJ B2B • Caxias do Sul - RS</span>
+                <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
+                    <a href="gestao-precos.html" style="color:#38BDF8; font-weight:700; text-decoration:none;" target="_blank">
+                        ⚙️ Gestão de Catálogo & Preços
+                    </a>
+                    <span>Tecnologia por <strong>Onira Labs</strong></span>
                 </div>
             </div>
         </div>
@@ -405,6 +540,18 @@
         if (window.lucide) {
             lucide.createIcons();
         }
+
+        // Sincronização dos links de WhatsApp ativos (Ivan x Michele)
+        function syncActiveWhatsAppLinks() {
+            if (!window.getActiveWhatsAppData) return;
+            const wa = window.getActiveWhatsAppData();
+            const topLink = document.getElementById('top-bar-wa-link');
+            const footerLink = document.getElementById('footer-wa-link');
+            if (topLink) topLink.href = `https://wa.me/${wa.number}?text=${encodeURIComponent('Olá! Gostaria de informações sobre bebidas na Monte Cristo.')}`;
+            if (footerLink) footerLink.href = `https://wa.me/${wa.number}?text=${encodeURIComponent('Olá! Gostaria de informações sobre bebidas na Monte Cristo.')}`;
+        }
+        window.addEventListener('whatsapp_agent_changed', syncActiveWhatsAppLinks);
+        window.addEventListener('DOMContentLoaded', syncActiveWhatsAppLinks);
 
         // PWA Splash Screen Handler
         window.addEventListener('DOMContentLoaded', () => {

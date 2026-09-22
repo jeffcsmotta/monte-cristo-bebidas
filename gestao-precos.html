@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulador de Gestão de Preços | Monte Cristo Bebidas</title>
+    <title>Painel de Gestão & Preços | Monte Cristo Bebidas</title>
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,7 +37,7 @@
         }
 
         .container {
-            max-width: 1180px;
+            max-width: 1220px;
             margin: 0 auto;
         }
 
@@ -46,7 +46,7 @@
             background: #FFFFFF;
             border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 24px;
+            padding: 20px 24px;
             margin-bottom: 20px;
             box-shadow: 0 4px 16px rgba(0,0,0,0.03);
             display: flex;
@@ -63,7 +63,7 @@
         }
 
         .brand-logo {
-            height: 46px;
+            height: 48px;
             width: auto;
         }
 
@@ -113,6 +113,17 @@
             transform: translateY(-1px);
         }
 
+        .btn-success {
+            background: var(--accent-green);
+            color: #FFFFFF;
+            box-shadow: 0 4px 12px rgba(16, 185, 129, 0.25);
+        }
+
+        .btn-success:hover {
+            background: #059669;
+            transform: translateY(-1px);
+        }
+
         .btn-secondary {
             background: #FFFFFF;
             color: var(--primary);
@@ -134,78 +145,87 @@
             color: #991B1B;
         }
 
-        /* Instructions & Info Card */
-        .info-card {
-            background: linear-gradient(135deg, #0E4663 0%, #1B7588 100%);
-            color: #FFFFFF;
+        /* WhatsApp Routing Card (Internal Staff Toggle) */
+        .routing-card {
+            background: #FFFFFF;
+            border: 2px solid #38BDF8;
             border-radius: 12px;
-            padding: 24px;
-            margin-bottom: 24px;
-            box-shadow: 0 6px 20px rgba(14, 70, 99, 0.2);
-        }
-
-        .info-card h2 {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.25rem;
-            font-weight: 800;
-            margin-bottom: 8px;
+            padding: 20px 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 6px 20px rgba(56, 189, 248, 0.12);
             display: flex;
             align-items: center;
-            gap: 10px;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
         }
 
-        .info-card p {
-            font-size: 0.92rem;
-            line-height: 1.6;
-            opacity: 0.95;
-            max-width: 900px;
-            margin-bottom: 16px;
-        }
-
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 16px;
-            margin-top: 14px;
-        }
-
-        .step-item {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            padding: 14px 16px;
-        }
-
-        .step-num {
-            display: inline-block;
-            background: #FFFFFF;
-            color: var(--primary);
-            font-weight: 900;
-            font-size: 0.78rem;
-            padding: 2px 8px;
-            border-radius: 99px;
-            margin-bottom: 6px;
-        }
-
-        .step-title {
+        .routing-info h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.15rem;
             font-weight: 800;
-            font-size: 0.92rem;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
             margin-bottom: 4px;
         }
 
-        .step-desc {
-            font-size: 0.82rem;
-            opacity: 0.88;
-            line-height: 1.4;
+        .routing-info p {
+            font-size: 0.86rem;
+            color: var(--text-muted);
         }
 
-        /* Filter & Search Bar */
+        .routing-toggle-group {
+            display: flex;
+            align-items: center;
+            background: #F1F5F9;
+            padding: 4px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+            gap: 4px;
+        }
+
+        .routing-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-size: 0.88rem;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            transition: all 0.2s ease;
+        }
+
+        .routing-btn.active {
+            background: #FFFFFF;
+            color: var(--primary);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border: 1px solid #CBD5E1;
+        }
+
+        .routing-btn .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #94A3B8;
+        }
+
+        .routing-btn.active .dot {
+            background: var(--accent-green);
+            box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+        }
+
+        /* Controls / Search / Filter */
         .controls-card {
             background: #FFFFFF;
             border: 1px solid var(--border);
             border-radius: 12px;
-            padding: 18px 20px;
+            padding: 18px 24px;
             margin-bottom: 20px;
             display: flex;
             align-items: center;
@@ -215,53 +235,48 @@
         }
 
         .search-box {
-            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: #F8FAFC;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 14px;
             flex: 1;
-            min-width: 260px;
+            min-width: 280px;
         }
 
         .search-box input {
+            border: none;
+            background: transparent;
+            font-size: 0.92rem;
             width: 100%;
-            padding: 10px 14px 10px 38px;
-            border-radius: 8px;
-            border: 1px solid var(--border);
-            font-size: 0.9rem;
             outline: none;
-            transition: border-color 0.2s;
             font-family: inherit;
-        }
-
-        .search-box input:focus {
-            border-color: var(--teal);
-            box-shadow: 0 0 0 3px rgba(27, 117, 136, 0.12);
-        }
-
-        .search-box i {
-            position: absolute;
-            left: 12px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-muted);
-            width: 18px;
-            height: 18px;
         }
 
         .filter-tags {
             display: flex;
-            gap: 8px;
+            align-items: center;
+            gap: 6px;
             flex-wrap: wrap;
         }
 
         .filter-tag {
-            padding: 7px 14px;
-            background: #F1F5F9;
-            border: 1px solid var(--border);
+            padding: 6px 12px;
             border-radius: 6px;
-            font-size: 0.8rem;
-            font-weight: 700;
+            border: 1px solid var(--border);
+            background: #FFFFFF;
+            font-size: 0.82rem;
+            font-weight: 600;
             color: var(--text-muted);
             cursor: pointer;
             transition: all 0.15s ease;
+        }
+
+        .filter-tag:hover {
+            border-color: var(--teal);
+            color: var(--primary);
         }
 
         .filter-tag.active {
@@ -270,13 +285,14 @@
             border-color: var(--primary);
         }
 
-        /* Main Table */
+        /* Table Styles */
         .table-card {
             background: #FFFFFF;
             border: 1px solid var(--border);
             border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.03);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.02);
+            margin-bottom: 30px;
         }
 
         table {
@@ -287,106 +303,108 @@
 
         th {
             background: #F8FAFC;
-            color: var(--primary);
-            font-family: 'Outfit', sans-serif;
-            font-weight: 800;
             padding: 14px 18px;
-            border-bottom: 2px solid var(--border);
-            font-size: 0.8rem;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--text-muted);
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            border-bottom: 1px solid var(--border);
         }
 
         td {
             padding: 14px 18px;
             border-bottom: 1px solid #F1F5F9;
+            font-size: 0.9rem;
             vertical-align: middle;
-            font-size: 0.92rem;
         }
 
-        tr:hover {
-            background: #FAFCFF;
+        tr:hover td {
+            background: #FAFCFD;
         }
 
         tr.paused-row {
-            background: #FFFBEB;
-            opacity: 0.75;
+            opacity: 0.55;
+            background: #FDF2F2 !important;
         }
 
         .product-meta {
             display: flex;
             align-items: center;
-            gap: 14px;
+            gap: 12px;
         }
 
         .product-icon {
-            width: 44px;
-            height: 44px;
-            border-radius: 8px;
-            background: #F1F5F9;
-            border: 1px solid var(--border);
+            font-size: 1.5rem;
+            width: 40px;
+            height: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.4rem;
-            flex-shrink: 0;
+            background: #F1F5F9;
+            border-radius: 8px;
         }
 
         .product-title {
-            font-weight: 800;
-            color: var(--primary);
-            font-size: 0.95rem;
-            margin-bottom: 2px;
+            font-weight: 700;
+            color: var(--text-dark);
+            font-size: 0.94rem;
         }
 
         .product-sub {
             font-size: 0.8rem;
             color: var(--text-muted);
-            font-weight: 600;
         }
 
         .badge-cat {
             display: inline-block;
             padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
             background: var(--teal-light);
-            border: 1px solid rgba(27, 117, 136, 0.2);
-            border-radius: 6px;
             color: var(--teal);
-            font-size: 0.74rem;
-            font-weight: 800;
-            text-transform: uppercase;
         }
 
-        /* Price Input Box */
+        .badge-custom {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 800;
+            background: #FEF3C7;
+            color: #B45309;
+            margin-left: 6px;
+        }
+
         .price-input-wrapper {
             display: flex;
             align-items: center;
             gap: 6px;
+            position: relative;
         }
 
         .currency-prefix {
-            font-weight: 800;
-            color: var(--primary);
-            font-size: 0.95rem;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-muted);
         }
 
         .input-price {
             width: 100px;
-            padding: 8px 10px;
+            padding: 6px 8px;
+            border: 1px solid var(--border);
             border-radius: 6px;
-            border: 1.5px solid var(--border);
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 900;
+            font-size: 0.95rem;
+            font-weight: 800;
             color: var(--primary);
             outline: none;
-            transition: all 0.2s ease;
+            transition: all 0.2s;
         }
 
         .input-price:focus {
-            border-color: var(--accent-green);
-            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
-            background: #F0FDF4;
+            border-color: var(--teal);
+            box-shadow: 0 0 0 3px rgba(27, 117, 136, 0.15);
         }
 
         .input-price.changed {
@@ -394,12 +412,30 @@
             background: #FFFBEB;
         }
 
-        /* Toggle Switch */
+        .quick-btn {
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px solid var(--border);
+            background: #FFFFFF;
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.1s;
+        }
+
+        .quick-btn:hover {
+            background: var(--primary);
+            color: #FFFFFF;
+            border-color: var(--primary);
+        }
+
+        /* Toggle switch */
         .toggle-switch {
             position: relative;
             display: inline-block;
-            width: 48px;
-            height: 26px;
+            width: 44px;
+            height: 24px;
         }
 
         .toggle-switch input {
@@ -411,17 +447,17 @@
         .slider {
             position: absolute;
             cursor: pointer;
-            inset: 0;
+            top: 0; left: 0; right: 0; bottom: 0;
             background-color: #CBD5E1;
             transition: .3s;
-            border-radius: 99px;
+            border-radius: 24px;
         }
 
         .slider:before {
             position: absolute;
             content: "";
-            height: 20px;
-            width: 20px;
+            height: 18px;
+            width: 18px;
             left: 3px;
             bottom: 3px;
             background-color: white;
@@ -434,83 +470,182 @@
         }
 
         input:checked + .slider:before {
-            transform: translateX(22px);
+            transform: translateX(20px);
         }
 
         .status-badge {
             font-size: 0.78rem;
-            font-weight: 800;
-            padding: 4px 8px;
-            border-radius: 4px;
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 6px;
         }
 
         .status-active {
-            background: #DCFCE7;
-            color: #15803D;
+            background: #ECFDF5;
+            color: #065F46;
         }
 
         .status-paused {
-            background: #FEE2E2;
+            background: #FEF2F2;
             color: #991B1B;
         }
 
-        /* Toast Feedback */
+        .action-icon-btn {
+            padding: 6px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            background: #FFFFFF;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            transition: all 0.15s;
+        }
+
+        .action-icon-btn:hover {
+            color: var(--primary);
+            border-color: var(--primary);
+            background: #F8FAFC;
+        }
+
+        .action-icon-btn.delete:hover {
+            color: var(--accent-red);
+            border-color: var(--accent-red);
+            background: #FEF2F2;
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.25s ease;
+            padding: 16px;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-box {
+            background: #FFFFFF;
+            border-radius: 14px;
+            max-width: 540px;
+            width: 100%;
+            padding: 28px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            transform: translateY(20px);
+            transition: transform 0.25s ease;
+        }
+
+        .modal-overlay.active .modal-box {
+            transform: translateY(0);
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .modal-close-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 6px;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.92rem;
+            font-family: inherit;
+            outline: none;
+        }
+
+        .form-group input:focus, .form-group select:focus {
+            border-color: var(--teal);
+            box-shadow: 0 0 0 3px rgba(27, 117, 136, 0.15);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .modal-footer {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        /* Toast */
         .toast {
             position: fixed;
             bottom: 24px;
             right: 24px;
-            background: #0F172A;
+            background: #1E293B;
             color: #FFFFFF;
             padding: 14px 20px;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            font-weight: 700;
+            border-radius: 10px;
             display: flex;
             align-items: center;
-            gap: 10px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+            gap: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+            font-size: 0.92rem;
+            font-weight: 600;
+            transform: translateY(80px);
             opacity: 0;
-            transform: translateY(20px);
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-            pointer-events: none;
-            z-index: 99999;
-            border-left: 4px solid var(--accent-green);
+            z-index: 2000;
         }
 
         .toast.show {
-            opacity: 1;
             transform: translateY(0);
-        }
-
-        /* Quick Adjustment Buttons */
-        .quick-btn {
-            padding: 4px 8px;
-            font-size: 0.75rem;
-            font-weight: 800;
-            border: 1px solid var(--border);
-            background: #FFFFFF;
-            border-radius: 4px;
-            cursor: pointer;
-            color: var(--text-dark);
-            transition: all 0.15s;
-        }
-
-        .quick-btn:hover {
-            background: var(--primary);
-            color: #FFFFFF;
-            border-color: var(--primary);
+            opacity: 1;
         }
 
         @media (max-width: 768px) {
             body { padding: 16px 10px 80px; }
-            .header-card { flex-direction: column; align-items: flex-start; }
-            .header-actions { width: 100%; }
-            .btn { flex: 1; justify-content: center; }
+            .header-card, .routing-card { flex-direction: column; align-items: flex-start; }
+            .header-actions, .routing-toggle-group { width: 100%; }
+            .btn, .routing-btn { flex: 1; justify-content: center; }
             .table-card { overflow-x: auto; }
-            table { min-width: 700px; }
+            table { min-width: 820px; }
         }
     </style>
 </head>
@@ -521,15 +656,18 @@
         <!-- Top Header -->
         <div class="header-card">
             <div class="header-brand">
-                <img src="assets/logo.svg" alt="Monte Cristo Logo" class="brand-logo">
+                <img src="assets/logo_site.png" alt="Monte Cristo Logo" class="brand-logo" onerror="this.src='assets/logo.svg'">
                 <div class="brand-text">
-                    <h1>Simulador de Autonomia de Preços</h1>
-                    <p>Monte Cristo Bebidas • Demonstração de Atualização em Tempo Real</p>
+                    <h1>Painel Administrativo & Gestão de Preços</h1>
+                    <p>Monte Cristo Bebidas • Tabela Oficial Vigente até 30/09/2026</p>
                 </div>
             </div>
             <div class="header-actions">
+                <button type="button" class="btn btn-success" onclick="openAddProductModal()">
+                    <i data-lucide="plus-circle"></i> + Incluir Produto
+                </button>
                 <button type="button" class="btn btn-secondary" onclick="exportCsv()">
-                    <i data-lucide="download"></i> Baixar Tabela CSV
+                    <i data-lucide="download"></i> Baixar CSV
                 </button>
                 <button type="button" class="btn btn-danger" onclick="resetDefaults()">
                     <i data-lucide="rotate-ccw"></i> Restaurar Padrões
@@ -540,32 +678,25 @@
             </div>
         </div>
 
-        <!-- Info / How it works -->
-        <div class="info-card">
-            <h2>
-                <i data-lucide="zap"></i> Como funciona a sua autonomia no dia a dia:
-            </h2>
-            <p>
-                Nesta demonstração, você pode alterar os preços de qualquer bebida ou desativar produtos temporariamente. 
-                Qualquer número alterado abaixo é salvo instantaneamente e reflete em menos de 1 segundo no catálogo dos clientes, sem necessidade de suporte técnico ou servidor próprio.
-            </p>
-
-            <div class="steps-grid">
-                <div class="step-item">
-                    <span class="step-num">Passo 1</span>
-                    <div class="step-title">Alteração Rápida</div>
-                    <div class="step-desc">Digite o novo valor na célula da Smirnoff ou do Red Label diretamente pelo celular.</div>
-                </div>
-                <div class="step-item">
-                    <span class="step-num">Passo 2</span>
-                    <div class="step-title">Pausa de Estoque</div>
-                    <div class="step-desc">Se uma garrafa esgotou, mude a chave para "Pausado" e o botão de compra sai do ar na hora.</div>
-                </div>
-                <div class="step-item">
-                    <span class="step-num">Passo 3</span>
-                    <div class="step-title">Zero Manutenção</div>
-                    <div class="step-desc">A Onira Labs garante o site no ar 24h/7d, com segurança SSL e velocidade máxima de carregamento.</div>
-                </div>
+        <!-- WhatsApp Routing Card (Discreet Internal Dispatcher) -->
+        <div class="routing-card">
+            <div class="routing-info">
+                <h2>
+                    <i data-lucide="phone-call" style="color:#0284C7;"></i> Canal de Atendimento Ativo (WhatsApp)
+                </h2>
+                <p id="routing-current-desc">
+                    Selecione internamente qual atendente receberá os pedidos e mensagens enviados pelos clientes no site:
+                </p>
+            </div>
+            <div class="routing-toggle-group">
+                <button type="button" class="routing-btn" id="btn-agent-ivan" onclick="selectAgent('ivan')">
+                    <span class="dot"></span>
+                    <span>Ivan (Principal) • (54) 99969-2859</span>
+                </button>
+                <button type="button" class="routing-btn" id="btn-agent-michele" onclick="selectAgent('michele')">
+                    <span class="dot"></span>
+                    <span>Michele • (54) 99155-2544</span>
+                </button>
             </div>
         </div>
 
@@ -573,16 +704,19 @@
         <div class="controls-card">
             <div class="search-box">
                 <i data-lucide="search"></i>
-                <input type="text" id="search-input" placeholder="Buscar por bebida (ex: Smirnoff, Red Label, Gin, Cîroc)...">
+                <input type="text" id="search-input" placeholder="Buscar por rótulo (ex: Campari, Red Bull, Jack Daniel's, Monin)...">
             </div>
 
             <div class="filter-tags">
                 <button type="button" class="filter-tag active" data-cat="all">Todos (<span id="total-count">0</span>)</button>
                 <button type="button" class="filter-tag" data-cat="whisky">Whiskies</button>
                 <button type="button" class="filter-tag" data-cat="vodka">Vodkas</button>
-                <button type="button" class="filter-tag" data-cat="gin-tequila">Gin & Tequila</button>
-                <button type="button" class="filter-tag" data-cat="licores">Licores</button>
+                <button type="button" class="filter-tag" data-cat="gin-tequila">Gin, Tequila & Rum</button>
+                <button type="button" class="filter-tag" data-cat="licores">Licores & Aperitivos</button>
+                <button type="button" class="filter-tag" data-cat="cachaca-conhaque">Cachaça & Cerveja</button>
+                <button type="button" class="filter-tag" data-cat="vermouth-bitter">Vermouth</button>
                 <button type="button" class="filter-tag" data-cat="energeticos">Energéticos</button>
+                <button type="button" class="filter-tag" data-cat="xaropes">Xaropes</button>
             </div>
         </div>
 
@@ -593,9 +727,11 @@
                     <tr>
                         <th>Produto & Rótulo</th>
                         <th>Categoria</th>
-                        <th>Preço Tabela Varejo (R$)</th>
+                        <th>Preço Varejo (R$)</th>
                         <th>Ajuste Rápido</th>
-                        <th>Disponibilidade no Site</th>
+                        <th>Caixa Fechada</th>
+                        <th>Disponibilidade</th>
+                        <th style="text-align:center;">Ações</th>
                     </tr>
                 </thead>
                 <tbody id="table-body">
@@ -606,10 +742,71 @@
 
     </div>
 
+    <!-- Modal: Adicionar / Editar Produto -->
+    <div class="modal-overlay" id="product-modal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 id="modal-title">Novo Produto no Catálogo</h3>
+                <button type="button" class="modal-close-btn" onclick="closeProductModal()">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <form id="product-form" onsubmit="handleProductSubmit(event)">
+                <input type="hidden" id="form-product-id">
+
+                <div class="form-group">
+                    <label for="form-name">Nome do Rótulo / Bebida *</label>
+                    <input type="text" id="form-name" required placeholder="Ex: Licor Baileys Irish Cream 750ml">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="form-category">Categoria *</label>
+                        <select id="form-category" required>
+                            <option value="whisky">Whisky</option>
+                            <option value="vodka">Vodka</option>
+                            <option value="gin-tequila">Gin, Tequila & Rum</option>
+                            <option value="licores">Licores & Aperitivos</option>
+                            <option value="cachaca-conhaque">Cachaça, Conhaque & Cerveja</option>
+                            <option value="vermouth-bitter">Vermouth & Bitter</option>
+                            <option value="energeticos">Energéticos</option>
+                            <option value="xaropes">Xaropes</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="form-volume">Volume / Embalagem *</label>
+                        <input type="text" id="form-volume" required placeholder="Ex: 750ML, 1L, 2L, Lata">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="form-price">Preço Varejo Unitário (R$) *</label>
+                        <input type="number" id="form-price" step="0.01" min="0.5" required placeholder="0.00">
+                    </div>
+                    <div class="form-group">
+                        <label for="form-box-qty">Unidades na Caixa</label>
+                        <input type="number" id="form-box-qty" min="1" value="6" placeholder="Ex: 6 ou 12">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="form-box-total">Total na Caixa já com Desconto (R$)</label>
+                    <input type="number" id="form-box-total" step="0.01" min="0" placeholder="Deixe em branco para desconto automático de 8%">
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeProductModal()">Cancelar</button>
+                    <button type="submit" class="btn btn-primary" id="btn-modal-save">Salvar Produto</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- Toast Notification -->
     <div id="toast" class="toast">
         <i data-lucide="check-circle" style="color:#10B981; width:20px; height:20px;"></i>
-        <span id="toast-text">Preço atualizado com sucesso!</span>
+        <span id="toast-text">Operação realizada com sucesso!</span>
     </div>
 
     <script src="app.js"></script>
@@ -619,10 +816,41 @@
         let overrides = JSON.parse(localStorage.getItem('monte_cristo_price_overrides')) || {};
 
         document.addEventListener('DOMContentLoaded', () => {
+            if (window.rebuildProductsData) window.rebuildProductsData();
+            updateAgentToggleUI();
             renderTable();
             setupTableControls();
             if (window.lucide) lucide.createIcons();
         });
+
+        // WhatsApp Routing Logic
+        function updateAgentToggleUI() {
+            const activeAgent = window.getActiveWhatsAppData ? window.getActiveWhatsAppData().id : 'ivan';
+            const btnIvan = document.getElementById('btn-agent-ivan');
+            const btnMichele = document.getElementById('btn-agent-michele');
+            const desc = document.getElementById('routing-current-desc');
+
+            if (btnIvan && btnMichele) {
+                btnIvan.classList.toggle('active', activeAgent === 'ivan');
+                btnMichele.classList.toggle('active', activeAgent === 'michele');
+            }
+
+            if (desc) {
+                const target = activeAgent === 'michele' ? 'Michele ((54) 99155-2544)' : 'Ivan ((54) 99969-2859)';
+                desc.innerHTML = `🟢 <strong>Atendimento ativo no momento:</strong> ${target}. Todos os pedidos e contatos enviados no site serão direcionados a este número.`;
+            }
+        }
+
+        window.selectAgent = function(agentKey) {
+            if (window.setActiveWhatsApp) {
+                window.setActiveWhatsApp(agentKey);
+            } else {
+                localStorage.setItem('monte_cristo_active_whatsapp', agentKey);
+            }
+            updateAgentToggleUI();
+            const name = agentKey === 'michele' ? 'Michele' : 'Ivan';
+            showToast(`✓ Atendimento do site alterado para ${name}!`);
+        };
 
         function setupTableControls() {
             const searchEl = document.getElementById('search-input');
@@ -647,9 +875,9 @@
             const map = {
                 'whisky': 'Whisky',
                 'vodka': 'Vodka',
-                'gin-tequila': 'Gin & Tequila',
+                'gin-tequila': 'Gin, Tequila & Rum',
                 'licores': 'Licor & Aperitivo',
-                'cachaca-conhaque': 'Cachaça & Conhaque',
+                'cachaca-conhaque': 'Cachaça & Cerveja',
                 'vermouth-bitter': 'Vermouth & Bitter',
                 'energeticos': 'Energético',
                 'xaropes': 'Xarope & Outros'
@@ -664,13 +892,14 @@
             if (cat === 'licores') return '🍷';
             if (cat === 'energeticos') return '⚡';
             if (cat === 'cachaca-conhaque') return '🥂';
-            return '🍾';
+            if (cat === 'vermouth-bitter') return '🍾';
+            return '🥤';
         }
 
         function renderTable() {
             const tbody = document.getElementById('table-body');
             const data = window.PRODUCTS_DATA || [];
-            if (!tbody || !data.length) return;
+            if (!tbody) return;
 
             const filtered = data.filter(item => {
                 const matchesCat = currentFilter === 'all' || item.category === currentFilter;
@@ -684,7 +913,10 @@
                 const currentOverride = overrides[item.id] || {};
                 const effectivePrice = typeof currentOverride.price === 'number' ? currentOverride.price : item.price;
                 const isAvailable = currentOverride.active !== false;
-                const isChanged = typeof currentOverride.price === 'number' && currentOverride.price !== item.originalPrice;
+                const isChanged = typeof currentOverride.price === 'number' && currentOverride.price !== (item.originalPrice || item.price);
+                const isCustom = item.id.startsWith('custom-');
+                const boxQty = item.boxQty || 12;
+                const boxTotal = item.boxTotal ? `R$ ${item.boxTotal.toFixed(2)}` : `~ R$ ${(effectivePrice * boxQty * 0.92).toFixed(2)}`;
 
                 return `
                     <tr class="${!isAvailable ? 'paused-row' : ''}" id="row-${item.id}">
@@ -692,7 +924,10 @@
                             <div class="product-meta">
                                 <div class="product-icon">${getCategoryIcon(item.category)}</div>
                                 <div>
-                                    <div class="product-title">${item.name}</div>
+                                    <div class="product-title">
+                                        ${item.name}
+                                        ${isCustom ? '<span class="badge-custom">Novo</span>' : ''}
+                                    </div>
                                     <div class="product-sub">Embalagem: ${item.volume} • ID: ${item.id}</div>
                                 </div>
                             </div>
@@ -705,7 +940,7 @@
                                 <span class="currency-prefix">R$</span>
                                 <input type="number" 
                                        step="0.10" 
-                                       min="1" 
+                                       min="0.5" 
                                        class="input-price ${isChanged ? 'changed' : ''}" 
                                        value="${effectivePrice.toFixed(2)}" 
                                        id="price-${item.id}"
@@ -715,21 +950,35 @@
                         </td>
                         <td>
                             <div style="display:flex; gap:4px; flex-wrap:wrap;">
-                                <button type="button" class="quick-btn" onclick="quickAdjust('${item.id}', -2)">- R$ 2</button>
-                                <button type="button" class="quick-btn" onclick="quickAdjust('${item.id}', 2)">+ R$ 2</button>
-                                <button type="button" class="quick-btn" onclick="quickAdjust('${item.id}', -5)">- R$ 5</button>
-                                <button type="button" class="quick-btn" onclick="quickAdjust('${item.id}', 5)">+ R$ 5</button>
+                                <button type="button" class="quick-btn" onclick="quickAdjust('${item.id}', -2)">-2</button>
+                                <button type="button" class="quick-btn" onclick="quickAdjust('${item.id}', 2)">+2</button>
+                                <button type="button" class="quick-btn" onclick="quickAdjust('${item.id}', -5)">-5</button>
+                                <button type="button" class="quick-btn" onclick="quickAdjust('${item.id}', 5)">+5</button>
                             </div>
                         </td>
                         <td>
-                            <div style="display:flex; align-items:center; gap:10px;">
+                            <div style="font-size:0.85rem; font-weight:700; color:var(--primary);">${boxQty} un.</div>
+                            <div style="font-size:0.75rem; color:var(--text-muted);">${boxTotal}</div>
+                        </td>
+                        <td>
+                            <div style="display:flex; align-items:center; gap:8px;">
                                 <label class="toggle-switch">
                                     <input type="checkbox" ${isAvailable ? 'checked' : ''} onchange="toggleProductStatus('${item.id}', this.checked)">
                                     <span class="slider"></span>
                                 </label>
                                 <span class="status-badge ${isAvailable ? 'status-active' : 'status-paused'}" id="status-badge-${item.id}">
-                                    ${isAvailable ? '✓ Disponível' : '✕ Pausado'}
+                                    ${isAvailable ? '✓ Ativo' : '✕ Pausa'}
                                 </span>
+                            </div>
+                        </td>
+                        <td style="text-align:center;">
+                            <div style="display:inline-flex; gap:6px;">
+                                <button type="button" class="action-icon-btn" title="Editar Informações" onclick="openEditProductModal('${item.id}')">
+                                    <i data-lucide="edit-3" style="width:16px; height:16px;"></i>
+                                </button>
+                                <button type="button" class="action-icon-btn delete" title="Remover Produto" onclick="deleteProduct('${item.id}')">
+                                    <i data-lucide="trash-2" style="width:16px; height:16px;"></i>
+                                </button>
                             </div>
                         </td>
                     </tr>
@@ -759,7 +1008,7 @@
             const input = document.getElementById(`price-${id}`);
             if (!input) return;
             let current = parseFloat(input.value) || 0;
-            let updated = Math.max(1, current + delta);
+            let updated = Math.max(0.5, current + delta);
             input.value = updated.toFixed(2);
             updateProductPrice(id, updated);
         };
@@ -774,36 +1023,148 @@
             if (row) row.classList.toggle('paused-row', !isChecked);
             if (badge) {
                 badge.className = `status-badge ${isChecked ? 'status-active' : 'status-paused'}`;
-                badge.textContent = isChecked ? '✓ Disponível' : '✕ Pausado';
+                badge.textContent = isChecked ? '✓ Ativo' : '✕ Pausa';
             }
 
             const item = (window.PRODUCTS_DATA || []).find(p => p.id === id);
             const name = item ? item.name : id;
-            showToast(`${isChecked ? '✓' : '✕'} "${name}" marcado como ${isChecked ? 'Disponível' : 'Pausado no Estoque'}.`);
+            showToast(`${isChecked ? '✓' : '✕'} "${name}" marcado como ${isChecked ? 'Disponível' : 'Pausado'}.`);
+        };
+
+        // Modal Add / Edit Product
+        window.openAddProductModal = function() {
+            document.getElementById('modal-title').textContent = 'Incluir Novo Produto no Catálogo';
+            document.getElementById('product-form').reset();
+            document.getElementById('form-product-id').value = '';
+            document.getElementById('form-box-qty').value = '6';
+            document.getElementById('product-modal').classList.add('active');
+            if (window.lucide) lucide.createIcons();
+        };
+
+        window.openEditProductModal = function(id) {
+            const item = (window.PRODUCTS_DATA || []).find(p => p.id === id);
+            if (!item) return;
+
+            document.getElementById('modal-title').textContent = 'Editar Produto';
+            document.getElementById('form-product-id').value = item.id;
+            document.getElementById('form-name').value = item.name;
+            document.getElementById('form-category').value = item.category;
+            document.getElementById('form-volume').value = item.volume;
+            
+            const currentOverride = overrides[item.id] || {};
+            const effPrice = typeof currentOverride.price === 'number' ? currentOverride.price : item.price;
+            document.getElementById('form-price').value = effPrice.toFixed(2);
+            document.getElementById('form-box-qty').value = item.boxQty || 6;
+            document.getElementById('form-box-total').value = item.boxTotal ? item.boxTotal.toFixed(2) : '';
+
+            document.getElementById('product-modal').classList.add('active');
+            if (window.lucide) lucide.createIcons();
+        };
+
+        window.closeProductModal = function() {
+            document.getElementById('product-modal').classList.remove('active');
+        };
+
+        window.handleProductSubmit = function(e) {
+            e.preventDefault();
+            const id = document.getElementById('form-product-id').value;
+            const name = document.getElementById('form-name').value.trim();
+            const category = document.getElementById('form-category').value;
+            const volume = document.getElementById('form-volume').value.trim().toUpperCase();
+            const price = parseFloat(document.getElementById('form-price').value);
+            const boxQty = parseInt(document.getElementById('form-box-qty').value) || 6;
+            const boxTotalVal = document.getElementById('form-box-total').value;
+            const boxTotal = boxTotalVal ? parseFloat(boxTotalVal) : Math.round(price * boxQty * 0.92 * 100) / 100;
+
+            if (id) {
+                // Edit existing
+                if (id.startsWith('custom-')) {
+                    const custom = JSON.parse(localStorage.getItem('monte_cristo_custom_products')) || [];
+                    const idx = custom.findIndex(p => p.id === id);
+                    if (idx !== -1) {
+                        custom[idx] = { ...custom[idx], name, category, volume, price, boxQty, boxTotal };
+                        localStorage.setItem('monte_cristo_custom_products', JSON.stringify(custom));
+                    }
+                } else {
+                    const edits = JSON.parse(localStorage.getItem('monte_cristo_product_edits')) || {};
+                    edits[id] = { name, category, volume, price, boxQty, boxTotal };
+                    localStorage.setItem('monte_cristo_product_edits', JSON.stringify(edits));
+                }
+                showToast(`✓ Produto "${name}" atualizado com sucesso!`);
+            } else {
+                // Create new
+                const newId = `custom-${Date.now()}`;
+                const newProd = {
+                    id: newId,
+                    name,
+                    category,
+                    volume,
+                    price,
+                    boxQty,
+                    boxTotal,
+                    active: true
+                };
+                const custom = JSON.parse(localStorage.getItem('monte_cristo_custom_products')) || [];
+                custom.push(newProd);
+                localStorage.setItem('monte_cristo_custom_products', JSON.stringify(custom));
+                showToast(`✓ Novo produto "${name}" adicionado ao catálogo!`);
+            }
+
+            if (window.rebuildProductsData) window.rebuildProductsData();
+            closeProductModal();
+            renderTable();
+        };
+
+        window.deleteProduct = function(id) {
+            const item = (window.PRODUCTS_DATA || []).find(p => p.id === id);
+            const name = item ? item.name : id;
+            if (!confirm(`Tem certeza que deseja remover o produto "${name}" do catálogo?`)) return;
+
+            if (id.startsWith('custom-')) {
+                let custom = JSON.parse(localStorage.getItem('monte_cristo_custom_products')) || [];
+                custom = custom.filter(p => p.id !== id);
+                localStorage.setItem('monte_cristo_custom_products', JSON.stringify(custom));
+            } else {
+                const deleted = JSON.parse(localStorage.getItem('monte_cristo_deleted_ids')) || [];
+                if (!deleted.includes(id)) {
+                    deleted.push(id);
+                    localStorage.setItem('monte_cristo_deleted_ids', JSON.stringify(deleted));
+                }
+            }
+
+            if (window.rebuildProductsData) window.rebuildProductsData();
+            renderTable();
+            showToast(`✓ Produto "${name}" removido do catálogo.`);
         };
 
         window.resetDefaults = function() {
-            if (!confirm('Deseja restaurar todos os preços para os valores padrão de tabela?')) return;
+            if (!confirm('Deseja restaurar todos os preços e catálogo para os valores padrão de fábrica?')) return;
             localStorage.removeItem('monte_cristo_price_overrides');
+            localStorage.removeItem('monte_cristo_custom_products');
+            localStorage.removeItem('monte_cristo_product_edits');
+            localStorage.removeItem('monte_cristo_deleted_ids');
             overrides = {};
+            if (window.rebuildProductsData) window.rebuildProductsData();
             renderTable();
-            showToast('✓ Todos os preços foram restaurados para os valores padrão!');
+            showToast('✓ Catálogo restaurado para a tabela oficial 2026!');
         };
 
         window.exportCsv = function() {
             const data = window.PRODUCTS_DATA || [];
-            let csv = "ID;PRODUTO;CATEGORIA;VOLUME;PRECO_VAREJO;DISPONIVEL\n";
+            let csv = "ID;PRODUTO;CATEGORIA;VOLUME;PRECO_VAREJO;QTD_CAIXA;TOTAL_CAIXA;DISPONIVEL\n";
             data.forEach(item => {
                 const ov = overrides[item.id] || {};
                 const p = typeof ov.price === 'number' ? ov.price : item.price;
                 const st = ov.active === false ? 'NAO' : 'SIM';
-                csv += `${item.id};${item.name};${item.category};${item.volume};${p.toFixed(2).replace('.', ',')};${st}\n`;
+                const bQty = item.boxQty || 12;
+                const bTot = item.boxTotal ? item.boxTotal.toFixed(2).replace('.', ',') : (p * bQty * 0.92).toFixed(2).replace('.', ',');
+                csv += `${item.id};"${item.name}";${item.category};${item.volume};${p.toFixed(2).replace('.', ',')};${bQty};${bTot};${st}\n`;
             });
 
-            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const blob = new Blob(["\uFEFF" + csv], { type: 'text/csv;charset=utf-8;' });
             const link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
-            link.download = `tabela-precos-monte-cristo-${new Date().toISOString().slice(0,10)}.csv`;
+            link.download = `catalogo-monte-cristo-${new Date().toISOString().slice(0,10)}.csv`;
             link.click();
         };
 
@@ -816,7 +1177,7 @@
             clearTimeout(window._toastTimer);
             window._toastTimer = setTimeout(() => {
                 toast.classList.remove('show');
-            }, 3000);
+            }, 3200);
         }
     </script>
 </body>

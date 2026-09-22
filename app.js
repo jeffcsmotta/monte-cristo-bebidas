@@ -1,157 +1,728 @@
 /* ==========================================================================
-   MONTE CRISTO BEBIDAS — APLICAÇÃO JS & CATÁLOGO COMPLETO DE PRODUTOS
+   MONTE CRISTO BEBIDAS — APLICAÇÃO JS & CATÁLOGO COMPLETO OFICIAL 2026
+   Tabela Vigente até 30/09/2026 • Canal de Distribuição Serra Gaúcha
    ========================================================================== */
 
-const PRODUCTS_DATA = [
-    // === WHISKY IMPORTADO E NACIONAL ===
+const BASE_PRODUCTS_DATA = [
     {
         id: "wh-1",
-        name: "Aperitivo Malt Whisky Canela Firebird",
-        volume: "950ml",
+        name: "Aperitivo Malt.whisky Canela Firebird 950ML",
+        volume: "950ML",
         price: 25.00,
-        category: "whisky",
+        category: "licores",
+        boxQty: 6,
+        boxTotal: 146.25,
+        active: true
     },
     {
-        id: "wh-2",
-        name: "Whisky Ballantines Finest",
+        id: "lc-1",
+        name: "Aperol",
         volume: "1L",
-        price: 99.00,
-        category: "whisky",
+        price: 64.50,
+        category: "licores",
+        boxQty: 6,
+        boxTotal: 377.33,
+        active: true
     },
     {
-        id: "wh-3",
-        name: "Whisky Black Stone",
+        id: "lc-3",
+        name: "Brasilberg Original 920ML",
+        volume: "920ML",
+        price: 66.90,
+        category: "licores",
+        boxQty: 6,
+        boxTotal: 391.37,
+        active: true
+    },
+    {
+        id: "lc-4",
+        name: "Campari 998ML",
+        volume: "998ML",
+        price: 69.90,
+        category: "licores",
+        boxQty: 12,
+        boxTotal: 817.83,
+        active: true
+    },
+    {
+        id: "cc-1",
+        name: "Cachaça 51 Pirassununga 965ML",
+        volume: "965ML",
+        price: 18.90,
+        category: "cachaca-conhaque",
+        boxQty: 12,
+        boxTotal: 221.13,
+        active: true
+    },
+    {
+        id: "cc-2",
+        name: "Cachaça Velho Barreiro 910ML",
+        volume: "910ML",
+        price: 18.50,
+        category: "cachaca-conhaque",
+        boxQty: 12,
+        boxTotal: 216.45,
+        active: true
+    },
+    {
+        id: "cc-7",
+        name: "Cachaça Ypioca Brasilizar Ouro 965ML",
+        volume: "965ML",
+        price: 35.00,
+        category: "cachaca-conhaque",
+        boxQty: 12,
+        boxTotal: 409.50,
+        active: true
+    },
+    {
+        id: "cc-8",
+        name: "Cachaça Ypioca Brasilizar Prata 965ML",
+        volume: "965ML",
+        price: 35.00,
+        category: "cachaca-conhaque",
+        boxQty: 12,
+        boxTotal: 409.50,
+        active: true
+    },
+    {
+        id: "cc-5",
+        name: "Cachaça Casa Bucco",
         volume: "1L",
+        price: 68.00,
+        category: "cachaca-conhaque",
+        boxQty: 6,
+        boxTotal: 397.80,
+        active: true
+    },
+    {
+        id: "cc-10",
+        name: "Cerveja Norteña 960ML",
+        volume: "960ML",
+        price: 28.00,
+        category: "cachaca-conhaque",
+        boxQty: 12,
+        boxTotal: 327.60,
+        active: true
+    },
+    {
+        id: "cv-2",
+        name: "Cerveja Norteña Latão",
+        volume: "1L",
+        price: 8.90,
+        category: "cachaca-conhaque",
+        boxQty: 6,
+        boxTotal: 52.07,
+        active: true
+    },
+    {
+        id: "cc-12",
+        name: "Cerveja Patricia 960ML",
+        volume: "960ML",
         price: 23.50,
-        category: "whisky",
+        category: "cachaca-conhaque",
+        boxQty: 12,
+        boxTotal: 274.95,
+        active: true
     },
     {
-        id: "wh-4",
-        name: "Whisky Chivas Regal 12 Anos",
+        id: "cv-4",
+        name: "Cerveja Patricia Latão",
         volume: "1L",
-        price: 170.43,
-        category: "whisky",
+        price: 7.50,
+        category: "cachaca-conhaque",
+        boxQty: 6,
+        boxTotal: 43.88,
+        active: true
     },
     {
-        id: "wh-5",
-        name: "Whisky Jack Daniel's Apple",
+        id: "cc-14",
+        name: "Cerveja Pilsen 960ML",
+        volume: "960ML",
+        price: 23.50,
+        category: "cachaca-conhaque",
+        boxQty: 12,
+        boxTotal: 274.95,
+        active: true
+    },
+    {
+        id: "cc-15",
+        name: "Cerveja Zillertal 970ML",
+        volume: "970ML",
+        price: 30.00,
+        category: "cachaca-conhaque",
+        boxQty: 12,
+        boxTotal: 351.00,
+        active: true
+    },
+    {
+        id: "cv-7",
+        name: "Cerveja Zillertal Latão",
         volume: "1L",
-        price: 155.00,
-        category: "whisky",
+        price: 8.90,
+        category: "cachaca-conhaque",
+        boxQty: 6,
+        boxTotal: 52.07,
+        active: true
     },
     {
-        id: "wh-6",
-        name: "Whisky Jack Daniel's Blackberri",
-        volume: "1L",
-        price: 165.00,
-        category: "whisky",
-    },
-    {
-        id: "wh-7",
-        name: "Whisky Jack Daniel's Fire",
-        volume: "1L",
-        price: 155.00,
-        category: "whisky",
-    },
-    {
-        id: "wh-8",
-        name: "Whisky Jack Daniel's Old Nº 7",
-        volume: "1L",
-        price: 155.00,
-        category: "whisky",
-    },
-    {
-        id: "wh-9",
-        name: "Whisky Jack Daniel's Honey",
-        volume: "1L",
-        price: 155.00,
-        category: "whisky",
-    },
-    {
-        id: "wh-10",
-        name: "Whisky Jim Beam Bourbon",
-        volume: "1L",
-        price: 119.90,
-        category: "whisky",
-    },
-    {
-        id: "wh-11",
-        name: "Whisky Johnnie Walker Black Label",
-        volume: "1L",
-        price: 179.90,
-        category: "whisky",
-    },
-    {
-        id: "wh-12",
-        name: "Whisky Johnnie Walker Red Label",
-        volume: "1L",
-        price: 99.90,
-        category: "whisky",
-    },
-    {
-        id: "wh-13",
-        name: "Whisky Natu Nobilis",
+        id: "cc-6",
+        name: "Conhaque Domecq 1L",
         volume: "1L",
         price: 55.00,
-        category: "whisky",
+        category: "cachaca-conhaque",
+        boxQty: 12,
+        boxTotal: 643.50,
+        active: true
     },
     {
-        id: "wh-14",
-        name: "Whisky Passport",
+        id: "cc-7-alt",
+        name: "Conhaque Dreher",
         volume: "1L",
-        price: 58.00,
-        category: "whisky",
+        price: 30.00,
+        category: "cachaca-conhaque",
+        boxQty: 12,
+        boxTotal: 351.00,
+        active: true
     },
     {
-        id: "wh-15",
-        name: "Whisky White Horse",
-        volume: "1L",
+        id: "cc-8-alt",
+        name: "Conhaque Presidente 900ML",
+        volume: "900ML",
+        price: 25.00,
+        category: "cachaca-conhaque",
+        boxQty: 6,
+        boxTotal: 146.25,
+        active: true
+    },
+    {
+        id: "en-20",
+        name: "Energetico Baly 2L",
+        volume: "2L",
+        price: 11.90,
+        category: "energeticos",
+        boxQty: 6,
+        boxTotal: 69.62,
+        active: true
+    },
+    {
+        id: "en-21",
+        name: "Energetico Baly Frutas Tropicais 2L",
+        volume: "2L",
+        price: 11.90,
+        category: "energeticos",
+        boxQty: 6,
+        boxTotal: 69.62,
+        active: true
+    },
+    {
+        id: "en-22",
+        name: "Energetico Baly Maça Verde 2L",
+        volume: "2L",
+        price: 11.90,
+        category: "energeticos",
+        boxQty: 6,
+        boxTotal: 69.62,
+        active: true
+    },
+    {
+        id: "en-23",
+        name: "Energetico Baly Melancia 2L",
+        volume: "2L",
+        price: 11.90,
+        category: "energeticos",
+        boxQty: 6,
+        boxTotal: 69.62,
+        active: true
+    },
+    {
+        id: "en-24",
+        name: "Energetico Baly Morango e Pêssego 2L",
+        volume: "2L",
+        price: 11.90,
+        category: "energeticos",
+        boxQty: 6,
+        boxTotal: 69.62,
+        active: true
+    },
+    {
+        id: "en-25",
+        name: "Energetico Red Bull 250ML",
+        volume: "250ML",
+        price: 9.50,
+        category: "energeticos",
+        boxQty: 24,
+        boxTotal: 222.30,
+        active: true
+    },
+    {
+        id: "en-26",
+        name: "Energetico Red Bull Tropical Edition 250ML",
+        volume: "250ML",
+        price: 10.50,
+        category: "energeticos",
+        boxQty: 24,
+        boxTotal: 245.70,
+        active: true
+    },
+    {
+        id: "en-27",
+        name: "Energetico Red Bull Melancia Edition 250ML",
+        volume: "250ML",
+        price: 10.50,
+        category: "energeticos",
+        boxQty: 24,
+        boxTotal: 245.70,
+        active: true
+    },
+    {
+        id: "en-28",
+        name: "Energetico Red Bull Morango e Pêssego Edition 250ML",
+        volume: "250ML",
+        price: 10.50,
+        category: "energeticos",
+        boxQty: 24,
+        boxTotal: 245.70,
+        active: true
+    },
+    {
+        id: "en-29",
+        name: "Energetico Red Bull Sugar Free 250ML",
+        volume: "250ML",
+        price: 10.50,
+        category: "energeticos",
+        boxQty: 24,
+        boxTotal: 245.70,
+        active: true
+    },
+    {
+        id: "en-30",
+        name: "Energetico Red Bull Zero 250ML",
+        volume: "250ML",
+        price: 10.50,
+        category: "energeticos",
+        boxQty: 24,
+        boxTotal: 245.70,
+        active: true
+    },
+    {
+        id: "gn-1",
+        name: "Gin Gordons 750ML",
+        volume: "750ML",
         price: 89.90,
-        category: "whisky",
+        category: "gin-tequila",
+        boxQty: 12,
+        boxTotal: 1051.83,
+        active: true
     },
-
-    // === VODKA IMPORTADA E NACIONAL ===
+    {
+        id: "gn-3",
+        name: "Gin Rocks 1L",
+        volume: "1L",
+        price: 35.00,
+        category: "gin-tequila",
+        boxQty: 6,
+        boxTotal: 204.75,
+        active: true
+    },
+    {
+        id: "gt-33",
+        name: "Gin Rocks Strawberry 1L",
+        volume: "1L",
+        price: 35.00,
+        category: "gin-tequila",
+        boxQty: 6,
+        boxTotal: 204.75,
+        active: true
+    },
+    {
+        id: "gt-34",
+        name: "Gin Seagers 1L",
+        volume: "1L",
+        price: 59.00,
+        category: "gin-tequila",
+        boxQty: 12,
+        boxTotal: 690.30,
+        active: true
+    },
+    {
+        id: "gt-35",
+        name: "Gin Tanqueray 750ML",
+        volume: "750ML",
+        price: 133.90,
+        category: "gin-tequila",
+        boxQty: 12,
+        boxTotal: 1566.63,
+        active: true
+    },
+    {
+        id: "lc-36",
+        name: "Licor 43 700ML",
+        volume: "700ML",
+        price: 169.90,
+        category: "licores",
+        boxQty: 6,
+        boxTotal: 993.92,
+        active: true
+    },
+    {
+        id: "lc-37",
+        name: "Licor 43 Chocolate 700ML",
+        volume: "700ML",
+        price: 180.00,
+        category: "licores",
+        boxQty: 6,
+        boxTotal: 1053.00,
+        active: true
+    },
+    {
+        id: "lc-38",
+        name: "Licor Amarula 750ML",
+        volume: "750ML",
+        price: 99.90,
+        category: "licores",
+        boxQty: 12,
+        boxTotal: 1168.83,
+        active: true
+    },
+    {
+        id: "lc-5",
+        name: "Licor Amaretto Dell Orso",
+        volume: "1L",
+        price: 99.80,
+        category: "licores",
+        boxQty: 6,
+        boxTotal: 583.83,
+        active: true
+    },
+    {
+        id: "lc-40",
+        name: "Licor Don Luiz Creme de Doce de Leite 750ML",
+        volume: "750ML",
+        price: 89.90,
+        category: "licores",
+        boxQty: 6,
+        boxTotal: 525.92,
+        active: true
+    },
+    {
+        id: "lc-41",
+        name: "Licor Cointreau 700ML",
+        volume: "700ML",
+        price: 169.90,
+        category: "licores",
+        boxQty: 6,
+        boxTotal: 993.92,
+        active: true
+    },
+    {
+        id: "lc-42",
+        name: "Licor Jägermeister 700ML",
+        volume: "700ML",
+        price: 159.90,
+        category: "licores",
+        boxQty: 6,
+        boxTotal: 935.42,
+        active: true
+    },
+    {
+        id: "lc-43",
+        name: "Licor Stock Curaçau Fino",
+        volume: "1L",
+        price: 59.90,
+        category: "licores",
+        boxQty: 6,
+        boxTotal: 350.42,
+        active: true
+    },
+    {
+        id: "lc-44",
+        name: "Licor Stock Pêssego",
+        volume: "1L",
+        price: 59.90,
+        category: "licores",
+        boxQty: 6,
+        boxTotal: 350.42,
+        active: true
+    },
+    {
+        id: "lc-45",
+        name: "Licor Stock Curaçau Blue",
+        volume: "1L",
+        price: 59.90,
+        category: "licores",
+        boxQty: 6,
+        boxTotal: 350.42,
+        active: true
+    },
+    {
+        id: "lc-46",
+        name: "Licor Stock Morango",
+        volume: "1L",
+        price: 59.90,
+        category: "licores",
+        boxQty: 6,
+        boxTotal: 350.42,
+        active: true
+    },
+    {
+        id: "lc-47",
+        name: "Licor Stock Chocolate",
+        volume: "1L",
+        price: 59.90,
+        category: "licores",
+        boxQty: 6,
+        boxTotal: 350.42,
+        active: true
+    },
+    {
+        id: "lc-48",
+        name: "Licor Stock Marula",
+        volume: "1L",
+        price: 79.90,
+        category: "licores",
+        boxQty: 6,
+        boxTotal: 467.42,
+        active: true
+    },
+    {
+        id: "lc-49",
+        name: "Licor Stock Creme de Cacau",
+        volume: "1L",
+        price: 59.90,
+        category: "licores",
+        boxQty: 6,
+        boxTotal: 350.42,
+        active: true
+    },
+    {
+        id: "lc-50",
+        name: "Licor Stock Creme de Cassis",
+        volume: "1L",
+        price: 59.90,
+        category: "licores",
+        boxQty: 6,
+        boxTotal: 350.42,
+        active: true
+    },
+    {
+        id: "lc-51",
+        name: "Licor Stock Menta",
+        volume: "1L",
+        price: 79.90,
+        category: "licores",
+        boxQty: 6,
+        boxTotal: 467.42,
+        active: true
+    },
+    {
+        id: "lc-52",
+        name: "Licor Stock Café",
+        volume: "1L",
+        price: 59.90,
+        category: "licores",
+        boxQty: 6,
+        boxTotal: 350.42,
+        active: true
+    },
+    {
+        id: "rm-1",
+        name: "Rum Bacardi Big Apple 700ML",
+        volume: "700ML",
+        price: 55.00,
+        category: "gin-tequila",
+        boxQty: 12,
+        boxTotal: 643.50,
+        active: true
+    },
+    {
+        id: "rm-2",
+        name: "Rum Bacardi Carta Blanca Superior 980ML",
+        volume: "980ML",
+        price: 52.50,
+        category: "gin-tequila",
+        boxQty: 12,
+        boxTotal: 614.25,
+        active: true
+    },
+    {
+        id: "rm-3",
+        name: "Rum Bacardi Gold 980ML",
+        volume: "980ML",
+        price: 55.00,
+        category: "gin-tequila",
+        boxQty: 12,
+        boxTotal: 643.50,
+        active: true
+    },
+    {
+        id: "gt-56",
+        name: "Rum Bacardi Limón 980ML",
+        volume: "980ML",
+        price: 55.00,
+        category: "gin-tequila",
+        boxQty: 12,
+        boxTotal: 643.50,
+        active: true
+    },
+    {
+        id: "gt-57",
+        name: "Rum Malibu 750ML",
+        volume: "750ML",
+        price: 69.90,
+        category: "gin-tequila",
+        boxQty: 12,
+        boxTotal: 817.83,
+        active: true
+    },
+    {
+        id: "rm-6",
+        name: "Rum Montilla Carta Cristal 1L",
+        volume: "1L",
+        price: 36.90,
+        category: "gin-tequila",
+        boxQty: 12,
+        boxTotal: 431.73,
+        active: true
+    },
+    {
+        id: "rm-7",
+        name: "Rum Montilla Carta Ouro 1L",
+        volume: "1L",
+        price: 36.90,
+        category: "gin-tequila",
+        boxQty: 12,
+        boxTotal: 431.73,
+        active: true
+    },
+    {
+        id: "rm-8",
+        name: "Steinhaeger Doble W 900ML",
+        volume: "900ML",
+        price: 55.00,
+        category: "gin-tequila",
+        boxQty: 12,
+        boxTotal: 643.50,
+        active: true
+    },
+    {
+        id: "gn-6",
+        name: "Tequila Jose Cuervo Reposado 750ML",
+        volume: "750ML",
+        price: 139.90,
+        category: "gin-tequila",
+        boxQty: 12,
+        boxTotal: 1636.83,
+        active: true
+    },
+    {
+        id: "gn-7",
+        name: "Tequila Jose Cuervo Silver 750ML",
+        volume: "750ML",
+        price: 139.90,
+        category: "gin-tequila",
+        boxQty: 12,
+        boxTotal: 1636.83,
+        active: true
+    },
+    {
+        id: "vb-3",
+        name: "Vermouth Martini Bianco 750ML",
+        volume: "750ML",
+        price: 50.00,
+        category: "vermouth-bitter",
+        boxQty: 12,
+        boxTotal: 585.00,
+        active: true
+    },
+    {
+        id: "vb-4",
+        name: "Vermouth Martini Extra Dry 750ML",
+        volume: "750ML",
+        price: 50.00,
+        category: "vermouth-bitter",
+        boxQty: 12,
+        boxTotal: 585.00,
+        active: true
+    },
+    {
+        id: "vb-5",
+        name: "Vermouth Martini Rosato 750ML",
+        volume: "750ML",
+        price: 50.00,
+        category: "vermouth-bitter",
+        boxQty: 12,
+        boxTotal: 585.00,
+        active: true
+    },
+    {
+        id: "vb-6",
+        name: "Vermouth Martini Rosso 750ML",
+        volume: "750ML",
+        price: 50.00,
+        category: "vermouth-bitter",
+        boxQty: 12,
+        boxTotal: 585.00,
+        active: true
+    },
     {
         id: "vk-1",
-        name: "Vodka Absolut",
+        name: "Vodka Absolut 1L",
         volume: "1L",
         price: 99.90,
         category: "vodka",
+        boxQty: 12,
+        boxTotal: 1168.83,
+        active: true
     },
     {
-        id: "vk-2",
-        name: "Vodka Cîroc Original",
-        volume: "750ml",
+        id: "vk-68",
+        name: "Vodka Ciroc 750ML",
+        volume: "750ML",
         price: 275.00,
         category: "vodka",
+        boxQty: 12,
+        boxTotal: 3217.50,
+        active: true
     },
     {
         id: "vk-3",
-        name: "Vodka Grey Goose",
-        volume: "750ml",
+        name: "Vodka Grey Goose 750ML",
+        volume: "750ML",
         price: 175.00,
         category: "vodka",
+        boxQty: 6,
+        boxTotal: 1023.75,
+        active: true
     },
     {
         id: "vk-4",
-        name: "Vodka Natasha",
-        volume: "900ml",
+        name: "Vodka Natasha 900ML",
+        volume: "900ML",
         price: 25.00,
         category: "vodka",
+        boxQty: 12,
+        boxTotal: 292.50,
+        active: true
     },
     {
         id: "vk-5",
-        name: "Vodka Orloff",
+        name: "Vodka Orloff 1L",
         volume: "1L",
         price: 35.70,
         category: "vodka",
+        boxQty: 12,
+        boxTotal: 417.69,
+        active: true
     },
     {
         id: "vk-6",
-        name: "Vodka Rajska Traditional",
+        name: "Vodka Rajska",
         volume: "1L",
-        price: 22.00,
+        price: 25.00,
         category: "vodka",
+        boxQty: 12,
+        boxTotal: 292.50,
+        active: true
     },
     {
         id: "vk-7",
@@ -159,6 +730,9 @@ const PRODUCTS_DATA = [
         volume: "1L",
         price: 28.00,
         category: "vodka",
+        boxQty: 12,
+        boxTotal: 327.60,
+        active: true
     },
     {
         id: "vk-8",
@@ -166,435 +740,377 @@ const PRODUCTS_DATA = [
         volume: "1L",
         price: 28.00,
         category: "vodka",
+        boxQty: 12,
+        boxTotal: 327.60,
+        active: true
     },
     {
-        id: "vk-9",
-        name: "Vodka Smirnoff 21",
-        volume: "998ml",
+        id: "vk-75",
+        name: "Vodka Smirnoff 998ML",
+        volume: "998ML",
         price: 40.00,
         category: "vodka",
-    },
-
-    // === GIN, TEQUILA E RUM ===
-    {
-        id: "gn-1",
-        name: "Gin Gordon's London Dry",
-        volume: "750ml",
-        price: 89.90,
-        category: "gin-tequila",
+        boxQty: 12,
+        boxTotal: 468.00,
+        active: true
     },
     {
-        id: "gn-2",
-        name: "Gin Rock's Traditional",
+        id: "wh-76",
+        name: "Whisky Ballantine's Finnest 1L",
         volume: "1L",
-        price: 35.00,
-        category: "gin-tequila",
+        price: 99.00,
+        category: "whisky",
+        boxQty: 12,
+        boxTotal: 1158.30,
+        active: true
     },
     {
-        id: "gn-3",
-        name: "Gin Rock's Strawberry",
+        id: "wh-3",
+        name: "Whisky Black Stone",
         volume: "1L",
-        price: 35.00,
-        category: "gin-tequila",
+        price: 25.00,
+        category: "whisky",
+        boxQty: 12,
+        boxTotal: 292.50,
+        active: true
     },
     {
-        id: "gn-4",
-        name: "Gin Seagers Original",
+        id: "wh-4",
+        name: "Whisky Chivas Regal 12 Anos 1L",
         volume: "1L",
-        price: 59.00,
-        category: "gin-tequila",
+        price: 170.43,
+        category: "whisky",
+        boxQty: 12,
+        boxTotal: 1994.09,
+        active: true
     },
     {
-        id: "gn-5",
-        name: "Gin Tanqueray London Dry",
-        volume: "750ml",
-        price: 133.90,
-        category: "gin-tequila",
-    },
-    {
-        id: "gn-6",
-        name: "Tequila Jose Cuervo Reposado",
-        volume: "750ml",
-        price: 139.90,
-        category: "gin-tequila",
-    },
-    {
-        id: "gn-7",
-        name: "Tequila Jose Cuervo Silver",
-        volume: "750ml",
-        price: 139.90,
-        category: "gin-tequila",
-    },
-    {
-        id: "rm-1",
-        name: "Rum Bacardi Big Apple",
-        volume: "700ml",
-        price: 55.00,
-        category: "gin-tequila",
-    },
-    {
-        id: "rm-2",
-        name: "Rum Bacardi Carta Blanca Superior",
-        volume: "980ml",
-        price: 52.50,
-        category: "gin-tequila",
-    },
-    {
-        id: "rm-3",
-        name: "Rum Bacardi Gold",
-        volume: "980ml",
-        price: 55.00,
-        category: "gin-tequila",
-    },
-    {
-        id: "rm-4",
-        name: "Rum Bacardi Limon",
-        volume: "980ml",
-        price: 55.00,
-        category: "gin-tequila",
-    },
-    {
-        id: "rm-5",
-        name: "Rum Malibu Coconut",
-        volume: "750ml",
-        price: 69.90,
-        category: "gin-tequila",
-    },
-    {
-        id: "rm-6",
-        name: "Rum Montilla Carta Cristal",
+        id: "wh-9",
+        name: "Whisky Jack Daniel's Apple 1L",
         volume: "1L",
-        price: 36.90,
-        category: "gin-tequila",
+        price: 155.00,
+        category: "whisky",
+        boxQty: 12,
+        boxTotal: 1813.50,
+        active: true
     },
     {
-        id: "rm-7",
-        name: "Rum Montilla Carta Ouro",
+        id: "wh-80",
+        name: "Whisky Jack Daniel's Blackberri 1L",
         volume: "1L",
-        price: 36.90,
-        category: "gin-tequila",
+        price: 165.00,
+        category: "whisky",
+        boxQty: 12,
+        boxTotal: 1930.50,
+        active: true
     },
     {
-        id: "rm-8",
-        name: "Steinhaeger Doble W",
-        volume: "900ml",
-        price: 52.90,
-        category: "gin-tequila",
-    },
-
-    // === LICORES E APERITIVOS ===
-    {
-        id: "lc-1",
-        name: "Aperitivo Aperol Spritz",
-        volume: "750ml",
-        price: 64.50,
-        category: "licores",
+        id: "wh-81",
+        name: "Whisky Jack Daniel's Fire 1L",
+        volume: "1L",
+        price: 155.00,
+        category: "whisky",
+        boxQty: 12,
+        boxTotal: 1813.50,
+        active: true
     },
     {
-        id: "lc-2",
-        name: "Licor 43 Cuarenta y Tres",
-        volume: "700ml",
-        price: 169.90,
-        category: "licores",
+        id: "wh-82",
+        name: "Whisky Jack Daniel's Old Nº 7 1L",
+        volume: "1L",
+        price: 155.00,
+        category: "whisky",
+        boxQty: 12,
+        boxTotal: 1813.50,
+        active: true
     },
     {
-        id: "lc-3",
-        name: "Licor 43 Chocolate Edition",
-        volume: "700ml",
-        price: 180.00,
-        category: "licores",
+        id: "wh-83",
+        name: "Whisky Jack Daniel's Honey 1L",
+        volume: "1L",
+        price: 155.00,
+        category: "whisky",
+        boxQty: 12,
+        boxTotal: 1813.50,
+        active: true
     },
     {
-        id: "lc-4",
-        name: "Licor Amarula Cream",
-        volume: "750ml",
+        id: "wh-84",
+        name: "Whisky Jim Bean",
+        volume: "1L",
+        price: 119.90,
+        category: "whisky",
+        boxQty: 12,
+        boxTotal: 1402.83,
+        active: true
+    },
+    {
+        id: "wh-11",
+        name: "Whisky Johnnie Walker Black Label 1L",
+        volume: "1L",
+        price: 179.90,
+        category: "whisky",
+        boxQty: 12,
+        boxTotal: 2104.83,
+        active: true
+    },
+    {
+        id: "wh-12",
+        name: "Whisky Johnnie Walker Red Label 1L",
+        volume: "1L",
         price: 99.90,
-        category: "licores",
+        category: "whisky",
+        boxQty: 12,
+        boxTotal: 1168.83,
+        active: true
     },
     {
-        id: "lc-5",
-        name: "Licor Amaretto Dell Orso",
-        volume: "700ml",
-        price: 99.80,
-        category: "licores",
-    },
-    {
-        id: "lc-6",
-        name: "Licor Don Luiz Doce de Leite",
-        volume: "750ml",
-        price: 89.90,
-        category: "licores",
-    },
-    {
-        id: "lc-7",
-        name: "Licor Cointreau Liqueur",
-        volume: "700ml",
-        price: 169.90,
-        category: "licores",
-    },
-    {
-        id: "lc-8",
-        name: "Licor Jagermeister Herb",
-        volume: "700ml",
-        price: 159.90,
-        category: "licores",
-    },
-    {
-        id: "lc-9",
-        name: "Licor Stock (Todos os Sabores)",
-        volume: "700ml",
-        price: 59.90,
-        category: "licores",
-    },
-
-    // === CACHAÇA E CONHAQUE ===
-    {
-        id: "cc-1",
-        name: "Cachaça 51 Pirassununga",
-        volume: "965ml",
-        price: 18.90,
-        category: "cachaca-conhaque",
-    },
-    {
-        id: "cc-2",
-        name: "Cachaça Velho Barreiro",
-        volume: "910ml",
-        price: 17.49,
-        category: "cachaca-conhaque",
-    },
-    {
-        id: "cc-3",
-        name: "Cachaça Ypióca Brasilizar Ouro",
-        volume: "965ml",
-        price: 32.50,
-        category: "cachaca-conhaque",
-    },
-    {
-        id: "cc-4",
-        name: "Cachaça Ypióca Brasilizar Prata",
-        volume: "965ml",
-        price: 32.50,
-        category: "cachaca-conhaque",
-    },
-    {
-        id: "cc-5",
-        name: "Cachaça Casa Bucco Artesanal",
-        volume: "750ml",
-        price: 65.00,
-        category: "cachaca-conhaque",
-    },
-    {
-        id: "cc-6",
-        name: "Conhaque Domecq",
+        id: "wh-14",
+        name: "Whisky Passport 1L",
         volume: "1L",
-        price: 55.00,
-        category: "cachaca-conhaque",
+        price: 58.00,
+        category: "whisky",
+        boxQty: 12,
+        boxTotal: 678.60,
+        active: true
     },
     {
-        id: "cc-7",
-        name: "Conhaque Dreher",
-        volume: "900ml",
-        price: 30.00,
-        category: "cachaca-conhaque",
+        id: "wh-15",
+        name: "Whisky White Horse 1L",
+        volume: "1L",
+        price: 89.90,
+        category: "whisky",
+        boxQty: 12,
+        boxTotal: 1051.83,
+        active: true
     },
     {
-        id: "cc-8",
-        name: "Conhaque Presidente",
-        volume: "900ml",
-        price: 20.00,
-        category: "cachaca-conhaque",
-    },
-    {
-        id: "cv-1",
-        name: "Cerveja Norteña Garrafa",
-        volume: "960ml",
-        price: 28.00,
-        category: "cachaca-conhaque",
-    },
-    {
-        id: "cv-2",
-        name: "Cerveja Norteña Latão",
-        volume: "473ml",
-        price: 8.90,
-        category: "cachaca-conhaque",
-    },
-    {
-        id: "cv-3",
-        name: "Cerveja Patricia Garrafa",
-        volume: "960ml",
-        price: 23.50,
-        category: "cachaca-conhaque",
-    },
-    {
-        id: "cv-4",
-        name: "Cerveja Patricia Latão",
-        volume: "473ml",
-        price: 6.90,
-        category: "cachaca-conhaque",
-    },
-    {
-        id: "cv-5",
-        name: "Cerveja Pilsen Garrafa",
-        volume: "960ml",
-        price: 23.50,
-        category: "cachaca-conhaque",
-    },
-    {
-        id: "cv-6",
-        name: "Cerveja Zillertal Garrafa",
-        volume: "970ml",
-        price: 30.00,
-        category: "cachaca-conhaque",
-    },
-    {
-        id: "cv-7",
-        name: "Cerveja Zillertal Latão",
-        volume: "473ml",
-        price: 8.90,
-        category: "cachaca-conhaque",
-    },
-    {
-        id: "es-1",
-        name: "Espumante Salton Brut",
-        volume: "750ml",
-        price: 35.90,
-        category: "cachaca-conhaque",
-    },
-    {
-        id: "es-2",
-        name: "Espumante Salton Series (Todas Variedades)",
-        volume: "750ml",
-        price: 23.50,
-        category: "cachaca-conhaque",
-    },
-
-    // === VERMOUTH E BITTER ===
-    {
-        id: "vb-1",
-        name: "Brasilberg Original Aperitivo",
-        volume: "920ml",
-        price: 66.90,
-        category: "vermouth-bitter",
-    },
-    {
-        id: "vb-2",
-        name: "Bitter Campari Red",
-        volume: "998ml",
-        price: 69.90,
-        category: "vermouth-bitter",
-    },
-    {
-        id: "vb-3",
-        name: "Vermouth Martini Bianco",
-        volume: "750ml",
-        price: 50.00,
-        category: "vermouth-bitter",
-    },
-    {
-        id: "vb-4",
-        name: "Vermouth Martini Extra Dry",
-        volume: "750ml",
-        price: 50.00,
-        category: "vermouth-bitter",
-    },
-    {
-        id: "vb-5",
-        name: "Vermouth Martini Rosato",
-        volume: "750ml",
-        price: 50.00,
-        category: "vermouth-bitter",
-    },
-    {
-        id: "vb-6",
-        name: "Vermouth Martini Rosso",
-        volume: "750ml",
-        price: 50.00,
-        category: "vermouth-bitter",
-    },
-
-    // === ENERGÉTICOS E ICE ===
-    {
-        id: "en-1",
-        name: "Energético Baly Tradicional",
-        volume: "2L",
-        price: 11.90,
-        category: "energeticos",
-    },
-    {
-        id: "en-2",
-        name: "Energético Baly Frutas Tropicais",
-        volume: "2L",
-        price: 11.90,
-        category: "energeticos",
-    },
-    {
-        id: "en-3",
-        name: "Energético Baly Maçã Verde",
-        volume: "2L",
-        price: 11.90,
-        category: "energeticos",
-    },
-    {
-        id: "en-4",
-        name: "Energético Baly Melancia",
-        volume: "2L",
-        price: 11.90,
-        category: "energeticos",
-    },
-    {
-        id: "en-5",
-        name: "Energético Baly Morango e Pêssego",
-        volume: "2L",
-        price: 11.90,
-        category: "energeticos",
-    },
-    {
-        id: "en-6",
-        name: "Energético Red Bull Energy Drink",
-        volume: "250ml",
-        price: 9.49,
-        category: "energeticos",
-    },
-    {
-        id: "en-7",
-        name: "Energético Red Bull Tropical Edition",
-        volume: "250ml",
-        price: 11.49,
-        category: "energeticos",
-    },
-
-    // === XAROPES E OUTROS ===
-    {
-        id: "xr-1",
-        name: "Xarope Formula (Todos os Sabores)",
-        volume: "750ml",
+        id: "xr-89",
+        name: "Xarope Fórmula Morango",
+        volume: "1L",
         price: 45.00,
         category: "xaropes",
+        boxQty: 6,
+        boxTotal: 263.25,
+        active: true
     },
     {
-        id: "xr-2",
-        name: "Xarope Monin (Todos os Sabores)",
-        volume: "700ml",
-        price: 11.90,
+        id: "xr-90",
+        name: "Xarope Fórmula Chocolate",
+        volume: "1L",
+        price: 45.00,
         category: "xaropes",
-    }
+        boxQty: 6,
+        boxTotal: 263.25,
+        active: true
+    },
+    {
+        id: "xr-91",
+        name: "Xarope Fórmula Cranberry",
+        volume: "1L",
+        price: 45.00,
+        category: "xaropes",
+        boxQty: 6,
+        boxTotal: 263.25,
+        active: true
+    },
+    {
+        id: "xr-92",
+        name: "Xarope Fórmula Grenadine",
+        volume: "1L",
+        price: 45.00,
+        category: "xaropes",
+        boxQty: 6,
+        boxTotal: 263.25,
+        active: true
+    },
+    {
+        id: "xr-93",
+        name: "Xarope Fórmula Gengibre",
+        volume: "1L",
+        price: 45.00,
+        category: "xaropes",
+        boxQty: 6,
+        boxTotal: 263.25,
+        active: true
+    },
+    {
+        id: "xr-94",
+        name: "Xarope Fórmula Maça Verde",
+        volume: "1L",
+        price: 45.00,
+        category: "xaropes",
+        boxQty: 6,
+        boxTotal: 263.25,
+        active: true
+    },
+    {
+        id: "xr-95",
+        name: "Xarope Fórmula Pêssego",
+        volume: "1L",
+        price: 45.00,
+        category: "xaropes",
+        boxQty: 6,
+        boxTotal: 263.25,
+        active: true
+    },
+    {
+        id: "xr-96",
+        name: "Xarope Fórmula Tangerina",
+        volume: "1L",
+        price: 45.00,
+        category: "xaropes",
+        boxQty: 6,
+        boxTotal: 263.25,
+        active: true
+    },
+    {
+        id: "xr-97",
+        name: "Xarope Fórmula Limão Siciliano",
+        volume: "1L",
+        price: 45.00,
+        category: "xaropes",
+        boxQty: 6,
+        boxTotal: 263.25,
+        active: true
+    },
+    {
+        id: "xr-98",
+        name: "Xarope Monin Maça Verde",
+        volume: "1L",
+        price: 65.00,
+        category: "xaropes",
+        boxQty: 6,
+        boxTotal: 380.25,
+        active: true
+    },
+    {
+        id: "xr-99",
+        name: "Xarope Monin Morango",
+        volume: "1L",
+        price: 65.00,
+        category: "xaropes",
+        boxQty: 6,
+        boxTotal: 380.25,
+        active: true
+    },
+    {
+        id: "xr-100",
+        name: "Xarope Monin Limão Siciliano",
+        volume: "1L",
+        price: 65.00,
+        category: "xaropes",
+        boxQty: 6,
+        boxTotal: 380.25,
+        active: true
+    },
+    {
+        id: "xr-101",
+        name: "Xarope Monin Gengibre",
+        volume: "1L",
+        price: 65.00,
+        category: "xaropes",
+        boxQty: 6,
+        boxTotal: 380.25,
+        active: true
+    },
+    {
+        id: "xr-102",
+        name: "Xarope Monin Cranberry",
+        volume: "1L",
+        price: 65.00,
+        category: "xaropes",
+        boxQty: 6,
+        boxTotal: 380.25,
+        active: true
+    },
+    {
+        id: "xr-103",
+        name: "Xarope Monin Flor de Sabugueiro",
+        volume: "1L",
+        price: 65.00,
+        category: "xaropes",
+        boxQty: 6,
+        boxTotal: 380.25,
+        active: true
+    },
+    {
+        id: "xr-104",
+        name: "Xarope Monin Cereja",
+        volume: "1L",
+        price: 65.00,
+        category: "xaropes",
+        boxQty: 6,
+        boxTotal: 380.25,
+        active: true
+    },
+    {
+        id: "xr-105",
+        name: "Xarope Monin Romã",
+        volume: "1L",
+        price: 65.00,
+        category: "xaropes",
+        boxQty: 6,
+        boxTotal: 380.25,
+        active: true
+    },
+    {
+        id: "xr-106",
+        name: "Xarope Monin Pêssego",
+        volume: "1L",
+        price: 65.00,
+        category: "xaropes",
+        boxQty: 6,
+        boxTotal: 380.25,
+        active: true
+    },
+    {
+        id: "xr-107",
+        name: "Xarope Monin Tangerina",
+        volume: "1L",
+        price: 65.00,
+        category: "xaropes",
+        boxQty: 6,
+        boxTotal: 380.25,
+        active: true
+    },
+    {
+        id: "xr-108",
+        name: "Xarope Monin Framboesa",
+        volume: "1L",
+        price: 65.00,
+        category: "xaropes",
+        boxQty: 6,
+        boxTotal: 380.25,
+        active: true
+    },
 ];
 
-// Wholesale vs Retail calculation helpers
+// PRODUCTS_DATA dinâmico que integra itens base + itens customizados via Admin
+let PRODUCTS_DATA = [...BASE_PRODUCTS_DATA];
+
+// Wholesale vs Retail calculation helpers (Tabela Oficial Monte Cristo 2026)
 function getBoxSize(item) {
+    if (item.boxQty && item.boxQty > 0) return item.boxQty;
     if (item.boxSize) return item.boxSize;
     if (item.category === 'energeticos' || item.category === 'xaropes') return 12;
-    if (item.category === 'cachaca-conhaque' && item.volume && item.volume.includes('Lata')) return 24;
+    if (item.category === 'cachaca-conhaque' && item.volume && item.volume.toLowerCase().includes('lata')) return 24;
     if (item.category === 'licores' || item.id === 'wh-11' || item.id === 'wh-4') return 6;
     return 12;
 }
 
 function getBoxUnitPrice(item) {
-    const discount = item.boxDiscount || 0.08; // 8% OFF na caixa fechada
+    if (item.boxTotal && item.boxTotal > 0 && item.boxQty && item.boxQty > 0) {
+        return Math.round((item.boxTotal / item.boxQty) * 100) / 100;
+    }
+    const discount = item.boxDiscount || 0.08; // 8% OFF na caixa fechada padrão
     return Math.round((item.price * (1 - discount)) * 100) / 100;
 }
 
 function getBoxTotalPrice(item) {
+    if (item.boxTotal && item.boxTotal > 0) {
+        return Math.round(item.boxTotal * 100) / 100;
+    }
     const size = getBoxSize(item);
     const uPrice = getBoxUnitPrice(item);
     return Math.round(size * uPrice * 100) / 100;
@@ -789,11 +1305,80 @@ window.resetSimOverrides = function() {
 // Expose PRODUCTS_DATA globally for external table pages
 window.PRODUCTS_DATA = PRODUCTS_DATA;
 
-// Official Monte Cristo WhatsApp (Ivan default)
-const CLIENT_WHATSAPP = '5554999692859'; 
+
+// ==========================================================================
+// CANAIS DE ATENDIMENTO MONTE CRISTO (CONTROLE INTERNO DISCRETO)
+// ==========================================================================
+const WHATSAPP_CONFIG = {
+    ivan: {
+        id: 'ivan',
+        name: 'Ivan (Atendimento Principal)',
+        label: 'Ivan',
+        number: '5554999692859',
+        display: '(54) 99969-2859'
+    },
+    michele: {
+        id: 'michele',
+        name: 'Michele (Atendimento Comercial)',
+        label: 'Michele',
+        number: '5554991552544',
+        display: '(54) 99155-2544'
+    }
+};
+
+window.WHATSAPP_CONFIG = WHATSAPP_CONFIG;
+
+window.getActiveWhatsAppData = function() {
+    try {
+        const saved = localStorage.getItem('monte_cristo_active_whatsapp');
+        if (saved === 'michele') return WHATSAPP_CONFIG.michele;
+    } catch(e) {}
+    return WHATSAPP_CONFIG.ivan;
+};
+
+window.setActiveWhatsApp = function(targetKey) {
+    if (targetKey === 'michele' || targetKey === 'ivan') {
+        localStorage.setItem('monte_cristo_active_whatsapp', targetKey);
+        window.dispatchEvent(new CustomEvent('whatsapp_agent_changed', { detail: WHATSAPP_CONFIG[targetKey] }));
+    }
+};
+
+// Fallback constant
+const CLIENT_WHATSAPP = '5554999692859';
+
+// Rebuild dynamic PRODUCTS_DATA from base + custom + edits - deleted
+function rebuildProductsData() {
+    try {
+        const deletedIds = new Set(JSON.parse(localStorage.getItem('monte_cristo_deleted_ids')) || []);
+        const productEdits = JSON.parse(localStorage.getItem('monte_cristo_product_edits')) || {};
+        const customProducts = JSON.parse(localStorage.getItem('monte_cristo_custom_products')) || [];
+
+        const list = BASE_PRODUCTS_DATA.filter(p => !deletedIds.has(p.id)).map(p => {
+            const edit = productEdits[p.id];
+            if (edit) {
+                return { ...p, ...edit };
+            }
+            return { ...p };
+        });
+
+        customProducts.forEach(cp => {
+            if (!deletedIds.has(cp.id)) {
+                list.push({ ...cp });
+            }
+        });
+
+        PRODUCTS_DATA = list;
+        window.PRODUCTS_DATA = PRODUCTS_DATA;
+    } catch(e) {
+        console.error('Erro ao reconstruir catálogo de produtos:', e);
+    }
+}
+window.rebuildProductsData = rebuildProductsData;
+ 
 
 // Init App
 document.addEventListener('DOMContentLoaded', () => {
+    rebuildProductsData();
     applyPriceOverrides();
     renderProducts();
     updateSimulationBanner();
@@ -807,10 +1392,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Real-time synchronization across multiple tabs
 window.addEventListener('storage', (e) => {
-    if (e.key === 'monte_cristo_price_overrides') {
+    if (e.key === 'monte_cristo_price_overrides' || 
+        e.key === 'monte_cristo_custom_products' || 
+        e.key === 'monte_cristo_product_edits' || 
+        e.key === 'monte_cristo_deleted_ids') {
+        rebuildProductsData();
         applyPriceOverrides();
         renderProducts();
         updateSimulationBanner();
+    }
+    if (e.key === 'monte_cristo_active_whatsapp') {
+        window.dispatchEvent(new CustomEvent('whatsapp_agent_changed', { detail: window.getActiveWhatsAppData() }));
     }
 });
 
@@ -1372,7 +1964,8 @@ Solicitação de Distribuição · Reserva de Estoque
 _Enviado pelo canal oficial Monte Cristo Bebidas_`;
 
     const encoded = encodeURIComponent(msg);
-    const url = `https://wa.me/${CLIENT_WHATSAPP}?text=${encoded}`;
+    const targetNumber = window.getActiveWhatsAppData ? window.getActiveWhatsAppData().number : CLIENT_WHATSAPP;
+    const url = `https://wa.me/${targetNumber}?text=${encoded}`;
     window.open(url, '_blank');
 };
 

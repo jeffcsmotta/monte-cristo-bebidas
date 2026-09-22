@@ -1,0 +1,1085 @@
+const BASE_PRODUCTS_DATA = [
+    {
+        id: "wh-1",
+        name: "Aperitivo Malt.whisky Canela Firebird 950ML",
+        volume: "950ML",
+        price: 25.00,
+        category: "licores",
+        boxQty: 6,
+        boxTotal: 146.25,
+        active: true
+    },
+    {
+        id: "lc-1",
+        name: "Aperol",
+        volume: "1L",
+        price: 64.50,
+        category: "licores",
+        boxQty: 6,
+        boxTotal: 377.33,
+        active: true
+    },
+    {
+        id: "lc-3",
+        name: "Brasilberg Original 920ML",
+        volume: "920ML",
+        price: 66.90,
+        category: "licores",
+        boxQty: 6,
+        boxTotal: 391.37,
+        active: true
+    },
+    {
+        id: "lc-4",
+        name: "Campari 998ML",
+        volume: "998ML",
+        price: 69.90,
+        category: "licores",
+        boxQty: 12,
+        boxTotal: 817.83,
+        active: true
+    },
+    {
+        id: "cc-1",
+        name: "Cachaça 51 Pirassununga 965ML",
+        volume: "965ML",
+        price: 18.90,
+        category: "cachaca-conhaque",
+        boxQty: 12,
+        boxTotal: 221.13,
+        active: true
+    },
+    {
+        id: "cc-2",
+        name: "Cachaça Velho Barreiro 910ML",
+        volume: "910ML",
+        price: 18.50,
+        category: "cachaca-conhaque",
+        boxQty: 12,
+        boxTotal: 216.45,
+        active: true
+    },
+    {
+        id: "cc-7",
+        name: "Cachaça Ypioca Brasilizar Ouro 965ML",
+        volume: "965ML",
+        price: 35.00,
+        category: "cachaca-conhaque",
+        boxQty: 12,
+        boxTotal: 409.50,
+        active: true
+    },
+    {
+        id: "cc-8",
+        name: "Cachaça Ypioca Brasilizar Prata 965ML",
+        volume: "965ML",
+        price: 35.00,
+        category: "cachaca-conhaque",
+        boxQty: 12,
+        boxTotal: 409.50,
+        active: true
+    },
+    {
+        id: "cc-5",
+        name: "Cachaça Casa Bucco",
+        volume: "1L",
+        price: 68.00,
+        category: "cachaca-conhaque",
+        boxQty: 6,
+        boxTotal: 397.80,
+        active: true
+    },
+    {
+        id: "cc-10",
+        name: "Cerveja Norteña 960ML",
+        volume: "960ML",
+        price: 28.00,
+        category: "cachaca-conhaque",
+        boxQty: 12,
+        boxTotal: 327.60,
+        active: true
+    },
+    {
+        id: "cv-2",
+        name: "Cerveja Norteña Latão",
+        volume: "1L",
+        price: 8.90,
+        category: "cachaca-conhaque",
+        boxQty: 6,
+        boxTotal: 52.07,
+        active: true
+    },
+    {
+        id: "cc-12",
+        name: "Cerveja Patricia 960ML",
+        volume: "960ML",
+        price: 23.50,
+        category: "cachaca-conhaque",
+        boxQty: 12,
+        boxTotal: 274.95,
+        active: true
+    },
+    {
+        id: "cv-4",
+        name: "Cerveja Patricia Latão",
+        volume: "1L",
+        price: 7.50,
+        category: "cachaca-conhaque",
+        boxQty: 6,
+        boxTotal: 43.88,
+        active: true
+    },
+    {
+        id: "cc-14",
+        name: "Cerveja Pilsen 960ML",
+        volume: "960ML",
+        price: 23.50,
+        category: "cachaca-conhaque",
+        boxQty: 12,
+        boxTotal: 274.95,
+        active: true
+    },
+    {
+        id: "cc-15",
+        name: "Cerveja Zillertal 970ML",
+        volume: "970ML",
+        price: 30.00,
+        category: "cachaca-conhaque",
+        boxQty: 12,
+        boxTotal: 351.00,
+        active: true
+    },
+    {
+        id: "cv-7",
+        name: "Cerveja Zillertal Latão",
+        volume: "1L",
+        price: 8.90,
+        category: "cachaca-conhaque",
+        boxQty: 6,
+        boxTotal: 52.07,
+        active: true
+    },
+    {
+        id: "cc-6",
+        name: "Conhaque Domecq 1L",
+        volume: "1L",
+        price: 55.00,
+        category: "cachaca-conhaque",
+        boxQty: 12,
+        boxTotal: 643.50,
+        active: true
+    },
+    {
+        id: "cc-7-alt",
+        name: "Conhaque Dreher",
+        volume: "1L",
+        price: 30.00,
+        category: "cachaca-conhaque",
+        boxQty: 12,
+        boxTotal: 351.00,
+        active: true
+    },
+    {
+        id: "cc-8-alt",
+        name: "Conhaque Presidente 900ML",
+        volume: "900ML",
+        price: 25.00,
+        category: "cachaca-conhaque",
+        boxQty: 6,
+        boxTotal: 146.25,
+        active: true
+    },
+    {
+        id: "en-20",
+        name: "Energetico Baly 2L",
+        volume: "2L",
+        price: 11.90,
+        category: "energeticos",
+        boxQty: 6,
+        boxTotal: 69.62,
+        active: true
+    },
+    {
+        id: "en-21",
+        name: "Energetico Baly Frutas Tropicais 2L",
+        volume: "2L",
+        price: 11.90,
+        category: "energeticos",
+        boxQty: 6,
+        boxTotal: 69.62,
+        active: true
+    },
+    {
+        id: "en-22",
+        name: "Energetico Baly Maça Verde 2L",
+        volume: "2L",
+        price: 11.90,
+        category: "energeticos",
+        boxQty: 6,
+        boxTotal: 69.62,
+        active: true
+    },
+    {
+        id: "en-23",
+        name: "Energetico Baly Melancia 2L",
+        volume: "2L",
+        price: 11.90,
+        category: "energeticos",
+        boxQty: 6,
+        boxTotal: 69.62,
+        active: true
+    },
+    {
+        id: "en-24",
+        name: "Energetico Baly Morango e Pêssego 2L",
+        volume: "2L",
+        price: 11.90,
+        category: "energeticos",
+        boxQty: 6,
+        boxTotal: 69.62,
+        active: true
+    },
+    {
+        id: "en-25",
+        name: "Energetico Red Bull 250ML",
+        volume: "250ML",
+        price: 9.50,
+        category: "energeticos",
+        boxQty: 24,
+        boxTotal: 222.30,
+        active: true
+    },
+    {
+        id: "en-26",
+        name: "Energetico Red Bull Tropical Edition 250ML",
+        volume: "250ML",
+        price: 10.50,
+        category: "energeticos",
+        boxQty: 24,
+        boxTotal: 245.70,
+        active: true
+    },
+    {
+        id: "en-27",
+        name: "Energetico Red Bull Melancia Edition 250ML",
+        volume: "250ML",
+        price: 10.50,
+        category: "energeticos",
+        boxQty: 24,
+        boxTotal: 245.70,
+        active: true
+    },
+    {
+        id: "en-28",
+        name: "Energetico Red Bull Morango e Pêssego Edition 250ML",
+        volume: "250ML",
+        price: 10.50,
+        category: "energeticos",
+        boxQty: 24,
+        boxTotal: 245.70,
+        active: true
+    },
+    {
+        id: "en-29",
+        name: "Energetico Red Bull Sugar Free 250ML",
+        volume: "250ML",
+        price: 10.50,
+        category: "energeticos",
+        boxQty: 24,
+        boxTotal: 245.70,
+        active: true
+    },
+    {
+        id: "en-30",
+        name: "Energetico Red Bull Zero 250ML",
+        volume: "250ML",
+        price: 10.50,
+        category: "energeticos",
+        boxQty: 24,
+        boxTotal: 245.70,
+        active: true
+    },
+    {
+        id: "gn-1",
+        name: "Gin Gordons 750ML",
+        volume: "750ML",
+        price: 89.90,
+        category: "gin-tequila",
+        boxQty: 12,
+        boxTotal: 1051.83,
+        active: true
+    },
+    {
+        id: "gn-3",
+        name: "Gin Rocks 1L",
+        volume: "1L",
+        price: 35.00,
+        category: "gin-tequila",
+        boxQty: 6,
+        boxTotal: 204.75,
+        active: true
+    },
+    {
+        id: "gt-33",
+        name: "Gin Rocks Strawberry 1L",
+        volume: "1L",
+        price: 35.00,
+        category: "gin-tequila",
+        boxQty: 6,
+        boxTotal: 204.75,
+        active: true
+    },
+    {
+        id: "gt-34",
+        name: "Gin Seagers 1L",
+        volume: "1L",
+        price: 59.00,
+        category: "gin-tequila",
+        boxQty: 12,
+        boxTotal: 690.30,
+        active: true
+    },
+    {
+        id: "gt-35",
+        name: "Gin Tanqueray 750ML",
+        volume: "750ML",
+        price: 133.90,
+        category: "gin-tequila",
+        boxQty: 12,
+        boxTotal: 1566.63,
+        active: true
+    },
+    {
+        id: "lc-36",
+        name: "Licor 43 700ML",
+        volume: "700ML",
+        price: 169.90,
+        category: "licores",
+        boxQty: 6,
+        boxTotal: 993.92,
+        active: true
+    },
+    {
+        id: "lc-37",
+        name: "Licor 43 Chocolate 700ML",
+        volume: "700ML",
+        price: 180.00,
+        category: "licores",
+        boxQty: 6,
+        boxTotal: 1053.00,
+        active: true
+    },
+    {
+        id: "lc-38",
+        name: "Licor Amarula 750ML",
+        volume: "750ML",
+        price: 99.90,
+        category: "licores",
+        boxQty: 12,
+        boxTotal: 1168.83,
+        active: true
+    },
+    {
+        id: "lc-5",
+        name: "Licor Amaretto Dell Orso",
+        volume: "1L",
+        price: 99.80,
+        category: "licores",
+        boxQty: 6,
+        boxTotal: 583.83,
+        active: true
+    },
+    {
+        id: "lc-40",
+        name: "Licor Don Luiz Creme de Doce de Leite 750ML",
+        volume: "750ML",
+        price: 89.90,
+        category: "licores",
+        boxQty: 6,
+        boxTotal: 525.92,
+        active: true
+    },
+    {
+        id: "lc-41",
+        name: "Licor Cointreau 700ML",
+        volume: "700ML",
+        price: 169.90,
+        category: "licores",
+        boxQty: 6,
+        boxTotal: 993.92,
+        active: true
+    },
+    {
+        id: "lc-42",
+        name: "Licor Jägermeister 700ML",
+        volume: "700ML",
+        price: 159.90,
+        category: "licores",
+        boxQty: 6,
+        boxTotal: 935.42,
+        active: true
+    },
+    {
+        id: "lc-43",
+        name: "Licor Stock Curaçau Fino",
+        volume: "1L",
+        price: 59.90,
+        category: "licores",
+        boxQty: 6,
+        boxTotal: 350.42,
+        active: true
+    },
+    {
+        id: "lc-44",
+        name: "Licor Stock Pêssego",
+        volume: "1L",
+        price: 59.90,
+        category: "licores",
+        boxQty: 6,
+        boxTotal: 350.42,
+        active: true
+    },
+    {
+        id: "lc-45",
+        name: "Licor Stock Curaçau Blue",
+        volume: "1L",
+        price: 59.90,
+        category: "licores",
+        boxQty: 6,
+        boxTotal: 350.42,
+        active: true
+    },
+    {
+        id: "lc-46",
+        name: "Licor Stock Morango",
+        volume: "1L",
+        price: 59.90,
+        category: "licores",
+        boxQty: 6,
+        boxTotal: 350.42,
+        active: true
+    },
+    {
+        id: "lc-47",
+        name: "Licor Stock Chocolate",
+        volume: "1L",
+        price: 59.90,
+        category: "licores",
+        boxQty: 6,
+        boxTotal: 350.42,
+        active: true
+    },
+    {
+        id: "lc-48",
+        name: "Licor Stock Marula",
+        volume: "1L",
+        price: 79.90,
+        category: "licores",
+        boxQty: 6,
+        boxTotal: 467.42,
+        active: true
+    },
+    {
+        id: "lc-49",
+        name: "Licor Stock Creme de Cacau",
+        volume: "1L",
+        price: 59.90,
+        category: "licores",
+        boxQty: 6,
+        boxTotal: 350.42,
+        active: true
+    },
+    {
+        id: "lc-50",
+        name: "Licor Stock Creme de Cassis",
+        volume: "1L",
+        price: 59.90,
+        category: "licores",
+        boxQty: 6,
+        boxTotal: 350.42,
+        active: true
+    },
+    {
+        id: "lc-51",
+        name: "Licor Stock Menta",
+        volume: "1L",
+        price: 79.90,
+        category: "licores",
+        boxQty: 6,
+        boxTotal: 467.42,
+        active: true
+    },
+    {
+        id: "lc-52",
+        name: "Licor Stock Café",
+        volume: "1L",
+        price: 59.90,
+        category: "licores",
+        boxQty: 6,
+        boxTotal: 350.42,
+        active: true
+    },
+    {
+        id: "rm-1",
+        name: "Rum Bacardi Big Apple 700ML",
+        volume: "700ML",
+        price: 55.00,
+        category: "gin-tequila",
+        boxQty: 12,
+        boxTotal: 643.50,
+        active: true
+    },
+    {
+        id: "rm-2",
+        name: "Rum Bacardi Carta Blanca Superior 980ML",
+        volume: "980ML",
+        price: 52.50,
+        category: "gin-tequila",
+        boxQty: 12,
+        boxTotal: 614.25,
+        active: true
+    },
+    {
+        id: "rm-3",
+        name: "Rum Bacardi Gold 980ML",
+        volume: "980ML",
+        price: 55.00,
+        category: "gin-tequila",
+        boxQty: 12,
+        boxTotal: 643.50,
+        active: true
+    },
+    {
+        id: "gt-56",
+        name: "Rum Bacardi Limón 980ML",
+        volume: "980ML",
+        price: 55.00,
+        category: "gin-tequila",
+        boxQty: 12,
+        boxTotal: 643.50,
+        active: true
+    },
+    {
+        id: "gt-57",
+        name: "Rum Malibu 750ML",
+        volume: "750ML",
+        price: 69.90,
+        category: "gin-tequila",
+        boxQty: 12,
+        boxTotal: 817.83,
+        active: true
+    },
+    {
+        id: "rm-6",
+        name: "Rum Montilla Carta Cristal 1L",
+        volume: "1L",
+        price: 36.90,
+        category: "gin-tequila",
+        boxQty: 12,
+        boxTotal: 431.73,
+        active: true
+    },
+    {
+        id: "rm-7",
+        name: "Rum Montilla Carta Ouro 1L",
+        volume: "1L",
+        price: 36.90,
+        category: "gin-tequila",
+        boxQty: 12,
+        boxTotal: 431.73,
+        active: true
+    },
+    {
+        id: "rm-8",
+        name: "Steinhaeger Doble W 900ML",
+        volume: "900ML",
+        price: 55.00,
+        category: "gin-tequila",
+        boxQty: 12,
+        boxTotal: 643.50,
+        active: true
+    },
+    {
+        id: "gn-6",
+        name: "Tequila Jose Cuervo Reposado 750ML",
+        volume: "750ML",
+        price: 139.90,
+        category: "gin-tequila",
+        boxQty: 12,
+        boxTotal: 1636.83,
+        active: true
+    },
+    {
+        id: "gn-7",
+        name: "Tequila Jose Cuervo Silver 750ML",
+        volume: "750ML",
+        price: 139.90,
+        category: "gin-tequila",
+        boxQty: 12,
+        boxTotal: 1636.83,
+        active: true
+    },
+    {
+        id: "vb-3",
+        name: "Vermouth Martini Bianco 750ML",
+        volume: "750ML",
+        price: 50.00,
+        category: "vermouth-bitter",
+        boxQty: 12,
+        boxTotal: 585.00,
+        active: true
+    },
+    {
+        id: "vb-4",
+        name: "Vermouth Martini Extra Dry 750ML",
+        volume: "750ML",
+        price: 50.00,
+        category: "vermouth-bitter",
+        boxQty: 12,
+        boxTotal: 585.00,
+        active: true
+    },
+    {
+        id: "vb-5",
+        name: "Vermouth Martini Rosato 750ML",
+        volume: "750ML",
+        price: 50.00,
+        category: "vermouth-bitter",
+        boxQty: 12,
+        boxTotal: 585.00,
+        active: true
+    },
+    {
+        id: "vb-6",
+        name: "Vermouth Martini Rosso 750ML",
+        volume: "750ML",
+        price: 50.00,
+        category: "vermouth-bitter",
+        boxQty: 12,
+        boxTotal: 585.00,
+        active: true
+    },
+    {
+        id: "vk-1",
+        name: "Vodka Absolut 1L",
+        volume: "1L",
+        price: 99.90,
+        category: "vodka",
+        boxQty: 12,
+        boxTotal: 1168.83,
+        active: true
+    },
+    {
+        id: "vk-68",
+        name: "Vodka Ciroc 750ML",
+        volume: "750ML",
+        price: 275.00,
+        category: "vodka",
+        boxQty: 12,
+        boxTotal: 3217.50,
+        active: true
+    },
+    {
+        id: "vk-3",
+        name: "Vodka Grey Goose 750ML",
+        volume: "750ML",
+        price: 175.00,
+        category: "vodka",
+        boxQty: 6,
+        boxTotal: 1023.75,
+        active: true
+    },
+    {
+        id: "vk-4",
+        name: "Vodka Natasha 900ML",
+        volume: "900ML",
+        price: 25.00,
+        category: "vodka",
+        boxQty: 12,
+        boxTotal: 292.50,
+        active: true
+    },
+    {
+        id: "vk-5",
+        name: "Vodka Orloff 1L",
+        volume: "1L",
+        price: 35.70,
+        category: "vodka",
+        boxQty: 12,
+        boxTotal: 417.69,
+        active: true
+    },
+    {
+        id: "vk-6",
+        name: "Vodka Rajska",
+        volume: "1L",
+        price: 25.00,
+        category: "vodka",
+        boxQty: 12,
+        boxTotal: 292.50,
+        active: true
+    },
+    {
+        id: "vk-7",
+        name: "Vodka Rajska Apple",
+        volume: "1L",
+        price: 28.00,
+        category: "vodka",
+        boxQty: 12,
+        boxTotal: 327.60,
+        active: true
+    },
+    {
+        id: "vk-8",
+        name: "Vodka Rajska Red Fruits",
+        volume: "1L",
+        price: 28.00,
+        category: "vodka",
+        boxQty: 12,
+        boxTotal: 327.60,
+        active: true
+    },
+    {
+        id: "vk-75",
+        name: "Vodka Smirnoff 998ML",
+        volume: "998ML",
+        price: 40.00,
+        category: "vodka",
+        boxQty: 12,
+        boxTotal: 468.00,
+        active: true
+    },
+    {
+        id: "wh-76",
+        name: "Whisky Ballantine's Finnest 1L",
+        volume: "1L",
+        price: 99.00,
+        category: "whisky",
+        boxQty: 12,
+        boxTotal: 1158.30,
+        active: true
+    },
+    {
+        id: "wh-3",
+        name: "Whisky Black Stone",
+        volume: "1L",
+        price: 25.00,
+        category: "whisky",
+        boxQty: 12,
+        boxTotal: 292.50,
+        active: true
+    },
+    {
+        id: "wh-4",
+        name: "Whisky Chivas Regal 12 Anos 1L",
+        volume: "1L",
+        price: 170.43,
+        category: "whisky",
+        boxQty: 12,
+        boxTotal: 1994.09,
+        active: true
+    },
+    {
+        id: "wh-9",
+        name: "Whisky Jack Daniel's Apple 1L",
+        volume: "1L",
+        price: 155.00,
+        category: "whisky",
+        boxQty: 12,
+        boxTotal: 1813.50,
+        active: true
+    },
+    {
+        id: "wh-80",
+        name: "Whisky Jack Daniel's Blackberri 1L",
+        volume: "1L",
+        price: 165.00,
+        category: "whisky",
+        boxQty: 12,
+        boxTotal: 1930.50,
+        active: true
+    },
+    {
+        id: "wh-81",
+        name: "Whisky Jack Daniel's Fire 1L",
+        volume: "1L",
+        price: 155.00,
+        category: "whisky",
+        boxQty: 12,
+        boxTotal: 1813.50,
+        active: true
+    },
+    {
+        id: "wh-82",
+        name: "Whisky Jack Daniel's Old Nº 7 1L",
+        volume: "1L",
+        price: 155.00,
+        category: "whisky",
+        boxQty: 12,
+        boxTotal: 1813.50,
+        active: true
+    },
+    {
+        id: "wh-83",
+        name: "Whisky Jack Daniel's Honey 1L",
+        volume: "1L",
+        price: 155.00,
+        category: "whisky",
+        boxQty: 12,
+        boxTotal: 1813.50,
+        active: true
+    },
+    {
+        id: "wh-84",
+        name: "Whisky Jim Bean",
+        volume: "1L",
+        price: 119.90,
+        category: "whisky",
+        boxQty: 12,
+        boxTotal: 1402.83,
+        active: true
+    },
+    {
+        id: "wh-11",
+        name: "Whisky Johnnie Walker Black Label 1L",
+        volume: "1L",
+        price: 179.90,
+        category: "whisky",
+        boxQty: 12,
+        boxTotal: 2104.83,
+        active: true
+    },
+    {
+        id: "wh-12",
+        name: "Whisky Johnnie Walker Red Label 1L",
+        volume: "1L",
+        price: 99.90,
+        category: "whisky",
+        boxQty: 12,
+        boxTotal: 1168.83,
+        active: true
+    },
+    {
+        id: "wh-14",
+        name: "Whisky Passport 1L",
+        volume: "1L",
+        price: 58.00,
+        category: "whisky",
+        boxQty: 12,
+        boxTotal: 678.60,
+        active: true
+    },
+    {
+        id: "wh-15",
+        name: "Whisky White Horse 1L",
+        volume: "1L",
+        price: 89.90,
+        category: "whisky",
+        boxQty: 12,
+        boxTotal: 1051.83,
+        active: true
+    },
+    {
+        id: "xr-89",
+        name: "Xarope Fórmula Morango",
+        volume: "1L",
+        price: 45.00,
+        category: "xaropes",
+        boxQty: 6,
+        boxTotal: 263.25,
+        active: true
+    },
+    {
+        id: "xr-90",
+        name: "Xarope Fórmula Chocolate",
+        volume: "1L",
+        price: 45.00,
+        category: "xaropes",
+        boxQty: 6,
+        boxTotal: 263.25,
+        active: true
+    },
+    {
+        id: "xr-91",
+        name: "Xarope Fórmula Cranberry",
+        volume: "1L",
+        price: 45.00,
+        category: "xaropes",
+        boxQty: 6,
+        boxTotal: 263.25,
+        active: true
+    },
+    {
+        id: "xr-92",
+        name: "Xarope Fórmula Grenadine",
+        volume: "1L",
+        price: 45.00,
+        category: "xaropes",
+        boxQty: 6,
+        boxTotal: 263.25,
+        active: true
+    },
+    {
+        id: "xr-93",
+        name: "Xarope Fórmula Gengibre",
+        volume: "1L",
+        price: 45.00,
+        category: "xaropes",
+        boxQty: 6,
+        boxTotal: 263.25,
+        active: true
+    },
+    {
+        id: "xr-94",
+        name: "Xarope Fórmula Maça Verde",
+        volume: "1L",
+        price: 45.00,
+        category: "xaropes",
+        boxQty: 6,
+        boxTotal: 263.25,
+        active: true
+    },
+    {
+        id: "xr-95",
+        name: "Xarope Fórmula Pêssego",
+        volume: "1L",
+        price: 45.00,
+        category: "xaropes",
+        boxQty: 6,
+        boxTotal: 263.25,
+        active: true
+    },
+    {
+        id: "xr-96",
+        name: "Xarope Fórmula Tangerina",
+        volume: "1L",
+        price: 45.00,
+        category: "xaropes",
+        boxQty: 6,
+        boxTotal: 263.25,
+        active: true
+    },
+    {
+        id: "xr-97",
+        name: "Xarope Fórmula Limão Siciliano",
+        volume: "1L",
+        price: 45.00,
+        category: "xaropes",
+        boxQty: 6,
+        boxTotal: 263.25,
+        active: true
+    },
+    {
+        id: "xr-98",
+        name: "Xarope Monin Maça Verde",
+        volume: "1L",
+        price: 65.00,
+        category: "xaropes",
+        boxQty: 6,
+        boxTotal: 380.25,
+        active: true
+    },
+    {
+        id: "xr-99",
+        name: "Xarope Monin Morango",
+        volume: "1L",
+        price: 65.00,
+        category: "xaropes",
+        boxQty: 6,
+        boxTotal: 380.25,
+        active: true
+    },
+    {
+        id: "xr-100",
+        name: "Xarope Monin Limão Siciliano",
+        volume: "1L",
+        price: 65.00,
+        category: "xaropes",
+        boxQty: 6,
+        boxTotal: 380.25,
+        active: true
+    },
+    {
+        id: "xr-101",
+        name: "Xarope Monin Gengibre",
+        volume: "1L",
+        price: 65.00,
+        category: "xaropes",
+        boxQty: 6,
+        boxTotal: 380.25,
+        active: true
+    },
+    {
+        id: "xr-102",
+        name: "Xarope Monin Cranberry",
+        volume: "1L",
+        price: 65.00,
+        category: "xaropes",
+        boxQty: 6,
+        boxTotal: 380.25,
+        active: true
+    },
+    {
+        id: "xr-103",
+        name: "Xarope Monin Flor de Sabugueiro",
+        volume: "1L",
+        price: 65.00,
+        category: "xaropes",
+        boxQty: 6,
+        boxTotal: 380.25,
+        active: true
+    },
+    {
+        id: "xr-104",
+        name: "Xarope Monin Cereja",
+        volume: "1L",
+        price: 65.00,
+        category: "xaropes",
+        boxQty: 6,
+        boxTotal: 380.25,
+        active: true
+    },
+    {
+        id: "xr-105",
+        name: "Xarope Monin Romã",
+        volume: "1L",
+        price: 65.00,
+        category: "xaropes",
+        boxQty: 6,
+        boxTotal: 380.25,
+        active: true
+    },
+    {
+        id: "xr-106",
+        name: "Xarope Monin Pêssego",
+        volume: "1L",
+        price: 65.00,
+        category: "xaropes",
+        boxQty: 6,
+        boxTotal: 380.25,
+        active: true
+    },
+    {
+        id: "xr-107",
+        name: "Xarope Monin Tangerina",
+        volume: "1L",
+        price: 65.00,
+        category: "xaropes",
+        boxQty: 6,
+        boxTotal: 380.25,
+        active: true
+    },
+    {
+        id: "xr-108",
+        name: "Xarope Monin Framboesa",
+        volume: "1L",
+        price: 65.00,
+        category: "xaropes",
+        boxQty: 6,
+        boxTotal: 380.25,
+        active: true
+    },
+];
+
+// PRODUCTS_DATA dinâmico que integra itens base + itens customizados via Admin
+let PRODUCTS_DATA = [...BASE_PRODUCTS_DATA];
