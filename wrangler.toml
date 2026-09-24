@@ -1,3 +1,11 @@
+# Monte Cristo Bebidas — Cloudflare Pages
+# Site estático: HTML + CSS + JS puros, sem build.
+# Deploy via dashboard (conectando o repositório) ou via CLI:
+#   npx wrangler pages deploy . --project-name montecristo-bebidas
 name = "montecristo-bebidas"
 compatibility_date = "2026-09-22"
 pages_build_output_dir = "."
+
+[[kv_namespaces]]
+binding = "MONTECRISTO_AUTH"
+id = "43aadcced44b4c05b148bbfa2fe1c257"

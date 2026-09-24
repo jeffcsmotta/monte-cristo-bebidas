@@ -104,7 +104,7 @@
     <!-- ?v= muda a cada publicacao para o navegador nao servir folha velha.
          Sem isso, quem ja visitou o site continua vendo o CSS antigo e um
          botao novo aparece sem estilo nenhum. -->
-    <link rel="stylesheet" href="style.css?v=20260911_v4">
+    <link rel="stylesheet" href="style.css?v=20260923_v5">
 </head>
 <body>
 
@@ -126,7 +126,7 @@
             <div class="top-info">
                 <span><i data-lucide="map-pin"></i> Caxias do Sul e Região - RS</span>
                 <span class="divider">|</span>
-                <span><i data-lucide="phone"></i> WhatsApp / Pedidos: <a id="top-bar-wa-link" href="https://wa.me/5554999692859" target="_blank" rel="noopener noreferrer" style="color:inherit; text-decoration:underline; font-weight:700;">(54) 99969-2859</a></span>
+                <span><i data-lucide="message-circle"></i> Pedidos &amp; Atendimento: <a id="top-bar-wa-link" href="https://wa.me/5554999692859" target="_blank" rel="noopener noreferrer" style="color:inherit; text-decoration:underline; font-weight:700;">WhatsApp Ativo</a></span>
                 <span class="divider">|</span>
                 <span><i data-lucide="shield-check"></i> Rótulos 100% Originais & Lacrados</span>
             </div>
@@ -276,80 +276,170 @@
     <!-- Footer Institucional Master -->
     <footer class="footer" id="sobre">
         <div class="container">
+            <!-- Linha Superior da Marca (Logo & Assinatura) -->
+            <div class="footer-brand-header">
+                <img src="assets/logo_branco_footer_montecristo.svg" alt="Monte Cristo Bebidas" class="footer-logo">
+                <span class="footer-brand-tagline">Distribuidora de Bebidas • Serra Gaúcha - RS</span>
+            </div>
+
+            <!-- Grade Master: 4 Colunas 100% Alinhadas Abaixo da Linha do Logo -->
             <div class="footer-master-grid">
-                <!-- Coluna 1: Sobre e Tradição -->
-                <div class="footer-col-brand">
-                    <img src="assets/logo_branco_footer_montecristo.svg" alt="Monte Cristo Bebidas" class="footer-logo">
-                    <p>
-                        A <strong>Monte Cristo Bebidas LTDA</strong> é a distribuidora referência na Serra Gaúcha - RS, com mais de 1.000 itens em portfólio. Criada para suprir a demanda de um trabalho sólido desenvolvido há mais de 20 anos no mercado de bebidas finas e destilados.
+                <!-- Coluna 1: Sobre a Empresa & Tradição -->
+                <div class="footer-col-about">
+                    <h4 class="footer-col-title">Sobre a Empresa</h4>
+                    <p class="footer-brand-text">
+                        A <strong>Monte Cristo Bebidas LTDA</strong> é distribuidora de referência na Serra Gaúcha - RS, com portfólio de mais de 1.000 itens. Criada para suprir a demanda de um trabalho sólido desenvolvido há mais de 20 anos. Atendemos com excelência eventos, casamentos, formaturas, convenções, bares, restaurantes e casas noturnas de Caxias do Sul e região.
                     </p>
                     <div class="footer-trust-badge">
-                        <i data-lucide="shield-check" style="width:18px; height:18px; color:#38BDF8;"></i>
-                        <span>Distribuição Oficial • Rótulos Originais & Lacrados</span>
+                        <i data-lucide="shield-check"></i>
+                        <span>Distribuição Oficial • Rótulos 100% Originais &amp; Lacrados</span>
                     </div>
                 </div>
 
-                <!-- Coluna 2: Institucional (Missão, Visão, Valores) -->
-                <div>
+                <!-- Coluna 2: Institucional (Missão, Visão e Valores em Accordion) -->
+                <div class="footer-col-mvv">
                     <h4 class="footer-col-title">Institucional</h4>
-                    <ul class="footer-nav-list">
-                        <li><a href="#diferenciais"><i data-lucide="chevron-right" style="width:14px; height:14px;"></i> Áreas de Atendimento</a></li>
-                        <li><a href="#diferenciais"><i data-lucide="chevron-right" style="width:14px; height:14px;"></i> Consignação para Eventos</a></li>
-                        <li><a href="#cardapio"><i data-lucide="chevron-right" style="width:14px; height:14px;"></i> Catálogo de Destilados</a></li>
-                        <li><a href="#cardapio"><i data-lucide="chevron-right" style="width:14px; height:14px;"></i> Condições de Atacado & Caixa</a></li>
-                    </ul>
-                    <div style="margin-top:16px; font-size:0.8rem; color:#94A3B8; line-height:1.5;">
-                        <strong style="color:#E2E8F0;">Valores:</strong> Ética absoluta nas relações comerciais e compromisso total com o sucesso de nossos clientes e parceiros.
+                    <div class="footer-accordion-group">
+                        <details class="footer-accordion">
+                            <summary>
+                                <span class="summary-left">
+                                    <i data-lucide="target" class="summary-icon"></i>
+                                    <span>Nossa Missão</span>
+                                </span>
+                                <i data-lucide="chevron-down" class="chevron-icon"></i>
+                            </summary>
+                            <div class="footer-accordion-content">
+                                Ser a melhor revendedora de bebidas com qualidade reconhecida, gerando valor com produtos de excelência e atendimento próximo aos nossos clientes.
+                            </div>
+                        </details>
+
+                        <details class="footer-accordion">
+                            <summary>
+                                <span class="summary-left">
+                                    <i data-lucide="trending-up" class="summary-icon"></i>
+                                    <span>Nossa Visão</span>
+                                </span>
+                                <i data-lucide="chevron-down" class="chevron-icon"></i>
+                            </summary>
+                            <div class="footer-accordion-content">
+                                Ampliar, crescer e construir novas unidades de negócios para satisfazer continuamente clientes, colaboradores e fornecedores.
+                            </div>
+                        </details>
+
+                        <details class="footer-accordion">
+                            <summary>
+                                <span class="summary-left">
+                                    <i data-lucide="heart-handshake" class="summary-icon"></i>
+                                    <span>Valores &amp; Ética</span>
+                                </span>
+                                <i data-lucide="chevron-down" class="chevron-icon"></i>
+                            </summary>
+                            <div class="footer-accordion-content">
+                                <strong>Clientes:</strong> nosso maior patrimônio e sustentação do negócio.<br>
+                                <strong>Fornecedores:</strong> aliança sólida e confiança mútua.<br>
+                                <strong>Ética:</strong> integridade absoluta em todas as relações comerciais.
+                            </div>
+                        </details>
                     </div>
                 </div>
 
-                <!-- Coluna 3: Áreas Atendidas -->
-                <div>
-                    <h4 class="footer-col-title">Segmentos B2B</h4>
-                    <ul class="footer-nav-list">
-                        <li><a href="javascript:void(0)"><i data-lucide="check" style="width:14px; height:14px; color:#38BDF8;"></i> Bares & Pubs</a></li>
-                        <li><a href="javascript:void(0)"><i data-lucide="check" style="width:14px; height:14px; color:#38BDF8;"></i> Casas Noturnas</a></li>
-                        <li><a href="javascript:void(0)"><i data-lucide="check" style="width:14px; height:14px; color:#38BDF8;"></i> Restaurantes & Hotéis</a></li>
-                        <li><a href="javascript:void(0)"><i data-lucide="check" style="width:14px; height:14px; color:#38BDF8;"></i> Casamentos & Formaturas</a></li>
-                        <li><a href="javascript:void(0)"><i data-lucide="check" style="width:14px; height:14px; color:#38BDF8;"></i> Eventos Corporativos</a></li>
-                    </ul>
+                <!-- Coluna 3: Áreas de Atendimento (Accordion) -->
+                <div class="footer-col-areas">
+                    <h4 class="footer-col-title">Áreas de Atendimento</h4>
+                    <div class="footer-accordion-group">
+                        <details class="footer-accordion">
+                            <summary>
+                                <span class="summary-left">
+                                    <i data-lucide="store" class="summary-icon"></i>
+                                    <span>Bares &amp; Casas Noturnas</span>
+                                </span>
+                                <i data-lucide="chevron-down" class="chevron-icon"></i>
+                            </summary>
+                            <div class="footer-accordion-content">
+                                Atendimento CNPJ especializado para abertura de estabelecimentos ou compras periódicas e semanais. Entregas em 24h úteis.
+                            </div>
+                        </details>
+
+                        <details class="footer-accordion highlight">
+                            <summary>
+                                <span class="summary-left">
+                                    <i data-lucide="sparkles" class="summary-icon"></i>
+                                    <span>Eventos: Consignação 20%</span>
+                                </span>
+                                <i data-lucide="chevron-down" class="chevron-icon"></i>
+                            </summary>
+                            <div class="footer-accordion-content">
+                                Proteção para casamentos e formaturas: até 20% em consignação, com devolução garantida do valor equivalente para as sobras de garrafas lacradas.
+                            </div>
+                        </details>
+
+                        <details class="footer-accordion">
+                            <summary>
+                                <span class="summary-left">
+                                    <i data-lucide="truck" class="summary-icon"></i>
+                                    <span>Logística 24h &amp; Interestadual</span>
+                                </span>
+                                <i data-lucide="chevron-down" class="chevron-icon"></i>
+                            </summary>
+                            <div class="footer-accordion-content">
+                                Entregas em até 24h úteis em Caxias do Sul e Serra Gaúcha. Envio via transportadora para outros estados sob cotação ágil de frete.
+                            </div>
+                        </details>
+                    </div>
                 </div>
 
-                <!-- Coluna 4: Contato Oficial & Redes -->
-                <div>
+                <!-- Coluna 4: Canais Oficiais & Atendimento Ativo -->
+                <div class="footer-col-contact">
                     <h4 class="footer-col-title">Atendimento Oficial</h4>
-                    <div class="footer-contact-list">
-                        <div class="footer-contact-item">
-                            <i data-lucide="phone"></i>
-                            <div>
-                                <span style="display:block; font-size:0.75rem; color:#64748B;">WhatsApp / Pedidos:</span>
-                                <a id="footer-wa-link" href="https://wa.me/5554999692859" target="_blank" rel="noopener noreferrer">(54) 99969-2859</a>
-                            </div>
+
+                    <!-- WhatsApp Atendente Ativo (Ivan / Michele via Storage) -->
+                    <a id="footer-wa-link" href="https://wa.me/5554999692859" target="_blank" rel="noopener noreferrer" class="footer-wa-card" aria-label="Falar com o atendente ativo no WhatsApp">
+                        <div class="footer-wa-icon">
+                            <svg class="wa-traditional-logo" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24h-.18zm4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.25-1.5-1.4-1.75-.15-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.07-.11-.22-.17-.47-.3z"/>
+                            </svg>
                         </div>
+                        <div class="footer-wa-content">
+                            <span class="footer-wa-status">
+                                <span class="wa-status-dot"></span> Atendimento Comercial
+                            </span>
+                            <span class="footer-wa-cta">Conversar no WhatsApp</span>
+                        </div>
+                    </a>
+
+                    <div class="footer-contact-list">
                         <div class="footer-contact-item">
                             <i data-lucide="mail"></i>
                             <div>
-                                <span style="display:block; font-size:0.75rem; color:#64748B;">E-mail Comercial:</span>
-                                <a href="mailto:contato@montecristobebidas.com.br">contato@montecristobebidas.com.br</a>
+                                <span class="contact-lbl">E-mail Comercial:</span>
+                                <a href="mailto:contato@montecristobebidas.com.br" class="contact-link">contato@montecristobebidas.com.br</a>
                             </div>
                         </div>
                         <div class="footer-contact-item">
                             <i data-lucide="map-pin"></i>
                             <div>
-                                <span style="display:block; font-size:0.75rem; color:#64748B;">Localização:</span>
+                                <span class="contact-lbl">Base de Distribuição:</span>
                                 <span>Caxias do Sul e Serra Gaúcha - RS</span>
                             </div>
                         </div>
                     </div>
 
-                    <div style="margin-top:16px;">
-                        <span style="font-size:0.75rem; color:#64748B; display:block; margin-bottom:6px;">Siga-nos nas redes:</span>
+                    <div class="footer-social-wrap">
+                        <span class="social-lbl">Siga a Monte Cristo:</span>
                         <div class="footer-social-links">
-                            <a href="https://instagram.com/monte_cristo_bebidas" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="Instagram Oficial">
-                                <i data-lucide="instagram" style="width:14px; height:14px;"></i> Instagram
+                            <a href="https://instagram.com/monte_cristo_bebidas" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="Instagram Oficial @monte_cristo_bebidas">
+                                <svg class="social-svg-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+                                </svg>
+                                <span>Instagram</span>
                             </a>
-                            <a href="https://facebook.com/montecristobebidas" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="Facebook Oficial">
-                                <i data-lucide="facebook" style="width:14px; height:14px;"></i> Facebook
+                            <a href="https://facebook.com/montecristobebidas" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="Facebook Oficial @montecristobebidas">
+                                <svg class="social-svg-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path>
+                                </svg>
+                                <span>Facebook</span>
                             </a>
                         </div>
                     </div>
@@ -359,11 +449,8 @@
             <!-- Footer Bottom Bar -->
             <div class="footer-bottom">
                 <span>© 2026 Monte Cristo Bebidas LTDA • CNPJ B2B • Caxias do Sul - RS</span>
-                <div style="display:flex; align-items:center; gap:16px; flex-wrap:wrap;">
-                    <a href="gestao-precos.html" style="color:#38BDF8; font-weight:700; text-decoration:none;" target="_blank">
-                        ⚙️ Gestão de Catálogo & Preços
-                    </a>
-                    <span>Tecnologia por <strong>Onira Labs</strong></span>
+                <div class="footer-bottom-links">
+                    <span class="footer-credit">Tecnologia por <strong>Onira Labs</strong></span>
                 </div>
             </div>
         </div>
@@ -403,7 +490,7 @@
             <div class="cart-section">
                 <div class="cart-section-title" style="display:flex; justify-content:space-between; align-items:center;">
                     <span>Itens do Pedido (Varejo &amp; Atacado)</span>
-                    <button type="button" class="btn-clear-cart" onclick="window.clearCart()" id="cart-clear-header" style="background:none; border:none; color:#EF4444; font-size:0.75rem; font-weight:700; cursor:pointer;">Limpar tudo</button>
+                    <button type="button" class="btn-clear-cart" onclick="window.clearCart()" id="cart-clear-header">Limpar tudo</button>
                 </div>
                 <div class="cart-items-container" id="cart-items-container">
                     <!-- Javascript populated -->
@@ -461,7 +548,7 @@
                 </div>
                 <div class="summary-line">
                     <span>Logística:</span>
-                    <span id="cart-delivery-fee" style="color:#38BDF8;">A alinhar no atendimento</span>
+                    <span id="cart-delivery-fee" style="color:#FFFFFF;">A alinhar no atendimento</span>
                 </div>
                 <div class="summary-line total">
                     <span>Total Estimado:</span>
@@ -480,22 +567,6 @@
             </div>
         </div>
     </aside>
-
-    <!-- Convite da Onira. Fica fora do fluxo de compra de proposito: quem veio
-         pedir bebida nao pode tropecar nele. Dispensavel, e a escolha do
-         visitante fica guardada no navegador. -->
-    <div class="onira-cta" id="onira-cta">
-        <a class="onira-cta-link" href="proposta.html" rel="nofollow">
-            <img src="assets/jeff-avatar.webp" alt="Jefferson Motta, Onira Labs" class="onira-cta-avatar" width="40" height="40">
-            <span class="onira-cta-text">
-                <span class="onira-cta-hook">Gostou do site?</span>
-                <span class="onira-cta-call">Saiba como funciona meu trabalho →</span>
-            </span>
-        </a>
-        <button type="button" class="onira-cta-close" id="onira-cta-close" aria-label="Dispensar convite">
-            <i data-lucide="x"></i>
-        </button>
-    </div>
 
     <!-- Confirmacao de limpar pedido. Substitui o confirm() do navegador, que
          aparece descolado do site e nao diz o que esta em jogo. -->
@@ -517,6 +588,58 @@
         </div>
     </div>
 
+    <!-- Modal Explicativa de Consignação 20% -->
+    <div class="confirm-overlay" id="modal-consignacao" role="dialog" aria-modal="true"
+         aria-labelledby="modal-consignacao-title" hidden>
+        <div class="confirm-box modal-consignacao-box">
+            <div class="modal-consignacao-header">
+                <div class="modal-consignacao-icon">
+                    <i data-lucide="sparkles"></i>
+                </div>
+                <div>
+                    <h3 class="modal-consignacao-title" id="modal-consignacao-title">Consignação de 20% Monte Cristo</h3>
+                    <p style="font-size:0.8rem; color:var(--text-muted); margin:0;">Exclusivo para casamentos, formaturas e eventos</p>
+                </div>
+            </div>
+
+            <div class="modal-consignacao-steps">
+                <div class="modal-step-item">
+                    <div class="modal-step-num">1</div>
+                    <div class="modal-step-text">
+                        <strong>Monte seu Cardápio sem Medo</strong>
+                        <p>Adicione rótulos e volumes com folga de segurança. Não corra o risco de a bebida acabar no meio da comemoração.</p>
+                    </div>
+                </div>
+
+                <div class="modal-step-item">
+                    <div class="modal-step-num">2</div>
+                    <div class="modal-step-text">
+                        <strong>Até 20% sob Consignação</strong>
+                        <p>Até 20% do volume do seu pedido entra na modalidade consignada com respaldo e nota fiscal da distribuidora.</p>
+                    </div>
+                </div>
+
+                <div class="modal-step-item">
+                    <div class="modal-step-num">3</div>
+                    <div class="modal-step-text">
+                        <strong>Devolução das Sobras e Estorno</strong>
+                        <p>Após o evento, as garrafas lacradas e intactas que sobrarem são recolhidas e o valor correspondente é estornado direto na sua conta.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-consignacao-actions">
+                <button type="button" class="confirm-btn confirm-cancel" onclick="window.closeConsignacaoModal()">
+                    Entendi, voltar
+                </button>
+                <button type="button" class="btn-consignacao-wa" onclick="window.openWhatsAppConsignacao()">
+                    <i data-lucide="message-circle"></i>
+                    <span>Tirar Dúvidas no WhatsApp</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Floating Mobile Cart Bar -->
     <div class="floating-cart-bar" id="floating-cart-bar">
         <div class="floating-cart-info">
@@ -533,9 +656,9 @@
     <!-- bottles.js precisa vir ANTES do app.js: define window.bottleSVG, usado
          no render dos cards e das miniaturas do pedido. Sem ele, todo card
          renderiza vazio. -->
-    <script src="images.js?v=20260823"></script>
-    <script src="bottles.js?v=20260823"></script>
-    <script src="app.js?v=20260911_v1"></script>
+    <script src="images.js?v=20260922"></script>
+    <script src="bottles.js?v=20260922"></script>
+    <script src="app.js?v=20260923_v5"></script>
     <script>
         if (window.lucide) {
             lucide.createIcons();

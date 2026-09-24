@@ -2,22 +2,20 @@
    Gera o catálogo estruturado da Monte Cristo.
 
    Entradas:
-     app.js                 -> PRODUCTS_DATA (fonte da verdade: nome, volume,
-                               preço, categoria). Não é alterado aqui.
+     dados/catalogo_consolidado.json ou app.js -> (fonte da verdade comercial:
+                                nome, volume, preço, categoria, cx).
      dados/fichas.json      -> camada editorial (marca, ficha técnica, texto)
      dados/taxonomia.json   -> categorias, subcategorias, faixas, tags
      dados/imagens.json     -> banco de imagens, se já existir (opcional)
 
    Saídas:
      dados/catalogo.json    -> catálogo completo, um objeto por produto
+     dados/catalogo.js      -> catálogo empacotado em window.CATALOGO para preview local
      dados/catalogo.csv     -> mesma coisa achatada, para revisão no Excel
-     dados/pendencias.md    -> o que precisa de confirmação do cliente
+     dados/pendencias.md    -> o que precisa de confirmação do cliente / fichas pendentes
+     pesquisa-imagens/produtos.json -> alvos para pesquisa de imagens
 
    Uso: node scripts/gerar-catalogo.cjs
-
-   O script falha alto e cedo: id sem ficha, subcategoria inexistente ou slug
-   repetido interrompem a geração. Catálogo pela metade é pior que catálogo
-   nenhum, porque ninguém percebe o buraco.
    ========================================================================== */
 
 const fs = require('fs');
@@ -29,8 +27,6 @@ const APP = path.join(RAIZ, 'app.js');
 
 const HOJE = new Date().toISOString().slice(0, 10);
 
-/* --- e-commerces brasileiros que costumam ter foto de produto em fundo
-   branco padronizado. Entram como fonte secundária na busca de imagem. --- */
 /* Nem toda pendência pesa igual. Estas impedem publicar: sem resolver, a
    imagem ou a oferta saem erradas na frente do cliente. O resto enriquece a
    ficha e pode ficar em branco sem prejuízo nenhum — teor alcoólico não é
@@ -49,6 +45,52 @@ const FONTES_BR = [
     'divvino.com.br'
 ];
 
+const MARCAS_CONHECIDAS = [
+    ["Jack Daniel's", /jack daniel/i],
+    ["Johnnie Walker", /johnnie walker/i],
+    ["Ballantine's", /ballantine/i],
+    ["Jim Beam", /jim bean|jim beam/i],
+    ["Chivas Regal", /chivas/i],
+    ["White Horse", /white horse/i],
+    ["Passport", /passport/i],
+    ["Red Bull", /red bull/i],
+    ["Baly", /baly/i],
+    ["Licor 43", /licor 43/i],
+    ["Amarula", /amarula/i],
+    ["Don Luiz", /don luiz/i],
+    ["Cointreau", /cointreau/i],
+    ["Jägermeister", /j[aä]germeister/i],
+    ["Stock", /stock/i],
+    ["Bacardi", /bacardi/i],
+    ["Malibu", /malibu/i],
+    ["Montilla", /montilla/i],
+    ["Cîroc", /ciroc/i],
+    ["Smirnoff", /smirnoff/i],
+    ["Grey Goose", /grey goose/i],
+    ["Absolut", /absolut/i],
+    ["Tanqueray", /tanqueray/i],
+    ["Rock's", /rocks|rock's/i],
+    ["Seagers", /seagers/i],
+    ["Norteña", /norte[nñ]a/i],
+    ["Patricia", /patricia/i],
+    ["Zillertal", /zillertal/i],
+    ["Pilsen", /pilsen/i],
+    ["Dreher", /dreher/i],
+    ["Presidente", /presidente/i],
+    ["Domecq", /domecq/i],
+    ["Monin", /monin/i],
+    ["Fórmula", /f[oó]rmula/i],
+    ["Firebird", /firebird/i],
+    ["Aperol", /aperol/i],
+    ["Campari", /campari/i],
+    ["Brasilberg", /brasilberg/i],
+    ["Salton", /salton/i],
+    ["Casa Bucco", /bucco/i],
+    ["Velho Barreiro", /velho barreiro/i],
+    ["51 Pirassununga", /51/i],
+    ["Ypióca", /ypi[oó]ca/i]
+];
+
 function ler_json(arquivo, base) {
     const caminho = path.join(base || DADOS, arquivo);
     if (!fs.existsSync(caminho)) return null;
@@ -61,14 +103,22 @@ function ler_json(arquivo, base) {
 }
 
 function produtos_do_app() {
+    if (fs.existsSync(path.join(DADOS, 'catalogo_consolidado.json'))) {
+        return ler_json('catalogo_consolidado.json');
+    }
     const fonte = fs.readFileSync(APP, 'utf8');
-    const i = fonte.indexOf('const PRODUCTS_DATA');
+    let marker = 'const BASE_PRODUCTS_DATA =';
+    let i = fonte.indexOf(marker);
     if (i === -1) {
-        console.error('PRODUCTS_DATA não encontrado em app.js.');
+        marker = 'const PRODUCTS_DATA =';
+        i = fonte.indexOf(marker);
+    }
+    if (i === -1) {
+        console.error('BASE_PRODUCTS_DATA / PRODUCTS_DATA não encontrado em app.js.');
         process.exit(1);
     }
     const j = fonte.indexOf('\n];', i) + 3;
-    return eval(fonte.slice(i + 'const PRODUCTS_DATA ='.length, j - 1));
+    return eval(fonte.slice(i + marker.length, j - 1));
 }
 
 function slugificar(texto) {
@@ -84,6 +134,7 @@ function slugificar(texto) {
 }
 
 function volume_em_ml(rotulo) {
+    if (!rotulo) return null;
     const litros = rotulo.match(/^([\d.,]+)\s*L$/i);
     if (litros) return Math.round(parseFloat(litros[1].replace(',', '.')) * 1000);
     const ml = rotulo.match(/^([\d.,]+)\s*ml$/i);
@@ -102,11 +153,111 @@ function preco_por_litro(preco, ml) {
     return Math.round((preco / (ml / 1000)) * 100) / 100;
 }
 
+function inferirMarca(nome) {
+    if (!nome) return null;
+    for (const [marca, regex] of MARCAS_CONHECIDAS) {
+        if (regex.test(nome)) return marca;
+    }
+    return null;
+}
+
+function inferirExpressao(nome, marca) {
+    if (!nome) return null;
+    let s = nome;
+    s = s.replace(/^(whisky|vodka|gin|licor|rum|cerveja|conhaque|cachaça|cachaca|energetico|energético|xarope|aperitivo)\s+/i, '');
+    if (marca) {
+        const regexMarca = new RegExp(marca.replace(/['’]/g, "['’]?"), 'i');
+        s = s.replace(regexMarca, '');
+    }
+    s = s.replace(/\s+[\d.,]+\s*(ml|l|g)\b.*$/i, '');
+    s = s.trim();
+    return s.length > 0 ? s : null;
+}
+
+function inferirSubcategoria(produto, categoria, ficha, subPorSlug) {
+    if (ficha && ficha.subcategoria && subPorSlug.has(`${categoria.slug}/${ficha.subcategoria}`)) {
+        return subPorSlug.get(`${categoria.slug}/${ficha.subcategoria}`);
+    }
+
+    const nome = produto.name || '';
+    const slugCat = categoria.slug;
+
+    let subSlug = null;
+    if (slugCat === 'whisky') {
+        if (/bourbon|jack daniel|jim bean|jim beam/i.test(nome)) subSlug = 'whiskey-americano';
+        else if (/canela|firebird|aperitivo/i.test(nome)) subSlug = 'aperitivo-de-whisky';
+        else if (/scotch|blended|johnnie|ballantine|chivas|passport|white horse/i.test(nome)) subSlug = 'scotch-blended';
+        else subSlug = 'whisky-nacional';
+    } else if (slugCat === 'vodka') {
+        if (/morango|red fruits|sabor|apple|peach|vanilla|citron|limon/i.test(nome)) subSlug = 'vodka-saborizada';
+        else if (/ciroc|cîroc|grey goose|absolut|smirnoff/i.test(nome)) subSlug = 'vodka-importada';
+        else subSlug = 'vodka-nacional';
+    } else if (slugCat === 'gin-tequila') {
+        if (/gin/i.test(nome)) subSlug = 'gin';
+        else if (/tequila|cuervo/i.test(nome)) subSlug = 'tequila';
+        else if (/malibu|limon|limón|coconut/i.test(nome)) subSlug = 'rum-saborizado';
+        else if (/rum|bacardi|montilla/i.test(nome)) subSlug = 'rum';
+        else if (/steinhaeger|doble w/i.test(nome)) subSlug = 'steinhaeger';
+        else subSlug = 'gin';
+    } else if (slugCat === 'licores') {
+        if (/creme|chocolate|doce de leite|amarula|don luiz/i.test(nome)) subSlug = 'licor-creme';
+        else if (/aperol|campari|brasilberg|aperitivo|bitter/i.test(nome)) subSlug = 'aperitivo-bitter';
+        else if (/ervas|j[aä]germeister/i.test(nome)) subSlug = 'licor-ervas';
+        else subSlug = 'licor-frutas';
+    } else if (slugCat === 'cachaca-conhaque') {
+        if (/cerveja|norteña|patricia|zillertal|pilsen/i.test(nome)) subSlug = 'cerveja';
+        else if (/conhaque|dreher|presidente|domecq/i.test(nome)) subSlug = 'conhaque';
+        else if (/espumante|salton/i.test(nome)) subSlug = 'espumante';
+        else if (/artesanal|bucco/i.test(nome)) subSlug = 'cachaca-artesanal';
+        else subSlug = 'cachaca';
+    } else if (slugCat === 'vermouth-bitter') {
+        if (/vermouth|martini/i.test(nome)) subSlug = 'vermouth';
+        else if (/bitter|angostura|underberg/i.test(nome)) subSlug = 'bitter';
+        else subSlug = 'aperitivo-bitter';
+    } else if (slugCat === 'energeticos') {
+        subSlug = 'energetico';
+    } else if (slugCat === 'xaropes') {
+        subSlug = 'xarope-bar';
+    }
+
+    if (subSlug && subPorSlug.has(`${slugCat}/${subSlug}`)) {
+        return subPorSlug.get(`${slugCat}/${subSlug}`);
+    }
+
+    return categoria.subcategorias[0];
+}
+
+function inferirEmbalagem(produto, ficha, ml, taxonomia) {
+    if (ficha && ficha.embalagem && taxonomia.embalagens[ficha.embalagem]) {
+        return {
+            tipo: ficha.embalagem,
+            obj: taxonomia.embalagens[ficha.embalagem]
+        };
+    }
+    const nome = produto.name || '';
+    const vol = produto.volume || '';
+    let tipo = 'garrafa-vidro';
+
+    if (/lata|lat[aã]o/i.test(nome) || (produto.category === 'energeticos' && ml && ml <= 473)) {
+        tipo = 'lata';
+    } else if (/pet/i.test(nome) || (produto.category === 'energeticos' && ml && ml >= 1500) || vol.includes('2L')) {
+        tipo = 'garrafa-pet';
+    }
+
+    return {
+        tipo,
+        obj: taxonomia.embalagens[tipo] || taxonomia.embalagens['garrafa-vidro']
+    };
+}
+
 function descricao_seo(produto, ficha, volumeRotulo) {
     const pedacos = [produto.name, volumeRotulo];
-    if (ficha.abv !== null && ficha.abv > 0) pedacos.push(`${String(ficha.abv).replace('.', ',')}% vol.`);
-    if (ficha.pais) pedacos.push(ficha.pais);
-    return `${pedacos.join(' · ')}. ${ficha.descricao} Monte Cristo Bebidas, Caxias do Sul/RS.`;
+    if (ficha && ficha.abv !== null && ficha.abv !== undefined && ficha.abv > 0) {
+        pedacos.push(`${String(ficha.abv).replace('.', ',')}% vol.`);
+    }
+    if (ficha && ficha.pais) pedacos.push(ficha.pais);
+    const desc = (ficha && ficha.descricao) ? `${ficha.descricao} ` : '';
+    return `${pedacos.join(' · ')}. ${desc}Monte Cristo Bebidas, Caxias do Sul/RS.`;
 }
 
 function main() {
@@ -119,7 +270,7 @@ function main() {
         process.exit(1);
     }
 
-    const fichas = fichasArquivo.fichas;
+    const fichas = fichasArquivo.fichas || {};
     const produtos = produtos_do_app();
 
     /* Índices de apoio */
@@ -137,11 +288,9 @@ function main() {
     const contadorSku = new Map();
 
     const catalogo = produtos.map((produto, ordem) => {
-        const ficha = fichas[produto.id];
-        if (!ficha) {
-            erros.push(`${produto.id} (${produto.name}): sem ficha em dados/fichas.json`);
-            return null;
-        }
+        const fichaExistente = fichas[produto.id];
+        const temFichaCompleta = Boolean(fichaExistente && (fichaExistente.descricao || fichaExistente.marca));
+        const ficha = fichaExistente || {};
 
         const categoria = porCategoria.get(produto.category);
         if (!categoria) {
@@ -149,20 +298,18 @@ function main() {
             return null;
         }
 
-        const subcategoria = subPorSlug.get(`${categoria.slug}/${ficha.subcategoria}`);
+        const subcategoria = inferirSubcategoria(produto, categoria, ficha, subPorSlug);
         if (!subcategoria) {
-            erros.push(`${produto.id}: subcategoria "${ficha.subcategoria}" não existe dentro de "${categoria.slug}"`);
-            return null;
-        }
-
-        const embalagem = taxonomia.embalagens[ficha.embalagem];
-        if (!embalagem) {
-            erros.push(`${produto.id}: embalagem "${ficha.embalagem}" não existe na taxonomia`);
+            erros.push(`${produto.id}: não foi possível resolver subcategoria para "${produto.category}"`);
             return null;
         }
 
         const ml = volume_em_ml(produto.volume);
         if (!ml) erros.push(`${produto.id}: volume "${produto.volume}" não pôde ser convertido para ml`);
+
+        const embInfo = inferirEmbalagem(produto, ficha, ml, taxonomia);
+        const embalagem = embInfo.obj;
+        const tipoEmbalagem = embInfo.tipo;
 
         const prefixo = produto.id.split('-')[0].toUpperCase();
         const sequencial = (contadorSku.get(prefixo) || 0) + 1;
@@ -181,13 +328,62 @@ function main() {
             ? imagem.url.match(/\.(png|jpe?g|webp)(\?|$)/i)[1].toLowerCase()
             : 'png';
 
+        const marca = ficha.marca || inferirMarca(produto.name);
+        const expressao = ficha.expressao || inferirExpressao(produto.name, marca);
+
+        // Origem inteligente
+        let pais = ficha.pais || null;
+        let regiao = ficha.regiao || null;
+        if (!pais && !temFichaCompleta) {
+            const n = produto.name || '';
+            if (/uruguai|norteña|patricia|zillertal|pilsen/i.test(n)) pais = 'Uruguai';
+            else if (/esc[oó]cia|scotch|johnnie|ballantine|chivas|white horse|passport/i.test(n)) pais = 'Escócia';
+            else if (/estados unidos|eua|bourbon|jack daniel|jim bean|jim beam/i.test(n)) pais = 'Estados Unidos';
+            else if (/fran[cç]a|ciroc|grey goose/i.test(n)) pais = 'França';
+            else if (/alemanha|j[aä]germeister/i.test(n)) pais = 'Alemanha';
+            else if (/espanha|licor 43/i.test(n)) pais = 'Espanha';
+            else if (/áfrica do sul|africa do sul|amarula/i.test(n)) pais = 'África do Sul';
+            else if (/itália|italia|aperol|campari/i.test(n)) pais = 'Itália';
+            else if (/inglaterra|tanqueray/i.test(n)) pais = 'Reino Unido';
+            else if (/méxico|mexico|cuervo|tequila/i.test(n)) pais = 'México';
+            else if (/brasil|nacional|baly|51|velho barreiro|ypioca|ypióca|dreher|presidente|fórmula/i.test(n)) pais = 'Brasil';
+        }
+
+        // Teor alcoólico
+        let abv = ficha.abv !== undefined ? ficha.abv : null;
+        if (abv === null && (produto.category === 'energeticos' || produto.category === 'xaropes')) {
+            abv = 0;
+        }
+
+        // Fontes e busca de imagem
         const fontes = [];
         if (ficha.site_oficial) fontes.push(ficha.site_oficial);
         fontes.push(...FONTES_BR);
 
-        const termoBusca = [ficha.marca, ficha.expressao, produto.volume, 'garrafa fundo branco']
+        const termoBusca = [marca, expressao, produto.volume, 'garrafa fundo branco']
             .filter(Boolean)
             .join(' ');
+
+        // Pendências editoriais
+        const faltasEditoriais = [];
+        if (!temFichaCompleta) {
+            faltasEditoriais.push('ficha_editorial_completa');
+            if (!marca) faltasEditoriais.push('marca');
+            if (abv === null) faltasEditoriais.push('abv');
+            if (!pais) faltasEditoriais.push('origem');
+            if (!ficha.proprietaria) faltasEditoriais.push('fabricante');
+            if (!ficha.descricao) faltasEditoriais.push('descricao_editorial');
+        } else {
+            if (Array.isArray(ficha.confirmar)) {
+                faltasEditoriais.push(...ficha.confirmar);
+            }
+            if (ficha.abv === null && !faltasEditoriais.includes('abv')) {
+                faltasEditoriais.push('abv');
+            }
+        }
+
+        const pendenciasCriticas = faltasEditoriais.filter(c => PENDENCIA_CRITICA.includes(c));
+        const pendenciasCosmeticas = faltasEditoriais.filter(c => !PENDENCIA_CRITICA.includes(c));
 
         return {
             sku,
@@ -196,27 +392,27 @@ function main() {
             ordem: ordem + 1,
 
             nome: produto.name,
-            nome_curto: [ficha.marca, ficha.expressao].filter(Boolean).join(' '),
-            marca: ficha.marca,
-            expressao: ficha.expressao,
+            nome_curto: [marca, expressao].filter(Boolean).join(' ') || produto.name,
+            marca: marca || null,
+            expressao: expressao || null,
 
             categoria: { slug: categoria.slug, nome: categoria.nome },
             subcategoria: { slug: subcategoria.slug, nome: subcategoria.nome },
-            tipo: ficha.tipo,
+            tipo: ficha.tipo || subcategoria.nome || categoria.nome,
             breadcrumb: ['Catálogo', categoria.nome, subcategoria.nome, produto.name],
 
             origem: {
-                pais: ficha.pais,
-                regiao: ficha.regiao,
-                importado: ficha.pais !== null && ficha.pais !== 'Brasil'
+                pais,
+                regiao,
+                importado: pais !== null && pais !== 'Brasil'
             },
             produtor: {
-                proprietaria: ficha.proprietaria,
-                site_oficial: ficha.site_oficial
+                proprietaria: ficha.proprietaria || null,
+                site_oficial: ficha.site_oficial || null
             },
 
             embalagem: {
-                tipo: ficha.embalagem,
+                tipo: tipoEmbalagem,
                 nome: embalagem.nome,
                 unidade_venda: embalagem.unidade_venda,
                 volume_ml: ml,
@@ -224,9 +420,9 @@ function main() {
             },
 
             ficha_tecnica: {
-                teor_alcoolico: ficha.abv,
-                alcoolico: ficha.abv === null || ficha.abv > 0,
-                servir: ficha.servir
+                teor_alcoolico: abv,
+                alcoolico: abv === null || abv > 0,
+                servir: ficha.servir || null
             },
 
             preco: {
@@ -237,28 +433,27 @@ function main() {
                 atualizado_em: HOJE
             },
 
-            /* Campos operacionais da distribuidora. Ficam vazios de propósito:
-               são dados da Monte Cristo, não podem ser deduzidos daqui. */
             operacional: {
-                unidades_por_caixa: null,
-                preco_caixa: null,
+                unidades_por_caixa: produto.boxQty || null,
+                preco_caixa: produto.boxTotal || null,
                 pedido_minimo: null,
                 ean: ficha.ean || null,
                 ncm: null,
                 estoque: null,
-                disponivel: true
+                disponivel: produto.active !== false
             },
 
             conteudo: {
-                descricao_curta: ficha.descricao,
-                observacao_interna: ficha.observacao || null
+                descricao_curta: ficha.descricao || `${produto.name} ${produto.volume}. Distribuído pela Monte Cristo Bebidas em Caxias do Sul e Serra Gaúcha.`,
+                observacao_interna: ficha.observacao || (!temFichaCompleta ? 'Pendente de ficha editorial completa em dados/fichas.json.' : null)
             },
 
-            tags: ficha.tags,
+            tags: Array.isArray(ficha.tags) ? ficha.tags : [],
             flags: {
-                variante_critica: ficha.variante_critica,
-                agrupado: ficha.agrupado,
-                destaque: false
+                variante_critica: Boolean(ficha.variante_critica),
+                agrupado: Boolean(ficha.agrupado),
+                destaque: false,
+                ficha_completa: temFichaCompleta
             },
 
             imagem: {
@@ -276,7 +471,7 @@ function main() {
             busca_imagem: {
                 termo: termoBusca,
                 fontes_prioritarias: fontes,
-                variante_critica: ficha.variante_critica,
+                variante_critica: Boolean(ficha.variante_critica),
                 cuidado: ficha.observacao || null
             },
 
@@ -287,8 +482,8 @@ function main() {
             },
 
             pendencias: {
-                criticas: ficha.confirmar.filter(c => PENDENCIA_CRITICA.includes(c)),
-                cosmeticas: ficha.confirmar.filter(c => !PENDENCIA_CRITICA.includes(c))
+                criticas: pendenciasCriticas,
+                cosmeticas: pendenciasCosmeticas
             },
             atualizado_em: HOJE
         };
@@ -308,10 +503,10 @@ function main() {
             praca: 'Caxias do Sul/RS',
             gerado_em: new Date().toISOString(),
             gerado_por: 'scripts/gerar-catalogo.cjs',
-            fonte_comercial: 'app.js (PRODUCTS_DATA)',
+            fonte_comercial: 'dados/catalogo_consolidado.json (app.js)',
             fonte_editorial: 'dados/fichas.json',
             total_produtos: catalogo.length,
-            aviso: 'Arquivo gerado. Não edite à mão — mexa em fichas.json ou app.js e rode o script de novo.'
+            aviso: 'Arquivo gerado. Não edite à mão — mexa em fichas.json ou catalogo_consolidado.json e rode o script de novo.'
         },
         taxonomia: taxonomia.categorias.map(c => ({
             slug: c.slug,
@@ -332,32 +527,34 @@ function main() {
         'utf8'
     );
 
-    /* --- catalogo.csv: revisão do Ivan no Excel --- */
+    /* --- catalogo.csv: revisão no Excel --- */
     const colunas = [
         'sku', 'id', 'nome', 'marca', 'expressao', 'categoria', 'subcategoria', 'tipo',
         'pais', 'teor_alcoolico', 'embalagem', 'volume_ml', 'volume', 'preco_unitario',
-        'preco_por_litro', 'unidades_por_caixa', 'ean', 'imagem_status',
+        'preco_por_litro', 'unidades_por_caixa', 'preco_caixa', 'imagem_status',
         'confirmar_antes_de_publicar', 'confirmar_se_sobrar_tempo'
     ];
     const linhas = catalogo.map(p => [
-        p.sku, p.id, p.nome, p.marca, p.expressao || '', p.categoria.nome, p.subcategoria.nome,
+        p.sku, p.id, p.nome, p.marca || '', p.expressao || '', p.categoria.nome, p.subcategoria.nome,
         p.tipo, p.origem.pais || '', p.ficha_tecnica.teor_alcoolico === null ? '' : p.ficha_tecnica.teor_alcoolico,
         p.embalagem.nome, p.embalagem.volume_ml, p.embalagem.volume_label,
         p.preco.unitario.toFixed(2).replace('.', ','),
         p.preco.por_litro === null ? '' : p.preco.por_litro.toFixed(2).replace('.', ','),
-        '', '', p.imagem.status,
-        p.pendencias.criticas.join(' | '), p.pendencias.cosmeticas.join(' | ')
+        p.operacional.unidades_por_caixa || '',
+        p.operacional.preco_caixa ? p.operacional.preco_caixa.toFixed(2).replace('.', ',') : '',
+        p.imagem.status,
+        p.pendencias.criticas.join(' | '),
+        p.pendencias.cosmeticas.join(' | ')
     ]);
     const escapar = v => {
         const s = String(v);
         return /[";\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
     };
     const csv = [colunas.join(';'), ...linhas.map(l => l.map(escapar).join(';'))].join('\r\n');
-    fs.writeFileSync(path.join(DADOS, 'catalogo.csv'), '﻿' + csv, 'utf8');
+    fs.writeFileSync(path.join(DADOS, 'catalogo.csv'), '\uFEFF' + csv, 'utf8');
 
     /* --- pesquisa-imagens/produtos.json: entrada da pesquisa de imagem, agora
-       com marca, embalagem esperada e o alerta de variante. Quem pesquisa
-       precisa saber que Jack Daniel's Fire tem quatro irmãos na mesma lista. --- */
+       com marca, embalagem esperada e o alerta de variante. --- */
     const alvos = catalogo.map(p => ({
         id: p.id,
         sku: p.sku,
@@ -382,9 +579,10 @@ function main() {
         'utf8'
     );
 
-    /* --- pendencias.md: a lista de perguntas para o cliente --- */
+    /* --- pendencias.md: a lista de perguntas para o cliente e status editorial --- */
     const criticas = catalogo.filter(p => p.pendencias.criticas.length > 0);
-    const cosmeticas = catalogo.filter(p => p.pendencias.cosmeticas.length > 0);
+    const pendentesEditoriais = catalogo.filter(p => !p.flags.ficha_completa);
+    const cosmeticas = catalogo.filter(p => p.flags.ficha_completa && p.pendencias.cosmeticas.length > 0);
     const criticos = catalogo.filter(p => p.flags.variante_critica);
     const agrupados = catalogo.filter(p => p.flags.agrupado);
 
@@ -399,9 +597,23 @@ function main() {
         '',
         '| SKU | Produto | Confirmar | Por quê |',
         '| --- | --- | --- | --- |',
-        ...criticas.map(p => `| ${p.sku} | ${p.nome} | ${p.pendencias.criticas.join(', ')} | ${(p.conteudo.observacao_interna || '').replace(/\|/g, '/')} |`),
+        ...(criticas.length
+            ? criticas.map(p => `| ${p.sku} | ${p.nome} | ${p.pendencias.criticas.join(', ')} | ${(p.conteudo.observacao_interna || '').replace(/\|/g, '/')} |`)
+            : ['| - | - | - | Nenhuma pendência crítica impedindo publicação. |']),
         '',
-        `## Enriquece a ficha, não bloqueia nada (${cosmeticas.length} itens)`,
+        `## Fichas editoriais pendentes (${pendentesEditoriais.length} itens)`,
+        '',
+        'Estes produtos utilizam nome, volume, preço e categoria do catálogo consolidado',
+        '(`dados/catalogo_consolidado.json` / `app.js`). Estão ativos e publicáveis no site,',
+        'mas aguardam ficha editorial completa em `dados/fichas.json` (notas de degustação,',
+        'marca/expressão refinadas, teor alcoólico exato e fabricante). Podem ser completados',
+        'gradualmente sem bloquear o catálogo.',
+        '',
+        '| SKU | ID | Produto | Categoria | Volume | Preço | Pendências Editoriais |',
+        '| --- | --- | --- | --- | --- | --- | --- |',
+        ...pendentesEditoriais.map(p => `| ${p.sku} | ${p.id} | ${p.nome} | ${p.categoria.nome} | ${p.embalagem.volume_label} | R$ ${p.preco.unitario.toFixed(2).replace('.', ',')} | ${p.pendencias.cosmeticas.join(', ')} |`),
+        '',
+        `## Enriquece a ficha existente, não bloqueia nada (${cosmeticas.length} itens)`,
         '',
         'Teor alcoólico, fabricante e região deixam a ficha mais completa, mas nenhum',
         'deles é exigido de quem revende — o teor é obrigatório no rótulo da garrafa, e',
@@ -413,17 +625,13 @@ function main() {
         '| --- | --- | --- |',
         ...cosmeticas.map(p => `| ${p.sku} | ${p.nome} | ${p.pendencias.cosmeticas.join(', ')} |`),
         '',
-        '## Campos operacionais — vazios nos 80 itens',
+        `## Campos operacionais (${catalogo.length} itens)`,
         '',
-        'Nenhum pode ser deduzido de fora da distribuidora, e nenhum é necessário para',
-        'um site de vitrine com pedido por WhatsApp. Só passam a fazer falta se o site',
-        'virar loja com carrinho e nota fiscal:',
+        'Campos sincronizados do catálogo consolidado (`unidades_por_caixa`, `preco_caixa`)',
+        'e campos reservados para integração futura (`ean`, `ncm`, `estoque`).',
         '',
-        '- `unidades_por_caixa` e `preco_caixa` — se houver venda por caixa no site',
-        '- `pedido_minimo` — se houver política de atacado',
-        '- `ean` (código de barras) — só se o catálogo for para marketplace',
-        '- `ncm` — só para emissão de nota fiscal',
-        '- `estoque` — só se o site for mostrar disponibilidade em tempo real',
+        `- Produtos com caixa definida: ${catalogo.filter(p => p.operacional.unidades_por_caixa).length} de ${catalogo.length}`,
+        `- Produtos com EAN cadastrado: ${catalogo.filter(p => p.operacional.ean).length} de ${catalogo.length}`,
         '',
         `## Variantes críticas para a busca de imagem (${criticos.length} itens)`,
         '',
@@ -446,7 +654,7 @@ function main() {
     const comFoto = catalogo.filter(p => p.imagem.status === 'ok').length;
     console.log(`\ncatalogo.json  ${catalogo.length} produtos em ${taxonomia.categorias.length} categorias`);
     console.log(`catalogo.csv   mesma tabela para revisão no Excel`);
-    console.log(`pendencias.md  ${criticas.length} a resolver antes de publicar, ${cosmeticas.length} opcionais, ${criticos.length} variantes críticas`);
+    console.log(`pendencias.md  ${criticas.length} a resolver antes de publicar, ${pendentesEditoriais.length} fichas editoriais pendentes, ${cosmeticas.length} enriquecimentos opcionais, ${criticos.length} variantes críticas`);
     console.log(`\nImagens: ${comFoto} de ${catalogo.length} com foto (${catalogo.length - comFoto} usando a garrafa vetorial).`);
     console.log(`Teor alcoólico preenchido: ${catalogo.filter(p => p.ficha_tecnica.teor_alcoolico !== null).length} de ${catalogo.length}.`);
     console.log('');

@@ -1103,7 +1103,7 @@ function getBoxUnitPrice(item) {
     if (item.boxTotal && item.boxTotal > 0 && item.boxQty && item.boxQty > 0) {
         return Math.round((item.boxTotal / item.boxQty) * 100) / 100;
     }
-    const discount = item.boxDiscount || 0.08; // 8% OFF na caixa fechada padrão
+    const discount = item.boxDiscount || 0.08; // fração aplicada no total da caixa fechada (tabela)
     return Math.round((item.price * (1 - discount)) * 100) / 100;
 }
 
@@ -1384,7 +1384,6 @@ document.addEventListener('DOMContentLoaded', () => {
     updateSimulationBanner();
     setupEventListeners();
     setupCartDrawerListeners();
-    setupOniraCta();
     updateCartUI();
     syncPricesFromGoogleSheet();
 });
@@ -1443,6 +1442,130 @@ function setupEventListeners() {
             renderProducts();
         });
     });
+
+    // Inicia comportamento inteligente de rolagem (Smart Scroll)
+    setupSmartScroll();
+}
+
+/* ==========================================================================
+   SMART SCROLL: Ocultar busca e categorias durante a rolagem para baixo
+   Liberando a tela do mobile para os produtos, e reexibindo ao rolar para cima.
+   ========================================================================== */
+function setupSmartScroll() {
+    const shopBar = document.getElementById('shop-bar');
+    const searchInput = document.getElementById('search-input');
+    if (!shopBar) return;
+
+    let lastScrollY = window.scrollY;
+    let ticking = false;
+    const scrollDeltaThreshold = 8; // Sensibilidade do scroll em pixels
+
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                const currentScrollY = window.scrollY;
+                const isSearchFocused = searchInput && document.activeElement === searchInput;
+
+                // Só esconde depois que o usuário já rolou além do header (ex: 140px) e não está digitando
+                if (currentScrollY > 140 && !isSearchFocused) {
+                    if (currentScrollY > lastScrollY + scrollDeltaThreshold) {
+                        // Rolando para BAIXO -> esconde busca e chips snacks
+                        shopBar.classList.add('bar-hidden');
+                    } else if (currentScrollY < lastScrollY - scrollDeltaThreshold) {
+                        // Rolando para CIMA -> reexibe busca e chips
+                        shopBar.classList.remove('bar-hidden');
+                    }
+                } else if (currentScrollY <= 80) {
+                    // Próximo ao topo -> sempre visível
+                    shopBar.classList.remove('bar-hidden');
+                }
+
+                lastScrollY = currentScrollY;
+                ticking = false;
+            });
+            ticking = true;
+        }
+    }, { passive: true });
+}
+
+/* ==========================================================================
+   CONSIGNAÇÃO 20%: Ações e Modal Explicativa
+   ========================================================================== */
+window.openConsignacaoModal = function() {
+    const modal = document.getElementById('modal-consignacao');
+    if (modal) {
+        modal.hidden = false;
+        if (window.lucide) lucide.createIcons();
+    }
+};
+
+window.closeConsignacaoModal = function() {
+    const modal = document.getElementById('modal-consignacao');
+    if (modal) modal.hidden = true;
+};
+
+window.openWhatsAppConsignacao = function() {
+    const wa = window.getActiveWhatsAppData ? window.getActiveWhatsAppData() : { number: '5554999692859' };
+    const text = encodeURIComponent('Olá! Gostaria de falar com o consultor sobre a Consignação de 20% para bebidas no meu evento/casamento.');
+    window.open(`https://wa.me/${wa.number}?text=${text}`, '_blank');
+};
+
+// Fechar modal ao clicar fora ou via tecla Escape
+document.addEventListener('click', (e) => {
+    const modal = document.getElementById('modal-consignacao');
+    if (modal && !modal.hidden && e.target === modal) {
+        window.closeConsignacaoModal();
+    }
+});
+
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        window.closeConsignacaoModal();
+    }
+});
+
+function renderConsignacaoCard() {
+    return `
+        <div class="consignacao-native-card">
+            <div>
+                <div class="consignacao-card-header">
+                    <span class="consignacao-badge">
+                        <i data-lucide="sparkles" style="width:13px; height:13px;"></i>
+                        Diferencial Monte Cristo
+                    </span>
+                    <span style="font-size:0.75rem; color:#94A3B8; font-weight:700;">Eventos &amp; Casamentos</span>
+                </div>
+                <h3 class="consignacao-card-title">Consignação de <span>até 20%</span> do seu Pedido</h3>
+                <p class="consignacao-card-desc">
+                    Vai casar, comemorar formatura ou fazer evento corporativo? Monte sua lista com folga: as garrafas lacradas que sobrarem são <strong>recolhidas e 100% estornadas</strong> na sua conta!
+                </p>
+                <div class="consignacao-benefits-list">
+                    <div class="consignacao-benefit-item">
+                        <i data-lucide="shield-check"></i>
+                        <span>Garantia de que as bebidas não vão faltar na festa</span>
+                    </div>
+                    <div class="consignacao-benefit-item">
+                        <i data-lucide="rotate-ccw"></i>
+                        <span>Devolução e estorno garantido do valor das sobras lacradas</span>
+                    </div>
+                    <div class="consignacao-benefit-item">
+                        <i data-lucide="award"></i>
+                        <span>Rótulos 100% originais, direto da distribuidora e com NF</span>
+                    </div>
+                </div>
+            </div>
+            <div class="consignacao-card-actions">
+                <button type="button" class="btn-consignacao-wa" onclick="window.openWhatsAppConsignacao()">
+                    <i data-lucide="message-circle" style="width:16px; height:16px;"></i>
+                    <span>Falar com Consultor no WhatsApp</span>
+                </button>
+                <button type="button" class="btn-consignacao-info" onclick="window.openConsignacaoModal()">
+                    <i data-lucide="info" style="width:15px; height:15px;"></i>
+                    <span>Como funciona?</span>
+                </button>
+            </div>
+        </div>
+    `;
 }
 
 // Toggle View Mode (Cards vs Table)
@@ -1586,7 +1709,16 @@ function renderProducts() {
         `;
     } else {
         grid.style.display = 'grid';
-        grid.innerHTML = filtered.map(item => {
+        const cardsHtml = [];
+        const insertIndex = 4; // Exibe após os 4 primeiros produtos (2 fileiras completas no mobile)
+        let insertedConsignacao = false;
+
+        filtered.forEach((item, index) => {
+            if (index === insertIndex) {
+                cardsHtml.push(renderConsignacaoCard());
+                insertedConsignacao = true;
+            }
+
             const bSize = getBoxSize(item);
             const bUnitPrice = getBoxUnitPrice(item);
             const bTotalPrice = getBoxTotalPrice(item);
@@ -1594,7 +1726,7 @@ function renderProducts() {
             const isBox = currentUnit === 'box';
             const isAvailable = item.active !== false;
 
-            return `
+            cardsHtml.push(`
                 <div class="product-card ${!isAvailable ? 'is-paused' : ''}" data-id="${item.id}">
                     <div class="product-image-box">
                         <span class="product-category-badge">${getCategoryName(item.category)}</span>
@@ -1641,8 +1773,14 @@ function renderProducts() {
                         `}
                     </div>
                 </div>
-            `;
-        }).join('');
+            `);
+        });
+
+        if (!insertedConsignacao && filtered.length > 0) {
+            cardsHtml.push(renderConsignacaoCard());
+        }
+
+        grid.innerHTML = cardsHtml.join('');
     }
 
     if (window.lucide) lucide.createIcons();
@@ -1925,7 +2063,7 @@ Solicitação de Distribuição · Reserva de Estoque
         if (item.unitType === 'box') {
             msg += `*${item.quantity}x* Caixa Fechada (${item.boxSize} un) · ${item.name} (${item.volume})
 `;
-            msg += `+ R$ ${formatMoney(item.unitPrice)}/un (Preço Atacado)
+            msg += `+ R$ ${formatMoney(item.unitPrice)}/un (Caixa Fechada)
 `;
             msg += `*R$ ${formatMoney(item.price * item.quantity)}*
 
@@ -1968,82 +2106,6 @@ _Enviado pelo canal oficial Monte Cristo Bebidas_`;
     const url = `https://wa.me/${targetNumber}?text=${encoded}`;
     window.open(url, '_blank');
 };
-
-/* Convite da Onira (Floating Proposal Widget):
-   Comportamento inteligente: esmaece ao rolar para baixo e esconde automaticamente quando o carrinho estiver aberto. */
-function setupOniraCta() {
-    const cta = document.getElementById('onira-cta');
-    const fechar = document.getElementById('onira-cta-close');
-    if (!cta) return;
-
-    if (fechar) {
-        fechar.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            cta.style.display = 'none';
-            sessionStorage.setItem('monte_cristo_cta_dispensado', 'true');
-        });
-    }
-
-    if (sessionStorage.getItem('monte_cristo_cta_dispensado') === 'true') {
-        return;
-    }
-
-    let mostrado = false;
-    let lastScrollY = window.scrollY;
-    let scrollTimer = null;
-
-    function mostrarCTA() {
-        if (!mostrado) {
-            mostrado = true;
-            cta.style.display = 'flex';
-            if (window.lucide) lucide.createIcons();
-        }
-    }
-
-    function handleSmartScroll() {
-        if (window.scrollY > 50 && !mostrado) {
-            mostrarCTA();
-        }
-
-        if (!mostrado) return;
-
-        const cartDrawer = document.getElementById('cart-drawer');
-        const isCartOpen = cartDrawer && (cartDrawer.classList.contains('active') || cartDrawer.classList.contains('open'));
-
-        // Se o carrinho estiver aberto, esconde o widget para nao sobrepor botoes
-        if (isCartOpen) {
-            cta.style.opacity = '0';
-            cta.style.pointerEvents = 'none';
-            cta.style.transform = 'translateY(20px) scale(0.9)';
-            return;
-        }
-
-        // Se estiver rolando para baixo, esmaece suavemente para nao atrapalhar
-        const currentScrollY = window.scrollY;
-        if (currentScrollY > lastScrollY && currentScrollY > 150) {
-            cta.style.opacity = '0.35';
-            cta.style.transform = 'translateY(8px) scale(0.95)';
-        } else {
-            cta.style.opacity = '1';
-            cta.style.pointerEvents = 'auto';
-            cta.style.transform = 'translateY(0) scale(1)';
-        }
-        lastScrollY = currentScrollY;
-
-        clearTimeout(scrollTimer);
-        scrollTimer = setTimeout(() => {
-            if (!isCartOpen) {
-                cta.style.opacity = '1';
-                cta.style.pointerEvents = 'auto';
-                cta.style.transform = 'translateY(0) scale(1)';
-            }
-        }, 600);
-    }
-
-    window.addEventListener('scroll', handleSmartScroll, { passive: true });
-    setTimeout(mostrarCTA, 1200);
-}
 
 // Toast Notification
 function showToast(message) {

@@ -140,9 +140,77 @@
             border: 1px solid #FECACA;
         }
 
-        .btn-danger:hover {
-            background: #FCA5A5;
-            color: #991B1B;
+        .btn-amber {
+            background: #F59E0B;
+            color: #FFFFFF;
+            font-weight: 700;
+            border: 1px solid #D97706;
+            box-shadow: 0 2px 6px rgba(245, 158, 11, 0.25);
+        }
+
+        .btn-amber:hover {
+            background: #D97706;
+            transform: translateY(-1px);
+        }
+
+        .btn-sm {
+            padding: 7px 14px;
+            font-size: 0.82rem;
+        }
+
+        /* Sync Status Alert Banner */
+        .sync-status-card {
+            background: #FFFBEB;
+            border: 1.5px solid #F59E0B;
+            border-radius: 12px;
+            padding: 14px 20px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 14px rgba(245, 158, 11, 0.12);
+        }
+
+        .sync-status-card .sync-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .sync-status-card .sync-icon {
+            color: #D97706;
+            width: 26px;
+            height: 26px;
+            flex-shrink: 0;
+        }
+
+        .sync-status-card h4 {
+            font-size: 0.95rem;
+            font-weight: 800;
+            color: #92400E;
+            margin-bottom: 2px;
+        }
+
+        .sync-status-card p {
+            font-size: 0.84rem;
+            color: #B45309;
+            line-height: 1.4;
+        }
+
+        .sync-status-card code {
+            background: rgba(245, 158, 11, 0.2);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .sync-status-card .sync-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         /* WhatsApp Routing Card (Internal Staff Toggle) */
@@ -202,10 +270,10 @@
         }
 
         .routing-btn.active {
-            background: #FFFFFF;
-            color: var(--primary);
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            border: 1px solid #CBD5E1;
+            background: var(--primary);
+            color: #FFFFFF;
+            box-shadow: 0 4px 12px rgba(14, 70, 99, 0.35);
+            border: 1px solid var(--primary);
         }
 
         .routing-btn .dot {
@@ -216,8 +284,8 @@
         }
 
         .routing-btn.active .dot {
-            background: var(--accent-green);
-            box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+            background: #34D399;
+            box-shadow: 0 0 8px rgba(52, 211, 153, 0.8);
         }
 
         /* Controls / Search / Filter */
@@ -412,23 +480,7 @@
             background: #FFFBEB;
         }
 
-        .quick-btn {
-            padding: 4px 8px;
-            border-radius: 4px;
-            border: 1px solid var(--border);
-            background: #FFFFFF;
-            font-size: 0.72rem;
-            font-weight: 700;
-            color: var(--text-muted);
-            cursor: pointer;
-            transition: all 0.1s;
-        }
-
-        .quick-btn:hover {
-            background: var(--primary);
-            color: #FFFFFF;
-            border-color: var(--primary);
-        }
+        /* Botão de ação rápida removido: o preço se ajusta direto no campo. */
 
         /* Toggle switch */
         .toggle-switch {
@@ -605,6 +657,70 @@
             gap: 12px;
         }
 
+        /* Foto do produto no modal: seletor de arquivo + URL com preview */
+        .photo-picker {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .photo-preview {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            background: #F8FAFC;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 6px;
+        }
+
+        .photo-preview[hidden] {
+            display: none;
+        }
+
+        .photo-picker-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .photo-file-label {
+            cursor: pointer;
+        }
+
+        .photo-picker input[type="url"] {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-family: inherit;
+            outline: none;
+        }
+
+        .photo-picker input[type="url"]:focus {
+            border-color: var(--teal);
+            box-shadow: 0 0 0 3px rgba(27, 117, 136, 0.15);
+        }
+
+        .photo-hint {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .product-thumb {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            background: #F8FAFC;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 3px;
+            flex-shrink: 0;
+        }
+
         .modal-footer {
             display: flex;
             align-items: center;
@@ -647,11 +763,326 @@
             .table-card { overflow-x: auto; }
             table { min-width: 820px; }
         }
+
+        /* ==========================================================================
+           AUTH SCREEN & PASSWORD PROTECTION STYLES (Monte Cristo Admin)
+           ========================================================================== */
+        .auth-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 999999;
+            background: radial-gradient(circle at 50% 25%, #155577 0%, #0E4663 55%, #08293A 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px 16px;
+            overflow-y: auto;
+            transition: opacity 0.35s ease, visibility 0.35s ease;
+        }
+
+        .auth-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .auth-card {
+            background: #FFFFFF;
+            border-radius: 18px;
+            padding: 40px 32px;
+            max-width: 440px;
+            width: 100%;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.15);
+            text-align: center;
+            position: relative;
+            animation: authFadeIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @keyframes authFadeIn {
+            from { opacity: 0; transform: translateY(18px) scale(0.97); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        .auth-shake {
+            animation: authShake 0.4s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+        }
+
+        @keyframes authShake {
+            10%, 90% { transform: translate3d(-3px, 0, 0); }
+            20%, 80% { transform: translate3d(5px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+            40%, 60% { transform: translate3d(6px, 0, 0); }
+        }
+
+        .auth-logo {
+            height: 52px;
+            width: auto;
+            margin-bottom: 18px;
+            object-fit: contain;
+        }
+
+        .auth-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 14px;
+            border-radius: 20px;
+            font-size: 0.76rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+            background: #EBF6F8;
+            color: #1B7588;
+        }
+
+        .auth-badge.setup {
+            background: #FEF3C7;
+            color: #B45309;
+        }
+
+        .auth-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.55rem;
+            font-weight: 900;
+            color: #0E4663;
+            margin-bottom: 8px;
+            letter-spacing: -0.4px;
+        }
+
+        .auth-subtitle {
+            font-size: 0.88rem;
+            color: #64748B;
+            line-height: 1.5;
+            margin-bottom: 24px;
+        }
+
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            text-align: left;
+        }
+
+        .auth-user-selector {
+            margin-bottom: 2px;
+        }
+
+        .auth-user-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+            margin-top: 6px;
+        }
+
+        .auth-user-btn {
+            padding: 10px 8px;
+            background: #F8FAFC;
+            border: 1.5px solid #E2E8F0;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #475569;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.2s;
+            font-family: inherit;
+        }
+
+        .auth-user-btn:hover {
+            border-color: #CBD5E1;
+            background: #F1F5F9;
+        }
+
+        .auth-user-btn.active {
+            background: #0E4663;
+            border-color: #0E4663;
+            color: #FFFFFF;
+            box-shadow: 0 4px 12px rgba(14, 70, 99, 0.25);
+        }
+
+        .auth-user-btn.active .user-avatar-dot {
+            background: #10B981;
+        }
+
+        .user-avatar-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #94A3B8;
+        }
+
+        .user-logged-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 12px;
+            background: #EBF6F8;
+            border: 1px solid #BFE3EA;
+            color: #0E4663;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 700;
+        }
+
+        .auth-field-label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #0F172A;
+            margin-bottom: 6px;
+        }
+
+        .auth-input-wrap {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .auth-input-wrap input {
+            width: 100%;
+            padding: 13px 44px 13px 14px;
+            border: 1.5px solid #E2E8F0;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            outline: none;
+            transition: all 0.2s ease;
+            background: #F8FAFC;
+            color: #0F172A;
+        }
+
+        .auth-input-wrap input:focus {
+            background: #FFFFFF;
+            border-color: #1B7588;
+            box-shadow: 0 0 0 3px rgba(27, 117, 136, 0.18);
+        }
+
+        .auth-toggle-pwd {
+            position: absolute;
+            right: 10px;
+            background: none;
+            border: none;
+            color: #94A3B8;
+            cursor: pointer;
+            padding: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            transition: color 0.15s;
+        }
+
+        .auth-toggle-pwd:hover {
+            color: #0E4663;
+        }
+
+        .auth-btn-submit {
+            width: 100%;
+            padding: 13px;
+            background: #0E4663;
+            color: #FFFFFF;
+            border: none;
+            border-radius: 10px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            font-weight: 800;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            margin-top: 6px;
+            box-shadow: 0 4px 14px rgba(14, 70, 99, 0.3);
+        }
+
+        .auth-btn-submit:hover {
+            background: #0A3247;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 18px rgba(14, 70, 99, 0.4);
+        }
+
+        .auth-error-msg {
+            background: #FEE2E2;
+            color: #B91C1C;
+            border: 1px solid #FCA5A5;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            display: none;
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .auth-error-msg.visible {
+            display: block;
+        }
+
+        .auth-footer-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #1B7588;
+            font-size: 0.84rem;
+            font-weight: 700;
+            text-decoration: none;
+            margin-top: 20px;
+            transition: color 0.15s;
+        }
+
+        .auth-footer-link:hover {
+            color: #0E4663;
+            text-decoration: underline;
+        }
+
+        .auth-setup-tip {
+            font-size: 0.75rem;
+            color: #64748B;
+            background: #F1F5F9;
+            padding: 9px 12px;
+            border-radius: 8px;
+            margin-top: 2px;
+            line-height: 1.45;
+        }
     </style>
 </head>
 <body>
 
-    <div class="container">
+    <!-- ==========================================================================
+         AUTH SCREEN: Bloqueio Seguro & Cadastro no Primeiro Acesso
+         ========================================================================== -->
+    <div id="auth-screen" class="auth-screen">
+        <div class="auth-card" id="auth-card">
+            <img src="assets/logo_site.png" alt="Monte Cristo" class="auth-logo" onerror="this.src='assets/logo.svg'">
+            <div id="auth-badge-container"></div>
+            <h2 id="auth-title" class="auth-title">Painel Administrativo</h2>
+            <p id="auth-subtitle" class="auth-subtitle">Digite sua senha para gerenciar preços, produtos e atendimento.</p>
+
+            <div id="auth-error" class="auth-error-msg"></div>
+
+            <form id="auth-form" class="auth-form" onsubmit="handleAuthSubmit(event)">
+                <div id="auth-fields-container"></div>
+
+                <button type="submit" class="auth-btn-submit" id="auth-submit-btn">
+                    <i data-lucide="lock" style="width:18px; height:18px;"></i>
+                    <span id="auth-btn-text">Acessar Painel</span>
+                </button>
+            </form>
+
+            <a href="index.html" class="auth-footer-link">
+                <i data-lucide="arrow-left" style="width:14px; height:14px;"></i>
+                <span>Voltar ao Catálogo de Bebidas</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Container Principal do Painel Administrativo (Protegido por Senha) -->
+    <div class="container" id="admin-main-container" style="display:none;">
 
         <!-- Top Header -->
         <div class="header-card">
@@ -666,6 +1097,13 @@
                 <button type="button" class="btn btn-success" onclick="openAddProductModal()">
                     <i data-lucide="plus-circle"></i> + Incluir Produto
                 </button>
+                <button type="button" class="btn btn-amber" onclick="exportConsolidatedCatalog()" title="Gera e baixa o arquivo JSON consolidado para versionamento no Git">
+                    <i data-lucide="package-check"></i> Exportar Consolidado (JSON)
+                </button>
+                <button type="button" class="btn btn-secondary" onclick="triggerImportJson()" title="Importar arquivo JSON consolidado de produtos">
+                    <i data-lucide="upload"></i> Importar JSON
+                </button>
+                <input type="file" id="import-json-file" accept=".json" style="display:none;" onchange="handleImportJson(event)">
                 <button type="button" class="btn btn-secondary" onclick="exportCsv()">
                     <i data-lucide="download"></i> Baixar CSV
                 </button>
@@ -673,8 +1111,37 @@
                     <i data-lucide="rotate-ccw"></i> Restaurar Padrões
                 </button>
                 <a href="index.html" target="_blank" class="btn btn-primary">
-                    <i data-lucide="external-link"></i> Abrir Catálogo ao Vivo
+                    <i data-lucide="external-link"></i> Ver Catálogo
                 </a>
+                <span id="header-user-badge" class="user-logged-chip">
+                    <i data-lucide="user-check" style="width:14px; height:14px;"></i>
+                    <span id="header-user-name">Conectado</span>
+                </span>
+                <button type="button" class="btn btn-secondary" onclick="openChangePasswordModal()" title="Alterar senha de acesso ao painel">
+                    <i data-lucide="key-round"></i> Senha
+                </button>
+                <button type="button" class="btn btn-danger" onclick="adminLogout()" title="Sair e bloquear painel">
+                    <i data-lucide="log-out"></i> Sair
+                </button>
+            </div>
+        </div>
+
+        <!-- Sync & Versioning Status Alert -->
+        <div id="sync-status-card" class="sync-status-card" style="display:none;">
+            <div class="sync-left">
+                <i data-lucide="alert-triangle" class="sync-icon"></i>
+                <div>
+                    <h4 id="sync-title">Alterações pendentes de versionamento neste navegador</h4>
+                    <p id="sync-desc">Você possui alterações salvas apenas temporariamente no seu <code>localStorage</code>. Clique em <strong>"Exportar Consolidado (JSON)"</strong> para versionar no Git e atualizar o catálogo oficial para todos os clientes.</p>
+                </div>
+            </div>
+            <div class="sync-actions">
+                <button type="button" class="btn btn-amber btn-sm" onclick="exportConsolidatedCatalog()">
+                    <i data-lucide="download"></i> Baixar Catálogo Consolidado
+                </button>
+                <button type="button" class="btn btn-secondary btn-sm" onclick="resetDefaults()" title="Descarta modificações locais e restaura a tabela oficial">
+                    Descartar Locais
+                </button>
             </div>
         </div>
 
@@ -728,7 +1195,6 @@
                         <th>Produto & Rótulo</th>
                         <th>Categoria</th>
                         <th>Preço Varejo (R$)</th>
-                        <th>Ajuste Rápido</th>
                         <th>Caixa Fechada</th>
                         <th>Disponibilidade</th>
                         <th style="text-align:center;">Ações</th>
@@ -791,13 +1257,84 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="form-box-total">Total na Caixa já com Desconto (R$)</label>
-                    <input type="number" id="form-box-total" step="0.01" min="0" placeholder="Deixe em branco para desconto automático de 8%">
+                    <label for="form-box-total">Total na Caixa (R$)</label>
+                    <input type="number" id="form-box-total" step="0.01" min="0" placeholder="Deixe em branco para cálculo automático">
+                </div>
+
+                <div class="form-group">
+                    <label>Foto do Rótulo</label>
+                    <div class="photo-picker">
+                        <img id="form-photo-preview" class="photo-preview" alt="Pré-visualização da foto" hidden>
+                        <div class="photo-picker-row">
+                            <label class="btn btn-secondary photo-file-label" for="form-photo-file">
+                                <i data-lucide="image-plus" style="width:16px; height:16px;"></i> Enviar foto
+                            </label>
+                            <input type="file" id="form-photo-file" accept="image/*" hidden>
+                            <button type="button" class="btn btn-secondary" id="form-photo-remove" hidden>Remover</button>
+                        </div>
+                        <input type="url" id="form-photo-url" placeholder="...ou cole o link da imagem (https://)">
+                        <p class="photo-hint">A foto é reduzida automaticamente e salva neste navegador, junto aos dados do produto.</p>
+                    </div>
                 </div>
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" onclick="closeProductModal()">Cancelar</button>
                     <button type="submit" class="btn btn-primary" id="btn-modal-save">Salvar Produto</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal: Alterar Senha de Administrador -->
+    <div class="modal-overlay" id="change-password-modal">
+        <div class="modal-box" style="max-width: 440px;">
+            <div class="modal-header">
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <div style="width:36px; height:36px; border-radius:8px; background:var(--teal-light); color:var(--teal); display:flex; align-items:center; justify-content:center;">
+                        <i data-lucide="key-round" style="width:18px; height:18px;"></i>
+                    </div>
+                    <h3 style="font-family:'Outfit',sans-serif; font-size:1.15rem; color:var(--primary); margin:0;">Alterar Senha do Painel</h3>
+                </div>
+                <button type="button" class="modal-close-btn" onclick="closeChangePasswordModal()">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <form id="change-password-form" onsubmit="handleChangePasswordSubmit(event)">
+                <div id="change-pwd-error" class="auth-error-msg" style="margin-bottom:14px;"></div>
+
+                <div class="form-group" style="margin-bottom:14px;">
+                    <label for="change-pwd-current">Senha Atual *</label>
+                    <div class="auth-input-wrap">
+                        <input type="password" id="change-pwd-current" required placeholder="Digite a senha atual">
+                        <button type="button" class="auth-toggle-pwd" onclick="togglePasswordVisibility('change-pwd-current', this)">
+                            <i data-lucide="eye" style="width:16px; height:16px;"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-bottom:14px;">
+                    <label for="change-pwd-new">Nova Senha *</label>
+                    <div class="auth-input-wrap">
+                        <input type="password" id="change-pwd-new" required minlength="4" placeholder="Mínimo 4 caracteres">
+                        <button type="button" class="auth-toggle-pwd" onclick="togglePasswordVisibility('change-pwd-new', this)">
+                            <i data-lucide="eye" style="width:16px; height:16px;"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-bottom:18px;">
+                    <label for="change-pwd-confirm">Confirmar Nova Senha *</label>
+                    <div class="auth-input-wrap">
+                        <input type="password" id="change-pwd-confirm" required minlength="4" placeholder="Repita a nova senha">
+                        <button type="button" class="auth-toggle-pwd" onclick="togglePasswordVisibility('change-pwd-confirm', this)">
+                            <i data-lucide="eye" style="width:16px; height:16px;"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" onclick="closeChangePasswordModal()">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar Nova Senha</button>
                 </div>
             </form>
         </div>
@@ -809,18 +1346,462 @@
         <span id="toast-text">Operação realizada com sucesso!</span>
     </div>
 
+    <script src="images.js"></script>
     <script src="app.js"></script>
     <script>
         let currentFilter = 'all';
         let currentSearch = '';
         let overrides = JSON.parse(localStorage.getItem('monte_cristo_price_overrides')) || {};
 
-        document.addEventListener('DOMContentLoaded', () => {
+        /* ==========================================================================
+           MÓDULO DE AUTENTICAÇÃO NA NUVEM KV (Cloudflare Functions • Monte Cristo)
+           Whitelist Fechada: exatamente 3 acessos (admin, ivan, michele)
+           ========================================================================== */
+        const AUTH_SESSION_KEY = 'monte_cristo_auth_user';
+        const AUTH_USERS = [
+            { id: 'ivan', name: 'Ivan', fullRole: 'Ivan (Comercial)', activationToken: 'MC-IVAN-2026' },
+            { id: 'michele', name: 'Michele', fullRole: 'Michele (Comercial)', activationToken: 'MC-MICHELE-2026' },
+            { id: 'admin', name: 'Admin', fullRole: 'Administrador (Master)', activationToken: 'MC-ADMIN-MASTER-2026', defaultHash: '1f5c58f75b198649f4a5fdeb36c34a08d16990189fbbd1ce6569de9c8e233256' }
+        ];
+
+        let selectedAuthUser = 'ivan';
+        let isActivationMode = false;
+        let currentActivationToken = '';
+        let isDashboardInitialized = false;
+
+        async function computeSha256(str) {
+            if (window.crypto && window.crypto.subtle) {
+                const encoder = new TextEncoder();
+                const data = encoder.encode(str + '__montecristo_serra_2026__');
+                const hashBuffer = await window.crypto.subtle.digest('SHA-256', data);
+                const hashArray = Array.from(new Uint8Array(hashBuffer));
+                return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            }
+            let h1 = 0xdeadbeef, h2 = 0x41c6ce57;
+            for (let i = 0, ch; i < str.length; i++) {
+                ch = str.charCodeAt(i);
+                h1 = Math.imul(h1 ^ ch, 2654435761);
+                h2 = Math.imul(h2 ^ ch, 1597334677);
+            }
+            h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+            h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+            return 'h_' + (4294967296 * (2097151 & h2) + (h1 >>> 0)).toString(16);
+        }
+
+        async function callAuthApi(payload) {
+            try {
+                const res = await fetch('/api/auth', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                const data = await res.json();
+                return { ok: res.ok, status: res.status, data };
+            } catch (err) {
+                console.warn('API /api/auth offline ou ambiente local:', err);
+                return null;
+            }
+        }
+
+        window.togglePasswordVisibility = function(inputId, btnEl) {
+            const input = document.getElementById(inputId);
+            if (!input) return;
+            const isPwd = input.type === 'password';
+            input.type = isPwd ? 'text' : 'password';
+            if (btnEl) {
+                btnEl.innerHTML = isPwd 
+                    ? '<i data-lucide="eye-off" style="width:16px; height:16px;"></i>' 
+                    : '<i data-lucide="eye" style="width:16px; height:16px;"></i>';
+                if (window.lucide) lucide.createIcons();
+            }
+        };
+
+        function showAuthError(msg) {
+            const errEl = document.getElementById('auth-error');
+            const cardEl = document.getElementById('auth-card');
+            if (errEl) {
+                errEl.textContent = msg;
+                errEl.classList.add('visible');
+            }
+            if (cardEl) {
+                cardEl.classList.remove('auth-shake');
+                void cardEl.offsetWidth;
+                cardEl.classList.add('auth-shake');
+            }
+        }
+
+        function hideAuthError() {
+            const errEl = document.getElementById('auth-error');
+            if (errEl) {
+                errEl.textContent = '';
+                errEl.classList.remove('visible');
+            }
+        }
+
+        window.selectAuthUser = function(userId) {
+            selectedAuthUser = userId;
+            document.querySelectorAll('.auth-user-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.user === userId);
+            });
+            hideAuthError();
+            const pwdInput = document.getElementById('login-pwd');
+            if (pwdInput) {
+                pwdInput.value = '';
+                pwdInput.focus();
+            }
+        };
+
+        function renderAuthScreen() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const userParam = (urlParams.get('user') || urlParams.get('ativar') || '').toLowerCase().trim();
+            const tokenParam = (urlParams.get('token') || urlParams.get('chave') || '').trim();
+
+            const targetUser = AUTH_USERS.find(u => u.id === userParam);
+
+            if (targetUser && tokenParam) {
+                isActivationMode = true;
+                selectedAuthUser = targetUser.id;
+                currentActivationToken = tokenParam;
+            } else {
+                isActivationMode = false;
+            }
+
+            const badgeContainer = document.getElementById('auth-badge-container');
+            const titleEl = document.getElementById('auth-title');
+            const subtitleEl = document.getElementById('auth-subtitle');
+            const fieldsContainer = document.getElementById('auth-fields-container');
+            const btnText = document.getElementById('auth-btn-text');
+
+            hideAuthError();
+
+            if (isActivationMode) {
+                const uObj = targetUser || AUTH_USERS.find(u => u.id === selectedAuthUser);
+                badgeContainer.innerHTML = `
+                    <div class="auth-badge setup">
+                        <i data-lucide="key-round" style="width:13px; height:13px;"></i>
+                        <span>Ativação de Acesso • Monte Cristo</span>
+                    </div>
+                `;
+                titleEl.textContent = 'Criar Senha de Acesso';
+                subtitleEl.innerHTML = `Olá, <strong>${uObj.name}</strong>! Cadastre sua senha pessoal para gerenciar preços, catálogo e canais de atendimento.`;
+                fieldsContainer.innerHTML = `
+                    <div style="margin-bottom: 14px;">
+                        <label class="auth-field-label" for="setup-pwd">Definir Nova Senha *</label>
+                        <div class="auth-input-wrap">
+                            <input type="password" id="setup-pwd" required minlength="4" placeholder="Mínimo 4 caracteres" autocomplete="new-password">
+                            <button type="button" class="auth-toggle-pwd" onclick="togglePasswordVisibility('setup-pwd', this)" title="Exibir/Ocultar senha">
+                                <i data-lucide="eye" style="width:16px; height:16px;"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="auth-field-label" for="setup-pwd-confirm">Confirmar Nova Senha *</label>
+                        <div class="auth-input-wrap">
+                            <input type="password" id="setup-pwd-confirm" required minlength="4" placeholder="Repita a senha criada" autocomplete="new-password">
+                            <button type="button" class="auth-toggle-pwd" onclick="togglePasswordVisibility('setup-pwd-confirm', this)" title="Exibir/Ocultar senha">
+                                <i data-lucide="eye" style="width:16px; height:16px;"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <p class="auth-setup-tip">
+                        🔒 Sua senha será gravada na nuvem segura da Monte Cristo e funcionará em qualquer celular ou computador.
+                    </p>
+                `;
+                btnText.textContent = 'Cadastrar Senha e Acessar';
+            } else {
+                badgeContainer.innerHTML = `
+                    <div class="auth-badge">
+                        <i data-lucide="shield-check" style="width:13px; height:13px;"></i>
+                        <span>Acesso Restrito • Gestão &amp; Preços</span>
+                    </div>
+                `;
+                titleEl.textContent = 'Painel Administrativo';
+                subtitleEl.textContent = 'Selecione seu perfil e digite sua senha para acessar.';
+                fieldsContainer.innerHTML = `
+                    <div class="auth-user-selector">
+                        <label class="auth-field-label">Identificação do Usuário *</label>
+                        <div class="auth-user-options">
+                            <button type="button" class="auth-user-btn ${selectedAuthUser === 'ivan' ? 'active' : ''}" data-user="ivan" onclick="selectAuthUser('ivan')">
+                                <span class="user-avatar-dot"></span>
+                                <span>Ivan</span>
+                            </button>
+                            <button type="button" class="auth-user-btn ${selectedAuthUser === 'michele' ? 'active' : ''}" data-user="michele" onclick="selectAuthUser('michele')">
+                                <span class="user-avatar-dot"></span>
+                                <span>Michele</span>
+                            </button>
+                            <button type="button" class="auth-user-btn ${selectedAuthUser === 'admin' ? 'active' : ''}" data-user="admin" onclick="selectAuthUser('admin')">
+                                <span class="user-avatar-dot"></span>
+                                <span>Admin</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="auth-field-label" for="login-pwd">Senha de Acesso *</label>
+                        <div class="auth-input-wrap">
+                            <input type="password" id="login-pwd" required placeholder="Digite sua senha" autocomplete="current-password" autofocus>
+                            <button type="button" class="auth-toggle-pwd" onclick="togglePasswordVisibility('login-pwd', this)" title="Exibir/Ocultar senha">
+                                <i data-lucide="eye" style="width:16px; height:16px;"></i>
+                            </button>
+                        </div>
+                    </div>
+                `;
+                btnText.textContent = 'Acessar Painel';
+            }
+
+            if (window.lucide) lucide.createIcons();
+            const focusInput = document.getElementById(isActivationMode ? 'setup-pwd' : 'login-pwd');
+            if (focusInput) setTimeout(() => focusInput.focus(), 150);
+        }
+
+        window.handleAuthSubmit = async function(e) {
+            e.preventDefault();
+            hideAuthError();
+
+            const userObj = AUTH_USERS.find(u => u.id === selectedAuthUser) || AUTH_USERS[0];
+
+            if (isActivationMode) {
+                const pwd = document.getElementById('setup-pwd').value;
+                const confirm = document.getElementById('setup-pwd-confirm').value;
+
+                if (!pwd || pwd.length < 4) {
+                    showAuthError('A senha precisa ter pelo menos 4 caracteres.');
+                    return;
+                }
+                if (pwd !== confirm) {
+                    showAuthError('As senhas digitadas não coincidem. Tente novamente.');
+                    return;
+                }
+
+                const hash = await computeSha256(pwd);
+
+                // Envia para o Cloudflare KV via API
+                const apiRes = await callAuthApi({
+                    action: 'setup',
+                    user: userObj.id,
+                    token: currentActivationToken,
+                    passwordHash: hash
+                });
+
+                if (apiRes) {
+                    if (apiRes.ok) {
+                        sessionStorage.setItem(AUTH_SESSION_KEY, JSON.stringify({ id: userObj.id, name: userObj.name, role: userObj.fullRole }));
+                        unlockAdminPanel(userObj.name);
+                        showToast(`✓ Senha de ${userObj.name} cadastrada com sucesso na nuvem!`);
+                    } else {
+                        showAuthError(apiRes.data.error || 'Erro ao cadastrar senha.');
+                    }
+                } else {
+                    // Fallback de desenvolvimento local
+                    if (currentActivationToken === userObj.activationToken) {
+                        localStorage.setItem('monte_cristo_auth_' + userObj.id, hash);
+                        sessionStorage.setItem(AUTH_SESSION_KEY, JSON.stringify({ id: userObj.id, name: userObj.name, role: userObj.fullRole }));
+                        unlockAdminPanel(userObj.name);
+                        showToast(`✓ Senha de ${userObj.name} cadastrada localmente.`);
+                    } else {
+                        showAuthError('Chave de ativação inválida.');
+                    }
+                }
+            } else {
+                const input = document.getElementById('login-pwd');
+                const pwd = input ? input.value : '';
+
+                if (!pwd) {
+                    showAuthError('Por favor, informe a senha.');
+                    return;
+                }
+
+                const hash = await computeSha256(pwd);
+
+                // Consulta autenticação na nuvem Cloudflare KV
+                const apiRes = await callAuthApi({
+                    action: 'login',
+                    user: userObj.id,
+                    passwordHash: hash
+                });
+
+                if (apiRes) {
+                    if (apiRes.ok) {
+                        sessionStorage.setItem(AUTH_SESSION_KEY, JSON.stringify({ id: userObj.id, name: userObj.name, role: userObj.fullRole }));
+                        unlockAdminPanel(userObj.name);
+                        showToast(`✓ Bem-vindo de volta, ${userObj.name}!`);
+                    } else {
+                        if (apiRes.data.requiresSetup) {
+                            showAuthError(`O acesso de ${userObj.name} ainda não foi ativado. Peça o link exclusivo de ativação com o Administrador.`);
+                        } else {
+                            showAuthError('Senha incorreta. Verifique e tente novamente.');
+                            if (input) { input.value = ''; input.focus(); }
+                        }
+                    }
+                } else {
+                    // Fallback de desenvolvimento local
+                    let savedHash = localStorage.getItem('monte_cristo_auth_' + userObj.id);
+                    if (!savedHash && userObj.id === 'admin') savedHash = userObj.defaultHash;
+
+                    if (savedHash && hash === savedHash) {
+                        sessionStorage.setItem(AUTH_SESSION_KEY, JSON.stringify({ id: userObj.id, name: userObj.name, role: userObj.fullRole }));
+                        unlockAdminPanel(userObj.name);
+                        showToast(`✓ Bem-vindo de volta, ${userObj.name}!`);
+                    } else if (!savedHash) {
+                        showAuthError(`O acesso de ${userObj.name} ainda não foi ativado.`);
+                    } else {
+                        showAuthError('Senha incorreta. Verifique e tente novamente.');
+                        if (input) { input.value = ''; input.focus(); }
+                    }
+                }
+            }
+        };
+
+        function unlockAdminPanel(userName) {
+            const authScreen = document.getElementById('auth-screen');
+            const mainContainer = document.getElementById('admin-main-container');
+            const headerUserName = document.getElementById('header-user-name');
+
+            if (headerUserName) {
+                headerUserName.textContent = userName || 'Conectado';
+            }
+
+            if (authScreen) authScreen.classList.add('hidden');
+            if (mainContainer) mainContainer.style.display = 'block';
+
+            // Remove parâmetros de token da barra de endereço para segurança
+            if (window.history && window.history.replaceState) {
+                window.history.replaceState({}, document.title, window.location.pathname);
+            }
+
+            initAdminDashboard();
+        }
+
+        window.adminLogout = function() {
+            sessionStorage.removeItem(AUTH_SESSION_KEY);
+            const authScreen = document.getElementById('auth-screen');
+            const mainContainer = document.getElementById('admin-main-container');
+
+            if (mainContainer) mainContainer.style.display = 'none';
+            if (authScreen) authScreen.classList.remove('hidden');
+
+            renderAuthScreen();
+            showToast('✓ Sessão encerrada com segurança.');
+        };
+
+        window.openChangePasswordModal = function() {
+            const modal = document.getElementById('change-password-modal');
+            const errEl = document.getElementById('change-pwd-error');
+            const form = document.getElementById('change-password-form');
+            if (errEl) {
+                errEl.textContent = '';
+                errEl.classList.remove('visible');
+            }
+            if (form) form.reset();
+            if (modal) {
+                modal.classList.add('active');
+                if (window.lucide) lucide.createIcons();
+                const cur = document.getElementById('change-pwd-current');
+                if (cur) setTimeout(() => cur.focus(), 150);
+            }
+        };
+
+        window.closeChangePasswordModal = function() {
+            const modal = document.getElementById('change-password-modal');
+            if (modal) modal.classList.remove('active');
+        };
+
+        window.handleChangePasswordSubmit = async function(e) {
+            e.preventDefault();
+            const errEl = document.getElementById('change-pwd-error');
+            const curPwd = document.getElementById('change-pwd-current').value;
+            const newPwd = document.getElementById('change-pwd-new').value;
+            const confirmPwd = document.getElementById('change-pwd-confirm').value;
+
+            let activeUser = { id: 'admin', name: 'Admin' };
+            try {
+                const s = sessionStorage.getItem(AUTH_SESSION_KEY);
+                if (s) activeUser = JSON.parse(s);
+            } catch (e) {}
+
+            if (!newPwd || newPwd.length < 4) {
+                if (errEl) {
+                    errEl.textContent = 'A nova senha precisa ter no mínimo 4 caracteres.';
+                    errEl.classList.add('visible');
+                }
+                return;
+            }
+
+            if (newPwd !== confirmPwd) {
+                if (errEl) {
+                    errEl.textContent = 'A nova senha e a confirmação não coincidem.';
+                    errEl.classList.add('visible');
+                }
+                return;
+            }
+
+            const curHash = await computeSha256(curPwd);
+            const newHash = await computeSha256(newPwd);
+
+            // Tenta atualizar no Cloudflare KV via API
+            const apiRes = await callAuthApi({
+                action: 'change',
+                user: activeUser.id,
+                currentPasswordHash: curHash,
+                newPasswordHash: newHash
+            });
+
+            if (apiRes) {
+                if (apiRes.ok) {
+                    closeChangePasswordModal();
+                    showToast('✓ Senha alterada com sucesso na nuvem!');
+                } else {
+                    if (errEl) {
+                        errEl.textContent = apiRes.data.error || 'Erro ao alterar senha.';
+                        errEl.classList.add('visible');
+                    }
+                }
+            } else {
+                // Fallback local
+                let savedHash = localStorage.getItem('monte_cristo_auth_' + activeUser.id);
+                if (!savedHash && activeUser.id === 'admin') savedHash = '1f5c58f75b198649f4a5fdeb36c34a08d16990189fbbd1ce6569de9c8e233256';
+
+                if (curHash !== savedHash) {
+                    if (errEl) {
+                        errEl.textContent = 'A senha atual informada está incorreta.';
+                        errEl.classList.add('visible');
+                    }
+                    return;
+                }
+
+                localStorage.setItem('monte_cristo_auth_' + activeUser.id, newHash);
+                closeChangePasswordModal();
+                showToast('✓ Senha alterada com sucesso!');
+            }
+        };
+
+        function initAdminDashboard() {
+            if (isDashboardInitialized) return;
+            isDashboardInitialized = true;
+
             if (window.rebuildProductsData) window.rebuildProductsData();
             updateAgentToggleUI();
             renderTable();
             setupTableControls();
+            setupPhotoPicker();
+            updateSyncStatusBanner();
             if (window.lucide) lucide.createIcons();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            let activeUser = null;
+            try {
+                const s = sessionStorage.getItem(AUTH_SESSION_KEY);
+                if (s) activeUser = JSON.parse(s);
+            } catch (e) {}
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const isTryingActivation = !!(urlParams.get('token') || urlParams.get('chave'));
+
+            if (activeUser && activeUser.id && !isTryingActivation) {
+                unlockAdminPanel(activeUser.name);
+            } else {
+                renderAuthScreen();
+            }
         });
 
         // WhatsApp Routing Logic
@@ -917,12 +1898,17 @@
                 const isCustom = item.id.startsWith('custom-');
                 const boxQty = item.boxQty || 12;
                 const boxTotal = item.boxTotal ? `R$ ${item.boxTotal.toFixed(2)}` : `~ R$ ${(effectivePrice * boxQty * 0.92).toFixed(2)}`;
+                const banco = window.PRODUCT_IMAGES || {};
+                const thumbSrc = banco[item.id] || item.image || '';
+                const thumbHtml = thumbSrc
+                    ? `<img class="product-thumb" src="${thumbSrc}" alt="${item.name}" loading="lazy" onerror="this.outerHTML='<div class=&quot;product-icon&quot;>${getCategoryIcon(item.category)}</div>'">`
+                    : `<div class="product-icon">${getCategoryIcon(item.category)}</div>`;
 
                 return `
                     <tr class="${!isAvailable ? 'paused-row' : ''}" id="row-${item.id}">
                         <td>
                             <div class="product-meta">
-                                <div class="product-icon">${getCategoryIcon(item.category)}</div>
+                                ${thumbHtml}
                                 <div>
                                     <div class="product-title">
                                         ${item.name}
@@ -946,14 +1932,6 @@
                                        id="price-${item.id}"
                                        onchange="updateProductPrice('${item.id}', this.value)"
                                        onfocus="this.select()">
-                            </div>
-                        </td>
-                        <td>
-                            <div style="display:flex; gap:4px; flex-wrap:wrap;">
-                                <button type="button" class="quick-btn" onclick="quickAdjust('${item.id}', -2)">-2</button>
-                                <button type="button" class="quick-btn" onclick="quickAdjust('${item.id}', 2)">+2</button>
-                                <button type="button" class="quick-btn" onclick="quickAdjust('${item.id}', -5)">-5</button>
-                                <button type="button" class="quick-btn" onclick="quickAdjust('${item.id}', 5)">+5</button>
                             </div>
                         </td>
                         <td>
@@ -995,6 +1973,7 @@
             if (!overrides[id]) overrides[id] = {};
             overrides[id].price = Math.round(num * 100) / 100;
             localStorage.setItem('monte_cristo_price_overrides', JSON.stringify(overrides));
+            updateSyncStatusBanner();
 
             const input = document.getElementById(`price-${id}`);
             if (input) input.classList.add('changed');
@@ -1004,19 +1983,11 @@
             showToast(`✓ Preço de "${name}" atualizado para R$ ${num.toFixed(2)}!`);
         };
 
-        window.quickAdjust = function(id, delta) {
-            const input = document.getElementById(`price-${id}`);
-            if (!input) return;
-            let current = parseFloat(input.value) || 0;
-            let updated = Math.max(0.5, current + delta);
-            input.value = updated.toFixed(2);
-            updateProductPrice(id, updated);
-        };
-
         window.toggleProductStatus = function(id, isChecked) {
             if (!overrides[id]) overrides[id] = {};
             overrides[id].active = isChecked;
             localStorage.setItem('monte_cristo_price_overrides', JSON.stringify(overrides));
+            updateSyncStatusBanner();
 
             const row = document.getElementById(`row-${id}`);
             const badge = document.getElementById(`status-badge-${id}`);
@@ -1032,11 +2003,106 @@
         };
 
         // Modal Add / Edit Product
+        // Foto em edição: dataURL (upload redimensionado) ou URL externa.
+        let formPhotoData = '';
+
+        function refreshPhotoPreview() {
+            const preview = document.getElementById('form-photo-preview');
+            const removeBtn = document.getElementById('form-photo-remove');
+            if (!preview || !removeBtn) return;
+            const has = !!formPhotoData;
+            preview.hidden = !has;
+            removeBtn.hidden = !has;
+            if (has) preview.src = formPhotoData;
+            else preview.removeAttribute('src');
+        }
+
+        function setPhotoFromUrl(url) {
+            formPhotoData = (url || '').trim();
+            const fileInput = document.getElementById('form-photo-file');
+            if (fileInput && formPhotoData) fileInput.value = '';
+            refreshPhotoPreview();
+        }
+
+        // Redimensiona a foto no navegador (lado maior 800px, WebP) para a
+        // imagem salva ocupar dezenas de KB em vez de MB no armazenamento.
+        function processPhotoFile(file) {
+            if (!file || !file.type.startsWith('image/')) {
+                showToast('⚠️ Selecione um arquivo de imagem válido.');
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = () => {
+                const img = new Image();
+                img.onload = () => {
+                    const MAX = 800;
+                    const scale = Math.min(1, MAX / Math.max(img.width, img.height));
+                    const canvas = document.createElement('canvas');
+                    canvas.width = Math.round(img.width * scale);
+                    canvas.height = Math.round(img.height * scale);
+                    canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
+                    const done = (dataUrl) => {
+                        formPhotoData = dataUrl;
+                        const urlInput = document.getElementById('form-photo-url');
+                        if (urlInput) urlInput.value = '';
+                        refreshPhotoPreview();
+                    };
+                    if (canvas.toDataURL) {
+                        let dataUrl = '';
+                        try {
+                            dataUrl = canvas.toDataURL('image/webp', 0.82);
+                        } catch (e) {
+                            dataUrl = '';
+                        }
+                        if (!dataUrl || dataUrl === 'data:,') {
+                            dataUrl = canvas.toDataURL('image/jpeg', 0.85);
+                        }
+                        done(dataUrl);
+                    }
+                };
+                img.onerror = () => showToast('⚠️ Não foi possível ler essa imagem.');
+                img.src = reader.result;
+            };
+            reader.onerror = () => showToast('⚠️ Não foi possível ler esse arquivo.');
+            reader.readAsDataURL(file);
+        }
+
+        function setupPhotoPicker() {
+            const fileInput = document.getElementById('form-photo-file');
+            const urlInput = document.getElementById('form-photo-url');
+            const removeBtn = document.getElementById('form-photo-remove');
+            if (fileInput) {
+                fileInput.addEventListener('change', () => {
+                    if (fileInput.files && fileInput.files[0]) processPhotoFile(fileInput.files[0]);
+                });
+            }
+            if (urlInput) {
+                urlInput.addEventListener('input', () => setPhotoFromUrl(urlInput.value));
+            }
+            if (removeBtn) {
+                removeBtn.addEventListener('click', () => {
+                    formPhotoData = '';
+                    if (fileInput) fileInput.value = '';
+                    if (urlInput) urlInput.value = '';
+                    refreshPhotoPreview();
+                });
+            }
+        }
+
+        function currentPhotoFor(item) {
+            if (!item) return '';
+            if (item.image) return item.image;
+            const banco = window.PRODUCT_IMAGES || {};
+            return banco[item.id] || '';
+        }
+
         window.openAddProductModal = function() {
             document.getElementById('modal-title').textContent = 'Incluir Novo Produto no Catálogo';
             document.getElementById('product-form').reset();
             document.getElementById('form-product-id').value = '';
             document.getElementById('form-box-qty').value = '6';
+            formPhotoData = '';
+            refreshPhotoPreview();
             document.getElementById('product-modal').classList.add('active');
             if (window.lucide) lucide.createIcons();
         };
@@ -1056,6 +2122,11 @@
             document.getElementById('form-price').value = effPrice.toFixed(2);
             document.getElementById('form-box-qty').value = item.boxQty || 6;
             document.getElementById('form-box-total').value = item.boxTotal ? item.boxTotal.toFixed(2) : '';
+            formPhotoData = currentPhotoFor(item);
+            document.getElementById('form-photo-url').value =
+                formPhotoData.startsWith('http') ? formPhotoData : '';
+            document.getElementById('form-photo-file').value = '';
+            refreshPhotoPreview();
 
             document.getElementById('product-modal').classList.add('active');
             if (window.lucide) lucide.createIcons();
@@ -1075,6 +2146,8 @@
             const boxQty = parseInt(document.getElementById('form-box-qty').value) || 6;
             const boxTotalVal = document.getElementById('form-box-total').value;
             const boxTotal = boxTotalVal ? parseFloat(boxTotalVal) : Math.round(price * boxQty * 0.92 * 100) / 100;
+            const urlInputVal = document.getElementById('form-photo-url').value.trim();
+            const image = formPhotoData || urlInputVal;
 
             if (id) {
                 // Edit existing
@@ -1083,11 +2156,14 @@
                     const idx = custom.findIndex(p => p.id === id);
                     if (idx !== -1) {
                         custom[idx] = { ...custom[idx], name, category, volume, price, boxQty, boxTotal };
+                        if (image) custom[idx].image = image;
+                        else delete custom[idx].image;
                         localStorage.setItem('monte_cristo_custom_products', JSON.stringify(custom));
                     }
                 } else {
                     const edits = JSON.parse(localStorage.getItem('monte_cristo_product_edits')) || {};
                     edits[id] = { name, category, volume, price, boxQty, boxTotal };
+                    if (image) edits[id].image = image;
                     localStorage.setItem('monte_cristo_product_edits', JSON.stringify(edits));
                 }
                 showToast(`✓ Produto "${name}" atualizado com sucesso!`);
@@ -1104,6 +2180,7 @@
                     boxTotal,
                     active: true
                 };
+                if (image) newProd.image = image;
                 const custom = JSON.parse(localStorage.getItem('monte_cristo_custom_products')) || [];
                 custom.push(newProd);
                 localStorage.setItem('monte_cristo_custom_products', JSON.stringify(custom));
@@ -1113,6 +2190,7 @@
             if (window.rebuildProductsData) window.rebuildProductsData();
             closeProductModal();
             renderTable();
+            updateSyncStatusBanner();
         };
 
         window.deleteProduct = function(id) {
@@ -1134,6 +2212,7 @@
 
             if (window.rebuildProductsData) window.rebuildProductsData();
             renderTable();
+            updateSyncStatusBanner();
             showToast(`✓ Produto "${name}" removido do catálogo.`);
         };
 
@@ -1146,6 +2225,7 @@
             overrides = {};
             if (window.rebuildProductsData) window.rebuildProductsData();
             renderTable();
+            updateSyncStatusBanner();
             showToast('✓ Catálogo restaurado para a tabela oficial 2026!');
         };
 
@@ -1166,6 +2246,147 @@
             link.href = URL.createObjectURL(blob);
             link.download = `catalogo-monte-cristo-${new Date().toISOString().slice(0,10)}.csv`;
             link.click();
+        };
+
+        // =====================================================================
+        // CONSOLIDAÇÃO & VERSIONAMENTO OFICIAL DO CATÁLOGO (FONTE ÚNICA)
+        // =====================================================================
+        function updateSyncStatusBanner() {
+            const banner = document.getElementById('sync-status-card');
+            if (!banner) return;
+
+            const priceOvs = JSON.parse(localStorage.getItem('monte_cristo_price_overrides')) || {};
+            const customProds = JSON.parse(localStorage.getItem('monte_cristo_custom_products')) || [];
+            const prodEdits = JSON.parse(localStorage.getItem('monte_cristo_product_edits')) || {};
+            const deletedIds = JSON.parse(localStorage.getItem('monte_cristo_deleted_ids')) || [];
+
+            const totalLocalChanges = Object.keys(priceOvs).length + customProds.length + Object.keys(prodEdits).length + deletedIds.length;
+
+            if (totalLocalChanges > 0) {
+                banner.style.display = 'flex';
+                const titleEl = document.getElementById('sync-title');
+                const descEl = document.getElementById('sync-desc');
+                if (titleEl) {
+                    titleEl.textContent = `⚠️ Há ${totalLocalChanges} alteração(ões) pendente(s) de versionamento neste navegador`;
+                }
+                if (descEl) {
+                    descEl.innerHTML = `As modificações feitas estão salvas apenas temporariamente no seu <code>localStorage</code>. Clique em <strong>"Exportar Consolidado (JSON)"</strong> para baixar o arquivo e versionar no Git, publicando oficialmente para todos os clientes.`;
+                }
+            } else {
+                banner.style.display = 'none';
+            }
+        }
+        window.updateSyncStatusBanner = updateSyncStatusBanner;
+
+        function getConsolidatedProductsList() {
+            const currentData = window.PRODUCTS_DATA || [];
+            const currentOvs = JSON.parse(localStorage.getItem('monte_cristo_price_overrides')) || {};
+
+            return currentData.map(item => {
+                const ov = currentOvs[item.id] || {};
+                const effPrice = typeof ov.price === 'number' ? Math.round(ov.price * 100) / 100 : item.price;
+                const effActive = typeof ov.active === 'boolean' ? ov.active : (item.active !== false);
+                const boxQty = item.boxQty || (item.category === 'energeticos' || item.category === 'xaropes' ? 12 : 6);
+                const boxTotal = item.boxTotal 
+                    ? Math.round(item.boxTotal * 100) / 100 
+                    : Math.round(effPrice * boxQty * 0.92 * 100) / 100;
+
+                const prod = {
+                    id: item.id,
+                    name: item.name,
+                    volume: item.volume || '1L',
+                    price: effPrice,
+                    category: item.category,
+                    boxQty: boxQty,
+                    boxTotal: boxTotal,
+                    active: effActive
+                };
+
+                if (item.image) {
+                    prod.image = item.image;
+                }
+
+                return prod;
+            });
+        }
+
+        window.exportConsolidatedCatalog = function() {
+            const list = getConsolidatedProductsList();
+            if (!list || list.length === 0) {
+                showToast('❌ Catálogo vazio ou não inicializado.');
+                return;
+            }
+
+            const jsonStr = JSON.stringify(list, null, 2);
+            const blob = new Blob([jsonStr], { type: 'application/json;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = `catalogo_consolidado.json`;
+            link.click();
+
+            showToast(`✓ Catálogo com ${list.length} itens exportado! Salve em dados/catalogo_consolidado.json`);
+        };
+
+        window.triggerImportJson = function() {
+            const input = document.getElementById('import-json-file');
+            if (input) input.click();
+        };
+
+        window.handleImportJson = function(e) {
+            const file = e.target.files && e.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+                try {
+                    const data = JSON.parse(evt.target.result);
+                    if (!Array.isArray(data) || data.length === 0) {
+                        alert('O arquivo selecionado não contém um array válido de produtos.');
+                        return;
+                    }
+
+                    if (!confirm(`Deseja importar ${data.length} produtos do arquivo "${file.name}"? Isso carregará o catálogo no seu navegador.`)) {
+                        e.target.value = '';
+                        return;
+                    }
+
+                    localStorage.removeItem('monte_cristo_price_overrides');
+                    localStorage.removeItem('monte_cristo_deleted_ids');
+                    
+                    const customList = [];
+                    const editsObj = {};
+
+                    data.forEach(p => {
+                        if (p.id.startsWith('custom-')) {
+                            customList.push(p);
+                        } else {
+                            editsObj[p.id] = {
+                                name: p.name,
+                                volume: p.volume,
+                                price: p.price,
+                                category: p.category,
+                                boxQty: p.boxQty,
+                                boxTotal: p.boxTotal,
+                                active: p.active
+                            };
+                            if (p.image) editsObj[p.id].image = p.image;
+                        }
+                    });
+
+                    localStorage.setItem('monte_cristo_custom_products', JSON.stringify(customList));
+                    localStorage.setItem('monte_cristo_product_edits', JSON.stringify(editsObj));
+                    
+                    overrides = {};
+                    if (window.rebuildProductsData) window.rebuildProductsData();
+                    renderTable();
+                    updateSyncStatusBanner();
+                    showToast(`✓ ${data.length} produtos importados com sucesso!`);
+                } catch(err) {
+                    alert('Erro ao processar arquivo JSON: ' + err.message);
+                }
+                e.target.value = '';
+            };
+            reader.readAsText(file);
         };
 
         function showToast(msg) {

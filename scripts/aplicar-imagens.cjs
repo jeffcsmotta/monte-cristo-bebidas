@@ -21,11 +21,21 @@ const SAIDA = path.join(RAIZ, 'images.js');
 const APP = path.join(RAIZ, 'app.js');
 
 function ids_do_catalogo() {
+    const jsonPath = path.join(RAIZ, 'dados', 'catalogo_consolidado.json');
+    if (fs.existsSync(jsonPath)) {
+        const lista = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
+        return new Map(lista.map(p => [p.id, p.name]));
+    }
     const a = fs.readFileSync(APP, 'utf8');
-    const i = a.indexOf('const PRODUCTS_DATA');
-    if (i === -1) throw new Error('PRODUCTS_DATA não encontrado em app.js');
+    let marker = 'const BASE_PRODUCTS_DATA =';
+    let i = a.indexOf(marker);
+    if (i === -1) {
+        marker = 'const PRODUCTS_DATA =';
+        i = a.indexOf(marker);
+    }
+    if (i === -1) throw new Error('BASE_PRODUCTS_DATA / PRODUCTS_DATA não encontrado em app.js');
     const j = a.indexOf('\n];', i) + 3;
-    const lista = eval(a.slice(i + 'const PRODUCTS_DATA ='.length, j - 1));
+    const lista = eval(a.slice(i + marker.length, j - 1));
     return new Map(lista.map(p => [p.id, p.name]));
 }
 
