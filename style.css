@@ -2194,7 +2194,7 @@ body {
     gap: 8px;
 }
 
-/* Informação fixa de entrega (sem seletor: politica de entrega após as 24h úteis) */
+/* Informação fixa de entrega (sem seletor: politica de entrega em ate 6 dias uteis na Serra Gaucha) */
 .delivery-info-box {
     display: flex;
     align-items: center;

@@ -1656,6 +1656,7 @@ function renderProducts() {
                         ${filtered.map(item => {
                             const bSize = getBoxSize(item);
                             const bUnitPrice = getBoxUnitPrice(item);
+                            const bTotalPrice = getBoxTotalPrice(item);
                             const isAvailable = item.active !== false;
 
                             return `
@@ -1682,9 +1683,9 @@ function renderProducts() {
                                     </td>
                                     <td>
                                         <span style="font-family:var(--font-heading); font-weight:800; color:var(--accent-green); font-size:1.05rem;">
-                                            R$ ${formatMoney(bUnitPrice)}
+                                            R$ ${formatMoney(bTotalPrice)}
                                         </span>
-                                        <small style="display:block; color:var(--text-muted); font-size:0.75rem;">(${bSize} un)</small>
+                                        <small style="display:block; color:var(--text-muted); font-size:0.75rem;">${bSize} un · R$ ${formatMoney(bUnitPrice)}/un</small>
                                     </td>
                                     <td style="text-align:right;">
                                         ${isAvailable ? `
@@ -2080,7 +2081,7 @@ Solicitação de Distribuição · Reserva de Estoque
     const subtotalVal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     msg += `*Subtotal Estimado: R$ ${formatMoney(subtotalVal)}*
 `;
-    msg += `Logística: Entrega após 24h úteis à confirmação do pedido com nosso atendente, conforme a disponibilidade dos itens em estoque.
+    msg += `Logística: Entrega em até 6 dias úteis após a confirmação do pedido com nosso atendente, conforme a disponibilidade dos itens em estoque. Outros estados: prazo informado na cotação do frete.
 `;
     msg += `*Total Estimado: R$ ${formatMoney(subtotalVal)}*
 
