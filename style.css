@@ -745,7 +745,10 @@ body {
    CARD NATIVO DE CONSIGNAÇÃO 20% NA VITRINE (DESTAQUE COMERCIAL MASTER)
    ========================================================================== */
 .consignacao-native-card {
-    grid-column: span 2;
+    /* Faixa própria em largura total: ocupa uma fileira inteira da vitrine,
+       então nunca deixa buraco na grade em nenhum breakpoint, filtro ou
+       item pausado/ocultado. */
+    grid-column: 1 / -1;
     background: linear-gradient(135deg, #072635 0%, #0E4663 55%, #155370 100%);
     border: 1.5px solid rgba(56, 189, 248, 0.4);
     border-radius: var(--radius-lg);
@@ -860,6 +863,25 @@ body {
     align-items: center;
     flex-wrap: wrap;
     margin-top: auto;
+}
+
+/* Em largura total no desktop, o card vira faixa horizontal:
+   texto à esquerda, ações à direita — sem altura exagerada. */
+@media (min-width: 900px) {
+    .consignacao-native-card {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr;
+        gap: 8px 28px;
+        align-items: center;
+    }
+    .consignacao-benefits-list {
+        margin-bottom: 0;
+    }
+    .consignacao-card-actions {
+        margin-top: 0;
+        flex-direction: column;
+        align-items: stretch;
+    }
 }
 
 .btn-consignacao-wa {

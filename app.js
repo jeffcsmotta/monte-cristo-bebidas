@@ -1734,7 +1734,10 @@ function renderProducts() {
     } else {
         grid.style.display = 'grid';
         const cardsHtml = [];
-        const insertIndex = 4; // Exibe após os 4 primeiros produtos (2 fileiras completas no mobile)
+        /* Faixa de consignação em largura total (grid-column: 1 / -1): ocupa
+           uma fileira própria, então o índice de inserção não gera mais
+           buraco na grade em nenhum breakpoint, filtro ou item ocultado. */
+        const insertIndex = filtered.length > 6 ? 6 : filtered.length;
         let insertedConsignacao = false;
 
         filtered.forEach((item, index) => {

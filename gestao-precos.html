@@ -597,6 +597,10 @@
             box-shadow: 0 20px 40px rgba(0,0,0,0.2);
             transform: translateY(20px);
             transition: transform 0.25s ease;
+            max-height: calc(100dvh - 32px);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
         }
 
         .modal-overlay.active .modal-box {
@@ -608,6 +612,7 @@
             align-items: center;
             justify-content: space-between;
             margin-bottom: 20px;
+            flex-shrink: 0;
         }
 
         .modal-header h3 {
@@ -721,12 +726,49 @@
             flex-shrink: 0;
         }
 
+        /* O formulário rola por dentro do modal; cabeçalho e rodapé ficam fixos */
+        #product-modal .modal-box form,
+        #change-password-modal .modal-box form {
+            overflow-y: auto;
+            margin: 0 -28px;
+            padding: 0 28px 4px;
+            min-height: 0;
+        }
+
         .modal-footer {
             display: flex;
             align-items: center;
             justify-content: flex-end;
             gap: 12px;
-            margin-top: 24px;
+            margin-top: 0;
+            padding-top: 18px;
+            position: sticky;
+            bottom: 0;
+            background: #FFFFFF;
+            border-top: 1px solid var(--border);
+            flex-shrink: 0;
+        }
+
+        @media (max-width: 480px) {
+            .modal-box {
+                padding: 20px 18px;
+            }
+            #product-modal .modal-box form,
+            #change-password-modal .modal-box form {
+                margin: 0 -18px;
+                padding: 0 18px 4px;
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            .modal-footer {
+                flex-direction: column-reverse;
+                align-items: stretch;
+            }
+            .modal-footer .btn {
+                width: 100%;
+                justify-content: center;
+            }
         }
 
         /* Toast */
