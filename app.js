@@ -1547,6 +1547,10 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
+/* Banner de consignação na vitrine: oculto por decisão comercial.
+   Para reexibir, basta voltar para true — grade e modal continuam intactos. */
+const SHOW_CONSIGNACAO_CARD = false;
+
 function renderConsignacaoCard() {
     return `
         <div class="consignacao-native-card">
@@ -1734,14 +1738,12 @@ function renderProducts() {
     } else {
         grid.style.display = 'grid';
         const cardsHtml = [];
-        /* Faixa de consignação em largura total (grid-column: 1 / -1): ocupa
-           uma fileira própria, então o índice de inserção não gera mais
-           buraco na grade em nenhum breakpoint, filtro ou item ocultado. */
-        const insertIndex = filtered.length > 6 ? 6 : filtered.length;
+        /* Banner oculto via SHOW_CONSIGNACAO_CARD: a grade renderiza só produtos. */
+        const insertIndex = (SHOW_CONSIGNACAO_CARD && filtered.length > 6) ? 6 : filtered.length;
         let insertedConsignacao = false;
 
         filtered.forEach((item, index) => {
-            if (index === insertIndex) {
+            if (SHOW_CONSIGNACAO_CARD && index === insertIndex) {
                 cardsHtml.push(renderConsignacaoCard());
                 insertedConsignacao = true;
             }
@@ -1803,7 +1805,7 @@ function renderProducts() {
             `);
         });
 
-        if (!insertedConsignacao && filtered.length > 0) {
+        if (SHOW_CONSIGNACAO_CARD && !insertedConsignacao && filtered.length > 0) {
             cardsHtml.push(renderConsignacaoCard());
         }
 
