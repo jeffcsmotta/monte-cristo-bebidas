@@ -1408,7 +1408,7 @@
     "cv-2": {
       "marca": "Norteña",
       "expressao": "Latão",
-      "subcategoria": "cerveja",
+      "subcategoria": "latao",
       "tipo": "Cerveja lager uruguaia",
       "pais": "Uruguai",
       "regiao": "Paysandú",
@@ -1460,7 +1460,7 @@
     "cv-4": {
       "marca": "Patricia",
       "expressao": "Latão",
-      "subcategoria": "cerveja",
+      "subcategoria": "latao",
       "tipo": "Cerveja lager uruguaia",
       "pais": "Uruguai",
       "regiao": null,
@@ -1535,7 +1535,7 @@
     "cv-7": {
       "marca": "Zillertal",
       "expressao": "Latão",
-      "subcategoria": "cerveja",
+      "subcategoria": "latao",
       "tipo": "Cerveja lager uruguaia",
       "pais": "Uruguai",
       "regiao": null,

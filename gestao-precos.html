@@ -1097,8 +1097,8 @@
                 <button type="button" class="btn btn-success" onclick="openAddProductModal()">
                     <i data-lucide="plus-circle"></i> + Incluir Produto
                 </button>
-                <button type="button" class="btn btn-amber" onclick="exportConsolidatedCatalog()" title="Gera e baixa o arquivo JSON consolidado para versionamento no Git">
-                    <i data-lucide="package-check"></i> Exportar Consolidado (JSON)
+                <button type="button" class="btn btn-secondary" onclick="exportConsolidatedCatalog()" title="Backup local em JSON (o oficial já salva sozinho na nuvem)">
+                    <i data-lucide="package-check"></i> Backup JSON
                 </button>
                 <button type="button" class="btn btn-secondary" onclick="triggerImportJson()" title="Importar arquivo JSON consolidado de produtos">
                     <i data-lucide="upload"></i> Importar JSON
@@ -1126,21 +1126,20 @@
             </div>
         </div>
 
-        <!-- Sync & Versioning Status Alert -->
-        <div id="sync-status-card" class="sync-status-card" style="display:none;">
+        <!-- Sync & Versioning Status Alert (fonte única: nuvem) -->
+        <div id="sync-status-card" class="sync-status-card" style="display:flex;">
             <div class="sync-left">
-                <i data-lucide="alert-triangle" class="sync-icon"></i>
+                <i data-lucide="cloud" class="sync-icon"></i>
                 <div>
-                    <h4 id="sync-title">Alterações pendentes de versionamento neste navegador</h4>
-                    <p id="sync-desc">Você possui alterações salvas apenas temporariamente no seu <code>localStorage</code>. Clique em <strong>"Exportar Consolidado (JSON)"</strong> para versionar no Git e atualizar o catálogo oficial para todos os clientes.</p>
+                    <h4 id="sync-title">Sincronizando com a nuvem…</h4>
+                    <p id="sync-desc">O admin salva automaticamente na nuvem a cada alteração. O site lê sempre essa versão oficial.</p>
+                    <p id="cloud-meta" style="margin-top:6px; font-size:0.82rem;"></p>
+                    <div id="cloud-history" style="margin-top:6px; font-size:0.8rem; display:none;"></div>
                 </div>
             </div>
             <div class="sync-actions">
-                <button type="button" class="btn btn-amber btn-sm" onclick="exportConsolidatedCatalog()">
-                    <i data-lucide="download"></i> Baixar Catálogo Consolidado
-                </button>
-                <button type="button" class="btn btn-secondary btn-sm" onclick="resetDefaults()" title="Descarta modificações locais e restaura a tabela oficial">
-                    Descartar Locais
+                <button type="button" class="btn btn-secondary btn-sm" onclick="exportConsolidatedCatalog()" title="Backup local em JSON (o oficial já está na nuvem)">
+                    Backup JSON
                 </button>
             </div>
         </div>
@@ -1180,7 +1179,8 @@
                 <button type="button" class="filter-tag" data-cat="vodka">Vodkas</button>
                 <button type="button" class="filter-tag" data-cat="gin-tequila">Gin, Tequila & Rum</button>
                 <button type="button" class="filter-tag" data-cat="licores">Licores & Aperitivos</button>
-                <button type="button" class="filter-tag" data-cat="cachaca-conhaque">Cachaça & Cerveja</button>
+                <button type="button" class="filter-tag" data-cat="cachaca-conhaque">Cachaça & Conhaque</button>
+                <button type="button" class="filter-tag" data-cat="cervejas">Cervejas</button>
                 <button type="button" class="filter-tag" data-cat="vermouth-bitter">Vermouth</button>
                 <button type="button" class="filter-tag" data-cat="energeticos">Energéticos</button>
                 <button type="button" class="filter-tag" data-cat="xaropes">Xaropes</button>
@@ -1233,7 +1233,8 @@
                             <option value="vodka">Vodka</option>
                             <option value="gin-tequila">Gin, Tequila & Rum</option>
                             <option value="licores">Licores & Aperitivos</option>
-                            <option value="cachaca-conhaque">Cachaça, Conhaque & Cerveja</option>
+                            <option value="cachaca-conhaque">Cachaça, Conhaque & Espumante</option>
+                            <option value="cervejas">Cervejas</option>
                             <option value="vermouth-bitter">Vermouth & Bitter</option>
                             <option value="energeticos">Energéticos</option>
                             <option value="xaropes">Xaropes</option>
@@ -1784,6 +1785,7 @@
             setupTableControls();
             setupPhotoPicker();
             updateSyncStatusBanner();
+            loadCatalogFromCloud();
             if (window.lucide) lucide.createIcons();
         }
 
@@ -1858,7 +1860,8 @@
                 'vodka': 'Vodka',
                 'gin-tequila': 'Gin, Tequila & Rum',
                 'licores': 'Licor & Aperitivo',
-                'cachaca-conhaque': 'Cachaça & Cerveja',
+                'cachaca-conhaque': 'Cachaça & Conhaque',
+                'cervejas': 'Cervejas',
                 'vermouth-bitter': 'Vermouth & Bitter',
                 'energeticos': 'Energético',
                 'xaropes': 'Xarope & Outros'
@@ -1873,6 +1876,7 @@
             if (cat === 'licores') return '🍷';
             if (cat === 'energeticos') return '⚡';
             if (cat === 'cachaca-conhaque') return '🥂';
+            if (cat === 'cervejas') return '🍺';
             if (cat === 'vermouth-bitter') return '🍾';
             return '🥤';
         }
@@ -1973,7 +1977,7 @@
             if (!overrides[id]) overrides[id] = {};
             overrides[id].price = Math.round(num * 100) / 100;
             localStorage.setItem('monte_cristo_price_overrides', JSON.stringify(overrides));
-            updateSyncStatusBanner();
+            scheduleCloudSave();
 
             const input = document.getElementById(`price-${id}`);
             if (input) input.classList.add('changed');
@@ -1987,7 +1991,7 @@
             if (!overrides[id]) overrides[id] = {};
             overrides[id].active = isChecked;
             localStorage.setItem('monte_cristo_price_overrides', JSON.stringify(overrides));
-            updateSyncStatusBanner();
+            scheduleCloudSave();
 
             const row = document.getElementById(`row-${id}`);
             const badge = document.getElementById(`status-badge-${id}`);
@@ -2190,7 +2194,7 @@
             if (window.rebuildProductsData) window.rebuildProductsData();
             closeProductModal();
             renderTable();
-            updateSyncStatusBanner();
+            scheduleCloudSave();
         };
 
         window.deleteProduct = function(id) {
@@ -2212,7 +2216,7 @@
 
             if (window.rebuildProductsData) window.rebuildProductsData();
             renderTable();
-            updateSyncStatusBanner();
+            scheduleCloudSave();
             showToast(`✓ Produto "${name}" removido do catálogo.`);
         };
 
@@ -2225,7 +2229,7 @@
             overrides = {};
             if (window.rebuildProductsData) window.rebuildProductsData();
             renderTable();
-            updateSyncStatusBanner();
+            scheduleCloudSave();
             showToast('✓ Catálogo restaurado para a tabela oficial 2026!');
         };
 
@@ -2251,32 +2255,131 @@
         // =====================================================================
         // CONSOLIDAÇÃO & VERSIONAMENTO OFICIAL DO CATÁLOGO (FONTE ÚNICA)
         // =====================================================================
+        // =====================================================================
+        // FONTE ÚNICA: admin salva na nuvem (/api/catalog), site lê de lá.
+        // localStorage segue como rascunho local; a nuvem é a verdade.
+        // =====================================================================
+        const CATALOG_API = '/api/catalog';
+        let cloudState = { status: 'idle', version: null, updatedAt: null, updatedBy: null, history: [] };
+        let cloudSaveTimer = null;
+
+        function currentAuthor() {
+            try {
+                const s = sessionStorage.getItem(AUTH_SESSION_KEY);
+                if (s) {
+                    const u = JSON.parse(s);
+                    return (u.name || u.id || 'admin').toString();
+                }
+            } catch (e) {}
+            return 'admin';
+        }
+
+        function fmtDate(iso) {
+            if (!iso) return '—';
+            try {
+                const d = new Date(iso);
+                return d.toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+            } catch (e) { return iso; }
+        }
+
+        function renderCloudStatus(msg) {
+            const titleEl = document.getElementById('sync-title');
+            const metaEl = document.getElementById('cloud-meta');
+            const histEl = document.getElementById('cloud-history');
+            if (cloudState.status === 'saving') {
+                if (titleEl) titleEl.textContent = '☁️ Salvando na nuvem…';
+            } else if (cloudState.status === 'saved') {
+                if (titleEl) titleEl.textContent = `✓ Catálogo oficial v${cloudState.version} salvo na nuvem`;
+            } else if (cloudState.status === 'error') {
+                if (titleEl) titleEl.textContent = `⚠️ ${msg || 'Falha ao salvar na nuvem — tentando de novo em seguida'}`;
+            } else if (cloudState.version) {
+                if (titleEl) titleEl.textContent = `✓ Catálogo oficial v${cloudState.version} na nuvem`;
+            }
+            if (metaEl) {
+                metaEl.textContent = cloudState.updatedAt
+                    ? `Última atualização: ${fmtDate(cloudState.updatedAt)} por ${cloudState.updatedBy || '?'} • v${cloudState.version}`
+                    : (msg || '');
+            }
+            if (histEl) {
+                if (cloudState.history && cloudState.history.length > 1) {
+                    histEl.style.display = 'block';
+                    histEl.innerHTML = '<strong>Histórico:</strong> ' + cloudState.history.slice(0, 5).map(h =>
+                        `v${h.version} · ${fmtDate(h.updatedAt)} · ${h.updatedBy}`
+                    ).join(' &nbsp;|&nbsp; ');
+                } else {
+                    histEl.style.display = 'none';
+                    histEl.innerHTML = '';
+                }
+            }
+        }
+
+        async function loadCatalogFromCloud() {
+            try {
+                const res = await fetch(CATALOG_API, { cache: 'no-store' });
+                if (!res.ok) return;
+                const data = await res.json();
+                if (data && data.exists && Array.isArray(data.items) && data.items.length > 0) {
+                    cloudState.version = data.version;
+                    cloudState.updatedAt = data.updatedAt;
+                    cloudState.updatedBy = data.updatedBy;
+                    cloudState.history = data.history || [];
+                    cloudState.status = 'saved';
+                    renderCloudStatus();
+                }
+            } catch (e) {
+                // Ambiente local sem Functions: mantém fluxo em localStorage
+            }
+        }
+
+        function scheduleCloudSave() {
+            renderCloudStatus();
+            if (cloudSaveTimer) clearTimeout(cloudSaveTimer);
+            cloudSaveTimer = setTimeout(saveCatalogToCloud, 800);
+            updateSyncStatusBanner();
+        }
+
+        async function saveCatalogToCloud() {
+            cloudSaveTimer = null;
+            cloudState.status = 'saving';
+            renderCloudStatus();
+            updateSyncStatusBanner();
+            const list = getConsolidatedProductsList();
+            try {
+                const res = await fetch(CATALOG_API, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ items: list, author: currentAuthor() })
+                });
+                const data = await res.json().catch(() => ({}));
+                if (!res.ok) throw new Error(data.error || ('HTTP ' + res.status));
+                cloudState.status = 'saved';
+                cloudState.version = data.version;
+                cloudState.updatedAt = data.updatedAt;
+                cloudState.updatedBy = data.updatedBy;
+                try { localStorage.setItem('monte_cristo_cloud_ping', String(Date.now())); } catch (e) {}
+                try {
+                    const g = await fetch(CATALOG_API, { cache: 'no-store' });
+                    const gd = await g.json();
+                    if (gd && gd.history) cloudState.history = gd.history;
+                } catch (e) {}
+            } catch (e) {
+                cloudState.status = 'error';
+                console.warn('Falha ao salvar catálogo na nuvem:', e);
+                // Reagenda uma tentativa silenciosa
+                if (!cloudSaveTimer) cloudSaveTimer = setTimeout(saveCatalogToCloud, 5000);
+            }
+            renderCloudStatus();
+            updateSyncStatusBanner();
+        }
+
         function updateSyncStatusBanner() {
             const banner = document.getElementById('sync-status-card');
             if (!banner) return;
-
-            const priceOvs = JSON.parse(localStorage.getItem('monte_cristo_price_overrides')) || {};
-            const customProds = JSON.parse(localStorage.getItem('monte_cristo_custom_products')) || [];
-            const prodEdits = JSON.parse(localStorage.getItem('monte_cristo_product_edits')) || {};
-            const deletedIds = JSON.parse(localStorage.getItem('monte_cristo_deleted_ids')) || [];
-
-            const totalLocalChanges = Object.keys(priceOvs).length + customProds.length + Object.keys(prodEdits).length + deletedIds.length;
-
-            if (totalLocalChanges > 0) {
-                banner.style.display = 'flex';
-                const titleEl = document.getElementById('sync-title');
-                const descEl = document.getElementById('sync-desc');
-                if (titleEl) {
-                    titleEl.textContent = `⚠️ Há ${totalLocalChanges} alteração(ões) pendente(s) de versionamento neste navegador`;
-                }
-                if (descEl) {
-                    descEl.innerHTML = `As modificações feitas estão salvas apenas temporariamente no seu <code>localStorage</code>. Clique em <strong>"Exportar Consolidado (JSON)"</strong> para baixar o arquivo e versionar no Git, publicando oficialmente para todos os clientes.`;
-                }
-            } else {
-                banner.style.display = 'none';
-            }
+            banner.style.display = 'flex';
+            renderCloudStatus();
         }
         window.updateSyncStatusBanner = updateSyncStatusBanner;
+        window.saveCatalogToCloud = saveCatalogToCloud;
 
         function getConsolidatedProductsList() {
             const currentData = window.PRODUCTS_DATA || [];
@@ -2379,7 +2482,7 @@
                     overrides = {};
                     if (window.rebuildProductsData) window.rebuildProductsData();
                     renderTable();
-                    updateSyncStatusBanner();
+                    scheduleCloudSave();
                     showToast(`✓ ${data.length} produtos importados com sucesso!`);
                 } catch(err) {
                     alert('Erro ao processar arquivo JSON: ' + err.message);

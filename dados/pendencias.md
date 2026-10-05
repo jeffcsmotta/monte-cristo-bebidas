@@ -1,6 +1,6 @@
 # Pendências do catálogo — Monte Cristo Bebidas
 
-Gerado em 2026-09-23 por `scripts/gerar-catalogo.cjs`. Não editar à mão.
+Gerado em 2026-10-02 por `scripts/gerar-catalogo.cjs`. Não editar à mão.
 
 ## Resolver antes de publicar (2 itens)
 
@@ -21,12 +21,12 @@ gradualmente sem bloquear o catálogo.
 
 | SKU | ID | Produto | Categoria | Volume | Preço | Pendências Editoriais |
 | --- | --- | --- | --- | --- | --- | --- |
-| MC-CC-006 | cc-10 | Cerveja Norteña 960ML | Cachaça, Conhaque, Cerveja e Espumante | 960ML | R$ 28,00 | ficha_editorial_completa, abv, fabricante, descricao_editorial |
-| MC-CC-007 | cc-12 | Cerveja Patricia 960ML | Cachaça, Conhaque, Cerveja e Espumante | 960ML | R$ 23,50 | ficha_editorial_completa, abv, fabricante, descricao_editorial |
-| MC-CC-008 | cc-14 | Cerveja Pilsen 960ML | Cachaça, Conhaque, Cerveja e Espumante | 960ML | R$ 23,50 | ficha_editorial_completa, abv, fabricante, descricao_editorial |
-| MC-CC-009 | cc-15 | Cerveja Zillertal 970ML | Cachaça, Conhaque, Cerveja e Espumante | 970ML | R$ 30,00 | ficha_editorial_completa, abv, fabricante, descricao_editorial |
-| MC-CC-011 | cc-7-alt | Conhaque Dreher | Cachaça, Conhaque, Cerveja e Espumante | 1L | R$ 30,00 | ficha_editorial_completa, abv, fabricante, descricao_editorial |
-| MC-CC-012 | cc-8-alt | Conhaque Presidente 900ML | Cachaça, Conhaque, Cerveja e Espumante | 900ML | R$ 25,00 | ficha_editorial_completa, abv, fabricante, descricao_editorial |
+| MC-CC-006 | cc-10 | Cerveja Norteña 960ML | Cervejas | 960ML | R$ 28,00 | ficha_editorial_completa, abv, fabricante, descricao_editorial |
+| MC-CC-007 | cc-12 | Cerveja Patricia 960ML | Cervejas | 960ML | R$ 23,50 | ficha_editorial_completa, abv, fabricante, descricao_editorial |
+| MC-CC-008 | cc-14 | Cerveja Pilsen 960ML | Cervejas | 960ML | R$ 23,50 | ficha_editorial_completa, abv, fabricante, descricao_editorial |
+| MC-CC-009 | cc-15 | Cerveja Zillertal 970ML | Cervejas | 970ML | R$ 30,00 | ficha_editorial_completa, abv, fabricante, descricao_editorial |
+| MC-CC-011 | cc-7-alt | Conhaque Dreher | Cachaça, Conhaque e Espumante | 1L | R$ 30,00 | ficha_editorial_completa, abv, fabricante, descricao_editorial |
+| MC-CC-012 | cc-8-alt | Conhaque Presidente 900ML | Cachaça, Conhaque e Espumante | 900ML | R$ 25,00 | ficha_editorial_completa, abv, fabricante, descricao_editorial |
 | MC-EN-001 | en-20 | Energetico Baly 2L | Energéticos | 2L | R$ 11,90 | ficha_editorial_completa, fabricante, descricao_editorial |
 | MC-EN-002 | en-21 | Energetico Baly Frutas Tropicais 2L | Energéticos | 2L | R$ 11,90 | ficha_editorial_completa, fabricante, descricao_editorial |
 | MC-EN-003 | en-22 | Energetico Baly Maça Verde 2L | Energéticos | 2L | R$ 11,90 | ficha_editorial_completa, fabricante, descricao_editorial |

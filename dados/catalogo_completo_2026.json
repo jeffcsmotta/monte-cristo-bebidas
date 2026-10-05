@@ -94,7 +94,7 @@
     "name": "Cerveja Norteña 960ML",
     "volume": "960ML",
     "price": 28,
-    "category": "cachaca-conhaque",
+    "category": "cervejas",
     "boxQty": 12,
     "boxTotal": 327.6,
     "active": true
@@ -104,7 +104,7 @@
     "name": "Cerveja Norteña Latão",
     "volume": "1L",
     "price": 8.9,
-    "category": "cachaca-conhaque",
+    "category": "cervejas",
     "boxQty": 6,
     "boxTotal": 52.07,
     "active": true
@@ -114,7 +114,7 @@
     "name": "Cerveja Patricia 960ML",
     "volume": "960ML",
     "price": 23.5,
-    "category": "cachaca-conhaque",
+    "category": "cervejas",
     "boxQty": 12,
     "boxTotal": 274.95,
     "active": true
@@ -124,7 +124,7 @@
     "name": "Cerveja Patricia Latão",
     "volume": "1L",
     "price": 7.5,
-    "category": "cachaca-conhaque",
+    "category": "cervejas",
     "boxQty": 6,
     "boxTotal": 43.88,
     "active": true
@@ -134,7 +134,7 @@
     "name": "Cerveja Pilsen 960ML",
     "volume": "960ML",
     "price": 23.5,
-    "category": "cachaca-conhaque",
+    "category": "cervejas",
     "boxQty": 12,
     "boxTotal": 274.95,
     "active": true
@@ -144,7 +144,7 @@
     "name": "Cerveja Zillertal 970ML",
     "volume": "970ML",
     "price": 30,
-    "category": "cachaca-conhaque",
+    "category": "cervejas",
     "boxQty": 12,
     "boxTotal": 351,
     "active": true
@@ -154,7 +154,7 @@
     "name": "Cerveja Zillertal Latão",
     "volume": "1L",
     "price": 8.9,
-    "category": "cachaca-conhaque",
+    "category": "cervejas",
     "boxQty": 6,
     "boxTotal": 52.07,
     "active": true

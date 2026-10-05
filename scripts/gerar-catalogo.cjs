@@ -205,11 +205,13 @@ function inferirSubcategoria(produto, categoria, ficha, subPorSlug) {
         else if (/ervas|j[aä]germeister/i.test(nome)) subSlug = 'licor-ervas';
         else subSlug = 'licor-frutas';
     } else if (slugCat === 'cachaca-conhaque') {
-        if (/cerveja|norteña|patricia|zillertal|pilsen/i.test(nome)) subSlug = 'cerveja';
-        else if (/conhaque|dreher|presidente|domecq/i.test(nome)) subSlug = 'conhaque';
+        if (/conhaque|dreher|presidente|domecq/i.test(nome)) subSlug = 'conhaque';
         else if (/espumante|salton/i.test(nome)) subSlug = 'espumante';
         else if (/artesanal|bucco/i.test(nome)) subSlug = 'cachaca-artesanal';
         else subSlug = 'cachaca';
+    } else if (slugCat === 'cervejas') {
+        if (/lat[aã]o|lata/i.test(nome)) subSlug = 'latao';
+        else subSlug = 'cerveja';
     } else if (slugCat === 'vermouth-bitter') {
         if (/vermouth|martini/i.test(nome)) subSlug = 'vermouth';
         else if (/bitter|angostura|underberg/i.test(nome)) subSlug = 'bitter';

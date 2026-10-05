@@ -55,22 +55,31 @@
     },
     {
       "slug": "cachaca-conhaque",
-      "nome": "Cachaça, Conhaque, Cerveja e Espumante",
-      "nome_plural": "Cachaça e Cerveja",
+      "nome": "Cachaça, Conhaque e Espumante",
+      "nome_plural": "Cachaça e Conhaque",
       "ordem": 5,
       "subcategorias": [
         { "slug": "cachaca", "nome": "Cachaça" },
         { "slug": "cachaca-artesanal", "nome": "Cachaça Artesanal" },
         { "slug": "conhaque", "nome": "Conhaque" },
-        { "slug": "cerveja", "nome": "Cerveja" },
         { "slug": "espumante", "nome": "Espumante" }
+      ]
+    },
+    {
+      "slug": "cervejas",
+      "nome": "Cervejas",
+      "nome_plural": "Cervejas",
+      "ordem": 6,
+      "subcategorias": [
+        { "slug": "cerveja", "nome": "Cerveja" },
+        { "slug": "latao", "nome": "Latão" }
       ]
     },
     {
       "slug": "vermouth-bitter",
       "nome": "Vermouth e Bitter",
       "nome_plural": "Vermouth e Bitter",
-      "ordem": 6,
+      "ordem": 7,
       "subcategorias": [
         { "slug": "vermouth", "nome": "Vermouth" },
         { "slug": "bitter", "nome": "Bitter" },
@@ -81,7 +90,7 @@
       "slug": "energeticos",
       "nome": "Energéticos",
       "nome_plural": "Energéticos",
-      "ordem": 7,
+      "ordem": 8,
       "subcategorias": [
         { "slug": "energetico", "nome": "Energético" }
       ]
@@ -90,7 +99,7 @@
       "slug": "xaropes",
       "nome": "Xaropes",
       "nome_plural": "Xaropes",
-      "ordem": 8,
+      "ordem": 9,
       "subcategorias": [
         { "slug": "xarope-bar", "nome": "Xarope para Bar" }
       ]

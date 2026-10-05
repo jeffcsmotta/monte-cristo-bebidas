@@ -99,7 +99,7 @@ const BASE_PRODUCTS_DATA = [
         name: "Cerveja Norteña 960ML",
         volume: "960ML",
         price: 28.00,
-        category: "cachaca-conhaque",
+        category: "cervejas",
         boxQty: 12,
         boxTotal: 327.60,
         active: true
@@ -109,7 +109,7 @@ const BASE_PRODUCTS_DATA = [
         name: "Cerveja Norteña Latão",
         volume: "1L",
         price: 8.90,
-        category: "cachaca-conhaque",
+        category: "cervejas",
         boxQty: 6,
         boxTotal: 52.07,
         active: true
@@ -119,7 +119,7 @@ const BASE_PRODUCTS_DATA = [
         name: "Cerveja Patricia 960ML",
         volume: "960ML",
         price: 23.50,
-        category: "cachaca-conhaque",
+        category: "cervejas",
         boxQty: 12,
         boxTotal: 274.95,
         active: true
@@ -129,7 +129,7 @@ const BASE_PRODUCTS_DATA = [
         name: "Cerveja Patricia Latão",
         volume: "1L",
         price: 7.50,
-        category: "cachaca-conhaque",
+        category: "cervejas",
         boxQty: 6,
         boxTotal: 43.88,
         active: true
@@ -139,7 +139,7 @@ const BASE_PRODUCTS_DATA = [
         name: "Cerveja Pilsen 960ML",
         volume: "960ML",
         price: 23.50,
-        category: "cachaca-conhaque",
+        category: "cervejas",
         boxQty: 12,
         boxTotal: 274.95,
         active: true
@@ -149,7 +149,7 @@ const BASE_PRODUCTS_DATA = [
         name: "Cerveja Zillertal 970ML",
         volume: "970ML",
         price: 30.00,
-        category: "cachaca-conhaque",
+        category: "cervejas",
         boxQty: 12,
         boxTotal: 351.00,
         active: true
@@ -159,7 +159,7 @@ const BASE_PRODUCTS_DATA = [
         name: "Cerveja Zillertal Latão",
         volume: "1L",
         price: 8.90,
-        category: "cachaca-conhaque",
+        category: "cervejas",
         boxQty: 6,
         boxTotal: 52.07,
         active: true
@@ -1094,7 +1094,7 @@ function getBoxSize(item) {
     if (item.boxQty && item.boxQty > 0) return item.boxQty;
     if (item.boxSize) return item.boxSize;
     if (item.category === 'energeticos' || item.category === 'xaropes') return 12;
-    if (item.category === 'cachaca-conhaque' && item.volume && item.volume.toLowerCase().includes('lata')) return 24;
+    if ((item.category === 'cachaca-conhaque' || item.category === 'cervejas') && item.volume && item.volume.toLowerCase().includes('lata')) return 24;
     if (item.category === 'licores' || item.id === 'wh-11' || item.id === 'wh-4') return 6;
     return 12;
 }
@@ -1213,39 +1213,51 @@ function parseAndApplyCsvPrices(csvText) {
     }
 }
 
+// FONTE ÚNICA: o catálogo oficial vem do admin via /api/catalog (nuvem).
+// O Google Sheets foi desligado como fonte — mantido apenas o parser morto
+// para referência. A vitrine renderiza o BASE embutido e troca pela nuvem.
 async function syncPricesFromGoogleSheet() {
-    const customUrl = localStorage.getItem('monte_cristo_custom_sheet_url');
-    const targetUrl = customUrl || MONTE_CRISTO_SHEET_URL;
+    return loadOfficialCatalog();
+}
 
-    // 1. Render instantâneo com cache local (0ms)
+async function loadOfficialCatalog() {
     try {
-        const cache = JSON.parse(localStorage.getItem('monte_cristo_sheet_cache'));
-        if (cache && cache.overrides) {
-            PRODUCTS_DATA.forEach(item => {
-                if (!item.originalPrice) item.originalPrice = item.price;
-                if (cache.overrides[item.id]) {
-                    if (typeof cache.overrides[item.id].price === 'number') item.price = cache.overrides[item.id].price;
-                    if (typeof cache.overrides[item.id].active === 'boolean') item.active = cache.overrides[item.id].active;
-                }
-            });
-            renderProducts();
-        }
-    } catch(e) {}
-
-    // 2. Consulta em tempo real no Google Sheets (Stale-While-Revalidate)
-    try {
-        const response = await fetch(targetUrl);
-        if (response.ok) {
-            const csvText = await response.text();
-            if (csvText && (csvText.includes('ID') || csvText.includes('wh-') || csvText.includes('vk-') || csvText.includes('PRODUTO'))) {
-                parseAndApplyCsvPrices(csvText);
-                applyPriceOverrides();
-                renderProducts();
-                updateCartUI();
+        const res = await fetch('/api/catalog', { cache: 'no-store' });
+        if (!res.ok) return;
+        const data = await res.json();
+        if (!data || !data.exists || !Array.isArray(data.items) || data.items.length === 0) return;
+        PRODUCTS_DATA = data.items.map(p => ({
+            id: p.id,
+            name: p.name,
+            volume: p.volume || '1L',
+            price: p.price,
+            category: p.category || 'outros',
+            boxQty: p.boxQty || 6,
+            boxTotal: p.boxTotal,
+            active: p.active !== false,
+            ...(p.image ? { image: p.image } : {})
+        }));
+        window.PRODUCTS_DATA = PRODUCTS_DATA;
+        window.MONTE_CRISTO_OFFICIAL = {
+            version: data.version,
+            updatedAt: data.updatedAt,
+            updatedBy: data.updatedBy
+        };
+        renderProducts();
+        updateCartUI();
+        const banner = document.getElementById('sim-banner');
+        if (banner) banner.remove();
+        try {
+            const note = document.querySelector('.shop-meta-note');
+            if (note && data.updatedAt) {
+                const d = new Date(data.updatedAt);
+                const s = d.toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
+                note.textContent = `Tabela oficial v${data.version} • atualizada em ${s} por ${data.updatedBy || 'admin'}`;
+                note.title = `Fonte única: admin • v${data.version} • ${data.updatedAt}`;
             }
-        }
-    } catch(err) {
-        console.warn('Falha silenciosa ao sincronizar planilha:', err);
+        } catch (e) {}
+    } catch (e) {
+        // Sem nuvem (arquivo local): segue com o BASE embutido
     }
 }
 
@@ -1390,11 +1402,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 // Real-time synchronization across multiple tabs
+// Quando o admin salva na nuvem, ele carimba monte_cristo_cloud_ping —
+// a vitrine recarrega a verdade oficial. Overrides locais são ignorados
+// se a nuvem já assumiu (fonte única).
 window.addEventListener('storage', (e) => {
-    if (e.key === 'monte_cristo_price_overrides' || 
-        e.key === 'monte_cristo_custom_products' || 
-        e.key === 'monte_cristo_product_edits' || 
+    if (e.key === 'monte_cristo_cloud_ping') {
+        loadOfficialCatalog();
+        return;
+    }
+    if (e.key === 'monte_cristo_price_overrides' ||
+        e.key === 'monte_cristo_custom_products' ||
+        e.key === 'monte_cristo_product_edits' ||
         e.key === 'monte_cristo_deleted_ids') {
+        if (window.MONTE_CRISTO_OFFICIAL) {
+            loadOfficialCatalog();
+            return;
+        }
         rebuildProductsData();
         applyPriceOverrides();
         renderProducts();
@@ -1794,6 +1817,7 @@ function getCategoryName(cat) {
         'gin-tequila': 'Gin & Tequila',
         'licores': 'Licor & Aperitivo',
         'cachaca-conhaque': 'Cachaça & Conhaque',
+        'cervejas': 'Cervejas',
         'vermouth-bitter': 'Vermouth & Bitter',
         'energeticos': 'Energético & Ice',
         'xaropes': 'Xarope & Outros'

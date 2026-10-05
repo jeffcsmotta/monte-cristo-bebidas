@@ -47,7 +47,7 @@ function getBoxSize(item) {
     if (item.boxQty && item.boxQty > 0) return item.boxQty;
     if (item.boxSize) return item.boxSize;
     if (item.category === 'energeticos' || item.category === 'xaropes') return 12;
-    if (item.category === 'cachaca-conhaque' && item.volume && item.volume.toLowerCase().includes('lata')) return 24;
+    if ((item.category === 'cachaca-conhaque' || item.category === 'cervejas') && item.volume && item.volume.toLowerCase().includes('lata')) return 24;
     if (item.category === 'licores' || item.id === 'wh-11' || item.id === 'wh-4') return 6;
     return 12;
 }

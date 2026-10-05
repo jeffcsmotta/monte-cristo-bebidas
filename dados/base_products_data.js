@@ -94,7 +94,7 @@ const BASE_PRODUCTS_DATA = [
         name: "Cerveja Norteña 960ML",
         volume: "960ML",
         price: 28.00,
-        category: "cachaca-conhaque",
+        category: "cervejas",
         boxQty: 12,
         boxTotal: 327.60,
         active: true
@@ -104,7 +104,7 @@ const BASE_PRODUCTS_DATA = [
         name: "Cerveja Norteña Latão",
         volume: "1L",
         price: 8.90,
-        category: "cachaca-conhaque",
+        category: "cervejas",
         boxQty: 6,
         boxTotal: 52.07,
         active: true
@@ -114,7 +114,7 @@ const BASE_PRODUCTS_DATA = [
         name: "Cerveja Patricia 960ML",
         volume: "960ML",
         price: 23.50,
-        category: "cachaca-conhaque",
+        category: "cervejas",
         boxQty: 12,
         boxTotal: 274.95,
         active: true
@@ -124,7 +124,7 @@ const BASE_PRODUCTS_DATA = [
         name: "Cerveja Patricia Latão",
         volume: "1L",
         price: 7.50,
-        category: "cachaca-conhaque",
+        category: "cervejas",
         boxQty: 6,
         boxTotal: 43.88,
         active: true
@@ -134,7 +134,7 @@ const BASE_PRODUCTS_DATA = [
         name: "Cerveja Pilsen 960ML",
         volume: "960ML",
         price: 23.50,
-        category: "cachaca-conhaque",
+        category: "cervejas",
         boxQty: 12,
         boxTotal: 274.95,
         active: true
@@ -144,7 +144,7 @@ const BASE_PRODUCTS_DATA = [
         name: "Cerveja Zillertal 970ML",
         volume: "970ML",
         price: 30.00,
-        category: "cachaca-conhaque",
+        category: "cervejas",
         boxQty: 12,
         boxTotal: 351.00,
         active: true
@@ -154,7 +154,7 @@ const BASE_PRODUCTS_DATA = [
         name: "Cerveja Zillertal Latão",
         volume: "1L",
         price: 8.90,
-        category: "cachaca-conhaque",
+        category: "cervejas",
         boxQty: 6,
         boxTotal: 52.07,
         active: true
