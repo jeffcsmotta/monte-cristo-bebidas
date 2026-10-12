@@ -10194,15 +10194,10 @@
         "ficha_completa": false
       },
       "imagem": {
-        "status": "pendente",
-        "arquivo_local": "assets/produtos/xarope-formula-morango-1l.png",
-        "url_origem": null,
-        "pagina_origem": null,
-        "fonte": null,
-        "fundo": null,
-        "confianca": null,
-        "alt": "Xarope Fórmula Morango 1L",
-        "fallback": "ilustração vetorial da garrafa (bottles.js)"
+        "status": "ativo",
+        "arquivo_local": "assets/produtos/xarope-formula-morango-1l.webp",
+        "confianca": "alta",
+        "fonte": "drive_oficial_monte_cristo"
       },
       "busca_imagem": {
         "termo": "Fórmula Morango 1L garrafa fundo branco",
@@ -10307,15 +10302,10 @@
         "ficha_completa": false
       },
       "imagem": {
-        "status": "pendente",
-        "arquivo_local": "assets/produtos/xarope-formula-chocolate-1l.png",
-        "url_origem": null,
-        "pagina_origem": null,
-        "fonte": null,
-        "fundo": null,
-        "confianca": null,
-        "alt": "Xarope Fórmula Chocolate 1L",
-        "fallback": "ilustração vetorial da garrafa (bottles.js)"
+        "status": "ativo",
+        "arquivo_local": "assets/produtos/xarope-formula-chocolate-1l.webp",
+        "confianca": "alta",
+        "fonte": "drive_oficial_monte_cristo"
       },
       "busca_imagem": {
         "termo": "Fórmula Chocolate 1L garrafa fundo branco",
@@ -10420,15 +10410,10 @@
         "ficha_completa": false
       },
       "imagem": {
-        "status": "pendente",
-        "arquivo_local": "assets/produtos/xarope-formula-cranberry-1l.png",
-        "url_origem": null,
-        "pagina_origem": null,
-        "fonte": null,
-        "fundo": null,
-        "confianca": null,
-        "alt": "Xarope Fórmula Cranberry 1L",
-        "fallback": "ilustração vetorial da garrafa (bottles.js)"
+        "status": "ativo",
+        "arquivo_local": "assets/produtos/xarope-formula-cranberry-1l.webp",
+        "confianca": "alta",
+        "fonte": "drive_oficial_monte_cristo"
       },
       "busca_imagem": {
         "termo": "Fórmula Cranberry 1L garrafa fundo branco",
@@ -10533,15 +10518,10 @@
         "ficha_completa": false
       },
       "imagem": {
-        "status": "pendente",
-        "arquivo_local": "assets/produtos/xarope-formula-grenadine-1l.png",
-        "url_origem": null,
-        "pagina_origem": null,
-        "fonte": null,
-        "fundo": null,
-        "confianca": null,
-        "alt": "Xarope Fórmula Grenadine 1L",
-        "fallback": "ilustração vetorial da garrafa (bottles.js)"
+        "status": "ativo",
+        "arquivo_local": "assets/produtos/xarope-formula-grenadine-1l.webp",
+        "confianca": "alta",
+        "fonte": "drive_oficial_monte_cristo"
       },
       "busca_imagem": {
         "termo": "Fórmula Grenadine 1L garrafa fundo branco",
@@ -10646,15 +10626,10 @@
         "ficha_completa": false
       },
       "imagem": {
-        "status": "pendente",
-        "arquivo_local": "assets/produtos/xarope-formula-gengibre-1l.png",
-        "url_origem": null,
-        "pagina_origem": null,
-        "fonte": null,
-        "fundo": null,
-        "confianca": null,
-        "alt": "Xarope Fórmula Gengibre 1L",
-        "fallback": "ilustração vetorial da garrafa (bottles.js)"
+        "status": "ativo",
+        "arquivo_local": "assets/produtos/xarope-formula-gengibre-1l.webp",
+        "confianca": "alta",
+        "fonte": "drive_oficial_monte_cristo"
       },
       "busca_imagem": {
         "termo": "Fórmula Gengibre 1L garrafa fundo branco",
@@ -10759,15 +10734,10 @@
         "ficha_completa": false
       },
       "imagem": {
-        "status": "pendente",
-        "arquivo_local": "assets/produtos/xarope-formula-maca-verde-1l.png",
-        "url_origem": null,
-        "pagina_origem": null,
-        "fonte": null,
-        "fundo": null,
-        "confianca": null,
-        "alt": "Xarope Fórmula Maça Verde 1L",
-        "fallback": "ilustração vetorial da garrafa (bottles.js)"
+        "status": "ativo",
+        "arquivo_local": "assets/produtos/xarope-formula-maca-verde-1l.webp",
+        "confianca": "alta",
+        "fonte": "drive_oficial_monte_cristo"
       },
       "busca_imagem": {
         "termo": "Fórmula Maça Verde 1L garrafa fundo branco",
@@ -10872,15 +10842,10 @@
         "ficha_completa": false
       },
       "imagem": {
-        "status": "pendente",
-        "arquivo_local": "assets/produtos/xarope-formula-pessego-1l.png",
-        "url_origem": null,
-        "pagina_origem": null,
-        "fonte": null,
-        "fundo": null,
-        "confianca": null,
-        "alt": "Xarope Fórmula Pêssego 1L",
-        "fallback": "ilustração vetorial da garrafa (bottles.js)"
+        "status": "ativo",
+        "arquivo_local": "assets/produtos/xarope-formula-pessego-1l.webp",
+        "confianca": "alta",
+        "fonte": "drive_oficial_monte_cristo"
       },
       "busca_imagem": {
         "termo": "Fórmula Pêssego 1L garrafa fundo branco",
@@ -10985,15 +10950,10 @@
         "ficha_completa": false
       },
       "imagem": {
-        "status": "pendente",
-        "arquivo_local": "assets/produtos/xarope-formula-tangerina-1l.png",
-        "url_origem": null,
-        "pagina_origem": null,
-        "fonte": null,
-        "fundo": null,
-        "confianca": null,
-        "alt": "Xarope Fórmula Tangerina 1L",
-        "fallback": "ilustração vetorial da garrafa (bottles.js)"
+        "status": "ativo",
+        "arquivo_local": "assets/produtos/xarope-formula-tangerina-1l.webp",
+        "confianca": "alta",
+        "fonte": "drive_oficial_monte_cristo"
       },
       "busca_imagem": {
         "termo": "Fórmula Tangerina 1L garrafa fundo branco",
@@ -11098,15 +11058,10 @@
         "ficha_completa": false
       },
       "imagem": {
-        "status": "pendente",
-        "arquivo_local": "assets/produtos/xarope-formula-limao-siciliano-1l.png",
-        "url_origem": null,
-        "pagina_origem": null,
-        "fonte": null,
-        "fundo": null,
-        "confianca": null,
-        "alt": "Xarope Fórmula Limão Siciliano 1L",
-        "fallback": "ilustração vetorial da garrafa (bottles.js)"
+        "status": "ativo",
+        "arquivo_local": "assets/produtos/xarope-formula-limao-siciliano-1l.webp",
+        "confianca": "alta",
+        "fonte": "drive_oficial_monte_cristo"
       },
       "busca_imagem": {
         "termo": "Fórmula Limão Siciliano 1L garrafa fundo branco",

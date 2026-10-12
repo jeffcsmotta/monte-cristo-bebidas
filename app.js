@@ -2026,9 +2026,11 @@ window.toggleCartDrawer = function(open) {
         if (open) {
             drawer.classList.add('active');
             overlay.classList.add('active');
+            document.body.classList.add('cart-drawer-open');
         } else {
             drawer.classList.remove('active');
             overlay.classList.remove('active');
+            document.body.classList.remove('cart-drawer-open');
         }
     }
 };
@@ -2081,7 +2083,15 @@ window.sendWhatsAppOrder = function() {
     }
 
     const ageCheck = document.getElementById('check-age-18');
+    const ageBox = document.querySelector('.cart-legal-age-box');
     if (ageCheck && !ageCheck.checked) {
+        if (ageBox) {
+            ageBox.classList.add('highlight-warning');
+            ageCheck.addEventListener('change', () => {
+                if (ageCheck.checked) ageBox.classList.remove('highlight-warning');
+            }, { once: true });
+            ageBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
         showToast("🔞 É obrigatório confirmar ser maior de 18 anos para solicitar bebidas.");
         ageCheck.focus();
         return;
