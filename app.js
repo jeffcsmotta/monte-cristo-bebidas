@@ -2080,6 +2080,13 @@ window.sendWhatsAppOrder = function() {
         return;
     }
 
+    const ageCheck = document.getElementById('check-age-18');
+    if (ageCheck && !ageCheck.checked) {
+        showToast("🔞 É obrigatório confirmar ser maior de 18 anos para solicitar bebidas.");
+        ageCheck.focus();
+        return;
+    }
+
     const cashChangeInput = document.getElementById('cash-change-val');
     const cashChange = cashChangeInput ? cashChangeInput.value.trim() : '';
 
@@ -2127,6 +2134,8 @@ Solicitação de Distribuição · Reserva de Estoque
         msg += `Obs/Faturamento: ${cashChange}
 `;
     }
+    msg += `🔞 Maioridade: Confirmada pelo cliente (+18 anos · Lei Federal 13.106/15)
+`;
 
     msg += `
 _Enviado pelo canal oficial Monte Cristo Bebidas_`;

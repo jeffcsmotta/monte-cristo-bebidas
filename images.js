@@ -103,8 +103,13 @@ window.PRODUCT_IMAGES = {
   "xr-108": "assets/produtos/xarope-monin-framboesa-700ml.webp",
   "xr-89": "assets/produtos/xarope-formula-morango-1l.webp",
   "xr-90": "assets/produtos/xarope-formula-chocolate-1l.webp",
+  "xr-91": "assets/produtos/xarope-formula-cranberry-1l.webp",
+  "xr-92": "assets/produtos/xarope-formula-grenadine-1l.webp",
+  "xr-93": "assets/produtos/xarope-formula-gengibre-1l.webp",
   "xr-94": "assets/produtos/xarope-formula-maca-verde-1l.webp",
   "xr-95": "assets/produtos/xarope-formula-pessego-1l.webp",
+  "xr-96": "assets/produtos/xarope-formula-tangerina-1l.webp",
+  "xr-97": "assets/produtos/xarope-formula-limao-siciliano-1l.webp",
   "xr-98": "assets/produtos/xarope-monin-maca-verde-700ml.webp",
   "xr-99": "assets/produtos/xarope-monin-morango-700ml.webp"
 };
