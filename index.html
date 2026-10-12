@@ -709,12 +709,23 @@
             }, 1800);
         });
 
-        // Register Service Worker
+        // Register Service Worker com checagem ativa e transição suave
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js')
-                    .then(reg => console.log('PWA ServiceWorker registrado:', reg.scope))
+                navigator.serviceWorker.register('./sw.js?v=20261012_v10')
+                    .then(reg => {
+                        console.log('PWA ServiceWorker registrado:', reg.scope);
+                        if (reg.update) reg.update();
+                    })
                     .catch(err => console.warn('Falha ServiceWorker:', err));
+
+                let refreshing = false;
+                navigator.serviceWorker.addEventListener('controllerchange', () => {
+                    if (!refreshing) {
+                        refreshing = true;
+                        window.location.reload();
+                    }
+                });
             });
         }
     </script>
