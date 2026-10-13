@@ -1,5 +1,5 @@
 ﻿sku;id;nome;marca;expressao;categoria;subcategoria;tipo;pais;teor_alcoolico;embalagem;volume_ml;volume;preco_unitario;preco_por_litro;unidades_por_caixa;preco_caixa;imagem_status;confirmar_antes_de_publicar;confirmar_se_sobrar_tempo
-MC-WH-001;wh-1;Aperitivo Malt.whisky Canela Firebird 950ML;Firebird;Canela;Licores e Aperitivos;Aperitivo;Aperitivo de malt whisky com canela;Brasil;;Garrafa de vidro;950;950ML;25,00;26,32;6;146,25;pendente;;abv | fabricante
+MC-WH-001;wh-1;Firebird Canela 950ML;Firebird;Canela;Licores e Aperitivos;Aperitivo;Aperitivo de malt whisky com canela;Brasil;36;Garrafa de vidro;950;950ML;25,00;26,32;6;146,25;pendente;;
 MC-LC-001;lc-1;Aperol;Aperol;;Licores e Aperitivos;Aperitivo;Aperitivo italiano;Itália;11;Garrafa de vidro;1000;1L;64,50;64,50;6;377,33;ok;variante;
 MC-LC-002;lc-3;Brasilberg Original 920ML;Licor 43;Chocolate Edition;Licores e Aperitivos;Licor Cremoso;Licor de chocolate e baunilha;Espanha;;Garrafa de vidro;920;920ML;66,90;72,72;6;391,37;ok;;abv
 MC-LC-003;lc-4;Campari 998ML;Amarula;Cream;Licores e Aperitivos;Licor Cremoso;Licor cremoso de marula;África do Sul;17;Garrafa de vidro;998;998ML;69,90;70,04;12;817,83;ok;;

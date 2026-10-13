@@ -79,6 +79,7 @@ window.PRODUCT_IMAGES = {
   "vk-8": "assets/produtos/vodka-rajska-red-fruits-1l.webp",
   "vk-68": "assets/produtos/vodka-ciroc-original-750ml.webp",
   "vk-75": "assets/produtos/vodka-smirnoff-21-998ml.webp",
+  "wh-1": "assets/produtos/firebird-canela-950ml.webp",
   "wh-11": "assets/produtos/whisky-johnnie-walker-black-label-1l.webp",
   "wh-12": "assets/produtos/whisky-johnnie-walker-red-label-1l.webp",
   "wh-14": "assets/produtos/whisky-passport-1l.webp",

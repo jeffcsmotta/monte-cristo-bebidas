@@ -2,7 +2,7 @@
   "_meta": {
     "cliente": "Monte Cristo Bebidas",
     "praca": "Caxias do Sul/RS",
-    "gerado_em": "2026-10-02T21:39:09.985Z",
+    "gerado_em": "2026-10-13T19:12:12.985Z",
     "gerado_por": "scripts/gerar-catalogo.cjs",
     "fonte_comercial": "dados/catalogo_consolidado.json (app.js)",
     "fonte_editorial": "dados/fichas.json",
@@ -60,9 +60,9 @@
     {
       "sku": "MC-WH-001",
       "id": "wh-1",
-      "slug": "aperitivo-malt-whisky-canela-firebird-950ml-950ml",
+      "slug": "firebird-canela-950ml-950ml",
       "ordem": 1,
-      "nome": "Aperitivo Malt.whisky Canela Firebird 950ML",
+      "nome": "Firebird Canela 950ML",
       "nome_curto": "Firebird Canela",
       "marca": "Firebird",
       "expressao": "Canela",
@@ -79,15 +79,15 @@
         "Catálogo",
         "Licores e Aperitivos",
         "Aperitivo",
-        "Aperitivo Malt.whisky Canela Firebird 950ML"
+        "Firebird Canela 950ML"
       ],
       "origem": {
         "pais": "Brasil",
-        "regiao": null,
+        "regiao": "Serra Gaúcha (Caxias do Sul - RS)",
         "importado": false
       },
       "produtor": {
-        "proprietaria": null,
+        "proprietaria": "Eagle Bebidas",
         "site_oficial": null
       },
       "embalagem": {
@@ -98,9 +98,9 @@
         "volume_label": "950ML"
       },
       "ficha_tecnica": {
-        "teor_alcoolico": null,
+        "teor_alcoolico": 36,
         "alcoolico": true,
-        "servir": "Gelado, em dose pura."
+        "servir": "Gelado, em shots puros ou com gelo."
       },
       "preco": {
         "unitario": 25,
@@ -110,7 +110,7 @@
           "slug": "ate-30",
           "nome": "Até R$ 30"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -122,12 +122,14 @@
         "disponivel": true
       },
       "conteudo": {
-        "descricao_curta": "Aperitivo à base de malt whisky com canela, no perfil de dose gelada. Giro de balada e conveniência, preço de entrada.",
-        "observacao_interna": "Marca de menor divulgação: confirmar fabricante e teor no rótulo do estoque."
+        "descricao_curta": "Firebird Canela é um aperitivo à base de malt whisky com aroma marcante e picante de canela. Graduação alcoólica de 36%, perfeito para shots gelados, baladas e momentos de celebração. Produzido em Caxias do Sul pela Eagle Bebidas.",
+        "observacao_interna": "Ficha confirmada diretamente pelo rótulo oficial da garrafa (Eagle Bebidas, Caxias do Sul/RS, MAPA RS 003094-5.000009)."
       },
       "tags": [
         "nacional",
-        "entrada"
+        "serra-gaucha",
+        "canela",
+        "shots"
       ],
       "flags": {
         "variante_critica": false,
@@ -137,13 +139,13 @@
       },
       "imagem": {
         "status": "pendente",
-        "arquivo_local": "assets/produtos/aperitivo-malt-whisky-canela-firebird-950ml-950ml.png",
+        "arquivo_local": "assets/produtos/firebird-canela-950ml-950ml.png",
         "url_origem": null,
         "pagina_origem": null,
         "fonte": null,
         "fundo": null,
         "confianca": "baixa",
-        "alt": "Aperitivo Malt.whisky Canela Firebird 950ML 950ML",
+        "alt": "Firebird Canela 950ML 950ML",
         "fallback": "ilustração vetorial da garrafa (bottles.js)"
       },
       "busca_imagem": {
@@ -156,21 +158,18 @@
           "divvino.com.br"
         ],
         "variante_critica": false,
-        "cuidado": "Marca de menor divulgação: confirmar fabricante e teor no rótulo do estoque."
+        "cuidado": "Ficha confirmada diretamente pelo rótulo oficial da garrafa (Eagle Bebidas, Caxias do Sul/RS, MAPA RS 003094-5.000009)."
       },
       "seo": {
-        "title": "Aperitivo Malt.whisky Canela Firebird 950ML 950ML | Monte Cristo Bebidas",
-        "description": "Aperitivo Malt.whisky Canela Firebird 950ML · 950ML · Brasil. Aperitivo à base de malt whisky com canela, no perfil de dose gelada. Giro de balada e conveniência, preço de entrada. Monte Cristo Bebidas, Caxias do Sul/RS.",
-        "canonical": "/produto/aperitivo-malt-whisky-canela-firebird-950ml-950ml"
+        "title": "Firebird Canela 950ML 950ML | Monte Cristo Bebidas",
+        "description": "Firebird Canela 950ML · 950ML · 36% vol. · Brasil. Firebird Canela é um aperitivo à base de malt whisky com aroma marcante e picante de canela. Graduação alcoólica de 36%, perfeito para shots gelados, baladas e momentos de celebração. Produzido em Caxias do Sul pela Eagle Bebidas. Monte Cristo Bebid",
+        "canonical": "/produto/firebird-canela-950ml-950ml"
       },
       "pendencias": {
         "criticas": [],
-        "cosmeticas": [
-          "abv",
-          "fabricante"
-        ]
+        "cosmeticas": []
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-LC-001",
@@ -225,7 +224,7 @@
           "slug": "60-100",
           "nome": "R$ 60 a R$ 100"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -285,7 +284,7 @@
         ],
         "cosmeticas": []
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-LC-002",
@@ -340,7 +339,7 @@
           "slug": "60-100",
           "nome": "R$ 60 a R$ 100"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -400,7 +399,7 @@
           "abv"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-LC-003",
@@ -455,7 +454,7 @@
           "slug": "60-100",
           "nome": "R$ 60 a R$ 100"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -513,7 +512,7 @@
         "criticas": [],
         "cosmeticas": []
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-CC-001",
@@ -568,7 +567,7 @@
           "slug": "ate-30",
           "nome": "Até R$ 30"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -626,7 +625,7 @@
         "criticas": [],
         "cosmeticas": []
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-CC-002",
@@ -681,7 +680,7 @@
           "slug": "ate-30",
           "nome": "Até R$ 30"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -741,7 +740,7 @@
           "fabricante"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-CC-003",
@@ -796,7 +795,7 @@
           "slug": "30-60",
           "nome": "R$ 30 a R$ 60"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -853,7 +852,7 @@
         "criticas": [],
         "cosmeticas": []
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-CC-004",
@@ -908,7 +907,7 @@
           "slug": "30-60",
           "nome": "R$ 30 a R$ 60"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -967,7 +966,7 @@
           "fabricante"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-CC-005",
@@ -1022,7 +1021,7 @@
           "slug": "60-100",
           "nome": "R$ 60 a R$ 100"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -1084,7 +1083,7 @@
           "envelhecimento"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-CC-006",
@@ -1139,7 +1138,7 @@
           "slug": "ate-30",
           "nome": "Até R$ 30"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -1198,7 +1197,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-CV-001",
@@ -1253,7 +1252,7 @@
           "slug": "ate-30",
           "nome": "Até R$ 30"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -1314,7 +1313,7 @@
           "fabricante"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-CC-007",
@@ -1369,7 +1368,7 @@
           "slug": "ate-30",
           "nome": "Até R$ 30"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -1428,7 +1427,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-CV-002",
@@ -1483,7 +1482,7 @@
           "slug": "ate-30",
           "nome": "Até R$ 30"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -1544,7 +1543,7 @@
           "fabricante"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-CC-008",
@@ -1599,7 +1598,7 @@
           "slug": "ate-30",
           "nome": "Até R$ 30"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -1658,7 +1657,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-CC-009",
@@ -1713,7 +1712,7 @@
           "slug": "30-60",
           "nome": "R$ 30 a R$ 60"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -1772,7 +1771,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-CV-003",
@@ -1827,7 +1826,7 @@
           "slug": "ate-30",
           "nome": "Até R$ 30"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -1888,7 +1887,7 @@
           "fabricante"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-CC-010",
@@ -1943,7 +1942,7 @@
           "slug": "30-60",
           "nome": "R$ 30 a R$ 60"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -2002,7 +2001,7 @@
           "fabricante"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-CC-011",
@@ -2057,7 +2056,7 @@
           "slug": "30-60",
           "nome": "R$ 30 a R$ 60"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -2116,7 +2115,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-CC-012",
@@ -2171,7 +2170,7 @@
           "slug": "ate-30",
           "nome": "Até R$ 30"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -2230,7 +2229,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-EN-001",
@@ -2285,7 +2284,7 @@
           "slug": "ate-30",
           "nome": "Até R$ 30"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -2343,7 +2342,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-EN-002",
@@ -2398,7 +2397,7 @@
           "slug": "ate-30",
           "nome": "Até R$ 30"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -2456,7 +2455,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-EN-003",
@@ -2511,7 +2510,7 @@
           "slug": "ate-30",
           "nome": "Até R$ 30"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -2569,7 +2568,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-EN-004",
@@ -2624,7 +2623,7 @@
           "slug": "ate-30",
           "nome": "Até R$ 30"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -2682,7 +2681,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-EN-005",
@@ -2737,7 +2736,7 @@
           "slug": "ate-30",
           "nome": "Até R$ 30"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -2795,7 +2794,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-EN-006",
@@ -2850,7 +2849,7 @@
           "slug": "ate-30",
           "nome": "Até R$ 30"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 24,
@@ -2909,7 +2908,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-EN-007",
@@ -2964,7 +2963,7 @@
           "slug": "ate-30",
           "nome": "Até R$ 30"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 24,
@@ -3023,7 +3022,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-EN-008",
@@ -3078,7 +3077,7 @@
           "slug": "ate-30",
           "nome": "Até R$ 30"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 24,
@@ -3137,7 +3136,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-EN-009",
@@ -3192,7 +3191,7 @@
           "slug": "ate-30",
           "nome": "Até R$ 30"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 24,
@@ -3251,7 +3250,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-EN-010",
@@ -3306,7 +3305,7 @@
           "slug": "ate-30",
           "nome": "Até R$ 30"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 24,
@@ -3365,7 +3364,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-EN-011",
@@ -3420,7 +3419,7 @@
           "slug": "ate-30",
           "nome": "Até R$ 30"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 24,
@@ -3479,7 +3478,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-GN-001",
@@ -3534,7 +3533,7 @@
           "slug": "60-100",
           "nome": "R$ 60 a R$ 100"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -3592,7 +3591,7 @@
         "criticas": [],
         "cosmeticas": []
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-GN-002",
@@ -3647,7 +3646,7 @@
           "slug": "30-60",
           "nome": "R$ 30 a R$ 60"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -3708,7 +3707,7 @@
           "fabricante"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-GT-001",
@@ -3763,7 +3762,7 @@
           "slug": "30-60",
           "nome": "R$ 30 a R$ 60"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -3823,7 +3822,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-GT-002",
@@ -3878,7 +3877,7 @@
           "slug": "30-60",
           "nome": "R$ 30 a R$ 60"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -3938,7 +3937,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-GT-003",
@@ -3993,7 +3992,7 @@
           "slug": "100-180",
           "nome": "R$ 100 a R$ 180"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -4052,7 +4051,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-LC-004",
@@ -4107,7 +4106,7 @@
           "slug": "100-180",
           "nome": "R$ 100 a R$ 180"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -4166,7 +4165,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-LC-005",
@@ -4221,7 +4220,7 @@
           "slug": "acima-180",
           "nome": "Acima de R$ 180"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -4280,7 +4279,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-LC-006",
@@ -4335,7 +4334,7 @@
           "slug": "60-100",
           "nome": "R$ 60 a R$ 100"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -4394,7 +4393,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-LC-007",
@@ -4449,7 +4448,7 @@
           "slug": "60-100",
           "nome": "R$ 60 a R$ 100"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -4506,7 +4505,7 @@
           "fabricante"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-LC-008",
@@ -4561,7 +4560,7 @@
           "slug": "60-100",
           "nome": "R$ 60 a R$ 100"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -4621,7 +4620,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-LC-009",
@@ -4676,7 +4675,7 @@
           "slug": "100-180",
           "nome": "R$ 100 a R$ 180"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -4736,7 +4735,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-LC-010",
@@ -4791,7 +4790,7 @@
           "slug": "100-180",
           "nome": "R$ 100 a R$ 180"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -4850,7 +4849,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-LC-011",
@@ -4905,7 +4904,7 @@
           "slug": "30-60",
           "nome": "R$ 30 a R$ 60"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -4965,7 +4964,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-LC-012",
@@ -5020,7 +5019,7 @@
           "slug": "30-60",
           "nome": "R$ 30 a R$ 60"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -5080,7 +5079,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-LC-013",
@@ -5135,7 +5134,7 @@
           "slug": "30-60",
           "nome": "R$ 30 a R$ 60"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -5195,7 +5194,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-LC-014",
@@ -5250,7 +5249,7 @@
           "slug": "30-60",
           "nome": "R$ 30 a R$ 60"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -5310,7 +5309,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-LC-015",
@@ -5365,7 +5364,7 @@
           "slug": "30-60",
           "nome": "R$ 30 a R$ 60"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -5425,7 +5424,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-LC-016",
@@ -5480,7 +5479,7 @@
           "slug": "60-100",
           "nome": "R$ 60 a R$ 100"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -5540,7 +5539,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-LC-017",
@@ -5595,7 +5594,7 @@
           "slug": "30-60",
           "nome": "R$ 30 a R$ 60"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -5655,7 +5654,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-LC-018",
@@ -5710,7 +5709,7 @@
           "slug": "30-60",
           "nome": "R$ 30 a R$ 60"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -5770,7 +5769,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-LC-019",
@@ -5825,7 +5824,7 @@
           "slug": "60-100",
           "nome": "R$ 60 a R$ 100"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -5885,7 +5884,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-LC-020",
@@ -5940,7 +5939,7 @@
           "slug": "30-60",
           "nome": "R$ 30 a R$ 60"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -6000,7 +5999,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-RM-001",
@@ -6055,7 +6054,7 @@
           "slug": "30-60",
           "nome": "R$ 30 a R$ 60"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -6117,7 +6116,7 @@
           "origem"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-RM-002",
@@ -6172,7 +6171,7 @@
           "slug": "30-60",
           "nome": "R$ 30 a R$ 60"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -6233,7 +6232,7 @@
           "origem"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-RM-003",
@@ -6288,7 +6287,7 @@
           "slug": "30-60",
           "nome": "R$ 30 a R$ 60"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -6349,7 +6348,7 @@
           "origem"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-GT-004",
@@ -6404,7 +6403,7 @@
           "slug": "30-60",
           "nome": "R$ 30 a R$ 60"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -6464,7 +6463,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-GT-005",
@@ -6519,7 +6518,7 @@
           "slug": "60-100",
           "nome": "R$ 60 a R$ 100"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -6579,7 +6578,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-RM-004",
@@ -6634,7 +6633,7 @@
           "slug": "30-60",
           "nome": "R$ 30 a R$ 60"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -6694,7 +6693,7 @@
           "abv"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-RM-005",
@@ -6749,7 +6748,7 @@
           "slug": "30-60",
           "nome": "R$ 30 a R$ 60"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -6807,7 +6806,7 @@
         "criticas": [],
         "cosmeticas": []
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-RM-006",
@@ -6862,7 +6861,7 @@
           "slug": "30-60",
           "nome": "R$ 30 a R$ 60"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -6923,7 +6922,7 @@
           "origem"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-GN-003",
@@ -6978,7 +6977,7 @@
           "slug": "100-180",
           "nome": "R$ 100 a R$ 180"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -7038,7 +7037,7 @@
           "abv"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-GN-004",
@@ -7093,7 +7092,7 @@
           "slug": "100-180",
           "nome": "R$ 100 a R$ 180"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -7153,7 +7152,7 @@
           "abv"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-VB-001",
@@ -7208,7 +7207,7 @@
           "slug": "30-60",
           "nome": "R$ 30 a R$ 60"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -7267,7 +7266,7 @@
         "criticas": [],
         "cosmeticas": []
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-VB-002",
@@ -7322,7 +7321,7 @@
           "slug": "30-60",
           "nome": "R$ 30 a R$ 60"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -7381,7 +7380,7 @@
         "criticas": [],
         "cosmeticas": []
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-VB-003",
@@ -7436,7 +7435,7 @@
           "slug": "30-60",
           "nome": "R$ 30 a R$ 60"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -7495,7 +7494,7 @@
         "criticas": [],
         "cosmeticas": []
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-VB-004",
@@ -7550,7 +7549,7 @@
           "slug": "30-60",
           "nome": "R$ 30 a R$ 60"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -7609,7 +7608,7 @@
         "criticas": [],
         "cosmeticas": []
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-VK-001",
@@ -7664,7 +7663,7 @@
           "slug": "60-100",
           "nome": "R$ 60 a R$ 100"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -7722,7 +7721,7 @@
         "criticas": [],
         "cosmeticas": []
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-VK-002",
@@ -7777,7 +7776,7 @@
           "slug": "acima-180",
           "nome": "Acima de R$ 180"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -7836,7 +7835,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-VK-003",
@@ -7891,7 +7890,7 @@
           "slug": "100-180",
           "nome": "R$ 100 a R$ 180"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -7949,7 +7948,7 @@
         "criticas": [],
         "cosmeticas": []
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-VK-004",
@@ -8004,7 +8003,7 @@
           "slug": "ate-30",
           "nome": "Até R$ 30"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -8065,7 +8064,7 @@
           "fabricante"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-VK-005",
@@ -8120,7 +8119,7 @@
           "slug": "30-60",
           "nome": "R$ 30 a R$ 60"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -8177,7 +8176,7 @@
         "criticas": [],
         "cosmeticas": []
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-VK-006",
@@ -8232,7 +8231,7 @@
           "slug": "ate-30",
           "nome": "Até R$ 30"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -8291,7 +8290,7 @@
         "criticas": [],
         "cosmeticas": []
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-VK-007",
@@ -8346,7 +8345,7 @@
           "slug": "ate-30",
           "nome": "Até R$ 30"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -8405,7 +8404,7 @@
         "criticas": [],
         "cosmeticas": []
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-VK-008",
@@ -8460,7 +8459,7 @@
           "slug": "ate-30",
           "nome": "Até R$ 30"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -8521,7 +8520,7 @@
           "abv"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-VK-009",
@@ -8576,7 +8575,7 @@
           "slug": "30-60",
           "nome": "R$ 30 a R$ 60"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -8636,7 +8635,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-WH-002",
@@ -8691,7 +8690,7 @@
           "slug": "60-100",
           "nome": "R$ 60 a R$ 100"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -8750,7 +8749,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-WH-003",
@@ -8805,7 +8804,7 @@
           "slug": "ate-30",
           "nome": "Até R$ 30"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -8866,7 +8865,7 @@
           "fabricante"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-WH-004",
@@ -8921,7 +8920,7 @@
           "slug": "100-180",
           "nome": "R$ 100 a R$ 180"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -8980,7 +8979,7 @@
         "criticas": [],
         "cosmeticas": []
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-WH-005",
@@ -9035,7 +9034,7 @@
           "slug": "100-180",
           "nome": "R$ 100 a R$ 180"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -9093,7 +9092,7 @@
         "criticas": [],
         "cosmeticas": []
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-WH-006",
@@ -9148,7 +9147,7 @@
           "slug": "100-180",
           "nome": "R$ 100 a R$ 180"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -9207,7 +9206,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-WH-007",
@@ -9262,7 +9261,7 @@
           "slug": "100-180",
           "nome": "R$ 100 a R$ 180"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -9321,7 +9320,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-WH-008",
@@ -9376,7 +9375,7 @@
           "slug": "100-180",
           "nome": "R$ 100 a R$ 180"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -9435,7 +9434,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-WH-009",
@@ -9490,7 +9489,7 @@
           "slug": "100-180",
           "nome": "R$ 100 a R$ 180"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -9549,7 +9548,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-WH-010",
@@ -9604,7 +9603,7 @@
           "slug": "100-180",
           "nome": "R$ 100 a R$ 180"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -9663,7 +9662,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-WH-011",
@@ -9718,7 +9717,7 @@
           "slug": "100-180",
           "nome": "R$ 100 a R$ 180"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -9777,7 +9776,7 @@
         "criticas": [],
         "cosmeticas": []
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-WH-012",
@@ -9832,7 +9831,7 @@
           "slug": "60-100",
           "nome": "R$ 60 a R$ 100"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -9890,7 +9889,7 @@
         "criticas": [],
         "cosmeticas": []
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-WH-013",
@@ -9945,7 +9944,7 @@
           "slug": "30-60",
           "nome": "R$ 30 a R$ 60"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -10003,7 +10002,7 @@
         "criticas": [],
         "cosmeticas": []
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-WH-014",
@@ -10058,7 +10057,7 @@
           "slug": "60-100",
           "nome": "R$ 60 a R$ 100"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 12,
@@ -10116,7 +10115,7 @@
         "criticas": [],
         "cosmeticas": []
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-XR-001",
@@ -10171,7 +10170,7 @@
           "slug": "30-60",
           "nome": "R$ 30 a R$ 60"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -10194,10 +10193,15 @@
         "ficha_completa": false
       },
       "imagem": {
-        "status": "ativo",
-        "arquivo_local": "assets/produtos/xarope-formula-morango-1l.webp",
-        "confianca": "alta",
-        "fonte": "drive_oficial_monte_cristo"
+        "status": "pendente",
+        "arquivo_local": "assets/produtos/xarope-formula-morango-1l.png",
+        "url_origem": null,
+        "pagina_origem": null,
+        "fonte": null,
+        "fundo": null,
+        "confianca": null,
+        "alt": "Xarope Fórmula Morango 1L",
+        "fallback": "ilustração vetorial da garrafa (bottles.js)"
       },
       "busca_imagem": {
         "termo": "Fórmula Morango 1L garrafa fundo branco",
@@ -10224,7 +10228,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-XR-002",
@@ -10279,7 +10283,7 @@
           "slug": "30-60",
           "nome": "R$ 30 a R$ 60"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -10302,10 +10306,15 @@
         "ficha_completa": false
       },
       "imagem": {
-        "status": "ativo",
-        "arquivo_local": "assets/produtos/xarope-formula-chocolate-1l.webp",
-        "confianca": "alta",
-        "fonte": "drive_oficial_monte_cristo"
+        "status": "pendente",
+        "arquivo_local": "assets/produtos/xarope-formula-chocolate-1l.png",
+        "url_origem": null,
+        "pagina_origem": null,
+        "fonte": null,
+        "fundo": null,
+        "confianca": null,
+        "alt": "Xarope Fórmula Chocolate 1L",
+        "fallback": "ilustração vetorial da garrafa (bottles.js)"
       },
       "busca_imagem": {
         "termo": "Fórmula Chocolate 1L garrafa fundo branco",
@@ -10332,7 +10341,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-XR-003",
@@ -10387,7 +10396,7 @@
           "slug": "30-60",
           "nome": "R$ 30 a R$ 60"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -10410,10 +10419,15 @@
         "ficha_completa": false
       },
       "imagem": {
-        "status": "ativo",
-        "arquivo_local": "assets/produtos/xarope-formula-cranberry-1l.webp",
-        "confianca": "alta",
-        "fonte": "drive_oficial_monte_cristo"
+        "status": "pendente",
+        "arquivo_local": "assets/produtos/xarope-formula-cranberry-1l.png",
+        "url_origem": null,
+        "pagina_origem": null,
+        "fonte": null,
+        "fundo": null,
+        "confianca": null,
+        "alt": "Xarope Fórmula Cranberry 1L",
+        "fallback": "ilustração vetorial da garrafa (bottles.js)"
       },
       "busca_imagem": {
         "termo": "Fórmula Cranberry 1L garrafa fundo branco",
@@ -10440,7 +10454,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-XR-004",
@@ -10495,7 +10509,7 @@
           "slug": "30-60",
           "nome": "R$ 30 a R$ 60"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -10518,10 +10532,15 @@
         "ficha_completa": false
       },
       "imagem": {
-        "status": "ativo",
-        "arquivo_local": "assets/produtos/xarope-formula-grenadine-1l.webp",
-        "confianca": "alta",
-        "fonte": "drive_oficial_monte_cristo"
+        "status": "pendente",
+        "arquivo_local": "assets/produtos/xarope-formula-grenadine-1l.png",
+        "url_origem": null,
+        "pagina_origem": null,
+        "fonte": null,
+        "fundo": null,
+        "confianca": null,
+        "alt": "Xarope Fórmula Grenadine 1L",
+        "fallback": "ilustração vetorial da garrafa (bottles.js)"
       },
       "busca_imagem": {
         "termo": "Fórmula Grenadine 1L garrafa fundo branco",
@@ -10548,7 +10567,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-XR-005",
@@ -10603,7 +10622,7 @@
           "slug": "30-60",
           "nome": "R$ 30 a R$ 60"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -10626,10 +10645,15 @@
         "ficha_completa": false
       },
       "imagem": {
-        "status": "ativo",
-        "arquivo_local": "assets/produtos/xarope-formula-gengibre-1l.webp",
-        "confianca": "alta",
-        "fonte": "drive_oficial_monte_cristo"
+        "status": "pendente",
+        "arquivo_local": "assets/produtos/xarope-formula-gengibre-1l.png",
+        "url_origem": null,
+        "pagina_origem": null,
+        "fonte": null,
+        "fundo": null,
+        "confianca": null,
+        "alt": "Xarope Fórmula Gengibre 1L",
+        "fallback": "ilustração vetorial da garrafa (bottles.js)"
       },
       "busca_imagem": {
         "termo": "Fórmula Gengibre 1L garrafa fundo branco",
@@ -10656,7 +10680,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-XR-006",
@@ -10711,7 +10735,7 @@
           "slug": "30-60",
           "nome": "R$ 30 a R$ 60"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -10734,10 +10758,15 @@
         "ficha_completa": false
       },
       "imagem": {
-        "status": "ativo",
-        "arquivo_local": "assets/produtos/xarope-formula-maca-verde-1l.webp",
-        "confianca": "alta",
-        "fonte": "drive_oficial_monte_cristo"
+        "status": "pendente",
+        "arquivo_local": "assets/produtos/xarope-formula-maca-verde-1l.png",
+        "url_origem": null,
+        "pagina_origem": null,
+        "fonte": null,
+        "fundo": null,
+        "confianca": null,
+        "alt": "Xarope Fórmula Maça Verde 1L",
+        "fallback": "ilustração vetorial da garrafa (bottles.js)"
       },
       "busca_imagem": {
         "termo": "Fórmula Maça Verde 1L garrafa fundo branco",
@@ -10764,7 +10793,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-XR-007",
@@ -10819,7 +10848,7 @@
           "slug": "30-60",
           "nome": "R$ 30 a R$ 60"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -10842,10 +10871,15 @@
         "ficha_completa": false
       },
       "imagem": {
-        "status": "ativo",
-        "arquivo_local": "assets/produtos/xarope-formula-pessego-1l.webp",
-        "confianca": "alta",
-        "fonte": "drive_oficial_monte_cristo"
+        "status": "pendente",
+        "arquivo_local": "assets/produtos/xarope-formula-pessego-1l.png",
+        "url_origem": null,
+        "pagina_origem": null,
+        "fonte": null,
+        "fundo": null,
+        "confianca": null,
+        "alt": "Xarope Fórmula Pêssego 1L",
+        "fallback": "ilustração vetorial da garrafa (bottles.js)"
       },
       "busca_imagem": {
         "termo": "Fórmula Pêssego 1L garrafa fundo branco",
@@ -10872,7 +10906,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-XR-008",
@@ -10927,7 +10961,7 @@
           "slug": "30-60",
           "nome": "R$ 30 a R$ 60"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -10950,10 +10984,15 @@
         "ficha_completa": false
       },
       "imagem": {
-        "status": "ativo",
-        "arquivo_local": "assets/produtos/xarope-formula-tangerina-1l.webp",
-        "confianca": "alta",
-        "fonte": "drive_oficial_monte_cristo"
+        "status": "pendente",
+        "arquivo_local": "assets/produtos/xarope-formula-tangerina-1l.png",
+        "url_origem": null,
+        "pagina_origem": null,
+        "fonte": null,
+        "fundo": null,
+        "confianca": null,
+        "alt": "Xarope Fórmula Tangerina 1L",
+        "fallback": "ilustração vetorial da garrafa (bottles.js)"
       },
       "busca_imagem": {
         "termo": "Fórmula Tangerina 1L garrafa fundo branco",
@@ -10980,7 +11019,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-XR-009",
@@ -11035,7 +11074,7 @@
           "slug": "30-60",
           "nome": "R$ 30 a R$ 60"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -11058,10 +11097,15 @@
         "ficha_completa": false
       },
       "imagem": {
-        "status": "ativo",
-        "arquivo_local": "assets/produtos/xarope-formula-limao-siciliano-1l.webp",
-        "confianca": "alta",
-        "fonte": "drive_oficial_monte_cristo"
+        "status": "pendente",
+        "arquivo_local": "assets/produtos/xarope-formula-limao-siciliano-1l.png",
+        "url_origem": null,
+        "pagina_origem": null,
+        "fonte": null,
+        "fundo": null,
+        "confianca": null,
+        "alt": "Xarope Fórmula Limão Siciliano 1L",
+        "fallback": "ilustração vetorial da garrafa (bottles.js)"
       },
       "busca_imagem": {
         "termo": "Fórmula Limão Siciliano 1L garrafa fundo branco",
@@ -11088,7 +11132,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-XR-010",
@@ -11143,7 +11187,7 @@
           "slug": "60-100",
           "nome": "R$ 60 a R$ 100"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -11202,7 +11246,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-XR-011",
@@ -11257,7 +11301,7 @@
           "slug": "60-100",
           "nome": "R$ 60 a R$ 100"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -11316,7 +11360,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-XR-012",
@@ -11371,7 +11415,7 @@
           "slug": "60-100",
           "nome": "R$ 60 a R$ 100"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -11430,7 +11474,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-XR-013",
@@ -11485,7 +11529,7 @@
           "slug": "60-100",
           "nome": "R$ 60 a R$ 100"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -11544,7 +11588,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-XR-014",
@@ -11599,7 +11643,7 @@
           "slug": "60-100",
           "nome": "R$ 60 a R$ 100"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -11658,7 +11702,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-XR-015",
@@ -11713,7 +11757,7 @@
           "slug": "60-100",
           "nome": "R$ 60 a R$ 100"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -11772,7 +11816,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-XR-016",
@@ -11827,7 +11871,7 @@
           "slug": "60-100",
           "nome": "R$ 60 a R$ 100"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -11886,7 +11930,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-XR-017",
@@ -11941,7 +11985,7 @@
           "slug": "60-100",
           "nome": "R$ 60 a R$ 100"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -12000,7 +12044,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-XR-018",
@@ -12055,7 +12099,7 @@
           "slug": "60-100",
           "nome": "R$ 60 a R$ 100"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -12114,7 +12158,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-XR-019",
@@ -12169,7 +12213,7 @@
           "slug": "60-100",
           "nome": "R$ 60 a R$ 100"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -12228,7 +12272,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     },
     {
       "sku": "MC-XR-020",
@@ -12283,7 +12327,7 @@
           "slug": "60-100",
           "nome": "R$ 60 a R$ 100"
         },
-        "atualizado_em": "2026-10-02"
+        "atualizado_em": "2026-10-13"
       },
       "operacional": {
         "unidades_por_caixa": 6,
@@ -12342,7 +12386,7 @@
           "descricao_editorial"
         ]
       },
-      "atualizado_em": "2026-10-02"
+      "atualizado_em": "2026-10-13"
     }
   ]
 }

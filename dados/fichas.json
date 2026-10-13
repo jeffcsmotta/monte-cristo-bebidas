@@ -16,24 +16,23 @@
       "subcategoria": "aperitivo-bitter",
       "tipo": "Aperitivo de malt whisky com canela",
       "pais": "Brasil",
-      "regiao": null,
-      "abv": null,
-      "proprietaria": null,
+      "regiao": "Serra Gaúcha (Caxias do Sul - RS)",
+      "abv": 36,
+      "proprietaria": "Eagle Bebidas",
       "site_oficial": null,
       "embalagem": "garrafa-vidro",
-      "descricao": "Aperitivo à base de malt whisky com canela, no perfil de dose gelada. Giro de balada e conveniência, preço de entrada.",
-      "servir": "Gelado, em dose pura.",
+      "descricao": "Firebird Canela é um aperitivo à base de malt whisky com aroma marcante e picante de canela. Graduação alcoólica de 36%, perfeito para shots gelados, baladas e momentos de celebração. Produzido em Caxias do Sul pela Eagle Bebidas.",
+      "servir": "Gelado, em shots puros ou com gelo.",
       "tags": [
         "nacional",
-        "entrada"
+        "serra-gaucha",
+        "canela",
+        "shots"
       ],
       "variante_critica": false,
       "agrupado": false,
-      "confirmar": [
-        "abv",
-        "fabricante"
-      ],
-      "observacao": "Marca de menor divulgação: confirmar fabricante e teor no rótulo do estoque."
+      "confirmar": [],
+      "observacao": "Ficha confirmada diretamente pelo rótulo oficial da garrafa (Eagle Bebidas, Caxias do Sul/RS, MAPA RS 003094-5.000009)."
     },
     "wh-2": {
       "marca": "Ballantine's",

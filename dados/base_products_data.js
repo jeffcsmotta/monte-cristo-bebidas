@@ -1,7 +1,7 @@
 const BASE_PRODUCTS_DATA = [
     {
         id: "wh-1",
-        name: "Aperitivo Malt.whisky Canela Firebird 950ML",
+        name: "Firebird Canela 950ML",
         volume: "950ML",
         price: 25.00,
         category: "licores",

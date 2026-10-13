@@ -1,6 +1,6 @@
 # Pendências do catálogo — Monte Cristo Bebidas
 
-Gerado em 2026-10-02 por `scripts/gerar-catalogo.cjs`. Não editar à mão.
+Gerado em 2026-10-13 por `scripts/gerar-catalogo.cjs`. Não editar à mão.
 
 ## Resolver antes de publicar (2 itens)
 
@@ -88,7 +88,7 @@ gradualmente sem bloquear o catálogo.
 | MC-XR-019 | xr-107 | Xarope Monin Tangerina | Xaropes | 1L | R$ 65,00 | ficha_editorial_completa, origem, fabricante, descricao_editorial |
 | MC-XR-020 | xr-108 | Xarope Monin Framboesa | Xaropes | 1L | R$ 65,00 | ficha_editorial_completa, origem, fabricante, descricao_editorial |
 
-## Enriquece a ficha existente, não bloqueia nada (21 itens)
+## Enriquece a ficha existente, não bloqueia nada (20 itens)
 
 Teor alcoólico, fabricante e região deixam a ficha mais completa, mas nenhum
 deles é exigido de quem revende — o teor é obrigatório no rótulo da garrafa, e
@@ -98,7 +98,6 @@ olhando a garrafa no estoque, sem segurar o lançamento por causa disso.
 
 | SKU | Produto | Falta |
 | --- | --- | --- |
-| MC-WH-001 | Aperitivo Malt.whisky Canela Firebird 950ML | abv, fabricante |
 | MC-LC-002 | Brasilberg Original 920ML | abv |
 | MC-CC-002 | Cachaça Velho Barreiro 910ML | fabricante |
 | MC-CC-004 | Cachaça Ypioca Brasilizar Prata 965ML | fabricante |
