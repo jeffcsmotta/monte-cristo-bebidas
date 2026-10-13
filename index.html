@@ -240,7 +240,7 @@
                         Atendimento CNPJ especializado para bares, restaurantes e casas noturnas. Seja iniciando sua operação ou repondo compras periódicas e semanais, garantimos estabilidade de fornecimento e nota fiscal com conformidade tributária.
                     </p>
                     <div class="pillar-card-footer">
-                        <i data-lucide="clock" style="width:16px; height:16px;"></i> Entregas em até 6 dias úteis
+                        <i data-lucide="clock" style="width:16px; height:16px;"></i> Entregas após 24h úteis
                     </div>
                 </div>
 
@@ -266,7 +266,7 @@
                     </div>
                     <h3 class="pillar-card-title">Logística Especializada</h3>
                     <p class="pillar-card-desc">
-                        Entregas em até 6 dias úteis após a confirmação do pedido em Caxias do Sul e toda a Serra Gaúcha. Para clientes fora do Rio Grande do Sul, oferecemos envio seguro via transportadora parceira, mediante cotação e aprovação de frete, com prazo informado na cotação.
+                        Nossas entregas são realizadas após 24 horas úteis à confirmação do pedido em Caxias do Sul e Serra Gaúcha. Se você deseja realizar uma compra e está fora do Rio Grande do Sul, por gentileza entre em contato: dispomos de envio via transportadora para outros estados, mediante cotação e aprovação de frete.
                     </p>
                     <div class="pillar-card-footer">
                         <i data-lucide="map-pin" style="width:16px; height:16px;"></i> Serra Gaúcha & Todo o Brasil
@@ -362,7 +362,7 @@
                                 <i data-lucide="chevron-down" class="chevron-icon"></i>
                             </summary>
                             <div class="footer-accordion-content">
-                                Atendemos clientes CNPJ com as atividades relacionadas a bares, restaurantes e casas noturnas que estejam iniciando suas operações ou que necessitem de um fornecedor de confiança para compras periódicas e semanais. Nossas entregas na Serra Gaúcha são realizadas em até 6 dias úteis após a confirmação do pedido.
+                                Atendemos clientes CNPJ com as atividades relacionadas a bares, restaurantes e casas noturnas que estejam iniciando suas operações ou que necessitem de um fornecedor de confiança para compras periódicas e semanais. Nossas entregas são realizadas após 24 horas úteis à confirmação do pedido.
                             </div>
                         </details>
 
@@ -388,7 +388,7 @@
                                 <i data-lucide="chevron-down" class="chevron-icon"></i>
                             </summary>
                             <div class="footer-accordion-content">
-                                Nossas entregas na Serra Gaúcha são realizadas em até 6 dias úteis após a confirmação do pedido. Se você está fora do Rio Grande do Sul, entre em contato e solicite ajuda: dispomos de envio via transportadora para outros estados, mediante cotação e aprovação de frete pelo cliente, com prazo informado na cotação.
+                                Nossas entregas são realizadas após 24 horas úteis à confirmação do pedido. Se você deseja realizar uma compra e está fora do Rio Grande do Sul, por gentileza entre em contato e solicite ajuda: dispomos de envio via transportadora para outros estados, mediante cotação e aprovação de frete pelo cliente.
                             </div>
                         </details>
                     </div>
@@ -414,6 +414,13 @@
                     </a>
 
                     <div class="footer-contact-list">
+                        <div class="footer-contact-item">
+                            <i data-lucide="phone"></i>
+                            <div>
+                                <span class="contact-lbl">Telefone / Pedidos:</span>
+                                <a href="tel:+5554999692859" class="contact-link">(54) 99969-2859</a>
+                            </div>
+                        </div>
                         <div class="footer-contact-item">
                             <i data-lucide="mail"></i>
                             <div>
@@ -494,7 +501,7 @@
                     <span>Canal Direto de Distribuição</span>
                 </div>
                 <p class="notice-text">
-                    Ao enviar sua seleção, confirmamos disponibilidade, condições de faturamento e agendamos a entrega em até 6 dias úteis após a confirmação com nosso atendente.
+                    Ao enviar sua seleção, confirmamos disponibilidade, condições de faturamento e agendamos a entrega após 24 horas úteis à confirmação com nosso atendente.
                 </p>
             </div>
 
@@ -678,9 +685,9 @@
     <!-- bottles.js precisa vir ANTES do app.js: define window.bottleSVG, usado
          no render dos cards e das miniaturas do pedido. Sem ele, todo card
          renderiza vazio. -->
-    <script src="images.js?v=20261013_v12"></script>
-    <script src="bottles.js?v=20261013_v12"></script>
-    <script src="app.js?v=20261013_v12"></script>
+    <script src="images.js?v=20261013_v13"></script>
+    <script src="bottles.js?v=20261013_v13"></script>
+    <script src="app.js?v=20261013_v13"></script>
     <script>
         if (window.lucide) {
             lucide.createIcons();
@@ -712,7 +719,7 @@
         // Register Service Worker com checagem ativa e transição suave
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js?v=20261013_v12')
+                navigator.serviceWorker.register('./sw.js?v=20261013_v13')
                     .then(reg => {
                         console.log('PWA ServiceWorker registrado:', reg.scope);
                         if (reg.update) reg.update();
