@@ -678,9 +678,28 @@
     <!-- bottles.js precisa vir ANTES do app.js: define window.bottleSVG, usado
          no render dos cards e das miniaturas do pedido. Sem ele, todo card
          renderiza vazio. -->
-    <script src="images.js?v=20261014_v13"></script>
-    <script src="bottles.js?v=20261014_v13"></script>
-    <script src="app.js?v=20261014_v13"></script>
+    <!-- Invalidação automática de cache PWA/ServiceWorker para novas versões -->
+    <script>
+        (function() {
+            var VERSION = '20261014_v15';
+            if (localStorage.getItem('mc_sw_version') !== VERSION) {
+                localStorage.setItem('mc_sw_version', VERSION);
+                if ('caches' in window) {
+                    caches.keys().then(function(keys) {
+                        keys.forEach(function(k) { caches.delete(k); });
+                    });
+                }
+                if ('serviceWorker' in navigator) {
+                    navigator.serviceWorker.getRegistrations().then(function(regs) {
+                        regs.forEach(function(r) { r.unregister(); });
+                    });
+                }
+            }
+        })();
+    </script>
+    <script src="images.js?v=20261014_v15"></script>
+    <script src="bottles.js?v=20261014_v15"></script>
+    <script src="app.js?v=20261014_v15"></script>
     <script>
         if (window.lucide) {
             lucide.createIcons();
@@ -712,7 +731,7 @@
         // Register Service Worker com checagem ativa e transição suave
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js?v=20261013_v12')
+                navigator.serviceWorker.register('./sw.js?v=20261014_v15')
                     .then(reg => {
                         console.log('PWA ServiceWorker registrado:', reg.scope);
                         if (reg.update) reg.update();
