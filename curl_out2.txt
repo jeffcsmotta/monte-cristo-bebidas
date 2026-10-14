@@ -1,0 +1,32 @@
+* Host www.montecristobebidas.com.br:443 was resolved.
+* IPv6: (none)
+* IPv4: 131.108.103.236
+*   Trying 131.108.103.236:443...
+* schannel: disabled automatic use of client certificate
+* ALPN: curl offers http/1.1
+* ALPN: server accepted http/1.1
+* Established connection to www.montecristobebidas.com.br (131.108.103.236 port 443) from 192.168.0.20 port 60412 
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+  0      0   0      0   0      0      0      0                              0* using HTTP/1.x
+> GET / HTTP/1.1
+> Host: www.montecristobebidas.com.br
+> User-Agent: curl/8.21.0
+> Accept: */*
+> 
+* Request completely sent off
+* schannel: remote party requests renegotiation
+* schannel: renegotiating SSL/TLS connection
+* schannel: SSL/TLS connection renegotiated
+* schannel: remote party requests renegotiation
+* schannel: renegotiating SSL/TLS connection
+* schannel: SSL/TLS connection renegotiated
+< HTTP/1.1 200 OK
+< Date: Wed, 14 Oct 2026 13:43:03 GMT
+< Server: Apache
+< Transfer-Encoding: chunked
+< Content-Type: text/html; charset=UTF-8
+< 
+{ [3699 bytes data]
+100  10508   0  10508   0      0  72064      0                              0100  10508   0  10508   0      0  71457      0                              0100  10508   0  10508   0      0  70953      0                              0
+* Connection #0 to host www.montecristobebidas.com.br:443 left intact

@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monte Cristo | Distribuidora de Bebidas & Destilados em Caxias do Sul</title>
+    <meta name="description" content="Monte Cristo Distribuidora de Bebidas — Whiskies, Vodkas, Gins, Licores, Energéticos e Cervejas em Caxias do Sul com preços diretos de tabela. Pedidos via WhatsApp!">
+    <meta name="keywords" content="Distribuidora de Bebidas Caxias do Sul, Monte Cristo Bebidas, Whisky Caxias do Sul, Licor 43 Caxias, Red Bull Atacado, Vodka Cîroc">
+
+    <!-- PWA Manifest & Icons -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0E4663">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Monte Cristo">
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Splash instantaneo do PWA: some sozinho apos o carregamento, cobrindo
+         o flash de tela em branco no primeiro paint do app instalado. -->
+    <style>
+        .pwa-splash {
+            position: fixed !important;
+            inset: 0 !important;
+            z-index: 9999999 !important;
+            background: #FFFFFF !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.6s !important;
+        }
+        .pwa-splash.fade-out {
+            opacity: 0 !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+        }
+        .splash-content {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+        }
+        .splash-logo-wrap {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+        .splash-logo {
+            width: 72px;
+            height: 72px;
+            object-fit: contain;
+            position: relative;
+            z-index: 2;
+            animation: splashPop 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+        .splash-ring {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 3px solid #E2E8F0;
+            border-top-color: #1B7588;
+            border-right-color: #34D399;
+            animation: splashSpin 1s linear infinite;
+            z-index: 1;
+        }
+        @keyframes splashPop {
+            0% { transform: scale(0.2) rotate(-15deg); opacity: 0; }
+            60% { transform: scale(1.2) rotate(4deg); opacity: 1; }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+        @keyframes splashSpin {
+            to { transform: rotate(360deg); }
+        }
+        .splash-title {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 900;
+            color: #0E4663;
+            margin-bottom: 6px;
+            letter-spacing: -0.5px;
+        }
+        .splash-subtitle {
+            font-size: 0.95rem;
+            color: #1B7588;
+            font-weight: 700;
+            margin-bottom: 0;
+        }
+    </style>
+
+    <!-- ?v= muda a cada publicacao para o navegador nao servir folha velha.
+         Sem isso, quem ja visitou o site continua vendo o CSS antigo e um
+         botao novo aparece sem estilo nenhum. -->
+    <link rel="stylesheet" href="style.css?v=20261012_v10">
+</head>
+<body>
+
+    <!-- PWA Splash Screen Animada com Estouro do Emblema -->
+    <div id="pwa-splash" class="pwa-splash">
+        <div class="splash-content">
+            <div class="splash-logo-wrap">
+                <img src="assets/simbolo-monte.svg" alt="Monte Cristo Logo" class="splash-logo">
+                <div class="splash-ring"></div>
+            </div>
+            <h2 class="splash-title">Monte Cristo Bebidas</h2>
+            <p class="splash-subtitle">🍷 Carregando catálogo...</p>
+        </div>
+    </div>
+
+    <!-- Top Announcement Bar -->
+    <div class="top-bar">
+        <div class="container top-bar-content">
+            <div class="top-info">
+                <span><i data-lucide="map-pin"></i> Caxias do Sul e Região - RS</span>
+                <span class="divider">|</span>
+                <span><i data-lucide="message-circle"></i> Pedidos &amp; Atendimento: <a id="top-bar-wa-link" href="https://wa.me/5554999692859" target="_blank" rel="noopener noreferrer" style="color:inherit; text-decoration:underline; font-weight:700;">WhatsApp Ativo</a></span>
+                <span class="divider">|</span>
+                <span><i data-lucide="shield-check"></i> Rótulos 100% Originais & Lacrados</span>
+                <span class="divider">|</span>
+                <span><i data-lucide="shield-alert"></i> Venda restrita a +18 anos</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="container header-container">
+            <a href="#" class="logo" aria-label="Página Inicial do Monte Cristo Bebidas">
+                <img src="assets/logo_site.png" alt="Monte Cristo Bebidas" class="brand-logo-img">
+            </a>
+
+            <div class="header-actions">
+                <div id="status-badge" class="status-badge">
+                    <span class="status-dot"></span>
+                    <span class="status-text">Distribuição Aberta</span>
+                </div>
+                <!-- Lixeira a ESQUERDA do Pedido de proposito: o botao principal
+                     continua na ponta, onde a mao procura, e a acao destrutiva
+                     nao encosta na borda da tela. So aparece com itens. -->
+                <button type="button" class="cart-clear-btn" id="cart-clear-header" onclick="window.clearCart()"
+                        title="Limpar pedido" aria-label="Limpar pedido">
+                    <i data-lucide="trash-2"></i>
+                </button>
+                <button class="cart-toggle-btn" id="cart-toggle" onclick="window.toggleCartDrawer(true)">
+                    <i data-lucide="shopping-bag"></i>
+                    <span>Pedido</span>
+                    <span class="cart-count" id="cart-badge-count">0</span>
+                    <span class="cart-total-header" id="cart-total-header" style="font-size:0.82rem; margin-left:4px;">R$ 0,00</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Barra de compra fixa: busca + categorias direto na primeira dobra -->
+    <div class="shop-bar" id="shop-bar">
+        <div class="container">
+            <div class="shop-bar-row">
+                <div class="shop-search">
+                    <i data-lucide="search" class="shop-search-icon"></i>
+                    <input type="text" id="search-input" class="shop-search-input" autocomplete="off"
+                           placeholder="Buscar bebida, marca ou volume — ex: Jack, Baly, 1L">
+                    <button type="button" class="shop-search-clear" id="search-clear" aria-label="Limpar busca">
+                        <i data-lucide="x"></i>
+                    </button>
+                </div>
+                <div class="shop-view">
+                    <button class="btn-view-mode active" id="btn-mode-cards" onclick="window.setViewMode('cards')" aria-label="Ver em grade">
+                        <i data-lucide="layout-grid"></i>
+                    </button>
+                    <button class="btn-view-mode" id="btn-mode-table" onclick="window.setViewMode('table')" aria-label="Ver em lista">
+                        <i data-lucide="list"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="category-filters" id="category-filters">
+                <button class="filter-btn active" data-category="all">Todos</button>
+                <button class="filter-btn" data-category="whisky">Whisky</button>
+                <button class="filter-btn" data-category="vodka">Vodka</button>
+                <button class="filter-btn" data-category="gin-tequila">Gin, Tequila &amp; Rum</button>
+                <button class="filter-btn" data-category="licores">Licores</button>
+                <button class="filter-btn" data-category="cachaca-conhaque">Cachaça &amp; Conhaque</button>
+                <button class="filter-btn" data-category="cervejas">Cervejas</button>
+                <button class="filter-btn" data-category="vermouth-bitter">Vermouth</button>
+                <button class="filter-btn" data-category="energeticos">Energéticos</button>
+                <button class="filter-btn" data-category="xaropes">Xaropes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menu Section (Catálogo Completo de Bebidas) -->
+    <section class="shop-section" id="cardapio">
+        <div class="container">
+            <div class="shop-meta">
+                <span id="results-count">Carregando catálogo...</span>
+                <span class="shop-meta-note">Preços da tabela oficial • válida até 30/09/2026</span>
+            </div>
+
+            <!-- Products Grid or Table (Dynamic via app.js) -->
+            <div class="menu-grid" id="products-grid">
+                <!-- Javascript populated -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Pilares de Atendimento & Diferenciais Comerciais -->
+    <section class="pillars-section" id="diferenciais">
+        <div class="container">
+            <div class="pillars-header">
+                <div class="pillars-tag">
+                    <i data-lucide="award" style="width:14px; height:14px;"></i> Diferenciais de Distribuição
+                </div>
+                <h2 class="pillars-title">Soluções Sob Medida para o Seu Negócio</h2>
+                <p class="pillars-subtitle">
+                    A Monte Cristo Bebidas combina mais de 20 anos de tradição com atendimento B2B especializado e condições exclusivas para bares, restaurantes e grandes eventos.
+                </p>
+            </div>
+
+            <div class="pillars-grid">
+                <!-- Card 1: Bares e Casas Noturnas -->
+                <div class="pillar-card">
+                    <div class="pillar-icon-box">
+                        <i data-lucide="store" style="width:26px; height:26px;"></i>
+                    </div>
+                    <h3 class="pillar-card-title">Bares & Casas Noturnas</h3>
+                    <p class="pillar-card-desc">
+                        Atendimento CNPJ especializado para bares, restaurantes e casas noturnas. Seja iniciando sua operação ou repondo compras periódicas e semanais, garantimos estabilidade de fornecimento e nota fiscal com conformidade tributária.
+                    </p>
+                    <div class="pillar-card-footer">
+                        <i data-lucide="clock" style="width:16px; height:16px;"></i> Entregas em até 6 dias úteis
+                    </div>
+                </div>
+
+                <!-- Card 2: Eventos com Consignação de 20% (DESTAQUE) -->
+                <div class="pillar-card highlight">
+                    <span class="pillar-badge-top">Exclusivo Eventos</span>
+                    <div class="pillar-icon-box">
+                        <i data-lucide="sparkles" style="width:26px; height:26px;"></i>
+                    </div>
+                    <h3 class="pillar-card-title">Eventos & Casamentos</h3>
+                    <p class="pillar-card-desc">
+                        Para que você não precise se preocupar com falta de bebidas durante casamentos, formaturas ou convenções empresariais: <strong>disponibilizamos consignação de até 20% do seu pedido</strong>. O que sobrar lacrado, o valor equivalente é estornado e devolvido para a sua conta!
+                    </p>
+                    <div class="pillar-card-footer" style="color:#0284C7;">
+                        <i data-lucide="shield-check" style="width:16px; height:16px;"></i> Devolução garantida de sobras
+                    </div>
+                </div>
+
+                <!-- Card 3: Logística Regional e Interestadual -->
+                <div class="pillar-card">
+                    <div class="pillar-icon-box">
+                        <i data-lucide="truck" style="width:26px; height:26px;"></i>
+                    </div>
+                    <h3 class="pillar-card-title">Logística Especializada</h3>
+                    <p class="pillar-card-desc">
+                        Entregas em até 6 dias úteis após a confirmação do pedido em Caxias do Sul e toda a Serra Gaúcha. Para clientes fora do Rio Grande do Sul, oferecemos envio seguro via transportadora parceira, mediante cotação e aprovação de frete, com prazo informado na cotação.
+                    </p>
+                    <div class="pillar-card-footer">
+                        <i data-lucide="map-pin" style="width:16px; height:16px;"></i> Serra Gaúcha & Todo o Brasil
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Institucional Master -->
+    <footer class="footer" id="sobre">
+        <div class="container">
+            <!-- Linha Superior da Marca (Logo & Assinatura) -->
+            <div class="footer-brand-header">
+                <img src="assets/logo_branco_footer_montecristo.svg" alt="Monte Cristo Bebidas" class="footer-logo">
+                <span class="footer-brand-tagline">Distribuidora de Bebidas • Serra Gaúcha - RS</span>
+            </div>
+
+            <!-- Grade Master: 4 Colunas 100% Alinhadas Abaixo da Linha do Logo -->
+            <div class="footer-master-grid">
+                <!-- Coluna 1: Sobre a Empresa & Tradição -->
+                <div class="footer-col-about">
+                    <h4 class="footer-col-title">Sobre a Empresa</h4>
+                    <p class="footer-brand-text">
+                        A <strong>Monte Cristo Bebidas LTDA</strong> é uma distribuidora de bebidas, principalmente as quentes, atuante na Serra Gaúcha - RS, com mais de 1.000 itens em nosso portfólio. Empresa criada para suprir a demanda de um trabalho já desenvolvido há mais de 20 anos.
+                    </p>
+                    <p class="footer-brand-text">
+                        Temos soluções de bebidas para eventos, como casamentos, formaturas e eventos empresariais. Além de atuar de forma definitiva em bares, casas noturnas e restaurantes de Caxias do Sul e região.
+                    </p>
+                    <div class="footer-trust-badge">
+                        <i data-lucide="shield-check"></i>
+                        <span>Distribuição Oficial • Rótulos 100% Originais &amp; Lacrados</span>
+                    </div>
+                </div>
+
+                <!-- Coluna 2: Institucional (Missão, Visão e Valores em Accordion) -->
+                <div class="footer-col-mvv">
+                    <h4 class="footer-col-title">Institucional</h4>
+                    <div class="footer-accordion-group">
+                        <details class="footer-accordion">
+                            <summary>
+                                <span class="summary-left">
+                                    <i data-lucide="target" class="summary-icon"></i>
+                                    <span>Nossa Missão</span>
+                                </span>
+                                <i data-lucide="chevron-down" class="chevron-icon"></i>
+                            </summary>
+                            <div class="footer-accordion-content">
+                                Somos a melhor revendedora de bebidas, com qualidade reconhecida pelos clientes, que gerem valor para a empresa, tendo os melhores produtos e atendimento a seus clientes.
+                            </div>
+                        </details>
+
+                        <details class="footer-accordion">
+                            <summary>
+                                <span class="summary-left">
+                                    <i data-lucide="trending-up" class="summary-icon"></i>
+                                    <span>Nossa Visão</span>
+                                </span>
+                                <i data-lucide="chevron-down" class="chevron-icon"></i>
+                            </summary>
+                            <div class="footer-accordion-content">
+                                Ampliar, crescer e construir novas unidades de negócios, para satisfazer cada vez mais clientes, colaboradores e fornecedores.
+                            </div>
+                        </details>
+
+                        <details class="footer-accordion">
+                            <summary>
+                                <span class="summary-left">
+                                    <i data-lucide="heart-handshake" class="summary-icon"></i>
+                                    <span>Valores &amp; Ética</span>
+                                </span>
+                                <i data-lucide="chevron-down" class="chevron-icon"></i>
+                            </summary>
+                            <div class="footer-accordion-content">
+                                <strong>Clientes:</strong> nosso maior patrimônio, aqueles que dão sustentação ao nosso negócio e direção à nossa empresa.<br>
+                                <strong>Fornecedores:</strong> pela forte aliança e confiança depositada em nosso negócio.<br>
+                                <strong>Ética:</strong> nas relações comerciais.
+                            </div>
+                        </details>
+                    </div>
+                </div>
+
+                <!-- Coluna 3: Áreas de Atendimento (Accordion) -->
+                <div class="footer-col-areas">
+                    <h4 class="footer-col-title">Áreas de Atendimento</h4>
+                    <div class="footer-accordion-group">
+                        <details class="footer-accordion">
+                            <summary>
+                                <span class="summary-left">
+                                    <i data-lucide="store" class="summary-icon"></i>
+                                    <span>Bares &amp; Casas Noturnas</span>
+                                </span>
+                                <i data-lucide="chevron-down" class="chevron-icon"></i>
+                            </summary>
+                            <div class="footer-accordion-content">
+                                Atendemos clientes CNPJ com as atividades relacionadas a bares, restaurantes e casas noturnas que estejam iniciando suas operações ou que necessitem de um fornecedor de confiança para compras periódicas e semanais. Nossas entregas na Serra Gaúcha são realizadas em até 6 dias úteis após a confirmação do pedido.
+                            </div>
+                        </details>
+
+                        <details class="footer-accordion highlight">
+                            <summary>
+                                <span class="summary-left">
+                                    <i data-lucide="sparkles" class="summary-icon"></i>
+                                    <span>Eventos: Consignação 20%</span>
+                                </span>
+                                <i data-lucide="chevron-down" class="chevron-icon"></i>
+                            </summary>
+                            <div class="footer-accordion-content">
+                                Para que você não precise se preocupar com uma possível falta de produto durante seu evento, disponibilizamos a modalidade de consignação de até 20% do seu pedido. Em caso de sobra, o valor equivalente é devolvido para a conta informada. Consulte produtos que não entram nesta categoria.
+                            </div>
+                        </details>
+
+                        <details class="footer-accordion">
+                            <summary>
+                                <span class="summary-left">
+                                    <i data-lucide="truck" class="summary-icon"></i>
+                                    <span>Logística &amp; Interestadual</span>
+                                </span>
+                                <i data-lucide="chevron-down" class="chevron-icon"></i>
+                            </summary>
+                            <div class="footer-accordion-content">
+                                Nossas entregas na Serra Gaúcha são realizadas em até 6 dias úteis após a confirmação do pedido. Se você está fora do Rio Grande do Sul, entre em contato e solicite ajuda: dispomos de envio via transportadora para outros estados, mediante cotação e aprovação de frete pelo cliente, com prazo informado na cotação.
+                            </div>
+                        </details>
+                    </div>
+                </div>
+
+                <!-- Coluna 4: Canais Oficiais & Atendimento Ativo -->
+                <div class="footer-col-contact">
+                    <h4 class="footer-col-title">Atendimento Oficial</h4>
+
+                    <!-- WhatsApp Atendente Ativo (Ivan / Michele via Storage) -->
+                    <a id="footer-wa-link" href="https://wa.me/5554999692859" target="_blank" rel="noopener noreferrer" class="footer-wa-card" aria-label="Falar com o atendente ativo no WhatsApp">
+                        <div class="footer-wa-icon">
+                            <svg class="wa-traditional-logo" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2zm.01 1.67c2.2 0 4.26.86 5.82 2.42a8.225 8.225 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.48 0-2.93-.4-4.2-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.196 8.196 0 0 1-1.26-4.38c0-4.54 3.7-8.24 8.24-8.24h-.18zm4.52 11.66c-.25-.13-1.47-.72-1.7-.81-.23-.08-.39-.13-.56.13-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.13-1.06-.39-2.02-1.25-.75-.67-1.25-1.5-1.4-1.75-.15-.25-.02-.39.11-.51.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.13-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.44.06-.67.31-.23.25-.88.86-.88 2.1 0 1.24.9 2.44 1.03 2.61.13.17 1.77 2.7 4.29 3.79.6.26 1.07.41 1.43.53.6.19 1.15.16 1.58.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.07-.11-.22-.17-.47-.3z"/>
+                            </svg>
+                        </div>
+                        <div class="footer-wa-content">
+                            <span class="footer-wa-status">
+                                <span class="wa-status-dot"></span> Atendimento Comercial
+                            </span>
+                            <span class="footer-wa-cta">Conversar no WhatsApp</span>
+                        </div>
+                    </a>
+
+                    <div class="footer-contact-list">
+                        <div class="footer-contact-item">
+                            <i data-lucide="mail"></i>
+                            <div>
+                                <span class="contact-lbl">E-mail Comercial:</span>
+                                <a href="mailto:contato@montecristobebidas.com.br" class="contact-link">contato@montecristobebidas.com.br</a>
+                            </div>
+                        </div>
+                        <div class="footer-contact-item">
+                            <i data-lucide="map-pin"></i>
+                            <div>
+                                <span class="contact-lbl">Base de Distribuição:</span>
+                                <span>Caxias do Sul e Serra Gaúcha - RS</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="footer-social-wrap">
+                        <span class="social-lbl">Siga a Monte Cristo:</span>
+                        <div class="footer-social-links">
+                            <a href="https://instagram.com/monte_cristo_bebidas" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="Instagram Oficial @monte_cristo_bebidas">
+                                <svg class="social-svg-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+                                </svg>
+                                <span>Instagram</span>
+                            </a>
+                            <a href="https://facebook.com/montecristobebidas" target="_blank" rel="noopener noreferrer" class="footer-social-btn" title="Facebook Oficial @montecristobebidas">
+                                <svg class="social-svg-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"></path>
+                                </svg>
+                                <span>Facebook</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Aviso Legal de Responsabilidade +18 (Lei Federal 13.106/15 e ECA) -->
+            <div class="footer-legal-notice">
+                <i data-lucide="shield-alert" style="width:15px; height:15px; display:inline-block; vertical-align:middle; margin-right:4px; color:#F59E0B;"></i>
+                Venda e consumo proibidos para menores de 18 anos. Conforme a Lei Federal nº 13.106/2015 e o Artigo 243 do ECA, a entrega de bebidas alcoólicas é restrita à comprovação da maioridade civil com documento oficial no ato da entrega. Beba com moderação.
+            </div>
+
+            <!-- Footer Bottom Bar -->
+            <div class="footer-bottom">
+                <span>© 2026 Monte Cristo Bebidas LTDA • CNPJ B2B • Caxias do Sul - RS</span>
+                <div class="footer-bottom-links">
+                    <span class="footer-credit">Tecnologia por <strong>Onira Labs</strong></span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Drawer Overlay -->
+    <div class="cart-overlay" id="cart-overlay" onclick="window.closeCart()"></div>
+
+    <!-- Cart Drawer (Padrão Master CLAEM - Onira Labs) -->
+    <aside class="cart-drawer" id="cart-drawer">
+        <!-- Header fixo: título + voltar ao catálogo -->
+        <div class="cart-header">
+            <div class="cart-title">
+                <img src="assets/logo_branco_montecristo.svg" alt="Monte Cristo" class="cart-header-logo">
+                <span>Seu Pedido</span>
+            </div>
+            <button type="button" class="btn-continue-shopping" onclick="window.closeCart()" aria-label="Continuar Escolhendo">
+                <i data-lucide="arrow-left" style="width:14px; height:14px;"></i>
+                <span>Continuar Escolhendo</span>
+            </button>
+        </div>
+
+        <!-- Corpo único rolável -->
+        <div class="cart-body">
+            <!-- 0. Posicionamento Canal Direto de Distribuição -->
+            <div class="cart-b2b-notice">
+                <div class="notice-badge">
+                    <i data-lucide="shield-check"></i>
+                    <span>Canal Direto de Distribuição</span>
+                </div>
+                <p class="notice-text">
+                    Ao enviar sua seleção, confirmamos disponibilidade, condições de faturamento e agendamos a entrega em até 6 dias úteis após a confirmação com nosso atendente.
+                </p>
+            </div>
+
+            <!-- 1. Itens -->
+            <div class="cart-section">
+                <div class="cart-section-title" style="display:flex; justify-content:space-between; align-items:center;">
+                    <span>Itens do Pedido (Varejo &amp; Atacado)</span>
+                    <button type="button" class="btn-clear-cart" onclick="window.clearCart()" id="cart-clear-header">Limpar tudo</button>
+                </div>
+                <div class="cart-items-container" id="cart-items-container">
+                    <!-- Javascript populated -->
+                </div>
+            </div>
+
+            <!-- 2. Informação de entrega -->
+            <div class="cart-option-group">
+                <label>Prazo &amp; Logística:</label>
+                <div class="delivery-info-box">
+                    <div class="delivery-icon-wrap">
+                        <i data-lucide="truck"></i>
+                    </div>
+                    <p>Para entregas fora do Rio Grande do Sul, o envio é via transportadora e o prazo é informado na cotação do frete.</p>
+                </div>
+            </div>
+
+            <!-- 3. Dados do cliente -->
+            <div class="cart-option-group" id="address-box">
+                <label>Seus Dados para Envio:</label>
+                <input type="text" id="input-client-name" class="input-dark" placeholder="Seu Nome Completo / Razão Social *" style="margin-bottom:8px;">
+                <input type="text" id="input-address" class="input-dark" placeholder="Endereço Completo de Entrega (Rua, Nº, Bairro) *">
+            </div>
+
+            <!-- 4. Pagamento -->
+            <div class="cart-option-group">
+                <label>Forma de Pagamento Pretendida:</label>
+                <div class="payment-toggle">
+                    <button type="button" class="pay-btn active" data-pay="Pix">
+                        <i data-lucide="qr-code"></i> Pix
+                    </button>
+                    <button type="button" class="pay-btn" data-pay="Cartão">
+                        <i data-lucide="credit-card"></i> Cartão
+                    </button>
+                    <button type="button" class="pay-btn" data-pay="Boleto">
+                        <i data-lucide="barcode"></i> Boleto
+                    </button>
+                </div>
+
+                <div id="cash-change-box" style="display:none; margin-top:8px;">
+                    <input type="text" id="cash-change-val" class="input-dark" placeholder="CNPJ / Razão Social para emissão do boleto">
+                </div>
+
+                <div class="payment-info-box" style="margin-top:10px; padding:10px 14px; background:rgba(0,0,0,0.25); border:1px solid rgba(255,255,255,0.15); border-radius:8px; font-size:0.8rem; color:#D1D5DB;">
+                    <i data-lucide="shield-check" style="width:14px; height:14px; color:#38BDF8; display:inline-block; vertical-align:middle; margin-right:4px;"></i>
+                    Condições de faturamento e dados para pagamento são alinhados diretamente com a nossa equipe no atendimento, após a conferência do pedido.
+                </div>
+            </div>
+
+            <!-- 5. Resumo -->
+            <div class="cart-summary">
+                <div class="summary-line">
+                    <span>Subtotal:</span>
+                    <span id="cart-subtotal">R$ 0,00</span>
+                </div>
+                <div class="summary-line">
+                    <span>Logística:</span>
+                    <span id="cart-delivery-fee" style="color:#FFFFFF;">A alinhar no atendimento</span>
+                </div>
+                <div class="summary-line total">
+                    <span>Total Estimado:</span>
+                    <span id="cart-total-price">R$ 0,00</span>
+                </div>
+            </div>
+
+            <!-- 5.1 Validação Legal de Maioridade (+18 Anos - Lei Federal 13.106/15 e ECA) -->
+            <div class="cart-legal-age-box">
+                <label class="age-check-label" for="check-age-18">
+                    <input type="checkbox" id="check-age-18" class="age-check-input">
+                    <span class="age-check-text">
+                        <strong>Declaro ser maior de 18 anos</strong> e estar ciente de que o recebimento de bebidas alcoólicas exige documento oficial com foto (Lei Federal nº 13.106/15).
+                    </span>
+                </label>
+            </div>
+
+            <!-- 6. Envio -->
+            <button type="button" class="btn btn-whatsapp btn-block" onclick="window.sendWhatsAppOrder()" id="btn-send-whatsapp">
+                <i data-lucide="send"></i>
+                <span>Enviar Pedido via WhatsApp</span>
+            </button>
+
+            <div class="onira-signature">
+                <span>Tecnologia por <strong>Onira Labs</strong></span>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Confirmacao de limpar pedido. Substitui o confirm() do navegador, que
+         aparece descolado do site e nao diz o que esta em jogo. -->
+    <div class="confirm-overlay" id="confirm-clear" role="dialog" aria-modal="true"
+         aria-labelledby="confirm-clear-title" hidden>
+        <div class="confirm-box">
+            <div class="confirm-icon"><i data-lucide="trash-2"></i></div>
+            <h3 class="confirm-title" id="confirm-clear-title">Limpar o pedido?</h3>
+            <p class="confirm-text" id="confirm-clear-text"></p>
+            <p class="confirm-warning">Esta ação não pode ser desfeita.</p>
+            <div class="confirm-actions">
+                <button type="button" class="confirm-btn confirm-cancel" id="confirm-clear-no">
+                    Manter o pedido
+                </button>
+                <button type="button" class="confirm-btn confirm-ok" id="confirm-clear-yes">
+                    Sim, limpar tudo
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Explicativa de Consignação 20% -->
+    <div class="confirm-overlay" id="modal-consignacao" role="dialog" aria-modal="true"
+         aria-labelledby="modal-consignacao-title" hidden>
+        <div class="confirm-box modal-consignacao-box">
+            <div class="modal-consignacao-header">
+                <div class="modal-consignacao-icon">
+                    <i data-lucide="sparkles"></i>
+                </div>
+                <div>
+                    <h3 class="modal-consignacao-title" id="modal-consignacao-title">Consignação de 20% Monte Cristo</h3>
+                    <p style="font-size:0.8rem; color:var(--text-muted); margin:0;">Exclusivo para casamentos, formaturas e eventos</p>
+                </div>
+            </div>
+
+            <div class="modal-consignacao-steps">
+                <div class="modal-step-item">
+                    <div class="modal-step-num">1</div>
+                    <div class="modal-step-text">
+                        <strong>Monte seu Cardápio sem Medo</strong>
+                        <p>Adicione rótulos e volumes com folga de segurança. Não corra o risco de a bebida acabar no meio da comemoração.</p>
+                    </div>
+                </div>
+
+                <div class="modal-step-item">
+                    <div class="modal-step-num">2</div>
+                    <div class="modal-step-text">
+                        <strong>Até 20% sob Consignação</strong>
+                        <p>Até 20% do volume do seu pedido entra na modalidade consignada com respaldo e nota fiscal da distribuidora.</p>
+                    </div>
+                </div>
+
+                <div class="modal-step-item">
+                    <div class="modal-step-num">3</div>
+                    <div class="modal-step-text">
+                        <strong>Devolução das Sobras e Estorno</strong>
+                        <p>Após o evento, as garrafas lacradas e intactas que sobrarem são recolhidas e o valor correspondente é estornado direto na sua conta.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-consignacao-actions">
+                <button type="button" class="confirm-btn confirm-cancel" onclick="window.closeConsignacaoModal()">
+                    Entendi, voltar
+                </button>
+                <button type="button" class="btn-consignacao-wa" onclick="window.openWhatsAppConsignacao()">
+                    <i data-lucide="message-circle"></i>
+                    <span>Tirar Dúvidas no WhatsApp</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating Mobile Cart Bar -->
+    <div class="floating-cart-bar" id="floating-cart-bar">
+        <div class="floating-cart-info">
+            <span class="floating-count" id="floating-cart-count">0 itens</span>
+            <span class="floating-total" id="floating-cart-total">R$ 0,00</span>
+        </div>
+        <button type="button" class="btn-open-cart-floating" onclick="window.openCart()">
+            <span>Ver Pedido</span>
+            <i data-lucide="arrow-right"></i>
+        </button>
+    </div>
+
+    <!-- JS Scripts -->
+    <!-- bottles.js precisa vir ANTES do app.js: define window.bottleSVG, usado
+         no render dos cards e das miniaturas do pedido. Sem ele, todo card
+         renderiza vazio. -->
+    <script src="images.js?v=20261013_v12"></script>
+    <script src="bottles.js?v=20261013_v12"></script>
+    <script src="app.js?v=20261013_v12"></script>
+    <script>
+        if (window.lucide) {
+            lucide.createIcons();
+        }
+
+        // Sincronização dos links de WhatsApp ativos (Ivan x Michele)
+        function syncActiveWhatsAppLinks() {
+            if (!window.getActiveWhatsAppData) return;
+            const wa = window.getActiveWhatsAppData();
+            const topLink = document.getElementById('top-bar-wa-link');
+            const footerLink = document.getElementById('footer-wa-link');
+            if (topLink) topLink.href = `https://wa.me/${wa.number}?text=${encodeURIComponent('Olá! Gostaria de informações sobre bebidas na Monte Cristo.')}`;
+            if (footerLink) footerLink.href = `https://wa.me/${wa.number}?text=${encodeURIComponent('Olá! Gostaria de informações sobre bebidas na Monte Cristo.')}`;
+        }
+        window.addEventListener('whatsapp_agent_changed', syncActiveWhatsAppLinks);
+        window.addEventListener('DOMContentLoaded', syncActiveWhatsAppLinks);
+
+        // PWA Splash Screen Handler
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                const splash = document.getElementById('pwa-splash');
+                if (splash) {
+                    splash.classList.add('fade-out');
+                    setTimeout(() => splash.remove(), 700);
+                }
+            }, 1800);
+        });
+
+        // Register Service Worker com checagem ativa e transição suave
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js?v=20261013_v12')
+                    .then(reg => {
+                        console.log('PWA ServiceWorker registrado:', reg.scope);
+                        if (reg.update) reg.update();
+                    })
+                    .catch(err => console.warn('Falha ServiceWorker:', err));
+
+                let refreshing = false;
+                navigator.serviceWorker.addEventListener('controllerchange', () => {
+                    if (!refreshing) {
+                        refreshing = true;
+                        window.location.reload();
+                    }
+                });
+            });
+        }
+    </script>
+</body>
+</html>

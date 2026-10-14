@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+    <head>
+    <title>Monte Cristo - Distribuidora de Bebidas</title>
+    	
+    	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    	<meta charset="UTF-8">
+    	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    	<meta name="HandheldFriendly" content="True">
+    	<meta name="apple-touch-fullscreen" content="yes"/>
+    	<meta name="MobileOptimized" content="320">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+    	<meta name="description" content="Monte Cristo - Distribuidora de Bebidas"/>
+    	<meta name="keywords" content="monte cristo, distribuidor, bebidas"/>
+    
+    	<base href="https://www.montecristobebidas.com.br/">
+    	
+    	<script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="" crossorigin="anonymous"></script>
+    	<script type="text/javascript" src="js/slick.js"></script>
+    
+    	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="" crossorigin="anonymous">
+    	<link rel="stylesheet" href="css/style.css" media="screen and (min-width: 1025px)">
+    	<link rel="stylesheet" href="css/stylemob.css" media="screen and (max-width: 1024px)">
+    	<link rel="stylesheet" type="text/css" href="css/slick.css"/>
+    	<link rel="stylesheet" type="text/css" href="css/slick-theme.css"/>
+    	<link href="img/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+    
+    	<script type="text/javascript" src="js/shadowbox.js"></script>
+    	<script type="text/javascript" src="js/simpleslider.min.js"></script>
+    	<script type="text/javascript" src="js/paralax.min.js"></script>
+    	<script type="text/javascript" src="js/jquery.mask.js"></script>
+    	<script type="text/javascript" src="js/scripts.js"></script>
+    	
+    	<link rel="stylesheet" href="css/shadowbox.css">
+    	<link rel="stylesheet" href="css/simpleslider.css">
+    	<link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
+    	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    	
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+            	<script type="text/javascript">
+    		Shadowbox.init({
+    			overlayOpacity: 0.8
+    		});
+    	</script>
+    
+    	<script type="text/javascript">
+    		function scrollMenu(menu) {
+    			$('body').animate({ scrollTop: $('#'+menu).offset().top }, 1500);
+    		}
+    		
+    		function isMobileDevice() {
+                return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            }
+            $(document).ready(function(){
+                if (isMobileDevice()) {
+                    $(".whatsapp-logo").attr("href","whatsapp://send/?phone=5554999692859&text=Olá%2C+Monte+Cristo+Bebidas%2C+gostaria+de+fazer+um+orçamento+de+bebidas+para+o+meu+negócio!");
+                } else {
+                    $(".whatsapp-logo").attr("href","https://web.whatsapp.com/send?phone=5554999692859&text=Olá%2C+Monte+Cristo+Bebidas%2C+gostaria+de+fazer+um+orçamento+de+bebidas+para+o+meu+negócio!");
+                }
+            });
+    	</script>
+	</head>
+<body>
+	<header class="cabecalho ">
+		<div class="container-cabecalho">
+			<div class="full">
+				<a href="">
+					<h1 class="logo">
+						Monte Cristo
+					</h1>
+				</a>
+			</div>
+			<input type="checkbox" id="control-nav" />
+			<label for="control-nav" class="control-nav"></label>
+			<label for="control-nav" class="control-nav-close"></label>
+			<ul class="menu">
+				<li><a href="">Home<hr/></a></li>
+				<li><a href="sobre" onclick="event.preventDefault();linkInterno('sobre')">Sobre<hr/></a></li>
+				<li><a href="produtos">Produtos<hr/></a></li>
+				<li><a href="contato" onclick="event.preventDefault();linkInterno('contato')">Contato<hr/></a></li>
+			</ul>
+			<div class="clear"></div>
+		</div>
+	</header>
+	<div class="clear"></div>
+	 <!-- <section class="banner" data-parallax="scroll" data-image-src="img/banner.jpg"> !-->
+			<img  src="" alt="">
+		</section>
+	<section class="institucional sobre">
+		<div class="container">
+			<div class="esq">
+				<img src="uploads/images/00053146128_2559677230772782_8610801699197550592_n.jpg" alt="Monte Cristo Distribuidora de Bebidas">
+			</div>
+			<div class="dir">
+				<ul class="menu">
+					<li onclick="showSobre()" class="active">Sobre</li>
+					<li onclick="showMissao()">Missão</li>
+					<li onclick="showVisao()">Visão</li>
+					<li onclick="showValores()">Valores</li>
+				</ul>
+				<script>
+					function showSobre(){
+						$('.texto').fadeOut();
+						$('.texto.sobre').fadeIn();
+						$('.menu li').removeClass('active');
+						$('.menu li:nth-child(1)').addClass('active');
+					}
+					function showMissao(){
+						$('.texto').fadeOut();
+						$('.texto.missao').fadeIn();
+						$('.menu li').removeClass('active');
+						$('.menu li:nth-child(2)').addClass('active');
+					}
+					function showVisao(){
+						$('.texto').fadeOut();
+						$('.texto.visao').fadeIn();
+						$('.menu li').removeClass('active');
+						$('.menu li:nth-child(3)').addClass('active');
+					}
+					function showValores(){
+						$('.texto').fadeOut();
+						$('.texto.valores').fadeIn();
+						$('.menu li').removeClass('active');
+						$('.menu li:nth-child(4)').addClass('active');
+					}
+				</script>
+				<div class="texto sobre active">
+					A Monte Cristo Bebidas LTDA é uma distribuidora de bebidas, principalmente as quentes, atuante na serra gaúcha, com mais de 1000 itens em nosso portifólio. Empresa criada para suprir a demanda  de um trabalho já desenvolvido por mais 20 anos.<br />
+<br />
+Temos soluções de bebidas para eventos, como casamentos, formaturas e eventos empresariais. Além de atuar de forma definitiva em bares, casas noturnas e restaurantes de Caxias do Sul e região.				</div>
+				<div class="texto missao">
+					Somos a melhor revendedora de bebidas, com qualidade reconhecida pelos clientes, que gerem valor para a empresa, tendo os melhores produtos e atendimento a seus clientes.				</div>
+				<div class="texto visao">
+					Ampliar, crescer e construir novas unidades de negócios, para satisfazer cada vez mais clientes, colaboradores e fornecedores.				</div>
+				<div class="texto valores">
+					- Os clientes, nosso maior patrimônio, aqueles que dão sustentação ao nosso negócio e direção a nossa empresa.<br />
+- Os fornecedores, pela forte aliança e confiança depositada em nosso negócio.<br />
+- Ética nas relações comerciais				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+	</section>
+	<section class="produtos">
+		<div class="container">
+			<div class="item">
+				<div class="text-right">
+					<h2>Nossos</h2>
+					<h2 class="red">Produtos</h2>
+				</div>
+				<ul class="lista">
+									<li><a href="produtos/gin">Gin</a></li>
+									<li><a href="produtos/licor">Licor</a></li>
+									<li><a href="produtos/vodka">Vodka</a></li>
+									<li><a href="produtos/rum">Rum</a></li>
+									<li><a href="produtos/tequila">Tequila</a></li>
+									<li><a href="produtos/ice">Ice</a></li>
+									<li><a href="produtos/bitter">Bitter</a></li>
+				</ul><ul class="lista">					<li><a href="produtos/whisky">Whisky</a></li>
+									<li><a href="produtos/energetico">Energético</a></li>
+									<li><a href="produtos/conhaque">Conhaque</a></li>
+									<li><a href="produtos/vermouth">Vermouth</a></li>
+									<li><a href="produtos/suco">Suco</a></li>
+									<li><a href="produtos/xaropes">Xaropes</a></li>
+								</ul>
+				
+			</div>
+			<div class="item">
+				<img class="retangulo" src="img/retangulo_oval_vermelho.png" alt="">
+
+								<div class="destaque" style="background: url(uploads/destaque_produtos/e2bc03fa-93de-4033-8ce0-5a4d36bd68d4.jpg) no-repeat center center;"></div>
+							</div>
+		</div>
+		<div class="clear"></div>
+	</section>
+	<!-- <section class="clientes">
+		<div class="container">
+			<h2>Clientes</h2>
+			<hr class="defaultCenter">
+			<div class="listagem responsive">
+							<div class="item">
+					<a href="" target="_blank"><img src="" alt=""></a>
+				</div>
+						</div>
+		</div>
+		<div class="clear"></div>
+	</section>	<!-- <section class="contato" data-parallax="scroll" data-image-src="img/fundo_contato.jpg"> -->
+    <section class="contato">
+    <div class="container">
+        <div class="item">
+            <h2>Contato</h2>
+            <hr>
+            <p>O serviço de atendimento da Monte Cristo foi criado para aproximar ainda mais o relacionamento com nossos clientes.<br />
+<br />
+Mande seu e-mail, tire dúvidas, envie sugestões, elogios ou críticas. Ficaremos felizes em poder lhe atender.</p>
+        </div>
+        <div class="item contact">
+            <a href="tel:(54)999692859"><i class="fa fa-phone fa-fw"></i>(54) 999692859</a>
+			<a href="mailto:contato@montecristobebidas.com.br"><i class="fa fa-envelope fa-fw"></i>contato@montecristobebidas.com.br</a>
+			<a href="https://www.facebook.com/montecristobebidas/" target="_blank"><i class="fa fa-facebook-square fa-fw"></i>montecristobebidas</a>
+			<a href="https://www.instagram.com/monte_cristo_bebidas/" target="_blank"><i class="fa fa-instagram fa-fw"></i>monte_cristo_bebidas</a>
+		    
+        </div>
+    </div>
+    <div class="clear"></div>
+	</section>
+	<footer>
+		<div class="container">
+			<div class="item">
+				<h1>Monte Cristo Distribuidora de Bebidas</h1>
+				<a href="tel:(54)999692859">(54) 999692859</a>
+				<a href="mailto:contato@montecristobebidas.com.br">contato@montecristobebidas.com.br</a>
+			</div>
+			<div class="item">
+				<h3>Siga-nos nas Redes Sociais</h3>
+				<a href="https://www.facebook.com/montecristobebidas/" target="_blank"><i class="fa fa-facebook-square fa-fw"></i>montecristobebidas</a>
+				<a href="https://www.instagram.com/monte_cristo_bebidas/" target="_blank"><i class="fa fa-instagram fa-fw"></i>monte_cristo_bebidas</a>
+			</div>
+		</div>
+		<div class="clear"></div>
+		
+	</footer>
+	<a class="whatsapp-logo"></a>    
