@@ -1643,6 +1643,8 @@ function isCanItem(item) {
 }
 window.isCanItem = isCanItem;
 
+const CAN_ICON_SVG = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1.5px; margin-right:3px; display:inline-block;"><rect x="6" y="3" width="12" height="18" rx="3.5"></rect><line x1="6" y1="7" x2="18" y2="7"></line><line x1="6" y1="17" x2="18" y2="17"></line></svg>';
+
 function getItemUnitLabel(item) {
     return isCanItem(item) ? 'Lata' : 'Garrafa';
 }
@@ -1735,7 +1737,7 @@ function renderProducts() {
                                         ${isAvailable ? `
                                             <div style="display:inline-flex; gap:4px;">
                                                 <button class="btn-add-unit" onclick="addToCart('${item.id}', 'unit')" title="${getItemUnitLabel(item)} Avulsa">
-                                                    + ${isCanItem(item) ? 'Lata' : '🍾 Garrafa'}
+                                                    + ${isCanItem(item) ? `${CAN_ICON_SVG} Lata` : '🍾 Garrafa'}
                                                 </button>
                                                 <button class="btn-add-box" onclick="addToCart('${item.id}', 'box')" title="Caixa Fechada (${bSize} un)">
                                                     + 📦 Caixa (${bSize})
@@ -1786,7 +1788,7 @@ function renderProducts() {
 
                         <div class="card-unit-tabs" data-id="${item.id}">
                             <button type="button" class="card-tab ${!isBox ? 'active' : ''}" data-unit="unit" onclick="window.setCardUnit('${item.id}', 'unit')">
-                                ${isCan ? 'Lata' : '🍾 Garrafa'}
+                                ${isCan ? `${CAN_ICON_SVG} Lata` : '🍾 Garrafa'}
                             </button>
                             <button type="button" class="card-tab ${isBox ? 'active' : ''}" data-unit="box" onclick="window.setCardUnit('${item.id}', 'box')">
                                 📦 Caixa (${bSize}un)
