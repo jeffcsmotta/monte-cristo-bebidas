@@ -1,11 +1,11 @@
-const CACHE_NAME = 'monte-cristo-cache-v13-20261013';
+const CACHE_NAME = 'monte-cristo-cache-v12-20261013';
 const ASSETS_TO_CACHE = [
   './',
   './index.html',
-  './style.css?v=20261013_v13',
-  './app.js?v=20261013_v13',
-  './bottles.js?v=20261013_v13',
-  './images.js?v=20261013_v13',
+  './style.css?v=20261013_v12',
+  './app.js?v=20261013_v12',
+  './bottles.js?v=20261013_v12',
+  './images.js?v=20261013_v12',
   './manifest.json',
   './assets/favicon.svg',
   './assets/simbolo-monte.svg'

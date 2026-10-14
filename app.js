@@ -2127,7 +2127,7 @@ Solicitação de Distribuição · Reserva de Estoque
     const subtotalVal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
     msg += `*Subtotal Estimado: R$ ${formatMoney(subtotalVal)}*
 `;
-    msg += `Logística: Entrega após 24 horas úteis à confirmação do pedido com nosso atendente. Outros estados: envio via transportadora (prazo na cotação do frete).
+    msg += `Logística: Entrega em até 6 dias úteis após a confirmação do pedido com nosso atendente, conforme a disponibilidade dos itens em estoque. Outros estados: prazo informado na cotação do frete.
 `;
     msg += `*Total Estimado: R$ ${formatMoney(subtotalVal)}*
 
