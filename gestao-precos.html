@@ -567,6 +567,128 @@
             background: #FEF2F2;
         }
 
+        /* Packaging Badges & Selectors */
+        .badge-pack {
+            display: inline-flex;
+            align-items: center;
+            font-size: 0.72rem;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 5px;
+            letter-spacing: 0.2px;
+            margin-right: 6px;
+        }
+        .badge-pack-can {
+            background: #E0F2FE;
+            color: #0369A1;
+            border: 1px solid #BAE6FD;
+        }
+        .badge-pack-bottle {
+            background: #F1F5F9;
+            color: #475569;
+            border: 1px solid #E2E8F0;
+        }
+        .badge-pack-pet {
+            background: #FEF3C7;
+            color: #92400E;
+            border: 1px solid #FDE68A;
+        }
+
+        .pack-type-selector {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+        .pack-btn {
+            border: 1.5px solid var(--border);
+            background: #FFFFFF;
+            border-radius: 8px;
+            padding: 10px 8px;
+            font-size: 0.82rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.15s ease;
+        }
+        .pack-btn:hover {
+            border-color: var(--teal);
+            background: var(--bg-page);
+        }
+        .pack-btn.active {
+            border-color: var(--teal);
+            background: var(--teal-light);
+            color: var(--primary);
+        }
+        .vol-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 6px;
+        }
+        .vol-chip {
+            border: 1px solid var(--border);
+            background: #F8FAFC;
+            border-radius: 6px;
+            padding: 4px 9px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .vol-chip:hover {
+            border-color: var(--teal);
+            color: var(--teal);
+            background: #FFFFFF;
+        }
+        .vol-chip.active {
+            border-color: var(--teal);
+            background: var(--teal-light);
+            color: var(--teal);
+        }
+
+        .packaging-filter-bar {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed var(--border);
+            flex-wrap: wrap;
+        }
+        .packaging-filter-label {
+            font-size: 0.78rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+        .pack-filter-btn {
+            padding: 4px 12px;
+            border-radius: 20px;
+            border: 1px solid var(--border);
+            background: #FFFFFF;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+        .pack-filter-btn:hover {
+            border-color: var(--teal);
+            color: var(--teal);
+        }
+        .pack-filter-btn.active {
+            background: var(--primary);
+            color: #FFFFFF;
+            border-color: var(--primary);
+        }
+
         /* Modal Styles */
         .modal-overlay {
             position: fixed;
@@ -1227,6 +1349,14 @@
                 <button type="button" class="filter-tag" data-cat="energeticos">Energéticos</button>
                 <button type="button" class="filter-tag" data-cat="xaropes">Xaropes</button>
             </div>
+
+            <div class="packaging-filter-bar">
+                <span class="packaging-filter-label">Embalagem:</span>
+                <button type="button" class="pack-filter-btn active" data-pack="all" onclick="setPackagingFilter('all')">Todas</button>
+                <button type="button" class="pack-filter-btn" data-pack="bottle" onclick="setPackagingFilter('bottle')">Garrafas</button>
+                <button type="button" class="pack-filter-btn" data-pack="can" onclick="setPackagingFilter('can')">Latas</button>
+                <button type="button" class="pack-filter-btn" data-pack="pet" onclick="setPackagingFilter('pet')">PET</button>
+            </div>
         </div>
 
         <!-- Price Table -->
@@ -1267,6 +1397,22 @@
                     <input type="text" id="form-name" required placeholder="Ex: Licor Baileys Irish Cream 750ml">
                 </div>
 
+                <div class="form-group">
+                    <label>Tipo de Embalagem *</label>
+                    <div class="pack-type-selector">
+                        <button type="button" class="pack-btn active" id="pack-btn-bottle" onclick="selectPackagingType('bottle')">
+                            🍾 Garrafa (Vidro)
+                        </button>
+                        <button type="button" class="pack-btn" id="pack-btn-can" onclick="selectPackagingType('can')">
+                            Lata de Alumínio
+                        </button>
+                        <button type="button" class="pack-btn" id="pack-btn-pet" onclick="selectPackagingType('pet')">
+                            🧴 Garrafa PET
+                        </button>
+                    </div>
+                    <input type="hidden" id="form-packaging" value="bottle">
+                </div>
+
                 <div class="form-row">
                     <div class="form-group">
                         <label for="form-category">Categoria *</label>
@@ -1283,8 +1429,9 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="form-volume">Volume / Embalagem *</label>
-                        <input type="text" id="form-volume" required placeholder="Ex: 750ML, 1L, 2L, Lata">
+                        <label for="form-volume">Volume / Tamanho *</label>
+                        <input type="text" id="form-volume" required placeholder="Ex: 750ml, 1L ou 250ml">
+                        <div class="vol-chips" id="vol-quick-chips"></div>
                     </div>
                 </div>
 
@@ -1923,6 +2070,27 @@
             return '🥤';
         }
 
+        let currentPackagingFilter = 'all';
+
+        function getItemPackagingType(item) {
+            if (!item) return 'bottle';
+            if (item.packaging) return item.packaging;
+            if (window.isCanItem && window.isCanItem(item)) return 'can';
+            const vol = (item.volume || '').toLowerCase();
+            const name = (item.name || '').toLowerCase();
+            if (vol.indexOf('lata') > -1 || name.indexOf('lata') > -1 || name.indexOf('red bull') > -1) return 'can';
+            if (vol.indexOf('pet') > -1) return 'pet';
+            return 'bottle';
+        }
+
+        window.setPackagingFilter = function(pack) {
+            currentPackagingFilter = pack;
+            document.querySelectorAll('.pack-filter-btn').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.pack === pack);
+            });
+            renderTable();
+        };
+
         function renderTable() {
             const tbody = document.getElementById('table-body');
             const data = window.PRODUCTS_DATA || [];
@@ -1931,7 +2099,9 @@
             const filtered = data.filter(item => {
                 const matchesCat = currentFilter === 'all' || item.category === currentFilter;
                 const matchesSearch = item.name.toLowerCase().includes(currentSearch) || item.volume.toLowerCase().includes(currentSearch);
-                return matchesCat && matchesSearch;
+                const itemPack = getItemPackagingType(item);
+                const matchesPack = currentPackagingFilter === 'all' || itemPack === currentPackagingFilter;
+                return matchesCat && matchesSearch && matchesPack;
             });
 
             document.getElementById('total-count').textContent = data.length;
@@ -1950,6 +2120,16 @@
                     ? `<img class="product-thumb" src="${thumbSrc}" alt="${item.name}" loading="lazy" onerror="this.outerHTML='<div class=&quot;product-icon&quot;>${getCategoryIcon(item.category)}</div>'">`
                     : `<div class="product-icon">${getCategoryIcon(item.category)}</div>`;
 
+                const itemPack = getItemPackagingType(item);
+                let packBadge = '';
+                if (itemPack === 'can') {
+                    packBadge = `<span class="badge-pack badge-pack-can">Lata · ${item.volume}</span>`;
+                } else if (itemPack === 'pet') {
+                    packBadge = `<span class="badge-pack badge-pack-pet">PET · ${item.volume}</span>`;
+                } else {
+                    packBadge = `<span class="badge-pack badge-pack-bottle">Garrafa · ${item.volume}</span>`;
+                }
+
                 return `
                     <tr class="${!isAvailable ? 'paused-row' : ''}" id="row-${item.id}">
                         <td>
@@ -1960,7 +2140,10 @@
                                         ${item.name}
                                         ${isCustom ? '<span class="badge-custom">Novo</span>' : ''}
                                     </div>
-                                    <div class="product-sub">Embalagem: ${item.volume} • ID: ${item.id}</div>
+                                    <div class="product-sub" style="display:flex; align-items:center; gap:6px; flex-wrap:wrap; margin-top:3px;">
+                                        ${packBadge}
+                                        <span style="font-size:0.75rem; color:var(--text-muted);">ID: ${item.id}</span>
+                                    </div>
                                 </div>
                             </div>
                         </td>
@@ -2142,6 +2325,66 @@
             return banco[item.id] || '';
         }
 
+        const PACKAGING_VOLUMES = {
+            can: [
+                { label: '250ml (Slim)', val: '250ml', defaultBox: 24 },
+                { label: '330ml', val: '330ml', defaultBox: 12 },
+                { label: '350ml (Padrão)', val: '350ml', defaultBox: 12 },
+                { label: '473ml (Latão)', val: '473ml', defaultBox: 12 }
+            ],
+            bottle: [
+                { label: '750ml', val: '750ml', defaultBox: 6 },
+                { label: '1L', val: '1L', defaultBox: 6 },
+                { label: '950ml', val: '950ml', defaultBox: 6 },
+                { label: '500ml', val: '500ml', defaultBox: 12 }
+            ],
+            pet: [
+                { label: '2L', val: '2L', defaultBox: 6 },
+                { label: '1.5L', val: '1.5L', defaultBox: 6 },
+                { label: '600ml', val: '600ml', defaultBox: 12 }
+            ]
+        };
+
+        window.selectPackagingType = function(type, currentVol, isManualClick = false) {
+            const input = document.getElementById('form-packaging');
+            if (input) input.value = type;
+
+            ['bottle', 'can', 'pet'].forEach(t => {
+                const btn = document.getElementById(`pack-btn-${t}`);
+                if (btn) btn.classList.toggle('active', t === type);
+            });
+
+            const chipsContainer = document.getElementById('vol-quick-chips');
+            const volInput = document.getElementById('form-volume');
+            const boxQtyInput = document.getElementById('form-box-qty');
+            const list = PACKAGING_VOLUMES[type] || [];
+
+            if (chipsContainer) {
+                chipsContainer.innerHTML = list.map(opt => `
+                    <button type="button" class="vol-chip ${currentVol && currentVol.toLowerCase() === opt.val.toLowerCase() ? 'active' : ''}" 
+                            onclick="applyVolumeChip('${opt.val}', ${opt.defaultBox})">
+                        ${opt.label}
+                    </button>
+                `).join('');
+            }
+
+            if (isManualClick && list.length > 0) {
+                volInput.value = list[0].val;
+                if (boxQtyInput) boxQtyInput.value = list[0].defaultBox;
+            }
+        };
+
+        window.applyVolumeChip = function(vol, defaultBox) {
+            const volInput = document.getElementById('form-volume');
+            const boxQtyInput = document.getElementById('form-box-qty');
+            if (volInput) volInput.value = vol;
+            if (boxQtyInput && defaultBox) boxQtyInput.value = defaultBox;
+
+            document.querySelectorAll('.vol-chip').forEach(c => {
+                c.classList.toggle('active', c.textContent.trim().startsWith(vol));
+            });
+        };
+
         window.openAddProductModal = function() {
             document.getElementById('modal-title').textContent = 'Incluir Novo Produto no Catálogo';
             document.getElementById('product-form').reset();
@@ -2149,6 +2392,8 @@
             document.getElementById('form-box-qty').value = '6';
             formPhotoData = '';
             refreshPhotoPreview();
+            selectPackagingType('bottle', '750ml');
+            document.getElementById('form-volume').value = '750ml';
             document.getElementById('product-modal').classList.add('active');
             if (window.lucide) lucide.createIcons();
         };
@@ -2163,10 +2408,13 @@
             document.getElementById('form-category').value = item.category;
             document.getElementById('form-volume').value = item.volume;
             
+            const pack = getItemPackagingType(item);
+            selectPackagingType(pack, item.volume);
+
             const currentOverride = overrides[item.id] || {};
             const effPrice = typeof currentOverride.price === 'number' ? currentOverride.price : item.price;
             document.getElementById('form-price').value = effPrice.toFixed(2);
-            document.getElementById('form-box-qty').value = item.boxQty || 6;
+            document.getElementById('form-box-qty').value = item.boxQty || (pack === 'can' ? 24 : 6);
             document.getElementById('form-box-total').value = item.boxTotal ? item.boxTotal.toFixed(2) : '';
             formPhotoData = currentPhotoFor(item);
             document.getElementById('form-photo-url').value =
@@ -2188,6 +2436,7 @@
             const name = document.getElementById('form-name').value.trim();
             const category = document.getElementById('form-category').value;
             const volume = document.getElementById('form-volume').value.trim().toUpperCase();
+            const packaging = document.getElementById('form-packaging').value || 'bottle';
             const price = parseFloat(document.getElementById('form-price').value);
             const boxQty = parseInt(document.getElementById('form-box-qty').value) || 6;
             const boxTotalVal = document.getElementById('form-box-total').value;
@@ -2201,14 +2450,14 @@
                     const custom = JSON.parse(localStorage.getItem('monte_cristo_custom_products')) || [];
                     const idx = custom.findIndex(p => p.id === id);
                     if (idx !== -1) {
-                        custom[idx] = { ...custom[idx], name, category, volume, price, boxQty, boxTotal };
+                        custom[idx] = { ...custom[idx], name, category, volume, packaging, price, boxQty, boxTotal };
                         if (image) custom[idx].image = image;
                         else delete custom[idx].image;
                         localStorage.setItem('monte_cristo_custom_products', JSON.stringify(custom));
                     }
                 } else {
                     const edits = JSON.parse(localStorage.getItem('monte_cristo_product_edits')) || {};
-                    edits[id] = { name, category, volume, price, boxQty, boxTotal };
+                    edits[id] = { name, category, volume, packaging, price, boxQty, boxTotal };
                     if (image) edits[id].image = image;
                     localStorage.setItem('monte_cristo_product_edits', JSON.stringify(edits));
                 }
@@ -2221,6 +2470,7 @@
                     name,
                     category,
                     volume,
+                    packaging,
                     price,
                     boxQty,
                     boxTotal,

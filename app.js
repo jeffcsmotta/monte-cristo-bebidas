@@ -1631,6 +1631,23 @@ function productThumb(item, cssClass) {
 }
 window.productThumb = productThumb;
 
+function isCanItem(item) {
+    if (!item) return false;
+    if (item.packaging === 'can' || item.packaging === 'lata') return true;
+    const name = (item.name || '').toLowerCase();
+    const vol = (item.volume || '').toLowerCase();
+    if (name.indexOf('red bull') > -1 || name.indexOf('energetico red bull') > -1) return true;
+    if (name.indexOf('lata') > -1 || vol.indexOf('lata') > -1) return true;
+    if (window.BOTTLE_MAP && window.BOTTLE_MAP[item.id] && window.BOTTLE_MAP[item.id].shape === 'can') return true;
+    return false;
+}
+window.isCanItem = isCanItem;
+
+function getItemUnitLabel(item) {
+    return isCanItem(item) ? 'Lata' : 'Garrafa';
+}
+window.getItemUnitLabel = getItemUnitLabel;
+
 // Render Products Grid or Table
 function renderProducts() {
     const grid = document.getElementById('products-grid');
@@ -1717,8 +1734,8 @@ function renderProducts() {
                                     <td style="text-align:right;">
                                         ${isAvailable ? `
                                             <div style="display:inline-flex; gap:4px;">
-                                                <button class="btn-add-unit" onclick="addToCart('${item.id}', 'unit')" title="Garrafa Avulsa">
-                                                    + 🍾 Garrafa
+                                                <button class="btn-add-unit" onclick="addToCart('${item.id}', 'unit')" title="${getItemUnitLabel(item)} Avulsa">
+                                                    + ${isCanItem(item) ? 'Lata' : '🍾 Garrafa'}
                                                 </button>
                                                 <button class="btn-add-box" onclick="addToCart('${item.id}', 'box')" title="Caixa Fechada (${bSize} un)">
                                                     + 📦 Caixa (${bSize})
@@ -1754,6 +1771,8 @@ function renderProducts() {
             const currentUnit = cardUnits[item.id] || 'unit';
             const isBox = currentUnit === 'box';
             const isAvailable = item.active !== false;
+            const unitLabel = getItemUnitLabel(item);
+            const isCan = isCanItem(item);
 
             cardsHtml.push(`
                 <div class="product-card ${!isAvailable ? 'is-paused' : ''}" data-id="${item.id}">
@@ -1767,7 +1786,7 @@ function renderProducts() {
 
                         <div class="card-unit-tabs" data-id="${item.id}">
                             <button type="button" class="card-tab ${!isBox ? 'active' : ''}" data-unit="unit" onclick="window.setCardUnit('${item.id}', 'unit')">
-                                🍾 Garrafa
+                                ${isCan ? 'Lata' : '🍾 Garrafa'}
                             </button>
                             <button type="button" class="card-tab ${isBox ? 'active' : ''}" data-unit="box" onclick="window.setCardUnit('${item.id}', 'box')">
                                 📦 Caixa (${bSize}un)
@@ -1778,7 +1797,7 @@ function renderProducts() {
                             <div class="price-amount-display">
                                 ${isBox
                                     ? `R$ ${formatMoney(bUnitPrice)} <small>/un na caixa</small>`
-                                    : `R$ ${formatMoney(item.price)} <small>/garrafa avulsa</small>`
+                                    : `R$ ${formatMoney(item.price)} <small>/${unitLabel.toLowerCase()} avulsa</small>`
                                 }
                             </div>
                             <div class="price-subtext-display">
@@ -1792,7 +1811,7 @@ function renderProducts() {
                         ${isAvailable ? `
                             <button type="button" class="btn-add-main ${isBox ? 'box-mode' : 'unit-mode'}" onclick="addToCart('${item.id}', '${currentUnit}')">
                                 <i data-lucide="${isBox ? 'package' : 'plus'}"></i>
-                                <span>${isBox ? `Adicionar Caixa (${bSize}un)` : 'Adicionar 1 Garrafa'}</span>
+                                <span>${isBox ? `Adicionar Caixa (${bSize}un)` : `Adicionar 1 ${unitLabel}`}</span>
                             </button>
                         ` : `
                             <button type="button" class="btn-add-main paused-btn" disabled>
@@ -1994,7 +2013,7 @@ function updateCartUI() {
                         ${item.unitType === 'box' ? `
                             <div class="cart-item-tag box-tag">📦 Caixa Fechada (${item.boxSize} un) · R$ ${formatMoney(item.unitPrice)}/un</div>
                         ` : `
-                            <div class="cart-item-tag unit-tag">🍾 Garrafa Avulsa · R$ ${formatMoney(item.unitPrice)}/un</div>
+                            <div class="cart-item-tag unit-tag">${isCanItem(item) ? 'Lata' : '🍾 Garrafa'} Avulsa · R$ ${formatMoney(item.unitPrice)}/un</div>
                         `}
                         <div class="cart-item-price">Subtotal: R$ ${formatMoney(item.price * item.quantity)}</div>
                     </div>
@@ -2107,6 +2126,7 @@ Solicitação de Distribuição · Reserva de Estoque
 `;
 
     cart.forEach(item => {
+        const uLabel = getItemUnitLabel(item);
         if (item.unitType === 'box') {
             msg += `*${item.quantity}x* Caixa Fechada (${item.boxSize} un) · ${item.name} (${item.volume})
 `;
@@ -2116,7 +2136,7 @@ Solicitação de Distribuição · Reserva de Estoque
 
 `;
         } else {
-            msg += `*${item.quantity}x* Garrafa Avulsa · ${item.name} (${item.volume})
+            msg += `*${item.quantity}x* ${uLabel} Avulsa · ${item.name} (${item.volume})
 `;
             msg += `*R$ ${formatMoney(item.price * item.quantity)}*
 

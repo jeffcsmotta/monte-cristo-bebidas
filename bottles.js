@@ -228,9 +228,37 @@ function bottleSilhouette(s) {
     ].join(' ');
 }
 
+function getCanDimensions(volume) {
+    const v = String(volume || '').toLowerCase();
+    let ml = parseFloat(v.replace(',', '.'));
+    if (v.indexOf('l') > -1 && v.indexOf('ml') === -1) ml = parseFloat(v.replace(',', '.')) * 1000;
+
+    if (ml && ml <= 280) {
+        // Slim / Sleek Can (250ml - ex: Red Bull)
+        return { x: 26, w: 38, top: 46, bot: 176, rx: 7 };
+    }
+    if (ml && ml >= 450) {
+        // Tallboy / Latão (473ml)
+        return { x: 22, w: 46, top: 38, bot: 176, rx: 9 };
+    }
+    // Standard Can (330ml / 350ml)
+    return { x: 22, w: 46, top: 52, bot: 176, rx: 9 };
+}
+
 /* --- Gerador principal --------------------------------------------------- */
 function bottleSVG(item) {
-    const spec = BOTTLE_MAP[item.id] || { shape: 'round', liquid: GLASS_CLEAR, label: '#0E4663', cap: '#0E4663', tag: 'MONTE CRISTO' };
+    let spec = BOTTLE_MAP[item.id];
+    if (!spec) {
+        const isCan = item.packaging === 'can' || item.packaging === 'lata' ||
+                      (item.volume || '').toLowerCase().indexOf('lata') > -1 ||
+                      (item.name || '').toLowerCase().indexOf('red bull') > -1 ||
+                      (item.name || '').toLowerCase().indexOf('lata') > -1;
+        if (isCan) {
+            spec = { shape: 'can', label: '#1B7588', cap: '#B8C0C8', tag: (item.name || 'MONTE CRISTO').toUpperCase().split(' ').slice(0, 2).join(' ') };
+        } else {
+            spec = { shape: 'round', liquid: GLASS_CLEAR, label: '#0E4663', cap: '#0E4663', tag: 'MONTE CRISTO' };
+        }
+    }
     const uid = 'b-' + item.id;
     const labelColor = spec.label || '#0E4663';
     const capColor = spec.cap || labelColor;
@@ -248,10 +276,11 @@ function bottleSVG(item) {
     parts.push(`<g transform="translate(45,182) scale(${k.toFixed(3)}) translate(-45,-182)">`);
 
     if (spec.shape === 'can') {
-        /* ---- Lata de alumínio ---- */
-        const x = 22, w = 46, top = 52, bot = 176, h = bot - top;
+        /* ---- Lata de alumínio calibrada por volume ---- */
+        const dims = getCanDimensions(item.volume);
+        const x = dims.x, w = dims.w, top = dims.top, bot = dims.bot, h = bot - top, rx = dims.rx;
         const bandY = top + 18, bandH = h - 34;
-        parts.push(`<defs><clipPath id="${uid}"><rect x="${x}" y="${top}" width="${w}" height="${h}" rx="9"/></clipPath></defs>`);
+        parts.push(`<defs><clipPath id="${uid}"><rect x="${x}" y="${top}" width="${w}" height="${h}" rx="${rx}"/></clipPath></defs>`);
         parts.push(`<g clip-path="url(#${uid})">`);
         parts.push(`<rect x="${x}" y="${top}" width="${w}" height="${h}" fill="#DCE3E8"/>`);
         parts.push(`<rect x="${x}" y="${bandY}" width="${w}" height="${bandH}" fill="${labelColor}"/>`);
@@ -264,7 +293,7 @@ function bottleSVG(item) {
         parts.push(`<path d="M ${x + 3},${top + 6} Q ${x + 3},${top - 4} ${x + 9},${top - 6} L ${x + w - 9},${top - 6} Q ${x + w - 3},${top - 4} ${x + w - 3},${top + 6} Z" fill="#C7D0D8"/>`);
         parts.push(`<ellipse cx="45" cy="${top - 6}" rx="${(w - 12) / 2}" ry="3.2" fill="#E8EDF1" stroke="#94A3B8" stroke-width="0.8"/>`);
         parts.push(`<ellipse cx="45" cy="${top - 6}" rx="${(w - 22) / 2}" ry="1.6" fill="#B8C0C8"/>`);
-        parts.push(`<rect x="${x}" y="${top}" width="${w}" height="${h}" rx="9" fill="none" stroke="#0F172A" stroke-opacity="0.28" stroke-width="1.2"/>`);
+        parts.push(`<rect x="${x}" y="${top}" width="${w}" height="${h}" rx="${rx}" fill="none" stroke="#0F172A" stroke-opacity="0.28" stroke-width="1.2"/>`);
         /* Texto */
         const t = layoutTag(tag, w - 7);
         parts.push(renderTag(t.lines, t.fs, bandY + bandH / 2, txt));
