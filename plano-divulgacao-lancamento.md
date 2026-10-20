@@ -15,35 +15,35 @@
 
 ## 🎯 Pilares Estratégicos da Campanha
 
-1. **Praticidade Digital:** O fim dos PDFs pesados e desatualizados. Catálogo rápido no celular com busca instantânea e pedido em 1 clique para o WhatsApp.
+1. **Praticidade & Fluidez de Compra:** Comprar bebidas com a Monte Cristo ficou muito mais prático, rápido e fluido. Escolha rótulos no celular, monte o pedido em segundos e envie direto para o WhatsApp do atendimento.
 2. **Autoridade & Tradição:** Mais de 20 anos de atuação na Serra Gaúcha e mais de 1.000 rótulos originais com nota fiscal e lacre oficial.
 3. **Diferencial Único para Eventos (Consignação de 20%):** O grande ímã comercial da Monte Cristo. Devolução de até 20% do pedido caso as garrafas voltem lacradas, com reembolso direto em conta.
-4. **B2B Sob Medida:** Preços diretos de tabela para bares, pubs e casas noturnas, com entrega semanal programada.
+4. **B2B Sob Medida:** Preços diretos de tabela para bares, pubs e casas noturnas, com entrega semanal programada na Serra Gaúcha.
 
 ---
 
 ## 📦 Matriz de Materiais a Desenvolver
 
-### 1. 📱 Stories do Instagram (Pack 9:16 — 1080 x 1920 px)
-- [ ] **Story 01 — Teaser & Impacto:** *"O que já era tradição agora está na palma da sua mão."* Mockup do smartphone exibindo o site carregando suavemente + sticker de link `Acesse o Catálogo`.
-- [ ] **Story 02 — Passo a Passo Interativo (3 telas em 1):**
-  1. Navegue pelas categorias (Whiskies, Vodkas, Gins, Licores, Energéticos);
-  2. Monte seu carrinho ou consulte o preço unitário em tempo real;
-  3. Envie a comanda pronta direto para nosso atendimento no WhatsApp.
+### 1. 📱 Stories do Instagram & Status (Pack 9:16 — 1080 x 1920 px)
+- [ ] **Story 01 — Teaser & Impacto (Estático/Motion):** *"O que já era tradição agora está na palma da sua mão."* Smartphone flutuando exibindo o novo site da Monte Cristo + sticker de link `Acesse o Site`.
+- [ ] **Story 02 — Vídeo Dinâmico (Screen Record + Motion 15s):**
+  - **Vídeo em ritmo acelerado:** Abertura do site no mobile, rolagem fluida pelas categorias, seleção rápida de itens no carrinho e clique de envio direto para o WhatsApp do atendimento.
+  - **Áudio/Locução:** Dinâmico, destacando a agilidade de compra.
 - [ ] **Story 03 — Destaque Eventos (Consignação 20%):** *"Vai casar ou organizar uma festa? Não passe aperto nem pague por bebida parada."* Explicando o estorno garantido de sobras lacradas.
-- [ ] **Story 04 — Engajamento & Enquete:** *"Qual bebida não pode faltar no seu rolê de fim de semana?"* (Enquete: `Whisky & Energético` vs `Gin & Tônica`) + Link para a categoria vencedora.
-- [ ] **Destaque Fixo do Perfil (Cover & Nome):** Criar capa para o destaque no Instagram chamado **`Novo Site 🌐`** para eternizar os stories e o link da bio.
+- [ ] **Story 04 — Engajamento & Enquete:** *"Qual bebida não pode faltar no seu fim de semana?"* (Enquete: `Whisky & Energético` vs `Gin & Tônica`) + Link direto para a categoria no site.
+- [ ] **Destaque Fixo do Instagram (Cover & Nome):** Capa minimalista oficial para o destaque do Instagram **`Novo Site 🌐`**.
+- [ ] **Capa para WhatsApp Business (16:9 / 1920 x 1080 px):** Imagem de cabeçalho institucional para o perfil do WhatsApp comercial da Monte Cristo, destacando o novo site e o canal direto.
 
 ---
 
-### 2. 🖼️ Feed do Instagram (Pack 1:1 e 4:5 — 1080 x 1350 px)
-- [ ] **Post 01 (Post Oficial de Lançamento — Imagem Única ou Mini-Vídeo):**
-  - **Visual:** Render do site em tela de iPhone em ângulo premium, com garrafas de destilados de prestígio (Jack Daniel's, Licor 43, Red Bull, Gin Bombay) ambientadas ao fundo com iluminação sofisticada.
-  - **Copy:** Focada no marco de inovação da Monte Cristo. Acesso direto a mais de 1.000 itens sem intermediários.
-  - **CTA:** *"Toque no link da bio e faça seu primeiro pedido direto pelo catálogo."*
+### 2. 🖼️ Feed do Instagram (Pack 4:5 — 1080 x 1350 px e 1:1)
+- [ ] **Post 01 (Post Oficial de Lançamento — Âncora):**
+  - **Visual:** Render do site em tela de smartphone em ângulo premium, com garrafas originais (Jack Daniel's, Licor 43, Red Bull, Gin Bombay) ambientadas ao fundo.
+  - **Copy:** Focada na agilidade: *"Comprar suas bebidas com a Monte Cristo ficou muito mais prático e fluido. Nosso site oficial está no ar!"*
+  - **CTA:** *"Toque no link da bio e faça seu pedido direto pelo site."*
 - [ ] **Post 02 (Institucional / B2B para Bares e Restaurantes):**
   - **Visual:** Foco em caixas, fardos, estabilidade de estoque e entrega pontual na Serra Gaúcha.
-  - **Copy:** Condições especiais para CNPJ, conformidade fiscal e entrega em até 6 dias úteis.
+  - **Copy:** Condições especiais para CNPJ, conformidade fiscal e entrega programada em até 6 dias úteis.
 
 ---
 
@@ -53,18 +53,18 @@
   - **Slide 2 (A Dor):** Bebida quente em festa não pode faltar no meio da madrugada. Mas comprar além da conta é dinheiro jogado fora.
   - **Slide 3 (A Regra de Ouro Monte Cristo):** Modalidade exclusiva de **Consignação de até 20%**.
   - **Slide 4 (Como Funciona na Prática):** Você fecha o pedido com margem de segurança. O que voltar lacrado, o valor equivalente é devolvido via Pix para sua conta.
-  - **Slide 5 (Catálogo Completo):** Mais de 1.000 opções entre whiskies, espumantes, licores e energéticos de importação oficial.
-  - **Slide 6 (Demonstração do Site):** Agora com nosso catálogo online, você seleciona os rótulos e recebe o orçamento detalhado em minutos.
+  - **Slide 5 (Variedade e Procedência):** Mais de 1.000 opções entre whiskies, espumantes, licores e energéticos de importação oficial.
+  - **Slide 6 (Agora no Site):** Selecione os rótulos no nosso novo site e receba o orçamento detalhado em minutos no WhatsApp.
   - **Slide 7 (CTA Final):** *Acesse montecristobebidas.com.br pelo link da bio e fale com nosso time de eventos.*
 
 ---
 
 ### 4. 💬 Materiais para Transmissão & Atendimento no WhatsApp
-- [ ] **Card Visual de WhatsApp (1080 x 1080 px):** Imagem leve e chamativa anunciando o lançamento do catálogo online, ideal para disparos ou upload nos Status.
+- [ ] **Card Visual de WhatsApp (1080 x 1080 px):** Imagem leve e chamativa anunciando o novo site, ideal para disparos ou upload nos Status.
 - [ ] **Copy para Lista de Transmissão / Clientes B2B Cadastrados:**
-  - Mensagem personalizada, humanizada e direta, com saudação do atendente (Ivan / Michele) e link encurtado ou limpo.
+  - Mensagem personalizada, humanizada e direta, com saudação do atendente (Ivan / Michele) apresentando a facilidade de pedir pelo novo site.
 - [ ] **Copy para Cerimonialistas & Produtores de Eventos da Região:**
-  - Apresentação consultiva da facilidade de orçamentos rápidos e reafirmação do benefício de consignação de 20%.
+  - Apresentação consultiva da facilidade do novo site e reafirmação do benefício de consignação de 20%.
 - [ ] **Mensagem de Status do WhatsApp:**
   - 3 telas verticais sequenciais para o status do número comercial da Monte Cristo.
 

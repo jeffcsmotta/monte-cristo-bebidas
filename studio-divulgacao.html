@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Central de Materiais de Lançamento | Monte Cristo Bebidas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    :root {
+      --primary: #0E4663;
+      --primary-light: #1B7588;
+      --accent: #10B981;
+      --accent-gold: #F59E0B;
+      --bg-dark: #07131B;
+      --card-bg: #0D1E2A;
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text: #F8FAFC;
+      --text-muted: #94A3B8;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: var(--bg-dark);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    header {
+      background: rgba(13, 30, 42, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--card-border);
+      padding: 16px 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .brand-logo {
+      height: 38px;
+    }
+
+    .brand-badge {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: rgba(16, 185, 129, 0.15);
+      color: var(--accent);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      padding: 4px 10px;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .nav-tabs {
+      display: flex;
+      background: rgba(255, 255, 255, 0.04);
+      padding: 4px;
+      border-radius: 12px;
+      border: 1px solid var(--card-border);
+      gap: 4px;
+      overflow-x: auto;
+    }
+
+    .nav-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 0.88rem;
+      padding: 8px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .nav-btn:hover {
+      color: #FFF;
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .nav-btn.active {
+      background: var(--primary-light);
+      color: #FFF;
+      box-shadow: 0 4px 12px rgba(27, 117, 136, 0.4);
+    }
+
+    .site-shortcut {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--card-border);
+      transition: all 0.2s;
+    }
+
+    .site-shortcut:hover {
+      color: #FFF;
+      border-color: var(--primary-light);
+    }
+
+    main {
+      flex: 1;
+      max-width: 1400px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 32px 24px;
+    }
+
+    .tab-pane {
+      display: none;
+      animation: fadeIn 0.3s ease forwards;
+    }
+
+    .tab-pane.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+      max-width: 800px;
+      line-height: 1.5;
+    }
+
+    /* Grid Layouts */
+    .stories-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .feed-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 32px;
+    }
+
+    /* Story Card (9:16) */
+    .story-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .story-preview {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      background-size: cover;
+      background-position: center;
+      border-bottom: 1px solid var(--card-border);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 20px;
+    }
+
+    .story-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(7, 19, 27, 0.4) 0%, rgba(7, 19, 27, 0.1) 40%, rgba(7, 19, 27, 0.85) 100%);
+      z-index: 1;
+    }
+
+    .story-content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .story-pill {
+      align-self: flex-start;
+      background: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .story-headline {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.35rem;
+      font-weight: 800;
+      line-height: 1.25;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+      margin-bottom: 8px;
+    }
+
+    .story-subtext {
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.9);
+      line-height: 1.4;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.8);
+    }
+
+    .story-sticker {
+      background: #FFFFFF;
+      color: #0E4663;
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 0.85rem;
+      text-align: center;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .story-meta {
+      padding: 16px;
+    }
+
+    .story-title {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+
+    .story-notes {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* Video Story 2 Simulator */
+    .video-sim {
+      background: #000;
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .video-step-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .video-step-item {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--card-border);
+      padding: 8px 12px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .video-time {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      color: var(--accent);
+      min-width: 55px;
+    }
+
+    /* Feed Post Card */
+    .feed-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .feed-media {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .feed-body {
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .caption-box {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 14px;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      color: #E2E8F0;
+      white-space: pre-wrap;
+      max-height: 220px;
+      overflow-y: auto;
+      font-family: inherit;
+    }
+
+    .action-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .btn-copy {
+      background: var(--primary-light);
+      color: #FFF;
+      border: none;
+      padding: 9px 16px;
+      border-radius: 8px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .btn-copy:hover {
+      background: #145967;
+      transform: translateY(-1px);
+    }
+
+    .btn-copy.copied {
+      background: var(--accent);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--card-border);
+      padding: 9px 16px;
+      border-radius: 8px;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      transition: all 0.2s;
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--text-muted);
+    }
+
+    /* Carousel Studio */
+    .carousel-container {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: center;
+    }
+
+    @media (max-width: 900px) {
+      .carousel-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .carousel-viewport {
+      position: relative;
+      width: 100%;
+      max-width: 440px;
+      aspect-ratio: 4 / 5;
+      margin: 0 auto;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+      border: 1px solid var(--card-border);
+      background: #0E4663;
+    }
+
+    .carousel-slide {
+      position: absolute;
+      inset: 0;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .carousel-slide.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .carousel-slide-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(14, 70, 99, 0.85) 0%, rgba(7, 19, 27, 0.95) 100%);
+      z-index: 1;
+    }
+
+    .carousel-slide-content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .slide-number {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 800;
+      color: var(--accent);
+      background: rgba(16, 185, 129, 0.15);
+      padding: 4px 10px;
+      border-radius: 6px;
+      align-self: flex-start;
+      border: 1px solid rgba(16, 185, 129, 0.3);
+    }
+
+    .slide-body-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 800;
+      line-height: 1.25;
+      margin-bottom: 12px;
+      color: #FFF;
+    }
+
+    .slide-body-text {
+      font-size: 0.95rem;
+      color: #CBD5E1;
+      line-height: 1.55;
+    }
+
+    .slide-bullet-list {
+      margin-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .slide-bullet {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      padding: 10px 14px;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .slide-footer-hint {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      justify-content: flex-end;
+    }
+
+    .carousel-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 16px;
+      justify-content: center;
+    }
+
+    .carousel-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--card-border);
+      color: #FFF;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .carousel-btn:hover {
+      background: var(--primary-light);
+    }
+
+    .carousel-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .carousel-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .carousel-dot.active {
+      width: 24px;
+      border-radius: 4px;
+      background: var(--accent);
+    }
+
+    /* WhatsApp Tab */
+    .wa-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 24px;
+    }
+
+    .wa-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .wa-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .wa-avatar {
+      width: 44px;
+      height: 44px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #FFF;
+      font-size: 1.2rem;
+    }
+
+    .wa-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .wa-subtitle {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .wa-bubble {
+      background: #005C4B;
+      color: #E9EDEF;
+      padding: 16px;
+      border-radius: 12px;
+      border-top-left-radius: 0;
+      font-size: 0.88rem;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      font-family: inherit;
+      position: relative;
+    }
+
+    /* Covers Tab */
+    .covers-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 32px;
+    }
+
+    .cover-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      overflow: hidden;
+      padding: 24px;
+    }
+
+    .cover-img-wrap {
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+      margin-top: 16px;
+      background: #000;
+    }
+
+    .cover-img-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="brand-group">
+      <img src="assets/logo_horizontal_montecristo_gradient.svg" alt="Monte Cristo Bebidas" class="brand-logo" onerror="this.src='assets/logo_branco_montecristo.svg'">
+      <span class="brand-badge">Central de Divulgação</span>
+    </div>
+
+    <div class="nav-tabs">
+      <button class="nav-btn active" onclick="switchTab('stories')"><i data-lucide="smartphone"></i> Stories & Vídeo</button>
+      <button class="nav-btn" onclick="switchTab('feed')"><i data-lucide="grid"></i> Feed (Post 1 & 2)</button>
+      <button class="nav-btn" onclick="switchTab('carrossel')"><i data-lucide="layers"></i> Carrossel Eventos</button>
+      <button class="nav-btn" onclick="switchTab('whatsapp')"><i data-lucide="message-circle"></i> WhatsApp Transmissão</button>
+      <button class="nav-btn" onclick="switchTab('capas')"><i data-lucide="image"></i> Capas de Perfil</button>
+    </div>
+
+    <a href="index.html" target="_blank" class="site-shortcut">
+      <span>Ver Site Oficial</span>
+      <i data-lucide="external-link" style="width:14px; height:14px;"></i>
+    </a>
+  </header>
+
+  <main>
+    <!-- TAB 1: STORIES & VÍDEO -->
+    <div id="tab-stories" class="tab-pane active">
+      <h2 class="section-title"><i data-lucide="smartphone" style="color:var(--accent);"></i> Stories & Vídeo de Demonstração</h2>
+      <p class="section-desc">Formatos verticais 9:16 (1080 x 1920 px) para publicação nos Stories do Instagram, Facebook e Status do WhatsApp.</p>
+
+      <div class="stories-grid">
+        <!-- Story 1: Teaser Oficial -->
+        <div class="story-card">
+          <div class="story-preview" style="background-image: url('assets/divulgacao/story-lancamento.jpg');">
+            <div class="story-overlay"></div>
+            <div class="story-content">
+              <span class="story-pill">Lançamento Oficial</span>
+              <div>
+                <h3 class="story-headline">O NOVO SITE DA MONTE CRISTO ESTÁ NO AR! 🍾</h3>
+                <p class="story-subtext">Comprar suas bebidas agora ficou muito mais prático e fluido.</p>
+              </div>
+              <div class="story-sticker">
+                <i data-lucide="globe" style="width:16px; height:16px;"></i>
+                <span>ACESSAR O SITE</span>
+              </div>
+            </div>
+          </div>
+          <div class="story-meta">
+            <h4 class="story-title">Story 01: Teaser de Impacto</h4>
+            <p class="story-notes">Anúncio do novo site com garrafas originais e sticker direto para montecristo-bebidas.pages.dev.</p>
+          </div>
+        </div>
+
+        <!-- Story 2: Roteiro do Vídeo Dinâmico (15s) -->
+        <div class="story-card">
+          <div class="story-preview" style="background: linear-gradient(145deg, #071927 0%, #0E4663 100%);">
+            <div class="story-content">
+              <span class="story-pill" style="background:rgba(245, 158, 11, 0.2); color:#F59E0B; border-color:rgba(245,158,11,0.4);">Roteiro de Vídeo (15s)</span>
+              <div>
+                <h3 class="story-headline" style="color:#FFF;">COMPRAR SUAS BEBIDAS FICOU MUITO MAIS FÁCIL 📱✨</h3>
+                <p class="story-subtext">Gravado na tela do celular com velocidade 1.3x e música animada.</p>
+              </div>
+              <div class="story-sticker" style="background:var(--accent); color:#FFF;">
+                <i data-lucide="play" style="width:16px; height:16px;"></i>
+                <span>PEDIU, CHEGOU! 👉</span>
+              </div>
+            </div>
+          </div>
+          <div class="story-meta">
+            <h4 class="story-title">Story 02: Vídeo Screen Record (15s)</h4>
+            <div class="video-step-list">
+              <div class="video-step-item">
+                <span class="video-time">00s-03s</span>
+                <span>Abertura do site no mobile: carregamento instantâneo</span>
+              </div>
+              <div class="video-step-item">
+                <span class="video-time">03s-07s</span>
+                <span>Rolagem suave e busca rápida: "Jack", "Red Bull"</span>
+              </div>
+              <div class="video-step-item">
+                <span class="video-time">07s-11s</span>
+                <span>Dois toques para colocar no carrinho e ver o total</span>
+              </div>
+              <div class="video-step-item">
+                <span class="video-time">11s-15s</span>
+                <span>Clique em "Pedir no WhatsApp" abrindo a conversa</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Story 3: Consignação 20% Eventos -->
+        <div class="story-card">
+          <div class="story-preview" style="background-image: url('assets/divulgacao/carrossel-eventos-capa.jpg');">
+            <div class="story-overlay"></div>
+            <div class="story-content">
+              <span class="story-pill" style="background:rgba(16, 185, 129, 0.2); color:var(--accent); border-color:rgba(16, 185, 129, 0.4);">Exclusivo Eventos</span>
+              <div>
+                <h3 class="story-headline">VAI CASAR OU FAZER FESTA NA SERRA? 💍</h3>
+                <p class="story-subtext">Peça com até 20% em consignação: o que sobrar lacrado, nós devolvemos o valor na sua conta!</p>
+              </div>
+              <div class="story-sticker">
+                <i data-lucide="message-circle" style="width:16px; height:16px;"></i>
+                <span>SIMULAR NO SITE</span>
+              </div>
+            </div>
+          </div>
+          <div class="story-meta">
+            <h4 class="story-title">Story 03: Consignação de 20%</h4>
+            <p class="story-notes">Foco em noivos, formaturas e festas de empresas: fim do desperdício de bebidas.</p>
+          </div>
+        </div>
+
+        <!-- Story 4: Enquete Interativa -->
+        <div class="story-card">
+          <div class="story-preview" style="background: linear-gradient(160deg, #0B1E2B 0%, #17384E 100%);">
+            <div class="story-content">
+              <span class="story-pill">Enquete de Sexta</span>
+              <div>
+                <h3 class="story-headline">QUAL É O SEU COMBO OFICIAL DO FIM DE SEMANA? 🥃</h3>
+                <div style="margin-top:16px; display:flex; flex-direction:column; gap:8px;">
+                  <div style="background:rgba(255,255,255,0.15); padding:10px; border-radius:8px; font-weight:700; text-align:center;">
+                    🥃 Whisky + Energético
+                  </div>
+                  <div style="background:rgba(255,255,255,0.15); padding:10px; border-radius:8px; font-weight:700; text-align:center;">
+                    🍸 Gin Tônica + Xarope
+                  </div>
+                </div>
+              </div>
+              <div class="story-sticker" style="background:#FFF; color:#0E4663;">
+                <i data-lucide="shopping-bag" style="width:16px; height:16px;"></i>
+                <span>OS DOIS ESTÃO NO SITE!</span>
+              </div>
+            </div>
+          </div>
+          <div class="story-meta">
+            <h4 class="story-title">Story 04: Enquete Interativa</h4>
+            <p class="story-notes">Gera engajamento no algoritmo do Instagram e direciona para a categoria com maior voto.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 2: FEED -->
+    <div id="tab-feed" class="tab-pane">
+      <h2 class="section-title"><i data-lucide="grid" style="color:var(--accent);"></i> Publicações do Feed (Formato 4:5)</h2>
+      <p class="section-desc">Artes em alta resolução e textos de legenda prontos para postar no Instagram e Facebook.</p>
+
+      <div class="feed-grid">
+        <!-- Post 1: Lançamento Oficial -->
+        <div class="feed-card">
+          <div class="feed-media" style="background-image: url('assets/divulgacao/feed-lancamento.jpg');"></div>
+          <div class="feed-body">
+            <h3 style="font-family:'Outfit'; font-size:1.2rem; font-weight:800;">Post 01: Lançamento Oficial do Site</h3>
+            <p style="font-size:0.85rem; color:var(--text-muted);">Foco em inovação, conveniência e facilidade de compra.</p>
+
+            <div class="caption-box" id="caption-post1">Mais de 20 anos de tradição na Serra Gaúcha agora com uma experiência de compra ainda mais rápida e fluida. 🌐🍾
+
+O novo site oficial da Monte Cristo Bebidas já está no ar!
+
+Agora você navega por mais de 1.000 rótulos diretamente no seu celular, escolhe suas bebidas em segundos e envia o seu pedido direto para o nosso time de atendimento no WhatsApp em apenas 1 clique.
+
+O que você encontra no novo site:
+🥃 Whiskies, Vodkas, Gins, Licores e Espumantes 100% originais e lacrados;
+⚡ Cervejas e Energéticos com os melhores preços da região;
+🏢 Atendimento B2B especializado para Bares, Pubs e Restaurantes com nota fiscal;
+🎉 Condição exclusiva para Casamentos e Eventos com até 20% de consignação!
+
+Muito mais conveniência para você abastecer seu bar, seu evento ou seu estoque com a confiança de quem está há mais de duas décadas ao seu lado.
+
+👉 Toque no link da bio e faça seu pedido direto pelo novo site!
+
+#MonteCristoBebidas #CaxiasDoSul #SerraGaucha #DistribuidoraDeBebidas #WhiskiesCaxias #EventosSerraGaucha #BaresCaxiasDoSul</div>
+
+            <div class="action-row">
+              <button class="btn-copy" onclick="copyCaption('caption-post1', this)">
+                <i data-lucide="copy"></i> Copiar Legenda
+              </button>
+              <a href="assets/divulgacao/feed-lancamento.jpg" download="post-lancamento-monte-cristo.jpg" class="btn-outline">
+                <i data-lucide="download"></i> Baixar Imagem 4:5
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Post 2: Foco B2B / Bares e CNPJ -->
+        <div class="feed-card">
+          <div class="feed-media" style="background-image: url('assets/divulgacao/whatsapp-business-capa.jpg'); background-size: cover; background-position: center;"></div>
+          <div class="feed-body">
+            <h3 style="font-family:'Outfit'; font-size:1.2rem; font-weight:800;">Post 02: B2B Bares, Restaurantes & CNPJ</h3>
+            <p style="font-size:0.85rem; color:var(--text-muted);">Foco em segurança de fornecimento, conformidade tributária e rotina comercial.</p>
+
+            <div class="caption-box" id="caption-post2">Se você administra um bar, restaurante ou casa noturna em Caxias do Sul e região, sabe que ruptura de estoque no fim de semana custa muito caro. 🍸📉
+
+Na Monte Cristo Bebidas, aliamos mais de 20 anos de experiência comercial para garantir estabilidade no fornecimento do seu negócio, faturamento CNPJ, conformidade fiscal e mais de 1.000 itens a pronta-entrega.
+
+Nossos diferenciais para parceiros:
+✅ Preços direto de tabela de distribuição;
+✅ Rótulos 100% originais com procedência garantida;
+✅ Entregas programadas em até 6 dias úteis em toda a Serra Gaúcha;
+✅ Agora com nosso novo site oficial para você escolher e repor suas bebidas a qualquer hora do dia.
+
+Economize tempo e garanta as melhores marcas no seu cardápio com agilidade máxima.
+
+📲 Acesse nosso novo site pelo link da bio ou chame nosso atendimento comercial no WhatsApp: (54) 99969-2859.
+
+#BaresCaxiasDoSul #GastronomiaCaxias #B2BCaxias #DistribuidoraRS #MonteCristoBebidas</div>
+
+            <div class="action-row">
+              <button class="btn-copy" onclick="copyCaption('caption-post2', this)">
+                <i data-lucide="copy"></i> Copiar Legenda
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: CARROSSEL EVENTOS -->
+    <div id="tab-carrossel" class="tab-pane">
+      <h2 class="section-title"><i data-lucide="layers" style="color:var(--accent);"></i> Carrossel Educativo & Comercial (7 Slides)</h2>
+      <p class="section-desc">Tema: "O Guia Sem Erro para as Bebidas do Seu Casamento ou Festa na Serra Gaúcha".</p>
+
+      <div class="carousel-container">
+        <!-- Visualizador do Slide -->
+        <div>
+          <div class="carousel-viewport" id="carousel-viewport">
+            <!-- Slide 1 -->
+            <div class="carousel-slide active" style="background-image: url('assets/divulgacao/carrossel-eventos-capa.jpg');">
+              <div class="carousel-slide-overlay"></div>
+              <div class="carousel-slide-content">
+                <span class="slide-number">Slide 1 de 7 • Capa</span>
+                <div>
+                  <h3 class="slide-body-title">Calculou as bebidas da sua festa e bateu aquele medo de faltar ou sobrar demais?</h3>
+                  <p class="slide-body-text">Arraste para o lado e conheça a regra de ouro que salva o seu bolso na Serra Gaúcha 👉</p>
+                </div>
+                <div class="slide-footer-hint">
+                  <span>Deslize</span> <i data-lucide="chevron-right" style="width:16px;"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 2 -->
+            <div class="carousel-slide">
+              <div class="carousel-slide-content">
+                <span class="slide-number">Slide 2 de 7</span>
+                <div>
+                  <h3 class="slide-body-title">O grande dilema de qualquer anfitrião:</h3>
+                  <div class="slide-bullet-list">
+                    <div class="slide-bullet">
+                      <i data-lucide="alert-triangle" style="color:#EF4444; width:20px;"></i>
+                      <span>Se a bebida faltar na madrugada, a pista esfria e o evento perde o brilho.</span>
+                    </div>
+                    <div class="slide-bullet">
+                      <i data-lucide="dollar-sign" style="color:#F59E0B; width:20px;"></i>
+                      <span>Se comprar em excesso para garantir, fica com dinheiro preso em garrafas paradas.</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="slide-footer-hint"><span>Continua</span> <i data-lucide="chevron-right" style="width:16px;"></i></div>
+              </div>
+            </div>
+
+            <!-- Slide 3 -->
+            <div class="carousel-slide">
+              <div class="carousel-slide-content">
+                <span class="slide-number" style="background:rgba(245,158,11,0.2); color:#F59E0B; border-color:rgba(245,158,11,0.4);">Slide 3 de 7 • Solução</span>
+                <div>
+                  <h3 class="slide-body-title">Você não precisa passar por esse estresse.</h3>
+                  <p class="slide-body-text" style="font-size:1.1rem; line-height:1.6;">
+                    A Monte Cristo Bebidas criou uma modalidade exclusiva para casamentos, formaturas e eventos corporativos na Serra Gaúcha:
+                  </p>
+                  <div style="background:rgba(16,185,129,0.2); border:1px solid #10B981; padding:16px; border-radius:12px; margin-top:16px; text-align:center;">
+                    <strong style="color:#34D399; font-size:1.2rem; font-family:'Outfit';">CONSIGNAÇÃO DE ATÉ 20% DO PEDIDO</strong>
+                  </div>
+                </div>
+                <div class="slide-footer-hint"><span>Veja como funciona</span> <i data-lucide="chevron-right" style="width:16px;"></i></div>
+              </div>
+            </div>
+
+            <!-- Slide 4 -->
+            <div class="carousel-slide">
+              <div class="carousel-slide-content">
+                <span class="slide-number">Slide 4 de 7</span>
+                <div>
+                  <h3 class="slide-body-title">Como funciona na prática?</h3>
+                  <div class="slide-bullet-list">
+                    <div class="slide-bullet">
+                      <strong style="color:var(--accent);">1.</strong>
+                      <span>Montamos o lote ideal de acordo com seus convidados.</span>
+                    </div>
+                    <div class="slide-bullet">
+                      <strong style="color:var(--accent);">2.</strong>
+                      <span>Enviamos até 20% do pedido em consignação de segurança.</span>
+                    </div>
+                    <div class="slide-bullet">
+                      <strong style="color:var(--accent);">3.</strong>
+                      <span>O que voltar lacrado, o valor é 100% devolvido na sua conta bancária!</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="slide-footer-hint"><span>Próximo</span> <i data-lucide="chevron-right" style="width:16px;"></i></div>
+              </div>
+            </div>
+
+            <!-- Slide 5 -->
+            <div class="carousel-slide">
+              <div class="carousel-slide-content">
+                <span class="slide-number">Slide 5 de 7</span>
+                <div>
+                  <h3 class="slide-body-title">Variedade com garantia de procedência oficial</h3>
+                  <p class="slide-body-text">Mais de 1.000 rótulos com selo e lacre de importação:</p>
+                  <div class="slide-bullet-list">
+                    <div class="slide-bullet">🍾 Espumantes nobres da Serra Gaúcha</div>
+                    <div class="slide-bullet">🥃 Whiskies 12 anos e Single Malts</div>
+                    <div class="slide-bullet">🍸 Gins artesanais e Vodkas premium</div>
+                    <div class="slide-bullet">⚡ Energéticos Red Bull, Baly e licores</div>
+                  </div>
+                </div>
+                <div class="slide-footer-hint"><span>Próximo</span> <i data-lucide="chevron-right" style="width:16px;"></i></div>
+              </div>
+            </div>
+
+            <!-- Slide 6 -->
+            <div class="carousel-slide">
+              <div class="carousel-slide-content">
+                <span class="slide-number">Slide 6 de 7</span>
+                <div>
+                  <h3 class="slide-body-title">Agora muito mais fácil com nosso novo site!</h3>
+                  <p class="slide-body-text">
+                    Você entra no site, seleciona os tipos e volumes de bebidas que deseja e envia a lista pronta para o nosso especialista de eventos no WhatsApp em 1 clique.
+                  </p>
+                  <div style="margin-top:20px; text-align:center;">
+                    <span style="font-family:'Outfit'; font-size:1.1rem; color:#38BDF8;">montecristobebidas.com.br</span>
+                  </div>
+                </div>
+                <div class="slide-footer-hint"><span>Final</span> <i data-lucide="chevron-right" style="width:16px;"></i></div>
+              </div>
+            </div>
+
+            <!-- Slide 7 -->
+            <div class="carousel-slide">
+              <div class="carousel-slide-content">
+                <span class="slide-number" style="background:#10B981; color:#000;">Slide 7 de 7 • CTA</span>
+                <div style="text-align:center;">
+                  <h3 class="slide-body-title" style="font-size:1.8rem;">Planeje a festa perfeita sem surpresas no bolso.</h3>
+                  <p class="slide-body-text" style="margin-top:12px;">
+                    Toque no link da nossa bio, explore o novo site e fale com nosso time especializado em eventos!
+                  </p>
+                </div>
+                <div style="background:#FFF; color:#0E4663; padding:12px; border-radius:12px; text-align:center; font-family:'Outfit'; font-weight:800;">
+                  💍 FAÇA SUA COTAÇÃO DE EVENTO
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Controles do Carrossel -->
+          <div class="carousel-controls">
+            <button class="carousel-btn" onclick="prevSlide()"><i data-lucide="arrow-left"></i></button>
+            <div class="carousel-dots" id="carousel-dots">
+              <div class="carousel-dot active" onclick="goSlide(0)"></div>
+              <div class="carousel-dot" onclick="goSlide(1)"></div>
+              <div class="carousel-dot" onclick="goSlide(2)"></div>
+              <div class="carousel-dot" onclick="goSlide(3)"></div>
+              <div class="carousel-dot" onclick="goSlide(4)"></div>
+              <div class="carousel-dot" onclick="goSlide(5)"></div>
+              <div class="carousel-dot" onclick="goSlide(6)"></div>
+            </div>
+            <button class="carousel-btn" onclick="nextSlide()"><i data-lucide="arrow-right"></i></button>
+          </div>
+        </div>
+
+        <!-- Legenda e Instruções -->
+        <div style="display:flex; flex-direction:column; gap:16px;">
+          <h3 style="font-family:'Outfit'; font-size:1.3rem; font-weight:800;">Legenda para o Carrossel</h3>
+          <div class="caption-box" id="caption-carrossel">Planejar um casamento, formatura ou festa empresarial já exige atenção a centenas de detalhes. O cálculo das bebidas não precisa ser uma dor de cabeça! 🥂✨
+
+Com a modalidade de CONSIGNAÇÃO DE 20% da Monte Cristo Bebidas, você garante que nenhum convidado fique de copo vazio e ainda tem a segurança de receber de volta o valor de tudo o que sobrar lacrado.
+
+No nosso novo site, você explora todos os rótulos, simula quantidades com total praticidade e envia seu pedido de orçamento em menos de 2 minutos.
+
+Salva esse post para consultar no planejamento do seu evento e marque quem vai casar ou se formar em 2026/2027! 💍🎓
+
+#CasamentosCaxias #FormaturasSerraGaucha #EventosCaxiasDoSul #NoivasCaxias #MonteCristoBebidas</div>
+
+          <div class="action-row">
+            <button class="btn-copy" onclick="copyCaption('caption-carrossel', this)">
+              <i data-lucide="copy"></i> Copiar Legenda do Carrossel
+            </button>
+            <a href="assets/divulgacao/carrossel-eventos-capa.jpg" download="carrossel-capa.jpg" class="btn-outline">
+              <i data-lucide="download"></i> Baixar Capa 4:5
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: WHATSAPP -->
+    <div id="tab-whatsapp" class="tab-pane">
+      <h2 class="section-title"><i data-lucide="message-circle" style="color:var(--accent);"></i> Transmissão & WhatsApp Comercial</h2>
+      <p class="section-desc">Textos otimizados com link direto para envio via Lista de Transmissão ou abordagem direta para clientes.</p>
+
+      <div class="wa-grid">
+        <!-- Disparo A: Clientes Atuais / Base -->
+        <div class="wa-card">
+          <div class="wa-header">
+            <div class="wa-avatar"><i data-lucide="send"></i></div>
+            <div>
+              <div class="wa-title">Disparo: Base de Clientes Ativos</div>
+              <div class="wa-subtitle">Para restaurantes, bares e clientes frequentes</div>
+            </div>
+          </div>
+
+          <div class="wa-bubble" id="wa-text-base">Olá, tudo bem? Aqui é da equipe Monte Cristo Bebidas! 🍷✨
+
+Passando para compartilhar uma grande novidade: nosso NOVO SITE oficial já está no ar! 🚀
+
+A partir de agora, comprar suas bebidas com a Monte Cristo ficou muito mais prático e fluido:
+
+👉 Acesse agora: https://montecristo-bebidas.pages.dev/
+
+Veja como ficou fácil:
+✅ Mais de 1.000 rótulos atualizados na tela do seu celular;
+✅ Busca instantânea por marca ou tipo de bebida;
+✅ Monte seu carrinho em poucos toques e envie o pedido pronto direto aqui pro nosso WhatsApp!
+
+Dê uma olhada no novo site e nos diga o que achou. Estamos prontos para atender seu próximo pedido! 📦🥂</div>
+
+          <div class="action-row">
+            <button class="btn-copy" onclick="copyCaption('wa-text-base', this)">
+              <i data-lucide="copy"></i> Copiar Mensagem
+            </button>
+            <a href="https://wa.me/?text=Ol%C3%A1%2C%20tudo%20bem%3F%20Aqui%20%C3%A9%20da%20equipe%20Monte%20Cristo%20Bebidas!%20O%20nosso%20NOVO%20SITE%20est%C3%A1%20no%20ar%3A%20https%3A%2F%2Fmontecristo-bebidas.pages.dev%2F" target="_blank" class="btn-outline">
+              <i data-lucide="share-2"></i> Testar no WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <!-- Disparo B: Cerimonialistas e Noivos -->
+        <div class="wa-card">
+          <div class="wa-header">
+            <div class="wa-avatar" style="background:#0284C7;"><i data-lucide="award"></i></div>
+            <div>
+              <div class="wa-title">Mensagem: Cerimonialistas & Noivos</div>
+              <div class="wa-subtitle">Foco em consignação de 20% e orçamento ágil</div>
+            </div>
+          </div>
+
+          <div class="wa-bubble" id="wa-text-eventos">Olá! Tudo bem? Esperamos que sim! ✨
+
+Aqui é da Monte Cristo Bebidas, distribuidora com mais de 20 anos de tradição em Caxias do Sul e Serra Gaúcha.
+
+Estamos entrando em contato para apresentar nosso NOVO SITE oficial e reforçar uma condição exclusiva que os organizadores e noivos mais aproveitam na região:
+
+🌐 Site oficial: https://montecristo-bebidas.pages.dev/
+
+🎉 NOSSO DIFERENCIAL PARA EVENTOS & CASAMENTOS:
+Oferecemos modalidade de CONSIGNAÇÃO DE ATÉ 20% no lote de bebidas da sua festa. O que sobrar lacrado após o evento, nós recolhemos e estornamos o valor integral direto na sua conta bancária!
+
+Assim, o anfitrião tem a tranquilidade de nunca faltar bebida na pista, com risco financeiro ZERO de sobras indesejadas.
+
+Você pode conferir todos os rótulos no nosso novo site e montar uma cotação sem compromisso. Se preferir, nos envie as características do seu evento que montamos uma proposta sob medida!</div>
+
+          <div class="action-row">
+            <button class="btn-copy" onclick="copyCaption('wa-text-eventos', this)">
+              <i data-lucide="copy"></i> Copiar Mensagem
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 5: CAPAS DE PERFIL -->
+    <div id="tab-capas" class="tab-pane">
+      <h2 class="section-title"><i data-lucide="image" style="color:var(--accent);"></i> Capas de Perfil & Destaques Oficiais</h2>
+      <p class="section-desc">Identidade visual oficial para atualizar o WhatsApp Business e os destaques fixos do Instagram.</p>
+
+      <div class="covers-grid">
+        <!-- Capa WhatsApp Business -->
+        <div class="cover-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+            <div>
+              <h3 style="font-family:'Outfit'; font-size:1.2rem; font-weight:800;">Capa para WhatsApp Business (Formato 16:9 — 1920 x 1080 px)</h3>
+              <p style="font-size:0.85rem; color:var(--text-muted);">Ideal para o cabeçalho comercial do perfil verificado da Monte Cristo Bebidas.</p>
+            </div>
+            <a href="assets/divulgacao/whatsapp-business-capa.jpg" download="whatsapp-business-capa.jpg" class="btn-copy">
+              <i data-lucide="download"></i> Baixar Capa 16:9
+            </a>
+          </div>
+          <div class="cover-img-wrap">
+            <img src="assets/divulgacao/whatsapp-business-capa.jpg" alt="Capa WhatsApp Business Monte Cristo">
+          </div>
+        </div>
+
+        <!-- Capa de Destaque Instagram -->
+        <div class="cover-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+            <div>
+              <h3 style="font-family:'Outfit'; font-size:1.2rem; font-weight:800;">Capa para Destaque do Instagram: "Novo Site 🌐"</h3>
+              <p style="font-size:0.85rem; color:var(--text-muted);">Ícone vetorial em alta resolução pronto para definir como capa de destaque.</p>
+            </div>
+            <a href="assets/divulgacao/instagram-destaque-novosite.svg" download="destaque-novosite.svg" class="btn-copy">
+              <i data-lucide="download"></i> Baixar SVG
+            </a>
+          </div>
+          <div style="display:flex; justify-content:center; padding:32px 0;">
+            <img src="assets/divulgacao/instagram-destaque-novosite.svg" alt="Destaque Novo Site" style="width:180px; height:180px; border-radius:50%; box-shadow:0 8px 30px rgba(0,0,0,0.6);">
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    lucide.createIcons();
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-pane').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.nav-btn').forEach(el => el.classList.remove('active'));
+
+      const target = document.getElementById('tab-' + tabId);
+      if (target) {
+        target.classList.add('active');
+      }
+
+      event.currentTarget.classList.add('active');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function copyCaption(elementId, btn) {
+      const text = document.getElementById(elementId).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const originalHtml = btn.innerHTML;
+        btn.innerHTML = '<i data-lucide="check"></i> Copiado!';
+        btn.classList.add('copied');
+        lucide.createIcons();
+        setTimeout(() => {
+          btn.innerHTML = originalHtml;
+          btn.classList.remove('copied');
+          lucide.createIcons();
+        }, 2200);
+      });
+    }
+
+    /* Carousel Logic */
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.carousel-slide');
+    const dots = document.querySelectorAll('.carousel-dot');
+
+    function updateCarousel() {
+      slides.forEach((s, idx) => {
+        s.classList.toggle('active', idx === currentSlide);
+      });
+      dots.forEach((d, idx) => {
+        d.classList.toggle('active', idx === currentSlide);
+      });
+      lucide.createIcons();
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      updateCarousel();
+    }
+
+    function prevSlide() {
+      currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+      updateCarousel();
+    }
+
+    function goSlide(index) {
+      currentSlide = index;
+      updateCarousel();
+    }
+  </script>
+</body>
+</html>
