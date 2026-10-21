@@ -3,15 +3,42 @@
 
 ---
 
+### 📦 Inventário das Peças Criadas com Logos Oficiais (`assets/divulgacao/`)
+
+Todas as peças foram renderizadas em alta definição a partir dos **logos originais vetorizados da Monte Cristo** (`logo_branco_footer_montecristo.svg`, `simbolo-monte.svg`), fotos reais de produtos recortados (Jack Daniel's, Red Bull, Tanqueray, Licor 43, Chivas Regal, Aperol, Absolut) e paleta cromática oficial da distribuidora.
+
+| Peça | Arquivo | Resolução / Formato | Aplicação |
+| :--- | :--- | :--- | :--- |
+| **Story Lançamento** | [`story-lancamento.jpg`](file:///c:/Users/ADM/onira-labs/clientes/monte-cristo/assets/divulgacao/story-lancamento.jpg) | 1080 x 1920 (9:16) | Stories do Instagram, Facebook e Status WhatsApp |
+| **Feed Lançamento** | [`feed-lancamento.jpg`](file:///c:/Users/ADM/onira-labs/clientes/monte-cristo/assets/divulgacao/feed-lancamento.jpg) | 1080 x 1350 (4:5) | Post âncora de lançamento no Feed do Instagram |
+| **Feed B2B / Bares** | [`feed-b2b-bares.jpg`](file:///c:/Users/ADM/onira-labs/clientes/monte-cristo/assets/divulgacao/feed-b2b-bares.jpg) | 1080 x 1350 (4:5) | Post comercial voltado a bares, restaurantes e CNPJ |
+| **Carrossel Capa** | [`carrossel-eventos-capa.jpg`](file:///c:/Users/ADM/onira-labs/clientes/monte-cristo/assets/divulgacao/carrossel-eventos-capa.jpg) | 1080 x 1350 (4:5) | Capa do carrossel de casamentos e formaturas |
+| **Carrossel Slide 2** | [`carrossel-slide-2.jpg`](file:///c:/Users/ADM/onira-labs/clientes/monte-cristo/assets/divulgacao/carrossel-slide-2.jpg) | 1080 x 1350 (4:5) | Slide 2: O dilema de faltar vs sobrar bebida |
+| **Carrossel Slide 3** | [`carrossel-slide-3.jpg`](file:///c:/Users/ADM/onira-labs/clientes/monte-cristo/assets/divulgacao/carrossel-slide-3.jpg) | 1080 x 1350 (4:5) | Slide 3: A solução da consignação de até 20% |
+| **Carrossel Slide 4** | [`carrossel-slide-4.jpg`](file:///c:/Users/ADM/onira-labs/clientes/monte-cristo/assets/divulgacao/carrossel-slide-4.jpg) | 1080 x 1350 (4:5) | Slide 4: Passo a passo de funcionamento |
+| **Carrossel Slide 5** | [`carrossel-slide-5.jpg`](file:///c:/Users/ADM/onira-labs/clientes/monte-cristo/assets/divulgacao/carrossel-slide-5.jpg) | 1080 x 1350 (4:5) | Slide 5: Mais de 1.000 rótulos nobres com NF |
+| **Carrossel Slide 6** | [`carrossel-slide-6.jpg`](file:///c:/Users/ADM/onira-labs/clientes/monte-cristo/assets/divulgacao/carrossel-slide-6.jpg) | 1080 x 1350 (4:5) | Slide 6: Monte sua lista no site em 2 minutos |
+| **Carrossel Slide 7** | [`carrossel-slide-7.jpg`](file:///c:/Users/ADM/onira-labs/clientes/monte-cristo/assets/divulgacao/carrossel-slide-7.jpg) | 1080 x 1350 (4:5) | Slide 7: Chamada de ação para o WhatsApp |
+| **WhatsApp Business** | [`whatsapp-business-capa.jpg`](file:///c:/Users/ADM/onira-labs/clientes/monte-cristo/assets/divulgacao/whatsapp-business-capa.jpg) | 1920 x 1080 (16:9) | Banner de cabeçalho do WhatsApp Business |
+| **Destaque Instagram (PNG)** | [`instagram-destaque-novosite.png`](file:///c:/Users/ADM/onira-labs/clientes/monte-cristo/assets/divulgacao/instagram-destaque-novosite.png) | 1080 x 1080 (1:1) | Capa do Story Fixado "Novo Site 🌐" |
+| **Destaque Instagram (SVG)** | [`instagram-destaque-novosite.svg`](file:///c:/Users/ADM/onira-labs/clientes/monte-cristo/assets/divulgacao/instagram-destaque-novosite.svg) | Vetorial Puro | Versão vetorial escalável para designers |
+
+> 💡 **Visualização Interativa:** Abra [`studio-divulgacao.html`](file:///c:/Users/ADM/onira-labs/clientes/monte-cristo/studio-divulgacao.html) para navegar pelos slides, copiar todas as legendas em 1 clique e baixar os arquivos individualmente.
+
+---
+
 ### 🎨 Guia Rápido de Direção Visual da Marca
 - **Cores Principais:** 
   - Azul Petróleo: `#0E4663` (Autoridade, solidez e elegância)
   - Turquesa Intenso: `#1B7588` (Modernidade e tecnologia do novo site)
   - Verde Esmeralda: `#10B981` (Destaque comercial, preços e aprovação)
   - Dourado / Âmbar Sutil: `#F59E0B` (Refinamento de destilados e licores)
-  - Fundo / Base: Branco `#FFFFFF` ou Dark Blue `#0B131E` para peças de alto contraste.
+  - Fundo / Base: Branco `#FFFFFF` ou Dark Blue `#07131B` para peças de alto contraste.
 - **Tipografia:** `Outfit` (Títulos fortes e numerais) e `Plus Jakarta Sans` (Textos de leitura rápida).
-- **Logotipo:** Usar `assets/logo_horizontal_montecristo_gradient.svg` para fundos claros ou `assets/logo_branco_montecristo.svg` para fundos escuros.
+- **Logotipos Originais Utilizados:**
+  - `assets/logo_branco_footer_montecristo.svg` (Logotipo completo em vetor branco com monograma e subtítulo distribuidora)
+  - `assets/logo.png` (PNG de alta resolução 2452x984px com transparência)
+  - `assets/simbolo-monte.svg` (Monograma da marca vetorizado)
 - **Link Oficial:** `https://montecristo-bebidas.pages.dev/` (ou `https://www.montecristobebidas.com.br/`)
 
 ---
