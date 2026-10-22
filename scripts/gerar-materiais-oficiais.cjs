@@ -19,16 +19,17 @@ const LOGO_PNG = toBase64Uri('assets/logo.png', 'image/png');
 const SIMBOLO_SVG = toBase64Uri('assets/simbolo-monte.svg', 'image/svg+xml');
 const LOGO_GRADIENT_SVG = toBase64Uri('assets/logo_horizontal_montecristo_gradient.svg', 'image/svg+xml');
 
-// Produtos reais oficiais
-const JACK_DANIELS = toBase64Uri('assets/produtos/whisky-jack-daniels-old-no-7-1l.webp', 'image/webp');
-const RED_BULL = toBase64Uri('assets/produtos/energetico-red-bull-tradicional-250ml.webp', 'image/webp');
-const TANQUERAY = toBase64Uri('assets/produtos/gin-tanqueray-london-dry-750ml.webp', 'image/webp');
-const LICOR_43 = toBase64Uri('assets/produtos/licor-43-original-700ml.webp', 'image/webp');
-const CHIVAS_12 = toBase64Uri('assets/produtos/whisky-chivas-regal-12-anos-1l.webp', 'image/webp');
-const ABSOLUT = toBase64Uri('assets/produtos/vodka-absolut-1l.webp', 'image/webp');
-const APEROL = toBase64Uri('assets/produtos/aperitivo-aperol-spritz-750ml.webp', 'image/webp');
+// Produtos reais oficiais RECORTADOS & AUTOTRIMMED (com canal alfa e limites exatos)
+const JACK_DANIELS = toBase64Uri('assets/produtos/recortados/whisky-jack-daniels-old-no-7-1l.png', 'image/png');
+const RED_BULL = toBase64Uri('assets/produtos/recortados/energetico-red-bull-tradicional-250ml.png', 'image/png');
+const TANQUERAY = toBase64Uri('assets/produtos/recortados/gin-tanqueray-london-dry-750ml.png', 'image/png');
+const CHIVAS_12 = toBase64Uri('assets/produtos/recortados/whisky-chivas-regal-12-anos-1l.png', 'image/png');
+const ABSOLUT = toBase64Uri('assets/produtos/recortados/vodka-absolut-1l.png', 'image/png');
+const APEROL = toBase64Uri('assets/produtos/recortados/aperitivo-aperol-spritz-750ml.png', 'image/png');
+const JOHNNIE_WALKER = toBase64Uri('assets/produtos/recortados/whisky-johnnie-walker-black-label-1l.png', 'image/png');
+const JACK_HONEY = toBase64Uri('assets/produtos/recortados/whisky-jack-daniels-honey-nexxt-1l.png', 'image/png');
 
-// CSS Comum de luxo e tipografia oficial
+// CSS Comum de luxo sóbrio (Linha Híbrida: Azul Petróleo Oficial + Toque Champanhe/Dourado Sutil)
 const COMMON_CSS = `
   @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
@@ -40,8 +41,8 @@ const COMMON_CSS = `
 
   body {
     font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
-    color: #FFFFFF;
-    background: #07131B;
+    color: #F8FAFC;
+    background: #06131D;
     overflow: hidden;
     -webkit-font-smoothing: antialiased;
   }
@@ -50,33 +51,37 @@ const COMMON_CSS = `
     font-family: 'Outfit', sans-serif;
   }
 
-  /* Shimmer e Reflexos */
-  .bottle-wrapper {
-    position: relative;
-    display: inline-block;
-    filter: drop-shadow(0 25px 35px rgba(0, 0, 0, 0.75));
-  }
-
-  .bottle-reflection {
+  /* Piso de estúdio com sombra e iluminação direcional */
+  .studio-floor-shadow {
     position: absolute;
-    bottom: -60px;
-    left: 0;
-    width: 100%;
-    height: 70px;
-    transform: scaleY(-1);
-    opacity: 0.18;
-    filter: blur(2px);
-    mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 80%);
-    -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 80%);
+    bottom: 25px;
+    width: 860px;
+    height: 45px;
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.9) 0%, rgba(2, 8, 12, 0.5) 45%, transparent 75%);
+    border-radius: 50%;
+    filter: blur(8px);
     pointer-events: none;
   }
+
+  /* Posicionamento equilibrado em 5 colunas com âncora central */
+  .stage-bottle {
+    position: absolute;
+    bottom: 30px;
+    transform: translateX(-50%);
+    filter: drop-shadow(0 22px 28px rgba(0, 0, 0, 0.88));
+  }
+
+  .pos-1 { left: 155px; z-index: 5; }
+  .pos-2 { left: 335px; z-index: 7; }
+  .pos-3 { left: 540px; z-index: 9; }
+  .pos-4 { left: 745px; z-index: 7; }
+  .pos-5 { left: 925px; z-index: 5; }
 `;
 
 // =============================================================================
-// TEMPLATES HTML DAS PEÇAS
-// =============================================================================
-
 // 1. STORY DE LANÇAMENTO (1080 x 1920)
+// Safe Zone: Topo 280px / Base 280px
+// =============================================================================
 function getStoryHtml() {
   return `<!DOCTYPE html>
   <html>
@@ -88,39 +93,25 @@ function getStoryHtml() {
         width: 1080px;
         height: 1920px;
         position: relative;
-        background: radial-gradient(circle at 50% 25%, #1B5E76 0%, #0D354A 35%, #071520 70%, #040C12 100%);
-        padding: 90px 70px;
+        background: radial-gradient(circle at 50% 32%, #0F2D3D 0%, #0A1E2B 45%, #06131D 80%, #03080E 100%);
+        padding: 290px 75px 280px 75px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
       }
 
-      /* Glows de ambientação */
-      .glow-top {
+      .ambient-glow {
         position: absolute;
-        top: -150px;
+        top: 25%;
         left: 50%;
-        transform: translateX(-50%);
-        width: 800px;
-        height: 600px;
-        background: radial-gradient(circle, rgba(16, 185, 129, 0.22) 0%, rgba(27, 117, 136, 0.15) 50%, transparent 75%);
-        filter: blur(60px);
-        pointer-events: none;
-      }
-
-      .glow-center {
-        position: absolute;
-        top: 48%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, -25%);
         width: 900px;
         height: 700px;
-        background: radial-gradient(circle, rgba(245, 158, 11, 0.12) 0%, rgba(14, 70, 99, 0.3) 50%, transparent 80%);
-        filter: blur(80px);
+        background: radial-gradient(circle, rgba(200, 168, 107, 0.12) 0%, rgba(14, 70, 99, 0.25) 50%, transparent 75%);
+        filter: blur(90px);
         pointer-events: none;
       }
 
-      /* Topo */
       .header-area {
         position: relative;
         z-index: 10;
@@ -130,267 +121,227 @@ function getStoryHtml() {
         text-align: center;
       }
 
-      .badge-tag {
+      .badge-tradicao {
         display: inline-flex;
         align-items: center;
         gap: 10px;
-        background: rgba(16, 185, 129, 0.16);
-        border: 1px solid rgba(16, 185, 129, 0.5);
-        color: #34D399;
+        border: 1px solid rgba(200, 168, 107, 0.4);
+        background: rgba(10, 30, 43, 0.6);
+        backdrop-filter: blur(10px);
+        color: #E8D5B5;
         padding: 10px 24px;
         border-radius: 999px;
-        font-family: 'Outfit', sans-serif;
-        font-size: 20px;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 15px;
         font-weight: 700;
-        letter-spacing: 2px;
+        letter-spacing: 3px;
         text-transform: uppercase;
-        margin-bottom: 28px;
-        box-shadow: 0 0 25px rgba(16, 185, 129, 0.25);
+        margin-bottom: 24px;
       }
 
       .badge-dot {
-        width: 10px;
-        height: 10px;
-        background: #10B981;
+        width: 7px;
+        height: 7px;
+        background: #C8A86B;
         border-radius: 50%;
-        box-shadow: 0 0 10px #10B981;
       }
 
       .brand-logo-main {
-        width: 580px;
+        width: 520px;
         height: auto;
-        filter: drop-shadow(0 10px 25px rgba(0, 0, 0, 0.6));
+        filter: drop-shadow(0 8px 20px rgba(0, 0, 0, 0.6));
       }
 
-      /* Título e Subtítulo */
       .hero-copy {
-        margin-top: 45px;
+        margin-top: 36px;
         text-align: center;
       }
 
       .hero-title {
         font-family: 'Outfit', sans-serif;
-        font-size: 68px;
+        font-size: 62px;
         font-weight: 900;
-        line-height: 1.08;
+        line-height: 1.1;
         letter-spacing: -1.5px;
         color: #FFFFFF;
-        text-shadow: 0 4px 20px rgba(0,0,0,0.8);
       }
 
-      .hero-title span.highlight {
-        background: linear-gradient(135deg, #34D399 0%, #10B981 50%, #38BDF8 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+      .hero-title span.champagne {
+        color: #E8D5B5;
       }
 
       .hero-subtitle {
         margin-top: 18px;
-        font-size: 27px;
-        font-weight: 500;
+        font-size: 24px;
+        font-weight: 400;
         color: #CBD5E1;
-        line-height: 1.4;
+        line-height: 1.45;
+        max-width: 820px;
       }
 
-      /* Vitrine de Garrafas */
+      /* Vitrine Central de Garrafas Transparentes */
       .bottles-stage {
         position: relative;
         z-index: 5;
-        height: 680px;
+        height: 560px;
         display: flex;
         align-items: flex-end;
         justify-content: center;
-        margin: 20px 0;
+        margin: 10px 0;
       }
 
-      .stage-platform {
-        position: absolute;
-        bottom: 40px;
-        width: 900px;
-        height: 60px;
-        background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.25) 0%, rgba(14, 70, 99, 0.4) 45%, transparent 75%);
-        border-radius: 50%;
-        filter: blur(8px);
-      }
-
-      .bottle-item {
-        position: absolute;
-        bottom: 60px;
-        filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.85));
-      }
-
-      .bottle-jack {
-        height: 540px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 8;
-      }
-
-      .bottle-tanqueray {
-        height: 480px;
-        left: 200px;
-        z-index: 7;
-      }
-
-      .bottle-redbull {
-        height: 380px;
-        left: 60px;
-        z-index: 6;
-      }
-
-      .bottle-licor43 {
-        height: 470px;
-        right: 210px;
-        z-index: 7;
-      }
-
-      .bottle-chivas {
-        height: 490px;
-        right: 70px;
-        z-index: 6;
-      }
-
-      /* Card de Benefícios e CTA */
       .bottom-area {
         position: relative;
         z-index: 10;
         display: flex;
         flex-direction: column;
-        gap: 22px;
+        gap: 20px;
       }
 
-      .pills-row {
-        display: flex;
-        justify-content: center;
-        gap: 14px;
+      .features-row {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
       }
 
-      .pill-feature {
-        background: rgba(13, 30, 42, 0.7);
-        backdrop-filter: blur(16px);
-        border: 1px solid rgba(255, 255, 255, 0.15);
-        padding: 12px 22px;
-        border-radius: 14px;
-        font-size: 20px;
-        font-weight: 600;
-        color: #F1F5F9;
-        display: flex;
-        align-items: center;
-        gap: 10px;
+      .feature-box {
+        background: rgba(14, 70, 99, 0.22);
+        border: 1px solid rgba(200, 168, 107, 0.25);
+        border-radius: 12px;
+        padding: 14px 12px;
+        text-align: center;
+        backdrop-filter: blur(12px);
       }
 
-      .sticker-cta {
-        background: #FFFFFF;
-        color: #0E4663;
-        padding: 24px 32px;
-        border-radius: 24px;
+      .feature-box-title {
+        font-family: 'Outfit', sans-serif;
+        font-size: 19px;
+        font-weight: 800;
+        color: #F8FAFC;
+      }
+
+      .feature-box-desc {
+        font-size: 13px;
+        color: #94A3B8;
+        margin-top: 3px;
+      }
+
+      .cta-card {
+        background: #0E4663;
+        border: 1px solid rgba(200, 168, 107, 0.45);
+        border-radius: 16px;
+        padding: 22px 32px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55), 0 0 35px rgba(52, 211, 153, 0.3);
+        box-shadow: 0 16px 35px rgba(0, 0, 0, 0.6);
       }
 
-      .sticker-left {
+      .cta-left {
         display: flex;
         flex-direction: column;
         gap: 4px;
       }
 
-      .sticker-sub {
-        font-size: 19px;
+      .cta-label {
+        font-size: 14px;
         font-weight: 700;
         text-transform: uppercase;
-        letter-spacing: 1.5px;
-        color: #10B981;
+        letter-spacing: 2px;
+        color: #E8D5B5;
       }
 
-      .sticker-main {
+      .cta-domain {
         font-family: 'Outfit', sans-serif;
-        font-size: 34px;
+        font-size: 32px;
         font-weight: 900;
-        color: #071520;
-      }
-
-      .sticker-btn {
-        background: linear-gradient(135deg, #10B981 0%, #059669 100%);
         color: #FFFFFF;
-        font-family: 'Outfit', sans-serif;
-        font-size: 24px;
-        font-weight: 800;
-        padding: 16px 32px;
-        border-radius: 16px;
-        letter-spacing: 0.5px;
       }
 
-      .footer-sub {
-        text-align: center;
-        font-size: 19px;
-        color: #94A3B8;
-        font-weight: 500;
-        letter-spacing: 1px;
+      .cta-action {
+        background: #FFFFFF;
+        color: #0E4663;
+        font-family: 'Outfit', sans-serif;
+        font-size: 18px;
+        font-weight: 800;
+        padding: 14px 26px;
+        border-radius: 10px;
+        letter-spacing: 0.5px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
       }
     </style>
   </head>
   <body>
     <div class="story-canvas">
-      <div class="glow-top"></div>
-      <div class="glow-center"></div>
+      <div class="ambient-glow"></div>
 
-      <!-- Header -->
+      <!-- Topo -->
       <div class="header-area">
-        <div class="badge-tag">
+        <div class="badge-tradicao">
           <span class="badge-dot"></span>
-          NOVO SITE NO AR
+          20 Anos de Tradição na Serra Gaúcha
         </div>
-        <img src="${LOGO_BRANCO_FOOTER_SVG}" class="brand-logo-main" alt="Monte Cristo Distribuidora de Bebidas">
+        <img src="${LOGO_BRANCO_FOOTER_SVG}" class="brand-logo-main" alt="Monte Cristo Distribuidora">
         
         <div class="hero-copy">
           <h1 class="hero-title">
-            COMPRAR SUAS BEBIDAS<br>
-            AGORA É <span class="highlight">MUITO MAIS ÁGIL.</span>
+            O NOVO CANAL DIGITAL<br>
+            <span class="champagne">AGORA ESTÁ NO AR.</span>
           </h1>
           <p class="hero-subtitle">
-            Mais de 1.000 rótulos originais com preço de distribuidora e pedido direto no WhatsApp em 1 clique.
+            Mais de 1.000 rótulos nobres com preço de distribuidora e atendimento ágil para o seu evento ou bar.
           </p>
         </div>
       </div>
 
-      <!-- Vitrine de Produtos Reais -->
+      <!-- Vitrine Central de Garrafas Transparentes com 5 posições perfeitas -->
       <div class="bottles-stage">
-        <div class="stage-platform"></div>
-        <img src="${RED_BULL}" class="bottle-item bottle-redbull" alt="Red Bull">
-        <img src="${TANQUERAY}" class="bottle-item bottle-tanqueray" alt="Tanqueray Gin">
-        <img src="${JACK_DANIELS}" class="bottle-item bottle-jack" alt="Jack Daniels">
-        <img src="${LICOR_43}" class="bottle-item bottle-licor43" alt="Licor 43">
-        <img src="${CHIVAS_12}" class="bottle-item bottle-chivas" alt="Chivas Regal">
+        <div class="studio-floor-shadow"></div>
+        <img src="${RED_BULL}" class="stage-bottle pos-1" style="height:320px;" alt="Red Bull">
+        <img src="${TANQUERAY}" class="stage-bottle pos-2" style="height:440px;" alt="Tanqueray">
+        <img src="${JACK_DANIELS}" class="stage-bottle pos-3" style="height:510px;" alt="Jack Daniels">
+        <img src="${JACK_HONEY}" class="stage-bottle pos-4" style="height:440px;" alt="Jack Honey">
+        <img src="${CHIVAS_12}" class="stage-bottle pos-5" style="height:450px;" alt="Chivas Regal">
       </div>
 
-      <!-- Rodapé / Interatividade -->
+      <!-- Rodapé Seguro -->
       <div class="bottom-area">
-        <div class="pills-row">
-          <div class="pill-feature">🥃 +1.000 Rótulos</div>
-          <div class="pill-feature">⚡ Preço de Atacado</div>
-          <div class="pill-feature">💍 Até 20% Consignação</div>
-        </div>
-
-        <div class="sticker-cta">
-          <div class="sticker-left">
-            <span class="sticker-sub">🌐 TOQUE NO LINK DO STORY</span>
-            <span class="sticker-main">montecristobebidas.com.br</span>
+        <div class="features-row">
+          <div class="feature-box">
+            <div class="feature-box-title">+1.000 Rótulos</div>
+            <div class="feature-box-desc">100% com Nota Fiscal</div>
           </div>
-          <div class="sticker-btn">ACESSAR O SITE 👉</div>
+          <div class="feature-box">
+            <div class="feature-box-title">Preço Distribuidor</div>
+            <div class="feature-box-desc">Condições Comerciais</div>
+          </div>
+          <div class="feature-box">
+            <div class="feature-box-title">Até 20% Consignação</div>
+            <div class="feature-box-desc">Exclusivo para Festas</div>
+          </div>
         </div>
 
-        <p class="footer-sub">
-          Serra Gaúcha • Caxias do Sul • Mais de 20 anos de tradição
-        </p>
+        <div class="cta-card">
+          <div class="cta-left">
+            <span class="cta-label">Toque no link deste story</span>
+            <span class="cta-domain">montecristobebidas.com.br</span>
+          </div>
+          <div class="cta-action">
+            Acessar Site &rarr;
+          </div>
+        </div>
       </div>
     </div>
   </body>
   </html>`;
 }
 
+// =============================================================================
 // 2. FEED POST DE LANÇAMENTO (1080 x 1350)
+// Grid Suíço com Elegância Híbrida
+// =============================================================================
 function getFeedHtml() {
   return `<!DOCTYPE html>
   <html>
@@ -402,89 +353,84 @@ function getFeedHtml() {
         width: 1080px;
         height: 1350px;
         position: relative;
-        background: radial-gradient(circle at 50% 30%, #154D65 0%, #0D3043 40%, #071520 75%, #030A10 100%);
-        padding: 70px 65px;
+        background: radial-gradient(circle at 50% 25%, #0E2938 0%, #091C27 45%, #06131D 80%, #03090F 100%);
+        padding: 70px 75px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
       }
 
-      .glow-light {
+      .feed-glow {
         position: absolute;
-        top: 250px;
+        top: 220px;
         left: 50%;
         transform: translateX(-50%);
         width: 850px;
-        height: 500px;
-        background: radial-gradient(ellipse at center, rgba(16, 185, 129, 0.18) 0%, rgba(27, 117, 136, 0.2) 40%, transparent 75%);
-        filter: blur(70px);
+        height: 480px;
+        background: radial-gradient(ellipse at center, rgba(200, 168, 107, 0.12) 0%, rgba(14, 70, 99, 0.28) 45%, transparent 75%);
+        filter: blur(80px);
         pointer-events: none;
       }
 
-      /* Topo */
       .feed-header {
         position: relative;
         z-index: 10;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        padding-bottom: 30px;
+        border-bottom: 1px solid rgba(200, 168, 107, 0.25);
+        padding-bottom: 26px;
       }
 
       .brand-logo-feed {
-        width: 440px;
+        width: 420px;
         height: auto;
-        filter: drop-shadow(0 6px 16px rgba(0,0,0,0.6));
       }
 
-      .feed-badge {
-        background: rgba(16, 185, 129, 0.15);
-        border: 1px solid rgba(16, 185, 129, 0.4);
-        color: #34D399;
-        font-family: 'Outfit', sans-serif;
-        font-size: 17px;
-        font-weight: 800;
-        padding: 9px 20px;
-        border-radius: 999px;
-        letter-spacing: 1.5px;
+      .feed-kicker {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 3px;
+        color: #E8D5B5;
         text-transform: uppercase;
+        border: 1px solid rgba(200, 168, 107, 0.35);
+        padding: 8px 18px;
+        border-radius: 999px;
+        background: rgba(10, 28, 39, 0.5);
       }
 
-      /* Headline */
       .headline-section {
         position: relative;
         z-index: 10;
-        margin-top: 35px;
+        margin-top: 25px;
         text-align: center;
       }
 
       .headline-title {
         font-family: 'Outfit', sans-serif;
-        font-size: 56px;
+        font-size: 54px;
         font-weight: 900;
-        line-height: 1.1;
-        letter-spacing: -1px;
+        line-height: 1.12;
+        letter-spacing: -1.2px;
         color: #FFFFFF;
       }
 
-      .headline-title span {
-        background: linear-gradient(135deg, #34D399 0%, #10B981 60%, #38BDF8 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+      .headline-title span.champagne {
+        color: #E8D5B5;
       }
 
       .headline-sub {
-        font-size: 23px;
+        font-size: 21px;
         color: #CBD5E1;
         margin-top: 14px;
         line-height: 1.45;
-        max-width: 860px;
+        max-width: 840px;
         margin-left: auto;
         margin-right: auto;
+        font-weight: 400;
       }
 
-      /* Stage de Produtos */
       .feed-stage {
         position: relative;
         z-index: 5;
@@ -492,84 +438,56 @@ function getFeedHtml() {
         display: flex;
         align-items: flex-end;
         justify-content: center;
-        margin: 15px 0;
+        margin: 10px 0;
       }
 
-      .feed-platform {
-        position: absolute;
-        bottom: 20px;
-        width: 800px;
-        height: 45px;
-        background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.28) 0%, rgba(14, 70, 99, 0.4) 50%, transparent 75%);
-        border-radius: 50%;
-        filter: blur(6px);
-      }
-
-      .feed-bottle {
-        position: absolute;
-        bottom: 30px;
-        filter: drop-shadow(0 20px 25px rgba(0, 0, 0, 0.8));
-      }
-
-      .fb-jack { height: 420px; left: 50%; transform: translateX(-50%); z-index: 8; }
-      .fb-tanqueray { height: 380px; left: 240px; z-index: 7; }
-      .fb-redbull { height: 300px; left: 120px; z-index: 6; }
-      .fb-licor43 { height: 370px; right: 240px; z-index: 7; }
-      .fb-chivas { height: 390px; right: 120px; z-index: 6; }
-
-      /* Pilares / Rodapé */
       .pillars-grid {
         position: relative;
         z-index: 10;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 18px;
-        margin-bottom: 22px;
+        gap: 16px;
+        margin-bottom: 20px;
       }
 
       .pillar-card {
-        background: rgba(13, 30, 42, 0.7);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: 16px;
+        background: rgba(14, 70, 99, 0.22);
+        border: 1px solid rgba(200, 168, 107, 0.25);
+        border-radius: 14px;
         padding: 16px 18px;
-        display: flex;
-        align-items: center;
-        gap: 14px;
+        backdrop-filter: blur(12px);
       }
 
-      .pillar-icon {
-        width: 44px;
-        height: 44px;
-        background: rgba(16, 185, 129, 0.2);
-        border: 1px solid rgba(16, 185, 129, 0.4);
-        border-radius: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 22px;
-        flex-shrink: 0;
+      .pillar-tag {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+        color: #C8A86B;
+        margin-bottom: 4px;
       }
 
-      .pillar-content h4 {
+      .pillar-title {
         font-family: 'Outfit', sans-serif;
-        font-size: 19px;
+        font-size: 20px;
         font-weight: 800;
         color: #F8FAFC;
       }
 
-      .pillar-content p {
-        font-size: 14px;
+      .pillar-desc {
+        font-size: 13px;
         color: #94A3B8;
-        margin-top: 2px;
+        margin-top: 4px;
+        line-height: 1.35;
       }
 
-      /* Callout Bar */
       .callout-bar {
         position: relative;
         z-index: 10;
-        background: linear-gradient(90deg, #0E4663 0%, #155E75 50%, #10B981 100%);
-        border-radius: 20px;
-        padding: 20px 32px;
+        background: #0E4663;
+        border: 1px solid rgba(200, 168, 107, 0.4);
+        border-radius: 16px;
+        padding: 18px 30px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -578,9 +496,8 @@ function getFeedHtml() {
 
       .callout-url {
         font-family: 'Outfit', sans-serif;
-        font-size: 28px;
+        font-size: 26px;
         font-weight: 900;
-        letter-spacing: 0.5px;
         color: #FFFFFF;
       }
 
@@ -588,81 +505,80 @@ function getFeedHtml() {
         background: #FFFFFF;
         color: #0E4663;
         font-family: 'Outfit', sans-serif;
-        font-size: 19px;
+        font-size: 17px;
         font-weight: 800;
         padding: 12px 24px;
-        border-radius: 12px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
       }
     </style>
   </head>
   <body>
     <div class="feed-canvas">
-      <div class="glow-light"></div>
+      <div class="feed-glow"></div>
 
       <!-- Topo com Logo Oficial -->
       <div class="feed-header">
         <img src="${LOGO_BRANCO_FOOTER_SVG}" class="brand-logo-feed" alt="Monte Cristo Distribuidora">
-        <div class="feed-badge">LANÇAMENTO OFICIAL</div>
+        <div class="feed-kicker">LANÇAMENTO OFICIAL</div>
       </div>
 
       <!-- Headline -->
       <div class="headline-section">
         <h1 class="headline-title">
-          O NOVO SITE OFICIAL DA MONTE CRISTO <span>ESTÁ NO AR.</span>
+          O NOVO SITE DA MONTE CRISTO <span class="champagne">ESTÁ NO AR.</span>
         </h1>
         <p class="headline-sub">
-          Mais de 20 anos de tradição na Serra Gaúcha, agora com toda a agilidade digital para o seu bar, evento ou consumo próprio.
+          Mais de 20 anos de solidez na Serra Gaúcha, agora com navegação fluida, cálculo rápido e atendimento via WhatsApp.
         </p>
       </div>
 
-      <!-- Vitrine Real -->
+      <!-- Vitrine Real com Garrafas Perfeitamente Recortadas -->
       <div class="feed-stage">
-        <div class="feed-platform"></div>
-        <img src="${RED_BULL}" class="feed-bottle fb-redbull" alt="Red Bull">
-        <img src="${TANQUERAY}" class="feed-bottle fb-tanqueray" alt="Tanqueray">
-        <img src="${JACK_DANIELS}" class="feed-bottle fb-jack" alt="Jack Daniels">
-        <img src="${LICOR_43}" class="feed-bottle fb-licor43" alt="Licor 43">
-        <img src="${CHIVAS_12}" class="feed-bottle fb-chivas" alt="Chivas">
+        <div class="studio-floor-shadow"></div>
+        <img src="${RED_BULL}" class="stage-bottle pos-1" style="height:290px;" alt="Red Bull">
+        <img src="${TANQUERAY}" class="stage-bottle pos-2" style="height:390px;" alt="Tanqueray">
+        <img src="${JACK_DANIELS}" class="stage-bottle pos-3" style="height:440px;" alt="Jack Daniels">
+        <img src="${JACK_HONEY}" class="stage-bottle pos-4" style="height:390px;" alt="Jack Honey">
+        <img src="${CHIVAS_12}" class="stage-bottle pos-5" style="height:400px;" alt="Chivas">
       </div>
 
-      <!-- 3 Pilares -->
+      <!-- 3 Pilares Suíços -->
       <div class="pillars-grid">
         <div class="pillar-card">
-          <div class="pillar-icon">🥃</div>
-          <div class="pillar-content">
-            <h4>+1.000 Rótulos</h4>
-            <p>Destilados e cervejas 100% originais</p>
-          </div>
+          <div class="pillar-tag">ORIGINALIDADE</div>
+          <div class="pillar-title">+1.000 Rótulos</div>
+          <div class="pillar-desc">Destilados, vinhos e cervejas com procedência e NF.</div>
         </div>
 
         <div class="pillar-card">
-          <div class="pillar-icon">⚡</div>
-          <div class="pillar-content">
-            <h4>Preço Direto</h4>
-            <p>Tabela oficial de distribuição</p>
-          </div>
+          <div class="pillar-tag">COMERCIAL</div>
+          <div class="pillar-title">Preço Direto</div>
+          <div class="pillar-desc">Tabela oficial de distribuição sem intermediários.</div>
         </div>
 
         <div class="pillar-card">
-          <div class="pillar-icon">💍</div>
-          <div class="pillar-content">
-            <h4>Consignação 20%</h4>
-            <p>Exclusivo para festas e eventos</p>
-          </div>
+          <div class="pillar-tag">SEGURANÇA</div>
+          <div class="pillar-title">Consignação 20%</div>
+          <div class="pillar-desc">O que sobrar lacrado no evento é recolhido e estornado.</div>
         </div>
       </div>
 
-      <!-- Barra de Chamada -->
+      <!-- Callout Bar -->
       <div class="callout-bar">
         <div class="callout-url">montecristobebidas.com.br</div>
-        <div class="callout-btn">TOQUE NO LINK DA BIO 👉</div>
+        <div class="callout-btn">Acessar no Link da Bio &rarr;</div>
       </div>
     </div>
   </body>
   </html>`;
 }
 
-// 2B. POST FEED B2B / BARES & CNPJ (1080 x 1350)
+// =============================================================================
+// 2B. FEED B2B / BARES, PUBS E RESTAURANTES (1080 x 1350)
+// =============================================================================
 function getFeedB2BHtml() {
   return `<!DOCTYPE html>
   <html>
@@ -674,23 +590,11 @@ function getFeedB2BHtml() {
         width: 1080px;
         height: 1350px;
         position: relative;
-        background: radial-gradient(circle at 50% 30%, #153E54 0%, #0D2635 40%, #061520 75%, #02090F 100%);
-        padding: 70px 65px;
+        background: radial-gradient(circle at 50% 25%, #0C2535 0%, #081B26 45%, #05121B 80%, #02080D 100%);
+        padding: 70px 75px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-      }
-
-      .glow-blue {
-        position: absolute;
-        top: 250px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 850px;
-        height: 500px;
-        background: radial-gradient(ellipse at center, rgba(56, 189, 248, 0.16) 0%, rgba(14, 70, 99, 0.25) 45%, transparent 75%);
-        filter: blur(70px);
-        pointer-events: none;
       }
 
       .feed-header {
@@ -699,57 +603,56 @@ function getFeedB2BHtml() {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        padding-bottom: 28px;
+        border-bottom: 1px solid rgba(200, 168, 107, 0.25);
+        padding-bottom: 26px;
       }
 
       .brand-logo-feed {
-        width: 440px;
+        width: 420px;
         height: auto;
       }
 
-      .feed-badge {
-        background: rgba(56, 189, 248, 0.15);
-        border: 1px solid rgba(56, 189, 248, 0.4);
-        color: #38BDF8;
-        font-family: 'Outfit', sans-serif;
-        font-size: 17px;
-        font-weight: 800;
-        padding: 9px 20px;
+      .feed-kicker {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        color: #E8D5B5;
+        text-transform: uppercase;
+        border: 1px solid rgba(200, 168, 107, 0.35);
+        padding: 8px 18px;
         border-radius: 999px;
-        letter-spacing: 1.5px;
+        background: rgba(10, 28, 39, 0.5);
       }
 
       .headline-section {
         position: relative;
         z-index: 10;
-        margin-top: 35px;
+        margin-top: 25px;
         text-align: center;
       }
 
       .headline-tag {
-        font-family: 'Outfit', sans-serif;
-        font-size: 20px;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 14px;
         font-weight: 700;
-        letter-spacing: 2px;
-        color: #34D399;
+        letter-spacing: 3px;
+        color: #E8D5B5;
         text-transform: uppercase;
         margin-bottom: 12px;
       }
 
       .headline-title {
         font-family: 'Outfit', sans-serif;
-        font-size: 54px;
+        font-size: 52px;
         font-weight: 900;
         line-height: 1.12;
         letter-spacing: -1px;
         color: #FFFFFF;
       }
 
-      .headline-title span {
-        background: linear-gradient(135deg, #38BDF8 0%, #0284C7 60%, #34D399 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+      .headline-title span.champagne {
+        color: #E8D5B5;
       }
 
       .feed-stage {
@@ -759,30 +662,8 @@ function getFeedB2BHtml() {
         display: flex;
         align-items: flex-end;
         justify-content: center;
-        margin: 15px 0;
+        margin: 10px 0;
       }
-
-      .feed-platform {
-        position: absolute;
-        bottom: 20px;
-        width: 800px;
-        height: 45px;
-        background: radial-gradient(ellipse at center, rgba(56, 189, 248, 0.25) 0%, rgba(14, 70, 99, 0.4) 50%, transparent 75%);
-        border-radius: 50%;
-        filter: blur(6px);
-      }
-
-      .feed-bottle {
-        position: absolute;
-        bottom: 30px;
-        filter: drop-shadow(0 20px 25px rgba(0, 0, 0, 0.8));
-      }
-
-      .fb-jack { height: 420px; left: 50%; transform: translateX(-50%); z-index: 8; }
-      .fb-tanqueray { height: 380px; left: 240px; z-index: 7; }
-      .fb-redbull { height: 310px; left: 110px; z-index: 6; }
-      .fb-licor43 { height: 370px; right: 240px; z-index: 7; }
-      .fb-chivas { height: 390px; right: 110px; z-index: 6; }
 
       .b2b-grid {
         position: relative;
@@ -790,21 +671,24 @@ function getFeedB2BHtml() {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 16px;
-        margin-bottom: 22px;
+        margin-bottom: 20px;
       }
 
       .b2b-item {
-        background: rgba(13, 30, 42, 0.75);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: 16px;
+        background: rgba(14, 70, 99, 0.22);
+        border: 1px solid rgba(200, 168, 107, 0.25);
+        border-radius: 14px;
         padding: 16px 20px;
-        display: flex;
-        align-items: center;
-        gap: 14px;
+        backdrop-filter: blur(12px);
       }
 
-      .b2b-item-icon {
-        font-size: 24px;
+      .b2b-item-kicker {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #C8A86B;
+        margin-bottom: 2px;
       }
 
       .b2b-item h4 {
@@ -815,17 +699,18 @@ function getFeedB2BHtml() {
       }
 
       .b2b-item p {
-        font-size: 14px;
+        font-size: 13px;
         color: #94A3B8;
-        margin-top: 2px;
+        margin-top: 3px;
       }
 
       .b2b-footer {
         position: relative;
         z-index: 10;
-        background: linear-gradient(90deg, #0284C7 0%, #0E4663 50%, #10B981 100%);
-        border-radius: 20px;
-        padding: 20px 32px;
+        background: #0E4663;
+        border: 1px solid rgba(200, 168, 107, 0.4);
+        border-radius: 16px;
+        padding: 18px 30px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -833,7 +718,7 @@ function getFeedB2BHtml() {
 
       .b2b-url {
         font-family: 'Outfit', sans-serif;
-        font-size: 26px;
+        font-size: 24px;
         font-weight: 900;
         color: #FFFFFF;
       }
@@ -842,82 +727,78 @@ function getFeedB2BHtml() {
         background: #FFFFFF;
         color: #0E4663;
         font-family: 'Outfit', sans-serif;
-        font-size: 18px;
+        font-size: 17px;
         font-weight: 800;
         padding: 12px 24px;
-        border-radius: 12px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
       }
     </style>
   </head>
   <body>
     <div class="feed-canvas">
-      <div class="glow-blue"></div>
-
       <div class="feed-header">
         <img src="${LOGO_BRANCO_FOOTER_SVG}" class="brand-logo-feed" alt="Monte Cristo">
-        <div class="feed-badge">SOLUÇÕES B2B CNPJ</div>
+        <div class="feed-kicker">SOLUÇÕES B2B CNPJ</div>
       </div>
 
       <div class="headline-section">
-        <div class="headline-tag">Bares • Pubs • Casas Noturnas • Restaurantes</div>
+        <div class="headline-tag">Bares &bull; Pubs &bull; Casas Noturnas &bull; Restaurantes</div>
         <h1 class="headline-title">
-          FORNECIMENTO ESTÁVEL & <span>PREÇO DE ATACADO.</span>
+          FORNECIMENTO ESTÁVEL &amp; <span class="champagne">PREÇO DE ATACADO.</span>
         </h1>
       </div>
 
       <div class="feed-stage">
-        <div class="feed-platform"></div>
-        <img src="${RED_BULL}" class="feed-bottle fb-redbull" alt="Red Bull">
-        <img src="${TANQUERAY}" class="feed-bottle fb-tanqueray" alt="Tanqueray">
-        <img src="${JACK_DANIELS}" class="feed-bottle fb-jack" alt="Jack Daniels">
-        <img src="${LICOR_43}" class="feed-bottle fb-licor43" alt="Licor 43">
-        <img src="${CHIVAS_12}" class="feed-bottle fb-chivas" alt="Chivas">
+        <div class="studio-floor-shadow"></div>
+        <img src="${RED_BULL}" class="stage-bottle pos-1" style="height:290px;" alt="Red Bull">
+        <img src="${TANQUERAY}" class="stage-bottle pos-2" style="height:390px;" alt="Tanqueray">
+        <img src="${CHIVAS_12}" class="stage-bottle pos-3" style="height:440px;" alt="Chivas">
+        <img src="${JOHNNIE_WALKER}" class="stage-bottle pos-4" style="height:430px;" alt="Johnnie Walker">
+        <img src="${JACK_DANIELS}" class="stage-bottle pos-5" style="height:410px;" alt="Jack Daniels">
       </div>
 
       <div class="b2b-grid">
         <div class="b2b-item">
-          <div class="b2b-item-icon">📋</div>
-          <div>
-            <h4>100% com Nota Fiscal</h4>
-            <p>Conformidade fiscal e procedência garantida</p>
-          </div>
+          <div class="b2b-item-kicker">CONFORMIDADE</div>
+          <h4>100% com Nota Fiscal</h4>
+          <p>Procedência garantida com emissão fiscal imediata.</p>
         </div>
 
         <div class="b2b-item">
-          <div class="b2b-item-icon">🚚</div>
-          <div>
-            <h4>Entregas Programadas</h4>
-            <p>Em até 6 dias úteis em toda a Serra Gaúcha</p>
-          </div>
+          <div class="b2b-item-kicker">LOGÍSTICA</div>
+          <h4>Entregas Programadas</h4>
+          <p>Atendimento semanal em toda a Serra Gaúcha.</p>
         </div>
 
         <div class="b2b-item">
-          <div class="b2b-item-icon">💰</div>
-          <div>
-            <h4>Tabela Direta CNPJ</h4>
-            <p>Condições comerciais exclusivas para parceiros</p>
-          </div>
+          <div class="b2b-item-kicker">MARGEM</div>
+          <h4>Tabela Direta CNPJ</h4>
+          <p>Condições comerciais por volume para parceiros.</p>
         </div>
 
         <div class="b2b-item">
-          <div class="b2b-item-icon">📱</div>
-          <div>
-            <h4>Reposição pelo Site</h4>
-            <p>Monte o pedido no celular a qualquer hora</p>
-          </div>
+          <div class="b2b-item-kicker">AGILIDADE</div>
+          <h4>Reposição pelo Site</h4>
+          <p>Monte o pedido na palma da mão 24 horas por dia.</p>
         </div>
       </div>
 
       <div class="b2b-footer">
         <div class="b2b-url">WhatsApp B2B: (54) 99969-2859</div>
-        <div class="b2b-btn">PEDIR TABELA COMERCIAL 👉</div>
+        <div class="b2b-btn">Pedir Tabela Comercial &rarr;</div>
       </div>
     </div>
   </body>
   </html>`;
 }
 
+// =============================================================================
 // 3. CAPA DO CARROSSEL EVENTOS (1080 x 1350)
+// Foco em Casamentos, Formaturas e Consignação de 20%
+// =============================================================================
 function getCarrosselCapaHtml() {
   return `<!DOCTYPE html>
   <html>
@@ -929,8 +810,8 @@ function getCarrosselCapaHtml() {
         width: 1080px;
         height: 1350px;
         position: relative;
-        background: radial-gradient(circle at 50% 25%, #18445C 0%, #0C283A 40%, #061520 75%, #02090F 100%);
-        padding: 70px 65px;
+        background: radial-gradient(circle at 50% 25%, #102B3B 0%, #0A1E2B 45%, #06131D 80%, #03080E 100%);
+        padding: 70px 75px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -938,12 +819,12 @@ function getCarrosselCapaHtml() {
 
       .amber-glow {
         position: absolute;
-        top: 250px;
+        top: 240px;
         left: 50%;
         transform: translateX(-50%);
         width: 900px;
-        height: 550px;
-        background: radial-gradient(ellipse at center, rgba(245, 158, 11, 0.16) 0%, rgba(16, 185, 129, 0.15) 45%, transparent 75%);
+        height: 520px;
+        background: radial-gradient(ellipse at center, rgba(200, 168, 107, 0.16) 0%, rgba(14, 70, 99, 0.25) 45%, transparent 75%);
         filter: blur(80px);
         pointer-events: none;
       }
@@ -954,64 +835,58 @@ function getCarrosselCapaHtml() {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        border-bottom: 1px solid rgba(200, 168, 107, 0.25);
         padding-bottom: 26px;
       }
 
       .top-logo {
-        width: 430px;
+        width: 420px;
         height: auto;
       }
 
       .tag-eventos {
-        background: rgba(245, 158, 11, 0.15);
-        border: 1px solid rgba(245, 158, 11, 0.4);
-        color: #FBBF24;
-        font-family: 'Outfit', sans-serif;
-        font-size: 16px;
-        font-weight: 800;
+        background: rgba(10, 28, 39, 0.5);
+        border: 1px solid rgba(200, 168, 107, 0.4);
+        color: #E8D5B5;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 13px;
+        font-weight: 700;
         padding: 8px 18px;
         border-radius: 999px;
-        letter-spacing: 1.5px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
       }
 
       .hook-section {
         position: relative;
         z-index: 10;
-        margin-top: 35px;
+        margin-top: 25px;
         text-align: center;
       }
 
       .hook-tag {
-        font-family: 'Outfit', sans-serif;
-        font-size: 20px;
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 14px;
         font-weight: 700;
-        letter-spacing: 2px;
-        color: #38BDF8;
+        letter-spacing: 3px;
+        color: #E8D5B5;
         text-transform: uppercase;
         margin-bottom: 14px;
       }
 
       .hook-title {
         font-family: 'Outfit', sans-serif;
-        font-size: 56px;
+        font-size: 54px;
         font-weight: 900;
         line-height: 1.12;
         letter-spacing: -1.2px;
         color: #FFFFFF;
       }
 
-      .hook-title span.warning {
-        color: #F87171;
+      .hook-title span.champagne {
+        color: #E8D5B5;
       }
 
-      .hook-title span.solution {
-        background: linear-gradient(135deg, #FBBF24 0%, #F59E0B 50%, #10B981 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-
-      /* Stage com Taças/Bebidas nobres */
       .carrossel-stage {
         position: relative;
         z-index: 5;
@@ -1022,66 +897,43 @@ function getCarrosselCapaHtml() {
         margin: 10px 0;
       }
 
-      .c-platform {
-        position: absolute;
-        bottom: 25px;
-        width: 800px;
-        height: 50px;
-        background: radial-gradient(ellipse at center, rgba(245, 158, 11, 0.3) 0%, rgba(14, 70, 99, 0.4) 50%, transparent 75%);
-        border-radius: 50%;
-        filter: blur(8px);
-      }
-
-      .c-bottle {
-        position: absolute;
-        bottom: 35px;
-        filter: drop-shadow(0 20px 30px rgba(0, 0, 0, 0.85));
-      }
-
-      .cb-chivas { height: 430px; left: 50%; transform: translateX(-50%); z-index: 8; }
-      .cb-tanqueray { height: 380px; left: 240px; z-index: 7; }
-      .cb-aperol { height: 390px; right: 240px; z-index: 7; }
-      .cb-absolut { height: 360px; left: 130px; z-index: 6; }
-      .cb-licor43 { height: 360px; right: 130px; z-index: 6; }
-
-      /* Selo de Consignação */
       .seal-box {
         position: relative;
         z-index: 10;
-        background: rgba(13, 30, 42, 0.8);
-        border: 2px solid rgba(245, 158, 11, 0.5);
-        box-shadow: 0 16px 40px rgba(0,0,0,0.6), 0 0 30px rgba(245, 158, 11, 0.2);
-        border-radius: 20px;
-        padding: 20px 28px;
+        background: #0E4663;
+        border: 1px solid rgba(200, 168, 107, 0.45);
+        border-radius: 16px;
+        padding: 20px 30px;
         display: flex;
         align-items: center;
         justify-content: space-between;
+        box-shadow: 0 16px 35px rgba(0,0,0,0.5);
       }
 
       .seal-left h3 {
         font-family: 'Outfit', sans-serif;
-        font-size: 26px;
+        font-size: 24px;
         font-weight: 900;
-        color: #FBBF24;
+        color: #E8D5B5;
       }
 
       .seal-left p {
-        font-size: 16px;
-        color: #E2E8F0;
-        margin-top: 4px;
+        font-size: 15px;
+        color: #CBD5E1;
+        margin-top: 3px;
       }
 
       .swipe-btn {
-        background: linear-gradient(135deg, #10B981 0%, #059669 100%);
-        color: #FFFFFF;
+        background: #FFFFFF;
+        color: #0E4663;
         font-family: 'Outfit', sans-serif;
-        font-size: 20px;
+        font-size: 17px;
         font-weight: 800;
-        padding: 14px 26px;
-        border-radius: 14px;
+        padding: 12px 24px;
+        border-radius: 10px;
         display: flex;
         align-items: center;
-        gap: 10px;
+        gap: 8px;
         white-space: nowrap;
       }
     </style>
@@ -1092,40 +944,41 @@ function getCarrosselCapaHtml() {
 
       <div class="top-row">
         <img src="${LOGO_BRANCO_FOOTER_SVG}" class="top-logo" alt="Monte Cristo">
-        <div class="tag-eventos">GUIA DE EVENTOS & FESTAS</div>
+        <div class="tag-eventos">GUIA DE EVENTOS &amp; FESTAS</div>
       </div>
 
       <div class="hook-section">
-        <div class="hook-tag">Casamentos & Formaturas na Serra Gaúcha</div>
+        <div class="hook-tag">Casamentos &bull; Formaturas &bull; Aniversários na Serra Gaúcha</div>
         <h1 class="hook-title">
-          Calculou as bebidas e bateu o medo de <span class="warning">faltar</span> ou <span class="solution">sobrar demais?</span>
+          Calculou as bebidas e bateu o medo de <span class="champagne">faltar ou sobrar?</span>
         </h1>
       </div>
 
       <div class="carrossel-stage">
-        <div class="c-platform"></div>
-        <img src="${ABSOLUT}" class="c-bottle cb-absolut" alt="Absolut">
-        <img src="${TANQUERAY}" class="c-bottle cb-tanqueray" alt="Tanqueray">
-        <img src="${CHIVAS_12}" class="c-bottle cb-chivas" alt="Chivas">
-        <img src="${APEROL}" class="c-bottle cb-aperol" alt="Aperol">
-        <img src="${LICOR_43}" class="c-bottle cb-licor43" alt="Licor 43">
+        <div class="studio-floor-shadow"></div>
+        <img src="${ABSOLUT}" class="stage-bottle pos-1" style="height:370px;" alt="Vodka Absolut">
+        <img src="${TANQUERAY}" class="stage-bottle pos-2" style="height:390px;" alt="Tanqueray Gin">
+        <img src="${CHIVAS_12}" class="stage-bottle pos-3" style="height:440px;" alt="Chivas Regal 12">
+        <img src="${APEROL}" class="stage-bottle pos-4" style="height:400px;" alt="Aperol Spritz">
+        <img src="${JACK_HONEY}" class="stage-bottle pos-5" style="height:380px;" alt="Jack Honey">
       </div>
 
       <div class="seal-box">
         <div class="seal-left">
-          <h3>🏷️ MODALIDADE CONSIGNAÇÃO DE ATÉ 20%</h3>
-          <p>O que sobrar lacrado, recolhemos e estornamos o valor na sua conta bancária!</p>
+          <h3>Modalidade Consignação de até 20%</h3>
+          <p>O que voltar lacrado após a festa é recolhido e reembolsado na sua conta.</p>
         </div>
-        <div class="swipe-btn">
-          <span>DESLIZE</span> 👉
-        </div>
+        <div class="swipe-btn">Deslize para ver &rarr;</div>
       </div>
     </div>
   </body>
   </html>`;
 }
 
+// =============================================================================
 // 4. CAPA WHATSAPP BUSINESS (1920 x 1080)
+// Banner Panorâmico Elegante
+// =============================================================================
 function getWhatsappCapaHtml() {
   return `<!DOCTYPE html>
   <html>
@@ -1137,122 +990,115 @@ function getWhatsappCapaHtml() {
         width: 1920px;
         height: 1080px;
         position: relative;
-        background: linear-gradient(105deg, #051017 0%, #09202E 40%, #0E3C53 75%, #144E66 100%);
-        padding: 90px 110px;
+        background: radial-gradient(circle at 65% 50%, #0F2D3D 0%, #091F2B 40%, #06131D 75%, #03080E 100%);
+        padding: 100px 120px;
         display: flex;
         align-items: center;
         justify-content: space-between;
       }
 
-      /* Glows de ambientação */
-      .wa-glow-left {
+      .wa-glow-center {
         position: absolute;
-        top: 20%;
-        left: 10%;
-        width: 700px;
+        top: 50%;
+        left: 65%;
+        transform: translate(-50%, -50%);
+        width: 900px;
         height: 700px;
-        background: radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, transparent 70%);
-        filter: blur(80px);
-        pointer-events: none;
-      }
-
-      .wa-glow-right {
-        position: absolute;
-        top: 10%;
-        right: 15%;
-        width: 800px;
-        height: 800px;
-        background: radial-gradient(circle, rgba(245, 158, 11, 0.15) 0%, rgba(27, 117, 136, 0.25) 50%, transparent 75%);
+        background: radial-gradient(circle, rgba(200, 168, 107, 0.12) 0%, rgba(14, 70, 99, 0.25) 50%, transparent 75%);
         filter: blur(90px);
         pointer-events: none;
       }
 
-      /* Coluna Esquerda: Marca e Autoridade */
       .wa-left-col {
         position: relative;
         z-index: 10;
-        max-width: 920px;
+        width: 880px;
         display: flex;
         flex-direction: column;
-        gap: 30px;
+        gap: 28px;
       }
 
       .wa-brand-logo {
-        width: 580px;
+        width: 480px;
         height: auto;
-        filter: drop-shadow(0 10px 25px rgba(0,0,0,0.7));
       }
 
       .wa-tagline {
-        font-family: 'Outfit', sans-serif;
-        font-size: 26px;
+        font-size: 15px;
         font-weight: 700;
-        color: #34D399;
-        letter-spacing: 1.5px;
+        letter-spacing: 3px;
         text-transform: uppercase;
+        color: #E8D5B5;
       }
 
       .wa-title {
         font-family: 'Outfit', sans-serif;
-        font-size: 64px;
+        font-size: 58px;
         font-weight: 900;
         line-height: 1.1;
         letter-spacing: -1.5px;
         color: #FFFFFF;
       }
 
-      .wa-title span {
-        background: linear-gradient(135deg, #34D399 0%, #38BDF8 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+      .wa-title span.champagne {
+        color: #E8D5B5;
       }
 
       .wa-bullets {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 16px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        max-width: 800px;
       }
 
       .wa-bullet {
-        background: rgba(13, 30, 42, 0.75);
-        border: 1px solid rgba(255, 255, 255, 0.14);
-        padding: 12px 22px;
-        border-radius: 14px;
-        font-size: 20px;
+        background: rgba(14, 70, 99, 0.25);
+        border: 1px solid rgba(200, 168, 107, 0.25);
+        padding: 12px 18px;
+        border-radius: 12px;
+        font-size: 17px;
         font-weight: 600;
         color: #F1F5F9;
         display: flex;
         align-items: center;
         gap: 10px;
+        backdrop-filter: blur(10px);
+      }
+
+      .wa-bullet-dot {
+        width: 6px;
+        height: 6px;
+        background: #C8A86B;
+        border-radius: 50%;
       }
 
       .wa-site-box {
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.2);
+        background: #0E4663;
+        border: 1px solid rgba(200, 168, 107, 0.45);
         padding: 18px 28px;
-        border-radius: 16px;
+        border-radius: 14px;
         display: inline-flex;
         align-items: center;
         gap: 20px;
         width: fit-content;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
       }
 
       .wa-site-label {
-        font-size: 16px;
+        font-size: 14px;
         font-weight: 700;
         text-transform: uppercase;
-        color: #94A3B8;
-        letter-spacing: 1px;
+        color: #E8D5B5;
+        letter-spacing: 1.5px;
       }
 
       .wa-site-domain {
         font-family: 'Outfit', sans-serif;
-        font-size: 32px;
+        font-size: 28px;
         font-weight: 900;
         color: #FFFFFF;
       }
 
-      /* Coluna Direita: Vitrine de Garrafas em Perspectiva */
       .wa-right-col {
         position: relative;
         z-index: 5;
@@ -1262,34 +1108,11 @@ function getWhatsappCapaHtml() {
         align-items: flex-end;
         justify-content: center;
       }
-
-      .wa-platform {
-        position: absolute;
-        bottom: 30px;
-        width: 720px;
-        height: 60px;
-        background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.3) 0%, rgba(14, 70, 99, 0.45) 50%, transparent 75%);
-        border-radius: 50%;
-        filter: blur(8px);
-      }
-
-      .wa-bottle {
-        position: absolute;
-        bottom: 50px;
-        filter: drop-shadow(0 25px 35px rgba(0, 0, 0, 0.85));
-      }
-
-      .wb-jack { height: 580px; left: 50%; transform: translateX(-50%); z-index: 8; }
-      .wb-tanqueray { height: 510px; left: 140px; z-index: 7; }
-      .wb-redbull { height: 400px; left: 20px; z-index: 6; }
-      .wb-licor43 { height: 500px; right: 140px; z-index: 7; }
-      .wb-chivas { height: 520px; right: 20px; z-index: 6; }
     </style>
   </head>
   <body>
     <div class="wa-canvas">
-      <div class="wa-glow-left"></div>
-      <div class="wa-glow-right"></div>
+      <div class="wa-glow-center"></div>
 
       <!-- Coluna Esquerda -->
       <div class="wa-left-col">
@@ -1298,37 +1121,39 @@ function getWhatsappCapaHtml() {
         
         <h1 class="wa-title">
           DISTRIBUIDORA DE BEBIDAS<br>
-          AGORA COM <span>NOVO SITE OFICIAL.</span>
+          AGORA COM <span class="champagne">NOVO SITE OFICIAL.</span>
         </h1>
 
         <div class="wa-bullets">
-          <div class="wa-bullet">🥃 +1.000 Rótulos Originais</div>
-          <div class="wa-bullet">⚡ Preços de Distribuição</div>
-          <div class="wa-bullet">🏢 Fornecimento B2B com NF</div>
-          <div class="wa-bullet">💍 Consignação 20% p/ Festas</div>
+          <div class="wa-bullet"><span class="wa-bullet-dot"></span>+1.000 Rótulos Originais</div>
+          <div class="wa-bullet"><span class="wa-bullet-dot"></span>Preço Direto de Atacado</div>
+          <div class="wa-bullet"><span class="wa-bullet-dot"></span>Fornecimento B2B com NF</div>
+          <div class="wa-bullet"><span class="wa-bullet-dot"></span>Consignação 20% p/ Festas</div>
         </div>
 
         <div class="wa-site-box">
-          <span class="wa-site-label">Acesse nosso catálogo:</span>
+          <span class="wa-site-label">Acesse o catálogo:</span>
           <span class="wa-site-domain">montecristobebidas.com.br</span>
         </div>
       </div>
 
       <!-- Coluna Direita (Vitrine Real) -->
       <div class="wa-right-col">
-        <div class="wa-platform"></div>
-        <img src="${RED_BULL}" class="wa-bottle wb-redbull" alt="Red Bull">
-        <img src="${TANQUERAY}" class="wa-bottle wb-tanqueray" alt="Tanqueray">
-        <img src="${JACK_DANIELS}" class="wa-bottle wb-jack" alt="Jack Daniels">
-        <img src="${LICOR_43}" class="wa-bottle wb-licor43" alt="Licor 43">
-        <img src="${CHIVAS_12}" class="wa-bottle wb-chivas" alt="Chivas">
+        <div class="studio-floor-shadow" style="width: 720px; bottom: 40px;"></div>
+        <img src="${RED_BULL}" class="stage-bottle pos-1" style="height:360px;" alt="Red Bull">
+        <img src="${TANQUERAY}" class="stage-bottle pos-2" style="height:490px;" alt="Tanqueray">
+        <img src="${JACK_DANIELS}" class="stage-bottle pos-3" style="height:560px;" alt="Jack Daniels">
+        <img src="${JACK_HONEY}" class="stage-bottle pos-4" style="height:480px;" alt="Jack Honey">
+        <img src="${CHIVAS_12}" class="stage-bottle pos-5" style="height:500px;" alt="Chivas">
       </div>
     </div>
   </body>
   </html>`;
 }
 
+// =============================================================================
 // 5. DESTAQUE INSTAGRAM (1080 x 1080)
+// =============================================================================
 function getDestaqueInstagramHtml() {
   return `<!DOCTYPE html>
   <html>
@@ -1340,7 +1165,7 @@ function getDestaqueInstagramHtml() {
         width: 1080px;
         height: 1080px;
         position: relative;
-        background: #07131B;
+        background: #06131D;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -1350,9 +1175,9 @@ function getDestaqueInstagramHtml() {
         width: 860px;
         height: 860px;
         border-radius: 50%;
-        background: radial-gradient(circle at 30% 30%, #155E75 0%, #0E4663 50%, #071927 100%);
-        border: 12px solid rgba(16, 185, 129, 0.4);
-        box-shadow: 0 0 60px rgba(16, 185, 129, 0.3), inset 0 0 60px rgba(0,0,0,0.6);
+        background: radial-gradient(circle at 35% 35%, #0E2E3E 0%, #0A1E2B 55%, #06131D 100%);
+        border: 4px solid rgba(200, 168, 107, 0.5);
+        box-shadow: 0 0 60px rgba(0, 0, 0, 0.7), inset 0 0 60px rgba(0,0,0,0.6);
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -1365,13 +1190,13 @@ function getDestaqueInstagramHtml() {
         position: absolute;
         width: 500px;
         height: 500px;
-        background: radial-gradient(circle, rgba(16, 185, 129, 0.25) 0%, transparent 70%);
+        background: radial-gradient(circle, rgba(200, 168, 107, 0.15) 0%, transparent 70%);
         filter: blur(40px);
         pointer-events: none;
       }
 
       .monogram-logo {
-        width: 380px;
+        width: 360px;
         height: auto;
         position: relative;
         z-index: 10;
@@ -1381,20 +1206,17 @@ function getDestaqueInstagramHtml() {
       .destaque-label {
         margin-top: 40px;
         font-family: 'Outfit', sans-serif;
-        font-size: 38px;
+        font-size: 36px;
         font-weight: 900;
         letter-spacing: 5px;
         color: #FFFFFF;
         text-transform: uppercase;
         position: relative;
         z-index: 10;
-        display: flex;
-        align-items: center;
-        gap: 12px;
       }
 
       .destaque-label span {
-        color: #34D399;
+        color: #E8D5B5;
       }
     </style>
   </head>
@@ -1412,71 +1234,74 @@ function getDestaqueInstagramHtml() {
   </html>`;
 }
 
+// =============================================================================
 // 6. CARROSSEL SLIDES 2 A 7 (1080 x 1350 CADA)
+// =============================================================================
 function getCarrosselSlideHtml(slideNum) {
   const slidesContent = {
     2: {
-      step: 'Slide 2 de 7 • O Dilema',
+      step: 'Slide 2 de 7 &bull; O Dilema do Evento',
       title: 'O grande pesadelo de qualquer anfitrião na Serra Gaúcha:',
       bullets: [
-        { icon: '⚠️', title: 'Se faltar bebida na pista:', desc: 'A festa esfria, os convidados saem mais cedo e o momento dos sonhos perde o brilho.' },
-        { icon: '💸', title: 'Se comprar em excesso para garantir:', desc: 'Fica com milhares de reais parados em garrafas acumulando poeira no armário.' }
+        { kicker: 'SE FALTAR BEBIDA', title: 'A festa esfria antes da hora', desc: 'Convidados saem mais cedo e o momento mais esperado do ano perde o ritmo.' },
+        { kicker: 'SE SOBRAR EM EXCESSO', title: 'Dinheiro parado sem necessidade', desc: 'Milhares de reais ficam parados em caixas de garrafas acumulando poeira no armário.' }
       ],
-      footer: 'Existe uma forma inteligente de resolver isso? 👉'
+      footer: 'Existe uma solução inteligente e garantida &rarr;'
     },
     3: {
-      step: 'Slide 3 de 7 • A Solução Oficial',
-      title: 'Você não precisa passar por esse estresse.',
+      step: 'Slide 3 de 7 &bull; A Solução Oficial',
+      title: 'Você não precisa passar por essa incerteza.',
       highlightBox: {
         badge: 'MODALIDADE EXCLUSIVA',
         title: 'CONSIGNAÇÃO DE ATÉ 20% DO LOTE',
-        desc: 'A Monte Cristo Bebidas entrega o lote completo para a sua festa com margem de segurança. O que voltar lacrado, nós recolhemos e estornamos 100% do valor direto na sua conta bancária!'
+        desc: 'A Monte Cristo entrega o pedido completo para o seu casamento ou evento com margem de segurança. O que voltar lacrado, nós recolhemos e estornamos 100% do valor direto na sua conta bancária.'
       },
-      footer: 'Veja como funciona na prática 👉'
+      footer: 'Veja como funciona em 3 passos &rarr;'
     },
     4: {
-      step: 'Slide 4 de 7 • Passo a Passo',
-      title: 'Como funciona em 3 passos simples:',
+      step: 'Slide 4 de 7 &bull; Passo a Passo',
+      title: 'Como funciona a consignação em 3 passos:',
       steps: [
-        { num: '1', title: 'Montamos o lote ideal', desc: 'De acordo com o perfil dos seus convidados, número de pessoas e horário.' },
-        { num: '2', title: 'Enviamos a consignação', desc: 'Até 20% do volume vai como margem de segurança para nunca faltar na pista.' },
-        { num: '3', title: 'Devolução sem complicação', desc: 'O que sobrar lacrado após a festa, nós recolhemos e reembolsamos sem burocracia.' }
+        { num: '01', title: 'Montamos o lote ideal', desc: 'Calculamos as quantidades exatas pelo perfil de convidados, tipo de festa e duração.' },
+        { num: '02', title: 'Entregamos a margem de 20%', desc: 'Até 20% do volume segue consignado como reserva de tranquilidade para nunca faltar na pista.' },
+        { num: '03', title: 'Recolhimento e estorno', desc: 'O que sobrar lacrado pós-evento é recolhido pela nossa equipe e estornado sem burocracia.' }
       ],
-      footer: 'Procedência 100% garantida 👉'
+      footer: 'Rótulos nobres com garantia de procedência &rarr;'
     },
     5: {
-      step: 'Slide 5 de 7 • Variedade Nobre',
-      title: 'Mais de 1.000 rótulos com lacre e nota fiscal:',
+      step: 'Slide 5 de 7 &bull; Variedade de Alto Padrão',
+      title: 'Mais de 1.000 rótulos originais com Nota Fiscal:',
       gridItems: [
-        { title: '🍾 Espumantes Nobres', desc: 'Moscatel, Brut e Rosé da Serra' },
-        { title: '🥃 Whiskies 12 Anos', desc: 'Black Label, Chivas, Jack Daniel\'s' },
-        { title: '🍸 Gins & Vodkas', desc: 'Tanqueray, Gordon\'s, Absolut' },
-        { title: '⚡ Energéticos & Licores', desc: 'Red Bull, Baly, Licor 43, Amarula' }
+        { kicker: 'DESTILADOS NOBRES', title: 'Whiskies, Gins e Vodkas', desc: 'Jack Daniel’s, Chivas 12, Tanqueray, Absolut, Grey Goose e Cîroc.' },
+        { kicker: 'LICORES & APERITIVOS', title: 'Licores Importados', desc: 'Licor 43, Aperol Spritz, Amarula, Jagermeister e Cointreau.' },
+        { kicker: 'CERVEJAS & ENERGÉTICOS', title: 'Chopes, Latas e Garrafas', desc: 'Red Bull oficial, Norteña, Patricia, Zillertal e artesanais.' },
+        { kicker: 'MIXOLOGIA & DRINKS', title: 'Xaropes e Tônicas', desc: 'Monin e Fórmula completa para bares e coquetelaria profissional.' }
       ],
-      footer: 'Agora tudo no nosso novo site 👉'
+      footer: 'Simule o lote do seu evento online &rarr;'
     },
     6: {
-      step: 'Slide 6 de 7 • No Novo Site',
-      title: 'Monte sua lista em menos de 2 minutos:',
+      step: 'Slide 6 de 7 &bull; Praticidade Digital',
+      title: 'Monte sua lista no site em menos de 2 minutos:',
       sitePreview: {
         domain: 'montecristobebidas.com.br',
         bullets: [
-          '✓ Navegue pelas categorias no celular',
-          '✓ Veja fotos reais e preços atualizados',
-          '✓ Envie seu carrinho pronto no WhatsApp do nosso consultor de eventos em 1 clique'
+          'Preços transparentes atualizados em tempo real',
+          'Filtro ágil por categorias, marcas e tipos de evento',
+          'Cálculo instantâneo de volume e carrinho inteligente',
+          'Envio direto do pedido pronto para o WhatsApp do atendimento'
         ]
       },
-      footer: 'Pronto para planejar? 👉'
+      footer: 'Pronto para garantir a melhor festa? &rarr;'
     },
     7: {
-      step: 'Slide 7 de 7 • Conclusão',
-      title: 'Planeje sua festa com tranquilidade e economia real.',
+      step: 'Slide 7 de 7 &bull; Atendimento Personalizado',
+      title: 'Garanta a tranquilidade do seu evento hoje mesmo.',
       ctaBox: {
-        headline: 'GARANTA A CONSIGNAÇÃO DE 20%',
-        sub: 'Toque no link da nossa bio, explore o novo site e solicite sua cotação sem compromisso.',
-        btn: '💍 COTAR BEBIDAS DO EVENTO'
+        headline: 'Fale com um Especialista Monte Cristo',
+        sub: 'Envie a data e o número de convidados pelo site ou fale direto no WhatsApp.',
+        btn: 'Acessar montecristobebidas.com.br &rarr;'
       },
-      footer: 'Monte Cristo Bebidas • Tradição na Serra Gaúcha'
+      footer: 'Monte Cristo Bebidas &bull; Serra Gaúcha &bull; Mais de 20 anos de tradição'
     }
   };
 
@@ -1492,129 +1317,122 @@ function getCarrosselSlideHtml(slideNum) {
         width: 1080px;
         height: 1350px;
         position: relative;
-        background: radial-gradient(circle at 50% 25%, #15465F 0%, #0C2B3E 45%, #061520 80%, #030B12 100%);
-        padding: 70px 65px;
+        background: radial-gradient(circle at 50% 25%, #0F2D3D 0%, #091F2B 45%, #06131D 80%, #03080E 100%);
+        padding: 70px 75px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
       }
 
       .slide-top {
+        position: relative;
+        z-index: 10;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        border-bottom: 1px solid rgba(200, 168, 107, 0.25);
         padding-bottom: 24px;
       }
 
       .slide-logo {
-        width: 360px;
+        width: 380px;
         height: auto;
       }
 
-      .slide-step-badge {
-        background: rgba(16, 185, 129, 0.18);
-        border: 1px solid rgba(16, 185, 129, 0.4);
-        color: #34D399;
-        font-family: 'Outfit', sans-serif;
-        font-size: 16px;
-        font-weight: 800;
-        padding: 8px 18px;
+      .slide-step {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        font-size: 13px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        color: #E8D5B5;
+        text-transform: uppercase;
+        border: 1px solid rgba(200, 168, 107, 0.35);
+        padding: 6px 16px;
         border-radius: 999px;
+        background: rgba(10, 28, 39, 0.5);
       }
 
-      .slide-main-content {
-        flex: 1;
+      .slide-content {
+        position: relative;
+        z-index: 10;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        margin: 40px 0;
+        gap: 28px;
+        margin: auto 0;
       }
 
-      .slide-headline {
+      .slide-title {
         font-family: 'Outfit', sans-serif;
-        font-size: 52px;
+        font-size: 48px;
         font-weight: 900;
         line-height: 1.15;
         letter-spacing: -1px;
         color: #FFFFFF;
-        margin-bottom: 35px;
       }
 
-      .bullet-box {
-        background: rgba(13, 30, 42, 0.7);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: 18px;
-        padding: 24px 28px;
-        margin-bottom: 18px;
+      .slide-bottom {
+        position: relative;
+        z-index: 10;
+        border-top: 1px solid rgba(200, 168, 107, 0.25);
+        padding-top: 22px;
         display: flex;
-        gap: 20px;
-        align-items: flex-start;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 15px;
+        color: #E8D5B5;
+        font-weight: 600;
       }
 
-      .bullet-box-icon {
-        font-size: 32px;
-        flex-shrink: 0;
+      .dilemma-card {
+        background: rgba(14, 70, 99, 0.22);
+        border: 1px solid rgba(200, 168, 107, 0.25);
+        border-radius: 16px;
+        padding: 24px 28px;
+        backdrop-filter: blur(12px);
       }
 
-      .bullet-box h4 {
+      .dilemma-kicker {
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        color: #C8A86B;
+        margin-bottom: 6px;
+      }
+
+      .dilemma-title {
         font-family: 'Outfit', sans-serif;
         font-size: 24px;
         font-weight: 800;
-        color: #F8FAFC;
+        color: #FFFFFF;
       }
 
-      .bullet-box p {
-        font-size: 18px;
+      .dilemma-desc {
+        font-size: 16px;
         color: #CBD5E1;
         margin-top: 6px;
         line-height: 1.45;
       }
 
-      .highlight-card {
-        background: rgba(14, 70, 99, 0.5);
-        border: 2px solid #10B981;
-        border-radius: 24px;
-        padding: 35px;
-        box-shadow: 0 15px 40px rgba(0,0,0,0.5), 0 0 30px rgba(16, 185, 129, 0.2);
-        text-align: center;
-      }
-
-      .step-row {
+      .step-item {
         display: flex;
-        gap: 20px;
         align-items: flex-start;
-        background: rgba(13, 30, 42, 0.7);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        padding: 22px 26px;
-        border-radius: 18px;
-        margin-bottom: 16px;
+        gap: 20px;
+        background: rgba(14, 70, 99, 0.22);
+        border: 1px solid rgba(200, 168, 107, 0.25);
+        border-radius: 16px;
+        padding: 20px 24px;
+        backdrop-filter: blur(12px);
       }
 
-      .step-circle {
-        width: 48px;
-        height: 48px;
-        border-radius: 50%;
-        background: #10B981;
-        color: #071520;
+      .step-num {
         font-family: 'Outfit', sans-serif;
-        font-size: 24px;
+        font-size: 28px;
         font-weight: 900;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-shrink: 0;
-      }
-
-      .slide-bottom {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        padding-top: 24px;
-        font-size: 18px;
-        color: #94A3B8;
-        font-weight: 600;
+        color: #E8D5B5;
+        line-height: 1;
+        border-right: 1px solid rgba(200, 168, 107, 0.3);
+        padding-right: 18px;
       }
     </style>
   </head>
@@ -1622,36 +1440,34 @@ function getCarrosselSlideHtml(slideNum) {
     <div class="slide-canvas">
       <div class="slide-top">
         <img src="${LOGO_BRANCO_FOOTER_SVG}" class="slide-logo" alt="Monte Cristo">
-        <div class="slide-step-badge">${data.step}</div>
+        <div class="slide-step">${data.step}</div>
       </div>
 
-      <div class="slide-main-content">
-        <h2 class="slide-headline">${data.title}</h2>
+      <div class="slide-content">
+        <h2 class="slide-title">${data.title}</h2>
 
         ${data.bullets ? data.bullets.map(b => `
-          <div class="bullet-box">
-            <div class="bullet-box-icon">${b.icon}</div>
-            <div>
-              <h4>${b.title}</h4>
-              <p>${b.desc}</p>
-            </div>
+          <div class="dilemma-card">
+            <div class="dilemma-kicker">${b.kicker}</div>
+            <div class="dilemma-title">${b.title}</div>
+            <div class="dilemma-desc">${b.desc}</div>
           </div>
         `).join('') : ''}
 
         ${data.highlightBox ? `
-          <div class="highlight-card">
-            <span style="color:#34D399; font-weight:800; letter-spacing:2px; font-size:18px;">${data.highlightBox.badge}</span>
-            <h3 style="font-family:'Outfit'; font-size:36px; font-weight:900; color:#FFFFFF; margin:12px 0;">${data.highlightBox.title}</h3>
-            <p style="font-size:20px; color:#E2E8F0; line-height:1.5;">${data.highlightBox.desc}</p>
+          <div style="background:#0E4663; border:1px solid rgba(200, 168, 107, 0.45); border-radius:18px; padding:32px; box-shadow:0 16px 35px rgba(0,0,0,0.4);">
+            <div style="font-size:13px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#E8D5B5; margin-bottom:8px;">${data.highlightBox.badge}</div>
+            <div style="font-family:'Outfit'; font-size:30px; font-weight:900; color:#FFFFFF; margin-bottom:12px;">${data.highlightBox.title}</div>
+            <div style="font-size:18px; color:#CBD5E1; line-height:1.5;">${data.highlightBox.desc}</div>
           </div>
         ` : ''}
 
         ${data.steps ? data.steps.map(s => `
-          <div class="step-row">
-            <div class="step-circle">${s.num}</div>
+          <div class="step-item">
+            <div class="step-num">${s.num}</div>
             <div>
-              <h4 style="font-family:'Outfit'; font-size:22px; font-weight:800; color:#FFF;">${s.title}</h4>
-              <p style="font-size:17px; color:#CBD5E1; margin-top:4px;">${s.desc}</p>
+              <div style="font-family:'Outfit'; font-size:21px; font-weight:800; color:#FFFFFF;">${s.title}</div>
+              <div style="font-size:15px; color:#CBD5E1; margin-top:4px;">${s.desc}</div>
             </div>
           </div>
         `).join('') : ''}
@@ -1659,26 +1475,32 @@ function getCarrosselSlideHtml(slideNum) {
         ${data.gridItems ? `
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
             ${data.gridItems.map(g => `
-              <div style="background:rgba(13,30,42,0.7); border:1px solid rgba(255,255,255,0.12); padding:22px; border-radius:16px;">
-                <h4 style="font-family:'Outfit'; font-size:22px; font-weight:800; color:#38BDF8;">${g.title}</h4>
-                <p style="font-size:16px; color:#94A3B8; margin-top:6px;">${g.desc}</p>
+              <div style="background:rgba(14,70,99,0.22); border:1px solid rgba(200,168,107,0.25); padding:20px; border-radius:14px; backdrop-filter:blur(10px);">
+                <div style="font-size:11px; font-weight:700; letter-spacing:2px; color:#C8A86B; text-transform:uppercase; margin-bottom:4px;">${g.kicker}</div>
+                <div style="font-family:'Outfit'; font-size:20px; font-weight:800; color:#FFFFFF;">${g.title}</div>
+                <div style="font-size:14px; color:#94A3B8; margin-top:6px; line-height:1.4;">${g.desc}</div>
               </div>
             `).join('')}
           </div>
         ` : ''}
 
         ${data.sitePreview ? `
-          <div style="background:rgba(13,30,42,0.8); border:1px solid rgba(56,189,248,0.4); border-radius:20px; padding:32px;">
-            <div style="font-family:'Outfit'; font-size:32px; font-weight:900; color:#38BDF8; margin-bottom:18px;">${data.sitePreview.domain}</div>
-            ${data.sitePreview.bullets.map(b => `<div style="font-size:20px; color:#F1F5F9; margin-bottom:12px;">${b}</div>`).join('')}
+          <div style="background:#0E4663; border:1px solid rgba(200,168,107,0.45); border-radius:18px; padding:32px;">
+            <div style="font-family:'Outfit'; font-size:28px; font-weight:900; color:#E8D5B5; margin-bottom:20px;">${data.sitePreview.domain}</div>
+            ${data.sitePreview.bullets.map(b => `
+              <div style="font-size:17px; color:#F1F5F9; margin-bottom:12px; display:flex; align-items:center; gap:10px;">
+                <span style="display:inline-block; width:6px; height:6px; background:#C8A86B; border-radius:50%;"></span>
+                ${b}
+              </div>
+            `).join('')}
           </div>
         ` : ''}
 
         ${data.ctaBox ? `
-          <div style="background:linear-gradient(135deg, #0E4663 0%, #155E75 100%); border:2px solid #10B981; border-radius:24px; padding:40px; text-align:center;">
-            <h3 style="font-family:'Outfit'; font-size:36px; font-weight:900; color:#FFF;">${data.ctaBox.headline}</h3>
-            <p style="font-size:20px; color:#E2E8F0; margin:14px 0 24px 0;">${data.ctaBox.sub}</p>
-            <div style="background:#10B981; color:#071520; font-family:'Outfit'; font-size:24px; font-weight:900; padding:18px 32px; border-radius:16px; display:inline-block;">
+          <div style="background:#0E4663; border:1px solid rgba(200,168,107,0.45); border-radius:18px; padding:36px; text-align:center;">
+            <h3 style="font-family:'Outfit'; font-size:32px; font-weight:900; color:#FFFFFF;">${data.ctaBox.headline}</h3>
+            <p style="font-size:18px; color:#CBD5E1; margin:12px 0 24px 0;">${data.ctaBox.sub}</p>
+            <div style="background:#FFFFFF; color:#0E4663; font-family:'Outfit'; font-size:20px; font-weight:800; padding:16px 30px; border-radius:12px; display:inline-block;">
               ${data.ctaBox.btn}
             </div>
           </div>
@@ -1686,7 +1508,7 @@ function getCarrosselSlideHtml(slideNum) {
       </div>
 
       <div class="slide-bottom">
-        <span>Monte Cristo Bebidas</span>
+        <span>Monte Cristo Bebidas &bull; Serra Gaúcha</span>
         <span>${data.footer}</span>
       </div>
     </div>
@@ -1699,7 +1521,7 @@ function getCarrosselSlideHtml(slideNum) {
 // =============================================================================
 
 async function run() {
-  console.log('🚀 Iniciando geração de materiais com logos originais e Playwright...');
+  console.log('🚀 Iniciando renderização no Padrão Híbrido Monte Cristo...');
 
   const outputDir = path.resolve(__dirname, '../assets/divulgacao');
   if (!fs.existsSync(outputDir)) {
@@ -1775,28 +1597,23 @@ async function run() {
     type: 'png'
   });
 
-  // Também gerar o SVG puro do destaque
+  // SVG do destaque
   const destaqueSvgContent = `<?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080" width="1080" height="1080">
   <defs>
     <radialGradient id="bgGrad" cx="35%" cy="35%" r="65%">
-      <stop offset="0%" stop-color="#155E75"/>
-      <stop offset="50%" stop-color="#0E4663"/>
-      <stop offset="100%" stop-color="#071927"/>
+      <stop offset="0%" stop-color="#0E2E3E"/>
+      <stop offset="55%" stop-color="#0A1E2B"/>
+      <stop offset="100%" stop-color="#06131D"/>
     </radialGradient>
-    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur stdDeviation="25" result="blur" />
-      <feComposite in="SourceGraphic" in2="blur" operator="over" />
-    </filter>
   </defs>
-  <rect width="1080" height="1080" fill="#07131B"/>
-  <circle cx="540" cy="540" r="420" fill="url(#bgGrad)" stroke="#10B981" stroke-width="14" stroke-opacity="0.8" filter="url(#glow)"/>
+  <rect width="1080" height="1080" fill="#06131D"/>
+  <circle cx="540" cy="540" r="420" fill="url(#bgGrad)" stroke="#C8A86B" stroke-width="4" stroke-opacity="0.6"/>
   <g transform="translate(360, 260) scale(0.32)">
-    <!-- Monograma Monte Cristo Oficial -->
     <path fill="#FFFFFF" d="M205.61 130.2l101 96.83c179.27,-119.32 356.17,-118.65 518.35,4.38l99.14 -98.05c-239.3,-182.94 -478.8,-171.57 -718.48,-3.17z"/>
     <path fill="#FFFFFF" d="M216.47 815.19c176.65,231.34 520.68,246.35 694.59,-2.34l99.54 98.46c-223.21,299.36 -693.21,278.57 -893.59,2.26l99.46 -98.37zm350.69 -211.95l420.4 -410.78c177.63,191.19 167.79,462.19 72.95,646.35l-104.06 -102.91c37.75,-112.58 42.81,-218.59 8.5,-316.68l-399.44 382.1 -399 -383.76c-39.85,98.81 -40.75,205.17 8.89,321.32l-103.65 102.51c-112.64,-230.01 -95.52,-447.14 71.9,-649.35l423.52 411.21zm-495.43 238.15l103.65 -102.51c13.67,31.48 27.03,57.54 41.08,76.31l-99.46 98.37c-16.43,-19.38 -30.63,-41.01 -45.27,-72.17z"/>
   </g>
-  <text x="540" y="730" text-anchor="middle" font-family="'Outfit', sans-serif" font-weight="900" font-size="52" fill="#FFFFFF" letter-spacing="6">NOVO <tspan fill="#34D399">SITE</tspan></text>
+  <text x="540" y="730" text-anchor="middle" font-family="'Outfit', sans-serif" font-weight="900" font-size="50" fill="#FFFFFF" letter-spacing="6">NOVO <tspan fill="#E8D5B5">SITE</tspan></text>
 </svg>`;
   fs.writeFileSync(path.join(outputDir, 'instagram-destaque-novosite.svg'), destaqueSvgContent);
 
@@ -1814,7 +1631,7 @@ async function run() {
   }
 
   await browser.close();
-  console.log('✅ Todas as peças de divulgação foram geradas com sucesso!');
+  console.log('✅ Todas as peças foram renderizadas com sucesso no Padrão Híbrido Monte Cristo!');
 }
 
 run().catch(err => {

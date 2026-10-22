@@ -27,18 +27,24 @@ Todas as peças foram renderizadas em alta definição a partir dos **logos orig
 
 ---
 
-### 🎨 Guia Rápido de Direção Visual da Marca
-- **Cores Principais:** 
-  - Azul Petróleo: `#0E4663` (Autoridade, solidez e elegância)
-  - Turquesa Intenso: `#1B7588` (Modernidade e tecnologia do novo site)
-  - Verde Esmeralda: `#10B981` (Destaque comercial, preços e aprovação)
-  - Dourado / Âmbar Sutil: `#F59E0B` (Refinamento de destilados e licores)
-  - Fundo / Base: Branco `#FFFFFF` ou Dark Blue `#07131B` para peças de alto contraste.
-- **Tipografia:** `Outfit` (Títulos fortes e numerais) e `Plus Jakarta Sans` (Textos de leitura rápida).
-- **Logotipos Originais Utilizados:**
-  - `assets/logo_branco_footer_montecristo.svg` (Logotipo completo em vetor branco com monograma e subtítulo distribuidora)
-  - `assets/logo.png` (PNG de alta resolução 2452x984px com transparência)
-  - `assets/simbolo-monte.svg` (Monograma da marca vetorizado)
+### 🎨 Guia de Direção de Arte e Grids — Padrão Híbrido Monte Cristo
+- **Paleta Cromática Oficial:** 
+  - **Fundo Deep Slate Navy:** `#06131D` com gradiente radial `#0F2D3D` (profundidade de estúdio, sem fundo preto cru nem ciano de IA).
+  - **Azul Petróleo Oficial:** `#0E4663` (cor primária nos cards, blocos e cabeçalhos).
+  - **Dourado Champanhe Sutil:** `#C8A86B` e `#E8D5B5` (filetes 1px, micro-kickers editoriais, selos de tradição "20 Anos de Tradição" e destaques em títulos nobres).
+  - **Branco Puro & Off-White:** `#FFFFFF` e `#F8FAFC` para legibilidade máxima em títulos e contrastes.
+  - **Cinza Suave:** `#CBD5E1` e `#94A3B8` para leitura fluida de parágrafos.
+  - **Verde Esmeralda Sóbrio:** `#10B981` (reservado pontualmente para confirmação fiscal e WhatsApp, sem poluição neon).
+- **Tipografia:** `Outfit` (Pesos 700 a 900 para headlines imponentes e numerais) e `Plus Jakarta Sans` (Pesos 400 a 700 para corpo editorial e micro-labels).
+- **Tratamento de Imagem (Zero Efeito Caixa Branca):**
+  - Todas as garrafas passam por recorte com canal alfa transparente e auto-trim de limites em `assets/produtos/recortados/*.png`.
+  - Sombra de estúdio com oclusão ambiente na base (`radial-gradient` escuro e difuso no piso) e alinhamento equilibrado em 5 colunas com âncora central.
+- **Grids e Safe Zones:**
+  - **Stories (9:16 — 1080x1920):** Margem segura de 290px no topo (área de avatar/perfil do Instagram) e 280px na base (área de envio de mensagens e stickers).
+  - **Feed (4:5 — 1080x1350):** Otimizado para visualização vertical no mobile, mantendo o conteúdo vital centrado para não cortar no grid quadrado do perfil.
+- **Logotipos Oficiais:**
+  - `assets/logo_branco_footer_montecristo.svg` (Logotipo vetorial límpido com monograma e subtítulo distribuidora).
+  - `assets/simbolo-monte.svg` (Monograma da marca vetorizado para selos e capas).
 - **Link Oficial:** `https://montecristo-bebidas.pages.dev/` (ou `https://www.montecristobebidas.com.br/`)
 
 ---
