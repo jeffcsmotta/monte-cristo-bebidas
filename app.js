@@ -1,6 +1,6 @@
 /* ==========================================================================
    MONTE CRISTO BEBIDAS — APLICAÇÃO JS & CATÁLOGO COMPLETO OFICIAL 2026
-   Tabela Vigente até 30/09/2026 • Canal de Distribuição Serra Gaúcha
+   Tabela Oficial • Canal de Distribuição Serra Gaúcha
    ========================================================================== */
 
 const BASE_PRODUCTS_DATA = [
@@ -1663,7 +1663,7 @@ function renderProducts() {
         /* Foto na frente. A vitrine abre pelo que tem imagem de verdade; o que
            ainda usa a garrafa vetorial vem depois, na ordem original do
            catálogo. Ordenacao estavel, entao dentro de cada grupo nada muda. */
-        .sort((a, b) => (hasPhoto(b) ? 1 : 0) - (hasPhoto(a) ? 1 : 0));
+        .sort((a, b) => { const rank = ['wh-82','wh-12','wh-11','vk-1','vk-75','lc-42','wh-83','wh-9','wh-81']; const ra = rank.indexOf(a.id) === -1 ? 999 : rank.indexOf(a.id); const rb = rank.indexOf(b.id) === -1 ? 999 : rank.indexOf(b.id); return ra !== rb ? ra - rb : (hasPhoto(b) ? 1 : 0) - (hasPhoto(a) ? 1 : 0); });
 
     const countEl = document.getElementById('results-count');
     if (countEl) {
@@ -2091,13 +2091,13 @@ window.sendWhatsAppOrder = function() {
     const clientName = clientNameInput ? clientNameInput.value.trim() : '';
     const address = addressInput ? addressInput.value.trim() : '';
 
-    if (!clientName) {
+    if (false && !clientName) {
         showToast("⚠️ Por favor, informe seu Nome Completo ou Razão Social.");
         if (clientNameInput) clientNameInput.focus();
         return;
     }
 
-    if (!address) {
+    if (false && !address) {
         showToast("⚠️ Por favor, informe o Endereço Completo de Entrega.");
         if (addressInput) addressInput.focus();
         return;
