@@ -20,7 +20,8 @@
             --text-dark: #0F172A;
             --text-body: #334155;
             --text-muted: #64748B;
-            --border: #E2E8F0;
+            --border: #CBD5E1;
+            --border-light: #E2E8F0;
             --bg-light: #F8FAFC;
             --green-bg: #ECFDF5;
             --green-text: #065F46;
@@ -41,16 +42,16 @@
 
         body {
             font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #E2E8F0;
+            background: #CBD5E1;
             color: var(--text-dark);
-            line-height: 1.5;
+            line-height: 1.45;
             -webkit-font-smoothing: antialiased;
-            padding: 32px 16px 64px;
+            padding: 28px 16px 60px;
         }
 
         /* Floating Print Action Bar (Hidden on Print) */
         .action-bar {
-            max-width: 1040px;
+            max-width: 980px;
             margin: 0 auto 20px;
             background: var(--onira-navy);
             color: #FFFFFF;
@@ -67,9 +68,15 @@
         .action-bar-left {
             display: flex;
             align-items: center;
-            gap: 12px;
-            font-size: 0.9rem;
+            gap: 14px;
+            font-size: 0.88rem;
             font-weight: 600;
+        }
+
+        .action-bar-logo {
+            height: 26px;
+            width: auto;
+            display: block;
         }
 
         .action-bar-left span.badge-live {
@@ -79,7 +86,7 @@
             padding: 4px 10px;
             border-radius: 6px;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
+            font-size: 0.72rem;
             font-weight: 700;
         }
 
@@ -90,7 +97,7 @@
             padding: 10px 20px;
             border-radius: 8px;
             font-family: 'Outfit', sans-serif;
-            font-size: 0.92rem;
+            font-size: 0.9rem;
             font-weight: 700;
             cursor: pointer;
             display: inline-flex;
@@ -105,146 +112,191 @@
             transform: translateY(-1px);
         }
 
-        /* Document Sheet */
-        .report-sheet {
-            max-width: 1040px;
+        /* Document Pages Wrapper */
+        .report-wrapper {
+            max-width: 980px;
             margin: 0 auto;
-            background: #FFFFFF;
-            border-radius: 14px;
-            overflow: hidden;
-            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12);
-            border: 1px solid #CBD5E1;
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
         }
 
-        /* Timbre Oficial Onira Labs (Header) */
+        .report-page {
+            background: #FFFFFF;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.14);
+            border: 1px solid #94A3B8;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        /* Timbre Oficial Onira Labs (Header Página 1) */
         .letterhead {
             background: linear-gradient(135deg, var(--onira-navy) 0%, var(--onira-dark) 100%);
             color: #FFFFFF;
-            padding: 36px 44px 32px;
+            padding: 22px 32px 18px;
             border-bottom: 4px solid var(--onira-blue);
             position: relative;
         }
 
         .letterhead-top {
             display: flex;
-            align-items: flex-start;
+            align-items: center;
             justify-content: space-between;
-            gap: 24px;
-            margin-bottom: 24px;
-            padding-bottom: 20px;
+            gap: 20px;
+            margin-bottom: 14px;
+            padding-bottom: 12px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.12);
         }
 
         .brand-lockup {
             display: flex;
             align-items: center;
-            gap: 18px;
+            gap: 16px;
         }
 
-        .onira-badge-box {
-            background: rgba(10, 102, 194, 0.22);
-            border: 1.5px solid var(--onira-cyan);
-            border-radius: 10px;
-            padding: 10px 16px;
+        .onira-logo-box {
+            background: rgba(10, 102, 194, 0.18);
+            border: 1px solid rgba(56, 189, 248, 0.38);
+            border-radius: 8px;
+            padding: 7px 14px;
             display: flex;
-            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
-        .onira-logo-text {
-            font-family: 'Outfit', sans-serif;
-            font-size: 1.35rem;
-            font-weight: 900;
-            letter-spacing: -0.5px;
-            color: #FFFFFF;
-            line-height: 1;
+        .onira-header-logo {
+            height: 32px;
+            width: auto;
+            display: block;
         }
 
-        .onira-logo-text span {
-            color: var(--onira-cyan);
-        }
-
-        .onira-logo-sub {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.65rem;
-            color: #94A3B8;
-            letter-spacing: 0.08em;
-            margin-top: 4px;
-            text-transform: uppercase;
+        .brand-divider {
+            width: 1px;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.22);
         }
 
         .client-lockup {
             display: flex;
             align-items: center;
-            gap: 14px;
         }
 
         .client-logo {
-            height: 44px;
+            height: 36px;
             width: auto;
-            background: rgba(255,255,255,0.06);
-            padding: 6px 12px;
+            background: rgba(255, 255, 255, 0.06);
+            padding: 5px 12px;
             border-radius: 8px;
-            border: 1px solid rgba(255,255,255,0.12);
+            border: 1px solid rgba(255, 255, 255, 0.14);
         }
 
         .doc-meta {
             text-align: right;
-            font-size: 0.8rem;
+            font-size: 0.74rem;
             color: #CBD5E1;
+            line-height: 1.38;
         }
 
         .doc-meta .doc-id {
             font-family: 'JetBrains Mono', monospace;
             color: var(--onira-cyan);
             font-weight: 700;
-            font-size: 0.78rem;
+            font-size: 0.72rem;
             display: block;
-            margin-bottom: 3px;
+            margin-bottom: 2px;
         }
 
         .letterhead-title {
             font-family: 'Outfit', sans-serif;
-            font-size: 1.85rem;
+            font-size: 1.48rem;
             font-weight: 900;
             color: #FFFFFF;
-            letter-spacing: -0.5px;
-            line-height: 1.2;
-            margin-bottom: 8px;
+            letter-spacing: -0.4px;
+            line-height: 1.15;
+            margin-bottom: 5px;
         }
 
         .letterhead-subtitle {
-            font-size: 0.96rem;
-            color: #94A3B8;
-            max-width: 820px;
+            font-size: 0.82rem;
+            color: #CBD5E1;
+            max-width: 860px;
+            line-height: 1.4;
         }
 
         .meta-pills {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-top: 18px;
+            gap: 8px;
+            margin-top: 11px;
         }
 
         .meta-pill {
-            background: rgba(255, 255, 255, 0.07);
-            border: 1px solid rgba(255, 255, 255, 0.14);
-            color: #E2E8F0;
-            padding: 5px 12px;
-            border-radius: 6px;
-            font-size: 0.78rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            color: #F1F5F9;
+            padding: 3px 10px;
+            border-radius: 5px;
+            font-size: 0.7rem;
             font-weight: 600;
             display: inline-flex;
             align-items: center;
-            gap: 6px;
+            gap: 5px;
+        }
+
+        /* Compact Header for Page 2 */
+        .letterhead-compact {
+            background: linear-gradient(135deg, var(--onira-navy) 0%, var(--onira-dark) 100%);
+            color: #FFFFFF;
+            padding: 13px 32px;
+            border-bottom: 3px solid var(--onira-blue);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .letterhead-compact-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .letterhead-compact-left img.onira-compact-logo {
+            height: 24px;
+            width: auto;
+            display: block;
+        }
+
+        .letterhead-compact-left img.mc-compact-logo {
+            height: 24px;
+            width: auto;
+            display: block;
+            opacity: 0.95;
+        }
+
+        .letterhead-compact-right {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--onira-cyan);
+            font-weight: 700;
+            text-align: right;
         }
 
         /* Content Body */
         .report-body {
-            padding: 36px 44px 44px;
+            padding: 18px 32px 16px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 14px;
         }
 
         .section-block {
-            margin-bottom: 34px;
+            margin-bottom: 0;
         }
 
         .section-header {
@@ -252,13 +304,13 @@
             align-items: center;
             justify-content: space-between;
             border-bottom: 2px solid var(--onira-navy);
-            padding-bottom: 8px;
-            margin-bottom: 16px;
+            padding-bottom: 5px;
+            margin-bottom: 9px;
         }
 
         .section-title {
             font-family: 'Outfit', sans-serif;
-            font-size: 1.25rem;
+            font-size: 0.98rem;
             font-weight: 800;
             color: var(--onira-navy);
             display: flex;
@@ -270,12 +322,12 @@
 
         .section-tag {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.72rem;
+            font-size: 0.64rem;
             font-weight: 700;
             color: var(--onira-blue);
             background: #EFF6FF;
             border: 1px solid #BFDBFE;
-            padding: 3px 8px;
+            padding: 2px 7px;
             border-radius: 4px;
         }
 
@@ -283,14 +335,13 @@
         .kpi-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-            margin-bottom: 24px;
+            gap: 12px;
         }
 
         .kpi-card {
-            padding: 16px 18px;
-            border-radius: 10px;
-            border: 1px solid var(--border);
+            padding: 11px 13px;
+            border-radius: 8px;
+            border: 1px solid var(--border-light);
             background: var(--bg-light);
         }
 
@@ -310,11 +361,11 @@
         }
 
         .kpi-label {
-            font-size: 0.74rem;
+            font-size: 0.66rem;
             font-weight: 800;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 4px;
+            letter-spacing: 0.3px;
+            margin-bottom: 3px;
             display: block;
         }
 
@@ -324,23 +375,24 @@
 
         .kpi-value {
             font-family: 'Outfit', sans-serif;
-            font-size: 1.12rem;
+            font-size: 0.95rem;
             font-weight: 800;
             color: var(--text-dark);
-            margin-bottom: 4px;
+            margin-bottom: 3px;
+            line-height: 1.2;
         }
 
         .kpi-desc {
-            font-size: 0.8rem;
+            font-size: 0.71rem;
             color: var(--text-body);
-            line-height: 1.4;
+            line-height: 1.34;
         }
 
         /* Comparison Tables */
         .price-table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 0.84rem;
+            font-size: 0.74rem;
             border: 1px solid var(--border);
             border-radius: 8px;
             overflow: hidden;
@@ -349,18 +401,18 @@
         .price-table th {
             background: var(--onira-navy);
             color: #FFFFFF;
-            padding: 11px 12px;
+            padding: 7px 9px;
             text-align: left;
             font-weight: 700;
-            font-size: 0.75rem;
+            font-size: 0.65rem;
             text-transform: uppercase;
-            letter-spacing: 0.4px;
+            letter-spacing: 0.35px;
         }
 
         .price-table td {
-            padding: 11px 12px;
-            border-bottom: 1px solid var(--border);
-            vertical-align: top;
+            padding: 6.5px 9px;
+            border-bottom: 1px solid var(--border-light);
+            vertical-align: middle;
             color: var(--text-body);
         }
 
@@ -371,33 +423,42 @@
         .prod-name {
             font-weight: 800;
             color: var(--text-dark);
-            font-size: 0.88rem;
+            font-size: 0.77rem;
             display: block;
+            line-height: 1.2;
         }
 
         .prod-sku {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
+            font-size: 0.62rem;
             color: var(--text-muted);
         }
 
         .mc-price-main {
             font-family: 'Outfit', sans-serif;
             font-weight: 800;
-            font-size: 0.96rem;
+            font-size: 0.85rem;
             color: var(--mc-primary);
             display: block;
+            line-height: 1.15;
         }
 
         .mc-price-box {
-            font-size: 0.74rem;
+            font-size: 0.65rem;
             color: var(--text-muted);
             font-weight: 600;
+            line-height: 1.2;
+            display: block;
+            margin-top: 2px;
         }
 
         .comp-item {
-            margin-bottom: 4px;
-            line-height: 1.35;
+            margin-bottom: 2px;
+            line-height: 1.25;
+        }
+
+        .comp-item:last-child {
+            margin-bottom: 0;
         }
 
         .comp-item strong {
@@ -405,22 +466,22 @@
         }
 
         .comp-source {
-            font-size: 0.73rem;
+            font-size: 0.63rem;
             color: var(--text-muted);
             background: #E2E8F0;
-            padding: 1px 5px;
+            padding: 1px 4px;
             border-radius: 3px;
             font-weight: 600;
         }
 
         .status-pill {
             display: inline-block;
-            padding: 3px 8px;
-            border-radius: 5px;
-            font-size: 0.72rem;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.63rem;
             font-weight: 800;
             text-transform: uppercase;
-            margin-bottom: 4px;
+            margin-bottom: 2px;
         }
 
         .status-pill.red {
@@ -445,119 +506,129 @@
         .evidence-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
+            gap: 8px;
         }
 
         .evidence-card {
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            padding: 12px 14px;
-            background: #FFFFFF;
+            border: 1px solid var(--border-light);
+            border-radius: 7px;
+            padding: 8px 11px;
+            background: #F8FAFC;
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 2px;
         }
 
         .evidence-head {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 8px;
+            gap: 6px;
         }
 
         .evidence-store {
             font-weight: 800;
-            font-size: 0.84rem;
+            font-size: 0.73rem;
             color: var(--onira-navy);
         }
 
         .evidence-date {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.68rem;
+            font-size: 0.6rem;
             color: var(--text-muted);
-            background: var(--bg-light);
-            padding: 2px 6px;
+            background: #FFFFFF;
+            border: 1px solid var(--border-light);
+            padding: 1px 5px;
             border-radius: 4px;
         }
 
         .evidence-items {
-            font-size: 0.78rem;
+            font-size: 0.68rem;
             color: var(--text-body);
+            line-height: 1.3;
         }
 
         .evidence-url {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.68rem;
+            font-size: 0.6rem;
             color: var(--onira-blue);
             word-break: break-all;
             text-decoration: none;
         }
 
-        /* Action Plan List */
+        /* Action Plan List (3 Columns for the 3 Executed Actions) */
         .action-list {
-            display: flex;
-            flex-direction: column;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 10px;
         }
 
         .action-item {
             display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            padding: 12px 16px;
+            flex-direction: column;
+            gap: 5px;
+            padding: 11px 13px;
             border-radius: 8px;
-            background: var(--bg-light);
-            border-left: 4px solid var(--onira-blue);
+            background: #F0FDF4;
+            border: 1px solid #BBF7D0;
+            border-top: 3px solid #10B981;
         }
 
-        .action-item.done {
-            border-left-color: #10B981;
-            background: #F0FDF4;
+        .action-item-top {
+            display: flex;
+            align-items: center;
+            gap: 7px;
         }
 
         .action-num {
-            background: var(--onira-navy);
+            background: #10B981;
             color: #FFFFFF;
             font-family: 'Outfit', sans-serif;
             font-weight: 800;
-            font-size: 0.8rem;
-            width: 24px;
-            height: 24px;
+            font-size: 0.7rem;
+            width: 20px;
+            height: 20px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
-            margin-top: 1px;
         }
 
-        .action-item.done .action-num {
-            background: #10B981;
+        .action-tag-done {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.62rem;
+            font-weight: 700;
+            color: #065F46;
+            background: #D1FAE5;
+            padding: 2px 6px;
+            border-radius: 4px;
         }
 
-        .action-text h4 {
-            font-size: 0.88rem;
+        .action-item h4 {
+            font-size: 0.76rem;
             font-weight: 800;
             color: var(--text-dark);
-            margin-bottom: 2px;
+            line-height: 1.25;
         }
 
-        .action-text p {
-            font-size: 0.8rem;
+        .action-item p {
+            font-size: 0.69rem;
             color: var(--text-body);
+            line-height: 1.34;
         }
 
         /* Official Signature Card (Onira Labs Locked Standard) */
         .dev-profile-card {
             background: linear-gradient(145deg, #09192E 0%, #061224 100%);
-            border: 1px solid rgba(56, 116, 203, 0.32);
-            border-radius: 12px;
-            padding: 24px 28px;
+            border: 1px solid rgba(56, 116, 203, 0.38);
+            border-radius: 10px;
+            padding: 16px 22px;
             display: flex;
             flex-direction: column;
-            gap: 14px;
+            gap: 10px;
             color: #FFFFFF;
-            margin-top: 28px;
+            box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
             page-break-inside: avoid;
         }
 
@@ -565,40 +636,60 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 16px;
-            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .dev-avatar-group {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .dev-avatar-img {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #0A66C2;
+            box-shadow: 0 0 14px rgba(10, 102, 194, 0.55);
+            flex-shrink: 0;
         }
 
         .dev-badge-tag {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.65rem;
+            font-size: 0.6rem;
             font-weight: 700;
             color: #38BDF8;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.08em;
             display: block;
             margin-bottom: 2px;
+            text-transform: uppercase;
         }
 
         .dev-author-name {
             font-family: 'Outfit', sans-serif;
-            font-size: 1.2rem;
+            font-size: 1.16rem;
             font-weight: 800;
             color: #FFFFFF;
+            line-height: 1.15;
         }
 
         .dev-author-role {
-            font-size: 0.8rem;
+            font-size: 0.74rem;
             color: #94A3B8;
+            margin-top: 2px;
         }
 
-        .dev-author-role strong { color: #F8FAFC; }
+        .dev-author-role strong {
+            color: #F8FAFC;
+        }
 
         .dev-quote {
-            font-size: 0.84rem;
-            line-height: 1.55;
+            font-size: 0.74rem;
+            line-height: 1.44;
             color: #E2E8F0;
             border-left: 3px solid #0A66C2;
-            padding-left: 14px;
+            padding-left: 12px;
             font-style: italic;
         }
 
@@ -606,48 +697,100 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding-top: 10px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            font-size: 0.76rem;
+            padding-top: 8px;
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+            font-size: 0.7rem;
             color: #94A3B8;
         }
 
-        /* Print Media Rules (A4 Perfect Layout) */
+        .dev-location {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .dev-agency-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .dev-agency-brand span {
+            font-size: 0.68rem;
+            color: #94A3B8;
+        }
+
+        .dev-agency-logo {
+            height: 22px;
+            width: auto;
+            display: block;
+        }
+
+        /* Page Footer Bar */
+        .page-footer-bar {
+            background: #F1F5F9;
+            border-top: 1px solid var(--border);
+            padding: 8px 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.68rem;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .page-footer-bar .page-num {
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--onira-navy);
+            font-weight: 700;
+        }
+
+        /* Print Media Rules (Exact 2-Page A4 Layout Without Overflow) */
         @media print {
             @page {
                 size: A4 portrait;
-                margin: 10mm;
+                margin: 6mm;
             }
             body {
                 background: #FFFFFF !important;
                 padding: 0 !important;
-                font-size: 9.5pt;
+                zoom: 0.78;
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
             }
             .action-bar {
                 display: none !important;
             }
-            .report-sheet {
-                box-shadow: none !important;
-                border: none !important;
+            .report-wrapper {
+                gap: 0 !important;
                 max-width: 100% !important;
-                border-radius: 0 !important;
+            }
+            .report-page {
+                box-shadow: none !important;
+                border: 1px solid #CBD5E1 !important;
+                border-radius: 8px !important;
+                height: 362mm;
+                page-break-after: always;
+                break-after: page;
+            }
+            .report-page:last-child {
+                page-break-after: auto;
+                break-after: auto;
             }
             .letterhead {
-                padding: 22px 28px !important;
-                border-radius: 8px 8px 0 0 !important;
+                padding: 14px 24px 12px !important;
+            }
+            .letterhead-compact {
+                padding: 10px 24px !important;
             }
             .report-body {
-                padding: 20px 10px !important;
+                padding: 12px 24px 10px !important;
+                gap: 8px !important;
             }
-            .section-block {
-                margin-bottom: 20px !important;
+            .page-footer-bar {
+                padding: 6px 24px !important;
             }
-            .page-break {
-                page-break-before: always;
-            }
-            tr, .evidence-card, .action-item, .kpi-card {
+            tr, .evidence-card, .action-item, .kpi-card, .dev-profile-card {
                 page-break-inside: avoid;
             }
         }
@@ -655,516 +798,548 @@
 </head>
 <body>
 
-    <!-- Barra de Controle Rápida (Oculta automaticamente ao gerar o PDF) -->
+    <!-- Barra de Controle Rápida (Oculta automaticamente no PDF) -->
     <div class="action-bar">
         <div class="action-bar-left">
-            <span class="badge-live">ONIRA BI • PDF READY</span>
-            <span>Relatório Oficial timbrado pronto para exportação A4.</span>
+            <img src="assets/oniralabs_branco_tag.svg" alt="Onira Labs" class="action-bar-logo">
+            <span class="badge-live">ONIRA BI • A4 PDF</span>
+            <span>Relatório Oficial timbrado (2 páginas A4 balanceadas).</span>
         </div>
-        <div style="display:flex; gap:10px;">
+        <div style="display:flex; gap:10px; align-items:center;">
             <a href="index.html" style="color:#CBD5E1; text-decoration:none; font-size:0.85rem; font-weight:600; display:inline-flex; align-items:center; gap:6px; padding:8px 12px;">
                 ← Voltar ao Site
             </a>
             <button type="button" class="btn-print" onclick="window.print()">
                 <i data-lucide="printer" style="width:18px; height:18px;"></i>
-                <span>Baixar / Imprimir Relatório em PDF</span>
+                <span>Baixar / Imprimir PDF</span>
             </button>
         </div>
     </div>
 
-    <!-- Folha Oficial Timbrada -->
-    <main class="report-sheet">
+    <div class="report-wrapper">
 
-        <!-- Timbre Onira Labs + Monte Cristo -->
-        <header class="letterhead">
-            <div class="letterhead-top">
-                <div class="brand-lockup">
-                    <div class="onira-badge-box">
-                        <div class="onira-logo-text">ONIRA<span>.LABS</span></div>
-                        <div class="onira-logo-sub">A.I. Business Intelligence</div>
+        <!-- ==========================================================================
+             PÁGINA 1 DE 2: TIMBRE + SUMÁRIO EXECUTIVO + GIRO ALTO + EVIDÊNCIAS
+             ========================================================================== -->
+        <section class="report-page">
+            <header class="letterhead">
+                <div class="letterhead-top">
+                    <div class="brand-lockup">
+                        <div class="onira-logo-box">
+                            <img src="assets/oniralabs_branco_tag.svg" alt="Onira Labs" class="onira-header-logo">
+                        </div>
+                        <div class="brand-divider"></div>
+                        <div class="client-lockup">
+                            <img src="assets/logo_branco_footer_montecristo.svg" alt="Monte Cristo Bebidas" class="client-logo">
+                        </div>
                     </div>
-                    <div class="client-lockup">
-                        <img src="assets/logo_branco_footer_montecristo.svg" alt="Monte Cristo Bebidas" class="client-logo" onerror="this.style.display='none'">
+                    <div class="doc-meta">
+                        <span class="doc-id">DOC REF: ONR-MC-2026-1029</span>
+                        <div><strong>Data da Auditoria:</strong> 29 de Outubro de 2026</div>
+                        <div><strong>Praça Auditada:</strong> Caxias do Sul / Serra Gaúcha &amp; Nacional</div>
                     </div>
                 </div>
-                <div class="doc-meta">
-                    <span class="doc-id">DOC REF: ONR-MC-2026-1029</span>
-                    <div><strong>Data da Coleta:</strong> 29 de Outubro de 2026</div>
-                    <div><strong>Praça Auditada:</strong> Caxias do Sul / Serra Gaúcha &amp; Nacional</div>
+
+                <h1 class="letterhead-title">Auditoria de Preços Reais &amp; Diagnóstico de Conversão</h1>
+                <p class="letterhead-subtitle">
+                    Estudo comparativo de competitividade comercial dos rótulos de Giro Alto (Curva A) da <strong>Monte Cristo Distribuidora de Bebidas</strong> frente aos atacarejos e redes da Serra Gaúcha e grandes portais de e-commerce nacional.
+                </p>
+
+                <div class="meta-pills">
+                    <span class="meta-pill">📍 Base: Caxias do Sul e Região - RS</span>
+                    <span class="meta-pill">🛒 Redes Locais: Stok Center, Zaffari, Andreazza, Boccati</span>
+                    <span class="meta-pill">🌐 Benchmarks Online: Atacadão, Tenda, TheBar (Diageo), Mercado Livre Full</span>
+                </div>
+            </header>
+
+            <div class="report-body">
+                <!-- 1. Sumário Executivo -->
+                <div class="section-block">
+                    <div class="section-header">
+                        <h2 class="section-title">1. Diagnóstico Executivo: Por que os Orçamentos Travaram?</h2>
+                        <span class="section-tag">AUDITORIA DE FUNIL &amp; PREÇO</span>
+                    </div>
+
+                    <div class="kpi-grid">
+                        <div class="kpi-card critical">
+                            <span class="kpi-label">🔴 1. Rótulos "Isca" Acima do Varejo</span>
+                            <div class="kpi-value">Jägermeister (+28%) &amp; Baly (+35%)</div>
+                            <p class="kpi-desc">
+                                No Stok Center em Caxias do Sul, o Jägermeister 700ml é vendido no varejo a <strong>R$ 124,99</strong> (contra <strong>R$ 159,90</strong> na Monte Cristo). Já o fardo de Baly 2L (6un) sai a <strong>R$ 69,62</strong> na Monte Cristo contra <strong>R$ 45 a R$ 58</strong> nos atacados.
+                            </p>
+                        </div>
+
+                        <div class="kpi-card warn">
+                            <span class="kpi-label">🟡 2. Desconto Curto na Caixa Fechada</span>
+                            <div class="kpi-value">Apenas -2,5% no Atacado</div>
+                            <p class="kpi-desc">
+                                A diferença entre comprar 1 garrafa avulsa e 1 caixa fechada (12un) na tabela é de apenas ~2,5% (ex: Smirnoff de R$ 40,00 cai para R$ 39,00/un na caixa, enquanto atacados praticam <strong>R$ 34,90 a R$ 37,90/un</strong>).
+                            </p>
+                        </div>
+
+                        <div class="kpi-card win">
+                            <span class="kpi-label">🟢 3. Campeões Escondidos na Vitrine</span>
+                            <div class="kpi-value">Red Label &amp; Absolut 1L a R$ 99,90</div>
+                            <p class="kpi-desc">
+                                A Monte Cristo tem preço imbatível na Serra em <strong>Red Label 1L (R$ 99,90 vs. R$ 129,90 no Andreazza)</strong> e <strong>Absolut 1L (R$ 99,90 vs. R$ 125,99 na 750ml no Zaffari)</strong>, mas ficavam escondidos no fim da página.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Tabela Giro Alto (6 Produtos Prioritários) -->
+                <div class="section-block">
+                    <div class="section-header">
+                        <h2 class="section-title">2. Matriz Comparativa — Rótulos de Giro Alto (Curva A Principal)</h2>
+                        <span class="section-tag">VALORES REAIS AUDITADOS EM 29/10/2026</span>
+                    </div>
+
+                    <table class="price-table">
+                        <thead>
+                            <tr>
+                                <th style="width:23%;">Rótulo Auditado</th>
+                                <th style="width:18%;">Monte Cristo (Atual)</th>
+                                <th style="width:25%;">Varejo &amp; Atacarejo Serra Gaúcha</th>
+                                <th style="width:22%;">Atacado &amp; E-commerce Online</th>
+                                <th style="width:12%;">Diagnóstico</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span class="prod-name">Whisky Jack Daniel's Old Nº 7 (1L)</span>
+                                    <span class="prod-sku">SKU: wh-82 • + Honey / Apple / Fire</span>
+                                </td>
+                                <td>
+                                    <span class="mc-price-main">R$ 155,00 /un</span>
+                                    <span class="mc-price-box">Caixa (12un): R$ 1.813,50 (R$ 151,12/un)</span>
+                                </td>
+                                <td>
+                                    <div class="comp-item"><strong>R$ 176,99</strong> (1L) <span class="comp-source">Comercial Zaffari</span></div>
+                                    <div class="comp-item"><strong>R$ 134,90</strong> (700ml) <span class="comp-source">Super Andreazza</span></div>
+                                </td>
+                                <td>
+                                    <div class="comp-item"><strong>R$ 145,00 a R$ 155,00</strong> (1L) <span class="comp-source">Tenda / ML Full</span></div>
+                                    <div class="comp-item"><strong>R$ 130,00 a R$ 165,00</strong> <span class="comp-source">Honey/Apple Online</span></div>
+                                </td>
+                                <td>
+                                    <span class="status-pill green">Competitivo</span>
+                                    <div style="font-size:0.62rem; color:var(--text-muted);">Ganha no varejo local</div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <span class="prod-name">Licor Jägermeister (700ml)</span>
+                                    <span class="prod-sku">SKU: lc-42 • Caixa c/ 6 un</span>
+                                </td>
+                                <td>
+                                    <span class="mc-price-main" style="color:var(--red-text);">R$ 159,90 /un</span>
+                                    <span class="mc-price-box">Caixa (6un): R$ 935,42 (R$ 155,90/un)</span>
+                                </td>
+                                <td>
+                                    <div class="comp-item"><strong>R$ 124,99</strong> (700ml) <span class="comp-source">Stok Center Online</span></div>
+                                    <div class="comp-item"><strong>R$ 129,90</strong> (700ml) <span class="comp-source">Rede Angeloni Sul</span></div>
+                                </td>
+                                <td>
+                                    <div class="comp-item"><strong>R$ 119,90</strong> (700ml) <span class="comp-source">Atacadão</span></div>
+                                    <div class="comp-item"><strong>R$ 129,90 a R$ 141,00</strong> <span class="comp-source">Espaço Prime / Carrefour</span></div>
+                                </td>
+                                <td>
+                                    <span class="status-pill red">Crítico +28%</span>
+                                    <div style="font-size:0.62rem; color:var(--red-text); font-weight:700;">R$ 35 acima do Stok</div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <span class="prod-name">Vodka Smirnoff Red (998ml)</span>
+                                    <span class="prod-sku">SKU: vk-75 • Caixa c/ 12 un</span>
+                                </td>
+                                <td>
+                                    <span class="mc-price-main">R$ 40,00 /un</span>
+                                    <span class="mc-price-box">Caixa (12un): R$ 468,00 (R$ 39,00/un)</span>
+                                </td>
+                                <td>
+                                    <div class="comp-item"><strong>R$ 45,49</strong> (998ml) <span class="comp-source">Stok Center Online</span></div>
+                                    <div class="comp-item"><strong>R$ 42,90</strong> (998ml) <span class="comp-source">Varejo Supermercados</span></div>
+                                </td>
+                                <td>
+                                    <div class="comp-item"><strong>R$ 34,90 a R$ 37,90</strong> <span class="comp-source">Atacadão / Super Adega</span></div>
+                                    <div class="comp-item"><em>(A partir de 3 un ou cx fechada)</em></div>
+                                </td>
+                                <td>
+                                    <span class="status-pill amber">Atenção Cx</span>
+                                    <div style="font-size:0.62rem; color:var(--text-muted);">Boa avulsa, curta na cx</div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <span class="prod-name">Vodka Absolut Original (1L)</span>
+                                    <span class="prod-sku">SKU: vk-1 • Caixa c/ 12 un</span>
+                                </td>
+                                <td>
+                                    <span class="mc-price-main" style="color:var(--green-text);">R$ 99,90 /un</span>
+                                    <span class="mc-price-box">Caixa (12un): R$ 1.168,83 (R$ 97,40/un)</span>
+                                </td>
+                                <td>
+                                    <div class="comp-item"><strong>R$ 124,99</strong> <em>(750ml!)</em> <span class="comp-source">Stok Center</span></div>
+                                    <div class="comp-item"><strong>R$ 125,99</strong> <em>(750ml!)</em> <span class="comp-source">Comercial Zaffari</span></div>
+                                </td>
+                                <td>
+                                    <div class="comp-item"><strong>R$ 94,90 a R$ 99,90</strong> (1L) <span class="comp-source">Dose Online / Adega Brasil</span></div>
+                                    <div class="comp-item"><strong>R$ 89,90</strong> (Promo Pix) <span class="comp-source">Oásis Bebidas</span></div>
+                                </td>
+                                <td>
+                                    <span class="status-pill green">Líder Serra</span>
+                                    <div style="font-size:0.62rem; color:var(--green-text); font-weight:700;">1L + barato que 750ml</div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <span class="prod-name">Johnnie Walker Red Label (1L)</span>
+                                    <span class="prod-sku">SKU: wh-12 • Caixa c/ 12 un</span>
+                                </td>
+                                <td>
+                                    <span class="mc-price-main" style="color:var(--green-text);">R$ 99,90 /un</span>
+                                    <span class="mc-price-box">Caixa (12un): R$ 1.168,83 (R$ 97,40/un)</span>
+                                </td>
+                                <td>
+                                    <div class="comp-item"><strong>R$ 129,90</strong> (1L) <span class="comp-source">Super Andreazza</span> | <strong>R$ 133,99</strong> <span class="comp-source">Zaffari</span></div>
+                                    <div class="comp-item"><strong>R$ 93,49</strong> <em>(750ml)</em> <span class="comp-source">Stok Center</span></div>
+                                </td>
+                                <td>
+                                    <div class="comp-item"><strong>R$ 89,90 a R$ 99,90</strong> (1L) <span class="comp-source">Carrefour / GW Imports POA</span></div>
+                                </td>
+                                <td>
+                                    <span class="status-pill green">Líder Serra</span>
+                                    <div style="font-size:0.62rem; color:var(--green-text); font-weight:700;">R$ 30 abaixo dos mercados</div>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <span class="prod-name">Johnnie Walker Black Label (1L)</span>
+                                    <span class="prod-sku">SKU: wh-11 • Caixa c/ 12 un</span>
+                                </td>
+                                <td>
+                                    <span class="mc-price-main">R$ 179,90 /un</span>
+                                    <span class="mc-price-box">Caixa (12un): R$ 2.104,83 (R$ 175,40/un)</span>
+                                </td>
+                                <td>
+                                    <div class="comp-item"><strong>R$ 217,49</strong> (1L) <span class="comp-source">Stok Center Online</span></div>
+                                    <div class="comp-item"><strong>R$ 193,90</strong> (1L) <span class="comp-source">TheBar (Oficial Diageo)</span></div>
+                                </td>
+                                <td>
+                                    <div class="comp-item"><strong>R$ 139,90 a R$ 169,00</strong> (1L) <span class="comp-source">ML Full / Bebida In Box</span></div>
+                                </td>
+                                <td>
+                                    <span class="status-pill amber">Alerta Eventos</span>
+                                    <div style="font-size:0.62rem; color:var(--text-muted);">Ganha no físico, perde web</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- 3. Evidências e Fontes Verificáveis -->
+                <div class="section-block">
+                    <div class="section-header">
+                        <h2 class="section-title">3. Fontes e Evidências Comerciais Auditadas</h2>
+                        <span class="section-tag">RASTREABILIDADE DE PREÇOS</span>
+                    </div>
+
+                    <div class="evidence-grid">
+                        <div class="evidence-card">
+                            <div class="evidence-head">
+                                <span class="evidence-store">1. Stok Center (Stok Online — Caxias do Sul / RS)</span>
+                                <span class="evidence-date">Coleta: 29/10/2026</span>
+                            </div>
+                            <p class="evidence-items">
+                                • Jägermeister 700ml: <strong>R$ 124,99</strong> | Ballantine's 1L: <strong>R$ 91,49</strong> | Passport 1L: <strong>R$ 56,99</strong> | Smirnoff 998ml: <strong>R$ 45,49</strong> | Red Label 750ml: <strong>R$ 93,49</strong> | Black Label 1L: <strong>R$ 217,49</strong>.
+                            </p>
+                            <a href="https://www.stokonline.com.br" target="_blank" class="evidence-url">Fonte: https://www.stokonline.com.br (Catálogo Regional RS)</a>
+                        </div>
+
+                        <div class="evidence-card">
+                            <div class="evidence-head">
+                                <span class="evidence-store">2. Supermercados Andreazza &amp; Zaffari (Serra / RS)</span>
+                                <span class="evidence-date">Coleta: 29/10/2026</span>
+                            </div>
+                            <p class="evidence-items">
+                                • Andreazza: Red Label 1L a <strong>R$ 129,90</strong> | Jack Daniel's 700ml a <strong>R$ 134,90</strong>.<br>
+                                • Comercial Zaffari: Jack Daniel's 1L a <strong>R$ 176,99</strong> | Red Label 1L a <strong>R$ 133,99</strong> | Absolut 750ml a <strong>R$ 125,99</strong>.
+                            </p>
+                            <a href="https://www.superandreazza.com.br" target="_blank" class="evidence-url">Fontes: superandreazza.com.br | comercialzaffarionline.com.br</a>
+                        </div>
+
+                        <div class="evidence-card">
+                            <div class="evidence-head">
+                                <span class="evidence-store">3. Boccati Vinhos &amp; Destilados (Caxias do Sul / RS)</span>
+                                <span class="evidence-date">Coleta: 29/10/2026</span>
+                            </div>
+                            <p class="evidence-items">
+                                • Gin Gordon's 750ml: <strong>R$ 119,00</strong> (R$ 116,62 Pix) | Gin Beefeater 750ml: <strong>R$ 179,00</strong> (R$ 175,42 Pix) | Gin Lacombe 750ml: <strong>R$ 148,00</strong>.
+                            </p>
+                            <a href="https://www.boccati.com.br" target="_blank" class="evidence-url">Fonte: https://www.boccati.com.br (Loja Online Caxias do Sul)</a>
+                        </div>
+
+                        <div class="evidence-card">
+                            <div class="evidence-head">
+                                <span class="evidence-store">4. Atacadistas Nacionais &amp; Marketplaces (Curva A)</span>
+                                <span class="evidence-date">Coleta: 29/10/2026</span>
+                            </div>
+                            <p class="evidence-items">
+                                • Atacadão: Jägermeister 700ml a <strong>R$ 119,90</strong> | Smirnoff 998ml a <strong>R$ 34,90–37,90</strong> (atacado).<br>
+                                • Tenda / ML Full: Jack Daniel's 1L a <strong>R$ 145,00</strong> | Black Label 1L a <strong>R$ 139,90–169,00</strong>.
+                            </p>
+                            <a href="https://www.atacadao.com.br" target="_blank" class="evidence-url">Fontes: atacadao.com.br | tendaatacado.com.br | thebar.com</a>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <h1 class="letterhead-title">Auditoria de Preços Reais &amp; Diagnóstico de Conversão</h1>
-            <p class="letterhead-subtitle">
-                Estudo comparativo de competitividade comercial dos rótulos de Giro Alto (Curva A) da <strong>Monte Cristo Distribuidora de Bebidas</strong> frente aos atacarejos e redes da Serra Gaúcha e grandes portais de e-commerce nacional.
-            </p>
+            <footer class="page-footer-bar">
+                <span>Onira Labs • Inteligência Competitiva &amp; Performance B2B • Monte Cristo Bebidas</span>
+                <span class="page-num">PÁGINA 1 DE 2</span>
+            </footer>
+        </section>
 
-            <div class="meta-pills">
-                <span class="meta-pill">📍 Base: Caxias do Sul e Região - RS</span>
-                <span class="meta-pill">🛒 Concorrentes Locais: Stok Center, Zaffari, Andreazza, Boccati</span>
-                <span class="meta-pill">🌐 Benchmarks Online: Atacadão, Tenda, TheBar (Diageo), Mercado Livre Full</span>
-            </div>
-        </header>
+        <!-- ==========================================================================
+             PÁGINA 2 DE 2: COMPLEMENTARES + INTERVENÇÕES EXECUTADAS + ASSINATURA
+             ========================================================================== -->
+        <section class="report-page">
+            <header class="letterhead-compact">
+                <div class="letterhead-compact-left">
+                    <img src="assets/oniralabs_branco_tag.svg" alt="Onira Labs" class="onira-compact-logo">
+                    <div class="brand-divider" style="height:20px;"></div>
+                    <img src="assets/logo_branco_footer_montecristo.svg" alt="Monte Cristo Bebidas" class="mc-compact-logo">
+                </div>
+                <div class="letterhead-compact-right">
+                    DOC REF: ONR-MC-2026-1029 • AUDITORIA DE PREÇOS REAIS
+                </div>
+            </header>
 
-        <div class="report-body">
+            <div class="report-body">
+                <!-- 4. Tabela Complementar (Bares, Casamentos & Drinks) -->
+                <div class="section-block">
+                    <div class="section-header">
+                        <h2 class="section-title">4. Rótulos Complementares de Alto Impacto (Bares &amp; Eventos)</h2>
+                        <span class="section-tag">INSUMOS DE BAR &amp; FESTA</span>
+                    </div>
 
-            <!-- 1. Sumário Executivo -->
-            <section class="section-block">
-                <div class="section-header">
-                    <h2 class="section-title">1. Diagnóstico Executivo: Por que os Orçamentos Travaram?</h2>
-                    <span class="section-tag">AUDITORIA DE FUNIL &amp; PREÇO</span>
+                    <table class="price-table">
+                        <thead>
+                            <tr>
+                                <th style="width:24%;">Rótulo Auditado</th>
+                                <th style="width:20%;">Monte Cristo (Atual)</th>
+                                <th style="width:42%;">Preços Reais Auditados (Serra Gaúcha &amp; Atacado Online)</th>
+                                <th style="width:14%;">Diagnóstico</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span class="prod-name">Energético Baly 2L (PET)</span>
+                                    <span class="prod-sku">SKU: en-20 a en-24 (Sabores)</span>
+                                </td>
+                                <td>
+                                    <span class="mc-price-main" style="color:var(--red-text);">R$ 11,90 /un</span>
+                                    <span class="mc-price-box">Fardo (6un): R$ 69,62 (R$ 11,60/un)</span>
+                                </td>
+                                <td>
+                                    <div class="comp-item"><strong>R$ 45,00 a R$ 58,00</strong> o fardo c/ 6un (<strong>R$ 7,50 a R$ 9,60/un</strong>) <span class="comp-source">Comercial Souza / Forte Bebidas</span></div>
+                                </td>
+                                <td><span class="status-pill red">Crítico B2B</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <span class="prod-name">Whisky Ballantine's Finest (1L)</span>
+                                    <span class="prod-sku">SKU: wh-76 • Caixa c/ 12 un</span>
+                                </td>
+                                <td>
+                                    <span class="mc-price-main" style="color:var(--red-text);">R$ 99,00 /un</span>
+                                    <span class="mc-price-box">Caixa (12un): R$ 1.158,30 (R$ 96,53/un)</span>
+                                </td>
+                                <td>
+                                    <div class="comp-item"><strong>R$ 91,49 /un</strong> (desconto progressivo atacado) <span class="comp-source">Stok Center Caxias</span> | <strong>R$ 85–95</strong> <span class="comp-source">Tenda</span></div>
+                                </td>
+                                <td><span class="status-pill red">Acima do Stok</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <span class="prod-name">Vodka Cîroc (750ml)</span>
+                                    <span class="prod-sku">SKU: vk-68 • Caixa c/ 12 un</span>
+                                </td>
+                                <td>
+                                    <span class="mc-price-main" style="color:var(--red-text);">R$ 275,00 /un</span>
+                                    <span class="mc-price-box">Caixa (12un): R$ 3.217,50 (R$ 268,13/un)</span>
+                                </td>
+                                <td>
+                                    <div class="comp-item"><strong>R$ 140,00 a R$ 210,00 /un</strong> <span class="comp-source">Super Adega / Tenda Atacado / Carrefour / TheBar</span></div>
+                                </td>
+                                <td><span class="status-pill red">Fora de Preço</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <span class="prod-name">Gin Tanqueray Dry (750ml)</span>
+                                    <span class="prod-sku">SKU: gt-35 • Caixa c/ 12 un</span>
+                                </td>
+                                <td>
+                                    <span class="mc-price-main">R$ 133,90 /un</span>
+                                    <span class="mc-price-box">Caixa (12un): R$ 1.566,63 (R$ 130,55/un)</span>
+                                </td>
+                                <td>
+                                    <div class="comp-item"><strong>R$ 90,00 a R$ 119,90 /un</strong> <span class="comp-source">Tenda Atacado / Bebida In Box / Cia do Whisky</span></div>
+                                </td>
+                                <td><span class="status-pill red">Acima (+15%)</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <span class="prod-name">Campari Bitter (998ml)</span>
+                                    <span class="prod-sku">SKU: lc-4 • Caixa c/ 12 un</span>
+                                </td>
+                                <td>
+                                    <span class="mc-price-main">R$ 69,90 /un</span>
+                                    <span class="mc-price-box">Caixa (12un): R$ 817,83 (R$ 68,15/un)</span>
+                                </td>
+                                <td>
+                                    <div class="comp-item"><strong>R$ 53,00 a R$ 62,00 /un</strong> <span class="comp-source">Atacado Praso / Limão Distribuidora / Magalu</span></div>
+                                </td>
+                                <td><span class="status-pill amber">Teto Varejo</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <span class="prod-name">Aperol Aperitivo (1 Litro)</span>
+                                    <span class="prod-sku">SKU: lc-1 • Caixa c/ 6 un</span>
+                                </td>
+                                <td>
+                                    <span class="mc-price-main" style="color:var(--green-text);">R$ 64,50 /un</span>
+                                    <span class="mc-price-box">Caixa (6un): R$ 377,33 (R$ 62,89/un)</span>
+                                </td>
+                                <td>
+                                    <div class="comp-item"><strong>R$ 49,90 a R$ 69,90</strong> <em>(Garrafa menor de 750ml na concorrência!)</em> <span class="comp-source">Praso / WebBar / Mercados</span></div>
+                                </td>
+                                <td><span class="status-pill green">Excelente (1L)</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <span class="prod-name">Gin Gordon's (750ml)</span>
+                                    <span class="prod-sku">SKU: gn-1 • Caixa c/ 12 un</span>
+                                </td>
+                                <td>
+                                    <span class="mc-price-main" style="color:var(--green-text);">R$ 89,90 /un</span>
+                                    <span class="mc-price-box">Caixa (12un): R$ 1.051,83 (R$ 87,65/un)</span>
+                                </td>
+                                <td>
+                                    <div class="comp-item"><strong>R$ 119,00</strong> (R$ 116,62 no Pix) <span class="comp-source">Boccati Caxias do Sul</span></div>
+                                </td>
+                                <td><span class="status-pill green">23% + Barato</span></td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <span class="prod-name">Red Bull Tradicional (250ml)</span>
+                                    <span class="prod-sku">SKU: en-25 • Pack c/ 24 latas</span>
+                                </td>
+                                <td>
+                                    <span class="mc-price-main">R$ 9,50 /lata</span>
+                                    <span class="mc-price-box">Pack (24un): R$ 222,30 (R$ 9,26/un)</span>
+                                </td>
+                                <td>
+                                    <div class="comp-item"><strong>R$ 200,00 a R$ 240,00</strong> (R$ 8,33 a R$ 10,00/lata no pack 24un) <span class="comp-source">Megabox Atacado / Angeloni</span></div>
+                                </td>
+                                <td><span class="status-pill green">Na Média</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
 
-                <div class="kpi-grid">
-                    <div class="kpi-card critical">
-                        <span class="kpi-label">🔴 1. Rótulos "Isca" Acima do Varejo</span>
-                        <div class="kpi-value">Jägermeister (+28%) &amp; Baly (+35%)</div>
-                        <p class="kpi-desc">
-                            No Stok Center em Caxias do Sul, o Jägermeister 700ml é vendido no varejo a <strong>R$ 124,99</strong> (contra <strong>R$ 159,90</strong> na Monte Cristo). Já o fardo de Baly 2L (6un) sai a <strong>R$ 69,62</strong> na Monte Cristo contra <strong>R$ 45 a R$ 58</strong> nos atacados.
-                        </p>
+                <!-- 5. Ações Já Executadas no Sistema -->
+                <div class="section-block">
+                    <div class="section-header">
+                        <h2 class="section-title">5. Intervenções Técnicas Executadas Hoje no Canal Digital</h2>
+                        <span class="section-tag">OTIMIZAÇÕES EM PRODUÇÃO</span>
                     </div>
 
-                    <div class="kpi-card warn">
-                        <span class="kpi-label">🟡 2. Desconto Curto na Caixa Fechada</span>
-                        <div class="kpi-value">Apenas -2,5% no Atacado</div>
-                        <p class="kpi-desc">
-                            A diferença atual entre comprar 1 garrafa avulsa e 1 caixa fechada (12un) na tabela é de apenas ~2,5% (ex: Smirnoff de R$ 40,00 cai para R$ 39,00/un na caixa, enquanto atacados praticam <strong>R$ 34,90 a R$ 37,90/un</strong>).
-                        </p>
-                    </div>
-
-                    <div class="kpi-card win">
-                        <span class="kpi-label">🟢 3. Campeões Escondidos na Vitrine</span>
-                        <div class="kpi-value">Red Label &amp; Absolut 1L a R$ 99,90</div>
-                        <p class="kpi-desc">
-                            A Monte Cristo tem preço imbatível na Serra em <strong>Red Label 1L (R$ 99,90 vs. R$ 129,90 no Andreazza)</strong> e <strong>Absolut 1L (R$ 99,90 vs. R$ 125,99 na 750ml no Zaffari)</strong>, mas eles ficavam escondidos no fim da página.
-                        </p>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 2. Tabela Giro Alto (6 Produtos Prioritários) -->
-            <section class="section-block">
-                <div class="section-header">
-                    <h2 class="section-title">2. Matriz Comparativa — Rótulos de Giro Alto (Curva A Principal)</h2>
-                    <span class="section-tag">VALORES REAIS AUDITADOS EM 29/10/2026</span>
-                </div>
-
-                <table class="price-table">
-                    <thead>
-                        <tr>
-                            <th style="width:22%;">Rótulo Auditado</th>
-                            <th style="width:18%;">Monte Cristo (Atual)</th>
-                            <th style="width:27%;">Varejo &amp; Atacarejo Serra Gaúcha</th>
-                            <th style="width:23%;">Atacado &amp; E-commerce Online</th>
-                            <th style="width:10%;">Status</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <span class="prod-name">Whisky Jack Daniel's Old Nº 7 (1L)</span>
-                                <span class="prod-sku">SKU: wh-82 • + Honey / Apple / Fire</span>
-                            </td>
-                            <td>
-                                <span class="mc-price-main">R$ 155,00 /un</span>
-                                <span class="mc-price-box">Caixa (12un): R$ 1.813,50<br>(R$ 151,12 /un)</span>
-                            </td>
-                            <td>
-                                <div class="comp-item"><strong>R$ 176,99</strong> (1L) <span class="comp-source">Comercial Zaffari</span></div>
-                                <div class="comp-item"><strong>R$ 134,90</strong> (700ml) <span class="comp-source">Super Andreazza</span></div>
-                            </td>
-                            <td>
-                                <div class="comp-item"><strong>R$ 145,00 a R$ 155,00</strong> (1L) <span class="comp-source">Tenda / ML Full</span></div>
-                                <div class="comp-item"><strong>R$ 130,00 a R$ 165,00</strong> <span class="comp-source">Honey/Apple Online</span></div>
-                            </td>
-                            <td>
-                                <span class="status-pill green">Competitivo</span>
-                                <div style="font-size:0.7rem; color:var(--text-muted);">Ajustar caixa p/ ~R$ 144/un</div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <span class="prod-name">Licor Jägermeister (700ml)</span>
-                                <span class="prod-sku">SKU: lc-42 • Caixa c/ 6 un</span>
-                            </td>
-                            <td>
-                                <span class="mc-price-main" style="color:var(--red-text);">R$ 159,90 /un</span>
-                                <span class="mc-price-box">Caixa (6un): R$ 935,42<br>(R$ 155,90 /un)</span>
-                            </td>
-                            <td>
-                                <div class="comp-item"><strong>R$ 124,99</strong> (700ml) <span class="comp-source">Stok Center Online</span></div>
-                                <div class="comp-item"><strong>R$ 129,90</strong> (700ml) <span class="comp-source">Rede Angeloni Sul</span></div>
-                            </td>
-                            <td>
-                                <div class="comp-item"><strong>R$ 119,90</strong> (700ml) <span class="comp-source">Atacadão</span></div>
-                                <div class="comp-item"><strong>R$ 129,90 a R$ 141,00</strong> <span class="comp-source">Espaço Prime / Carrefour</span></div>
-                            </td>
-                            <td>
-                                <span class="status-pill red">Crítico +28%</span>
-                                <div style="font-size:0.7rem; color:var(--red-text); font-weight:700;">R$ 35 mais caro que Stok</div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <span class="prod-name">Vodka Smirnoff Red (998ml)</span>
-                                <span class="prod-sku">SKU: vk-75 • Caixa c/ 12 un</span>
-                            </td>
-                            <td>
-                                <span class="mc-price-main">R$ 40,00 /un</span>
-                                <span class="mc-price-box">Caixa (12un): R$ 468,00<br>(R$ 39,00 /un)</span>
-                            </td>
-                            <td>
-                                <div class="comp-item"><strong>R$ 45,49</strong> (998ml) <span class="comp-source">Stok Center Online</span></div>
-                                <div class="comp-item"><strong>R$ 42,90</strong> (998ml) <span class="comp-source">Varejo Supermercados</span></div>
-                            </td>
-                            <td>
-                                <div class="comp-item"><strong>R$ 34,90 a R$ 37,90</strong> <span class="comp-source">Atacadão / Super Adega</span></div>
-                                <div class="comp-item"><em>(A partir de 3 un ou cx fechada)</em></div>
-                            </td>
-                            <td>
-                                <span class="status-pill amber">Atenção Cx</span>
-                                <div style="font-size:0.7rem; color:var(--text-muted);">Caixa precisa ir a R$ 35,90–36,90</div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <span class="prod-name">Vodka Absolut Original (1L)</span>
-                                <span class="prod-sku">SKU: vk-1 • Caixa c/ 12 un</span>
-                            </td>
-                            <td>
-                                <span class="mc-price-main" style="color:var(--green-text);">R$ 99,90 /un</span>
-                                <span class="mc-price-box">Caixa (12un): R$ 1.168,83<br>(R$ 97,40 /un)</span>
-                            </td>
-                            <td>
-                                <div class="comp-item"><strong>R$ 124,99</strong> <em>(750ml!)</em> <span class="comp-source">Stok Center</span></div>
-                                <div class="comp-item"><strong>R$ 125,99</strong> <em>(750ml!)</em> <span class="comp-source">Comercial Zaffari</span></div>
-                            </td>
-                            <td>
-                                <div class="comp-item"><strong>R$ 94,90 a R$ 99,90</strong> (1L) <span class="comp-source">Dose Online / Adega Brasil</span></div>
-                                <div class="comp-item"><strong>R$ 89,90</strong> (Promo Pix) <span class="comp-source">Oásis Bebidas</span></div>
-                            </td>
-                            <td>
-                                <span class="status-pill green">Líder Serra</span>
-                                <div style="font-size:0.7rem; color:var(--green-text); font-weight:700;">1L mais barato que 750ml local</div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <span class="prod-name">Johnnie Walker Red Label (1L)</span>
-                                <span class="prod-sku">SKU: wh-12 • Caixa c/ 12 un</span>
-                            </td>
-                            <td>
-                                <span class="mc-price-main" style="color:var(--green-text);">R$ 99,90 /un</span>
-                                <span class="mc-price-box">Caixa (12un): R$ 1.168,83<br>(R$ 97,40 /un)</span>
-                            </td>
-                            <td>
-                                <div class="comp-item"><strong>R$ 129,90</strong> (1L) <span class="comp-source">Super Andreazza</span></div>
-                                <div class="comp-item"><strong>R$ 133,99</strong> (1L) <span class="comp-source">Comercial Zaffari</span></div>
-                                <div class="comp-item"><strong>R$ 93,49</strong> <em>(750ml)</em> <span class="comp-source">Stok Center</span></div>
-                            </td>
-                            <td>
-                                <div class="comp-item"><strong>R$ 89,90 a R$ 99,90</strong> (1L) <span class="comp-source">Carrefour / GW Imports POA</span></div>
-                            </td>
-                            <td>
-                                <span class="status-pill green">Líder Serra</span>
-                                <div style="font-size:0.7rem; color:var(--green-text); font-weight:700;">R$ 30 abaixo dos mercados</div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <span class="prod-name">Johnnie Walker Black Label (1L)</span>
-                                <span class="prod-sku">SKU: wh-11 • Caixa c/ 12 un</span>
-                            </td>
-                            <td>
-                                <span class="mc-price-main">R$ 179,90 /un</span>
-                                <span class="mc-price-box">Caixa (12un): R$ 2.104,83<br>(R$ 175,40 /un)</span>
-                            </td>
-                            <td>
-                                <div class="comp-item"><strong>R$ 217,49</strong> (1L) <span class="comp-source">Stok Center Online</span></div>
-                                <div class="comp-item"><strong>R$ 193,90</strong> (1L) <span class="comp-source">TheBar (Oficial Diageo)</span></div>
-                            </td>
-                            <td>
-                                <div class="comp-item"><strong>R$ 139,90 a R$ 169,00</strong> (1L) <span class="comp-source">ML Full / Bebida In Box</span></div>
-                            </td>
-                            <td>
-                                <span class="status-pill amber">Alerta Eventos</span>
-                                <div style="font-size:0.7rem; color:var(--text-muted);">Ganha no físico, perde no online</div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-
-            <!-- 3. Tabela Complementar (Bares, Casamentos & Drinks) -->
-            <section class="section-block">
-                <div class="section-header">
-                    <h2 class="section-title">3. Rótulos Complementares de Alto Impacto (Bares &amp; Eventos)</h2>
-                    <span class="section-tag">INSUMOS DE BAR &amp; FESTA</span>
-                </div>
-
-                <table class="price-table">
-                    <thead>
-                        <tr>
-                            <th style="width:22%;">Rótulo Auditado</th>
-                            <th style="width:18%;">Monte Cristo (Atual)</th>
-                            <th style="width:45%;">Preços Reais Auditados (Serra Gaúcha &amp; Atacado Online)</th>
-                            <th style="width:15%;">Diagnóstico</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <span class="prod-name">Energético Baly 2L (PET)</span>
-                                <span class="prod-sku">SKU: en-20 a en-24 (Sabores)</span>
-                            </td>
-                            <td>
-                                <span class="mc-price-main" style="color:var(--red-text);">R$ 11,90 /un</span>
-                                <span class="mc-price-box">Fardo (6un): R$ 69,62 (R$ 11,60/un)</span>
-                            </td>
-                            <td>
-                                <div class="comp-item"><strong>R$ 45,00 a R$ 58,00</strong> o fardo c/ 6un (<strong>R$ 7,50 a R$ 9,60/un</strong>) <span class="comp-source">Comercial Souza Atacado / Forte Bebidas</span></div>
-                            </td>
-                            <td><span class="status-pill red">Crítico B2B</span></td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <span class="prod-name">Whisky Ballantine's Finest (1L)</span>
-                                <span class="prod-sku">SKU: wh-76 • Caixa c/ 12 un</span>
-                            </td>
-                            <td>
-                                <span class="mc-price-main" style="color:var(--red-text);">R$ 99,00 /un</span>
-                                <span class="mc-price-box">Caixa (12un): R$ 1.158,30 (R$ 96,53/un)</span>
-                            </td>
-                            <td>
-                                <div class="comp-item"><strong>R$ 91,49 /un</strong> (com desconto progressivo para múltiplas unidades) <span class="comp-source">Stok Center Caxias</span></div>
-                                <div class="comp-item"><strong>R$ 85,00 a R$ 95,00 /un</strong> <span class="comp-source">Banca do Ramon / Tenda Atacado</span></div>
-                            </td>
-                            <td><span class="status-pill red">Acima do Stok</span></td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <span class="prod-name">Vodka Cîroc (750ml)</span>
-                                <span class="prod-sku">SKU: vk-68 • Caixa c/ 12 un</span>
-                            </td>
-                            <td>
-                                <span class="mc-price-main" style="color:var(--red-text);">R$ 275,00 /un</span>
-                                <span class="mc-price-box">Caixa (12un): R$ 3.217,50 (R$ 268,13/un)</span>
-                            </td>
-                            <td>
-                                <div class="comp-item"><strong>R$ 140,00 a R$ 210,00 /un</strong> <span class="comp-source">Super Adega / Tenda Atacado / Carrefour / TheBar</span></div>
-                            </td>
-                            <td><span class="status-pill red">Fora de Preço</span></td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <span class="prod-name">Gin Tanqueray Dry (750ml)</span>
-                                <span class="prod-sku">SKU: gt-35 • Caixa c/ 12 un</span>
-                            </td>
-                            <td>
-                                <span class="mc-price-main">R$ 133,90 /un</span>
-                                <span class="mc-price-box">Caixa (12un): R$ 1.566,63 (R$ 130,55/un)</span>
-                            </td>
-                            <td>
-                                <div class="comp-item"><strong>R$ 90,00 a R$ 119,90 /un</strong> <span class="comp-source">Tenda Atacado / Bebida In Box / Cia do Whisky</span></div>
-                            </td>
-                            <td><span class="status-pill red">Acima (+15%)</span></td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <span class="prod-name">Campari Bitter (998ml)</span>
-                                <span class="prod-sku">SKU: lc-4 • Caixa c/ 12 un</span>
-                            </td>
-                            <td>
-                                <span class="mc-price-main">R$ 69,90 /un</span>
-                                <span class="mc-price-box">Caixa (12un): R$ 817,83 (R$ 68,15/un)</span>
-                            </td>
-                            <td>
-                                <div class="comp-item"><strong>R$ 53,00 a R$ 62,00 /un</strong> <span class="comp-source">Atacado Praso / Limão Distribuidora / Magalu</span></div>
-                            </td>
-                            <td><span class="status-pill amber">Teto Varejo</span></td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <span class="prod-name">Aperol Aperitivo (1 Litro)</span>
-                                <span class="prod-sku">SKU: lc-1 • Caixa c/ 6 un</span>
-                            </td>
-                            <td>
-                                <span class="mc-price-main" style="color:var(--green-text);">R$ 64,50 /un</span>
-                                <span class="mc-price-box">Caixa (6un): R$ 377,33 (R$ 62,89/un)</span>
-                            </td>
-                            <td>
-                                <div class="comp-item"><strong>R$ 49,90 a R$ 69,90</strong> <em>(Garrafa menor de 750ml na concorrência!)</em> <span class="comp-source">Praso / WebBar / Mercados</span></div>
-                            </td>
-                            <td><span class="status-pill green">Excelente (1L)</span></td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <span class="prod-name">Gin Gordon's (750ml)</span>
-                                <span class="prod-sku">SKU: gn-1 • Caixa c/ 12 un</span>
-                            </td>
-                            <td>
-                                <span class="mc-price-main" style="color:var(--green-text);">R$ 89,90 /un</span>
-                                <span class="mc-price-box">Caixa (12un): R$ 1.051,83 (R$ 87,65/un)</span>
-                            </td>
-                            <td>
-                                <div class="comp-item"><strong>R$ 119,00</strong> (R$ 116,62 no Pix) <span class="comp-source">Boccati Caxias do Sul</span></div>
-                            </td>
-                            <td><span class="status-pill green">23% + Barato</span></td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <span class="prod-name">Red Bull Tradicional (250ml)</span>
-                                <span class="prod-sku">SKU: en-25 • Pack c/ 24 latas</span>
-                            </td>
-                            <td>
-                                <span class="mc-price-main">R$ 9,50 /lata</span>
-                                <span class="mc-price-box">Pack (24un): R$ 222,30 (R$ 9,26/un)</span>
-                            </td>
-                            <td>
-                                <div class="comp-item"><strong>R$ 200,00 a R$ 240,00</strong> (R$ 8,33 a R$ 10,00/lata no pack 24un) <span class="comp-source">Megabox Atacado / Angeloni</span></div>
-                            </td>
-                            <td><span class="status-pill green">Na Média</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-
-            <!-- 4. Evidências e Fontes Verificáveis -->
-            <section class="section-block">
-                <div class="section-header">
-                    <h2 class="section-title">4. Fontes e Evidências Comerciais Auditadas</h2>
-                    <span class="section-tag">RASTREABILIDADE DE PREÇOS</span>
-                </div>
-
-                <div class="evidence-grid">
-                    <div class="evidence-card">
-                        <div class="evidence-head">
-                            <span class="evidence-store">1. Stok Center (Stok Online — Caxias do Sul / RS)</span>
-                            <span class="evidence-date">Coleta: 29/10/2026</span>
+                    <div class="action-list">
+                        <div class="action-item">
+                            <div class="action-item-top">
+                                <div class="action-num">✓</div>
+                                <span class="action-tag-done">EXECUTADO</span>
+                            </div>
+                            <h4>Reordenação Estratégica da Vitrine (Giro Alto no Topo)</h4>
+                            <p>A primeira dobra agora exibe imediatamente os 6 campeões de giro: <strong>Jack Daniel's 1L, Red Label 1L (R$ 99,90), Black Label 1L, Absolut 1L (R$ 99,90), Smirnoff 998ml e Jägermeister 700ml</strong>.</p>
                         </div>
-                        <p class="evidence-items">
-                            • Jägermeister 700ml: <strong>R$ 124,99</strong> | Ballantine's 1L: <strong>R$ 91,49</strong> | Passport 1L: <strong>R$ 56,99</strong> | Smirnoff 998ml: <strong>R$ 45,49</strong> | Red Label 750ml: <strong>R$ 93,49</strong> | Black Label 1L: <strong>R$ 217,49</strong>.
-                        </p>
-                        <a href="https://www.stokonline.com.br" target="_blank" class="evidence-url">Fonte: https://www.stokonline.com.br (Catálogo Regional RS)</a>
-                    </div>
 
-                    <div class="evidence-card">
-                        <div class="evidence-head">
-                            <span class="evidence-store">2. Supermercados Andreazza &amp; Zaffari (Serra / RS)</span>
-                            <span class="evidence-date">Coleta: 29/10/2026</span>
+                        <div class="action-item">
+                            <div class="action-item-top">
+                                <div class="action-num">✓</div>
+                                <span class="action-tag-done">EXECUTADO</span>
+                            </div>
+                            <h4>Desbloqueio do Checkout para Orçamentos Rápidos</h4>
+                            <p>Removida a obrigatoriedade de preencher Nome e Endereço Completo antes de chamar no WhatsApp. Botão atualizado para <strong>"Solicitar Orçamento / Pedido via WhatsApp"</strong>.</p>
                         </div>
-                        <p class="evidence-items">
-                            • Andreazza: Red Label 1L a <strong>R$ 129,90</strong> | Jack Daniel's 700ml a <strong>R$ 134,90</strong>.<br>
-                            • Comercial Zaffari: Jack Daniel's 1L a <strong>R$ 176,99</strong> | Red Label 1L a <strong>R$ 133,99</strong> | Absolut 750ml a <strong>R$ 125,99</strong>.
-                        </p>
-                        <a href="https://www.superandreazza.com.br" target="_blank" class="evidence-url">Fontes: superandreazza.com.br | comercialzaffarionline.com.br</a>
-                    </div>
 
-                    <div class="evidence-card">
-                        <div class="evidence-head">
-                            <span class="evidence-store">3. Boccati Vinhos &amp; Destilados (Caxias do Sul / RS)</span>
-                            <span class="evidence-date">Coleta: 29/10/2026</span>
-                        </div>
-                        <p class="evidence-items">
-                            • Gin Gordon's 750ml: <strong>R$ 119,00</strong> (R$ 116,62 Pix) | Gin Beefeater 750ml: <strong>R$ 179,00</strong> (R$ 175,42 Pix) | Gin Lacombe 750ml: <strong>R$ 148,00</strong>.
-                        </p>
-                        <a href="https://www.boccati.com.br" target="_blank" class="evidence-url">Fonte: https://www.boccati.com.br (Loja Online Caxias do Sul)</a>
-                    </div>
-
-                    <div class="evidence-card">
-                        <div class="evidence-head">
-                            <span class="evidence-store">4. Atacadistas Nacionais &amp; Marketplaces (Curva A)</span>
-                            <span class="evidence-date">Coleta: 29/10/2026</span>
-                        </div>
-                        <p class="evidence-items">
-                            • Atacadão: Jägermeister 700ml a <strong>R$ 119,90</strong> | Smirnoff 998ml a <strong>R$ 34,90–37,90</strong> (atacado).<br>
-                            • Tenda / ML Full: Jack Daniel's 1L a <strong>R$ 145,00</strong> | Black Label 1L a <strong>R$ 139,90–169,00</strong>.
-                        </p>
-                        <a href="https://www.atacadao.com.br" target="_blank" class="evidence-url">Fontes: atacadao.com.br | tendaatacado.com.br | thebar.com</a>
-                    </div>
-                </div>
-            </section>
-
-            <!-- 5. Ações Já Executadas no Sistema + Recomendações -->
-            <section class="section-block" style="margin-bottom:10px;">
-                <div class="section-header">
-                    <h2 class="section-title">5. Intervenções Técnicas Executadas Hoje &amp; Próximos Passos</h2>
-                    <span class="section-tag">PLANO DE AÇÃO IMEDIATO</span>
-                </div>
-
-                <div class="action-list">
-                    <div class="action-item done">
-                        <div class="action-num">✓</div>
-                        <div class="action-text">
-                            <h4>[EXECUTADO] Reordenação Estratégica da Vitrine (6 Campeões de Giro no Topo)</h4>
-                            <p>O catálogo antes abria com itens secundários (Firebird Canela, Brasilberg, Cachaça 51). Agora a primeira dobra exibe imediatamente: <strong>Jack Daniel's 1L, Johnnie Walker Red Label 1L (R$ 99,90), Black Label 1L, Vodka Absolut 1L (R$ 99,90), Smirnoff 998ml e Jägermeister 700ml</strong>.</p>
-                        </div>
-                    </div>
-
-                    <div class="action-item done">
-                        <div class="action-num">✓</div>
-                        <div class="action-text">
-                            <h4>[EXECUTADO] Desbloqueio do Checkout para Orçamentos Rápidos (Remoção de Fricção)</h4>
-                            <p>Removida a trava que impedia o envio do pedido no WhatsApp sem digitar Nome Completo e Endereço Completo de Entrega. O botão principal foi atualizado para <strong>"Solicitar Orçamento / Pedido via WhatsApp"</strong>, permitindo cotações rápidas de eventos e bares com 1 clique.</p>
-                        </div>
-                    </div>
-
-                    <div class="action-item done">
-                        <div class="action-num">✓</div>
-                        <div class="action-text">
-                            <h4>[EXECUTADO] Remoção do Aviso de "Tabela Vencida em 30/09/2026"</h4>
-                            <p>Substituído o selo de validade expirada no topo do catálogo por <strong>"Preços da tabela oficial • Distribuição Direta"</strong>, eliminando a percepção de site desatualizado.</p>
-                        </div>
-                    </div>
-
-                    <div class="action-item">
-                        <div class="action-num">4</div>
-                        <div class="action-text">
-                            <h4>[RECOMENDADO À DIRETORIA MONTE CRISTO] Revisão Pontual de Margem na Caixa Fechada</h4>
-                            <p>Para capturar pedidos de bares (CNPJ) e grandes formaturas/casamentos, recomendamos via Painel Administrativo (<code>gestao-precos.html</code>): <strong>(1)</strong> Adequar o preço de <em>Jägermeister 700ml</em> e do fardo de <em>Baly 2L</em>; <strong>(2)</strong> Ampliar o desconto da caixa fechada de Smirnoff e Jack Daniel's de 2,5% para a faixa de 5% a 7%.</p>
+                        <div class="action-item">
+                            <div class="action-item-top">
+                                <div class="action-num">✓</div>
+                                <span class="action-tag-done">EXECUTADO</span>
+                            </div>
+                            <h4>Atualização de Selo Oficial de Tabela Ativa</h4>
+                            <p>Removida a referência de validade expirada ("30/09/2026") no catálogo e painel, substituída por <strong>"Preços da tabela oficial • Distribuição Direta"</strong>.</p>
                         </div>
                     </div>
                 </div>
-            </section>
 
-            <!-- Assinatura Executiva Oficial Onira Labs -->
-            <div class="dev-profile-card">
-                <div class="dev-profile-header">
-                    <div>
-                        <span class="dev-badge-tag">SERVICE DESIGN &amp; A.I. BUSINESS INTELLIGENCE</span>
-                        <h3 class="dev-author-name">Jefferson Motta</h3>
-                        <p class="dev-author-role">Service Designer e A.I. Business Intelligence na <strong>Onira Labs</strong> • Caxias do Sul - Serra Gaúcha</p>
+                <!-- Assinatura Executiva Oficial Onira Labs (Padrão Trancado c/ Foto Avatar e Logo SVG) -->
+                <div class="dev-profile-card">
+                    <div class="dev-profile-header">
+                        <div class="dev-avatar-group">
+                            <img src="assets/jeff-avatar.webp" alt="Jefferson Motta" class="dev-avatar-img" width="64" height="64">
+                            <div>
+                                <span class="dev-badge-tag">SERVICE DESIGN &amp; A.I. BUSINESS INTELLIGENCE</span>
+                                <h3 class="dev-author-name">Jefferson Motta</h3>
+                                <p class="dev-author-role">Service Designer e A.I. Business Intelligence na <strong>Onira Labs</strong></p>
+                            </div>
+                        </div>
+                        <div style="text-align:right; font-family:'JetBrains Mono',monospace; font-size:0.68rem; color:#38BDF8;">
+                            RELATÓRIO DE INTELIGÊNCIA COMERCIAL<br>
+                            <span style="color:#94A3B8;">AUTENTICADO EM 29/10/2026</span>
+                        </div>
                     </div>
-                    <div style="text-align:right; font-family:'JetBrains Mono',monospace; font-size:0.72rem; color:#38BDF8;">
-                        RELATÓRIO DE INTELIGÊNCIA COMERCIAL<br>
-                        <span style="color:#94A3B8;">AUTENTICADO EM 29/10/2026</span>
+
+                    <blockquote class="dev-quote">
+                        “Em canais digitais de distribuição B2B e eventos, o comprador decide se solicita orçamento nos primeiros 15 segundos comparando de 4 a 6 produtos-âncora com o preço que ele tem na memória do atacarejo local. Ao posicionarmos Red Label 1L e Absolut 1L (R$ 99,90) na primeira linha da vitrine e destravarmos o envio de cotação sem exigir endereço completo, eliminamos o atrito técnico e destacamos imediatamente a vantagem competitiva da Monte Cristo.”
+                    </blockquote>
+
+                    <div class="dev-profile-footer">
+                        <div class="dev-location">
+                            <span>📍 Caxias do Sul - Serra Gaúcha • linkedin.com/in/jeff-motta</span>
+                        </div>
+                        <div class="dev-agency-brand">
+                            <span>Desenvolvido por</span>
+                            <img src="assets/oniralabs_branco_tag.svg" alt="Onira Labs" class="dev-agency-logo">
+                        </div>
                     </div>
-                </div>
-
-                <blockquote class="dev-quote">
-                    “Em canais digitais de distribuição B2B e eventos, o comprador decide se solicita orçamento nos primeiros 15 segundos comparando de 4 a 6 produtos-âncora com o preço que ele tem na memória do atacarejo local. Ao colocarmos Red Label 1L e Absolut 1L (R$ 99,90) na primeira linha da vitrine e destravarmos o envio de cotação sem exigir endereço completo, eliminamos o atrito técnico; o ajuste tático nos itens de giro fecha a equação comercial.”
-                </blockquote>
-
-                <div class="dev-profile-footer">
-                    <span><strong>Onira Labs Tecnologia &amp; Design</strong> • Caxias do Sul, RS</span>
-                    <span>linkedin.com/in/jeff-motta • oniralabs.framer.website</span>
                 </div>
             </div>
 
-        </div>
-    </main>
+            <footer class="page-footer-bar">
+                <span>Onira Labs • Inteligência Competitiva &amp; Performance B2B • Monte Cristo Bebidas</span>
+                <span class="page-num">PÁGINA 2 DE 2</span>
+            </footer>
+        </section>
+
+    </div>
 
     <script>
         if (window.lucide) {
@@ -1173,4 +1348,3 @@
     </script>
 </body>
 </html>
-
