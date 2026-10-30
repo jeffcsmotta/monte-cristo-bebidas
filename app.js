@@ -1247,15 +1247,8 @@ async function loadOfficialCatalog() {
         updateCartUI();
         const banner = document.getElementById('sim-banner');
         if (banner) banner.remove();
-        try {
-            const note = document.querySelector('.shop-meta-note');
-            if (note && data.updatedAt) {
-                const d = new Date(data.updatedAt);
-                const s = d.toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
-                note.textContent = `Tabela oficial v${data.version} • atualizada em ${s} por ${data.updatedBy || 'admin'}`;
-                note.title = `Fonte única: admin • v${data.version} • ${data.updatedAt}`;
-            }
-        } catch (e) {}
+        // Metadados administrativos (versão, autor e data) ficam restritos ao painel admin (gestao-precos.html).
+        // A vitrine pública mantém estático o selo institucional: "Preços da tabela oficial • Distribuição Direta".
     } catch (e) {
         // Sem nuvem (arquivo local): segue com o BASE embutido
     }

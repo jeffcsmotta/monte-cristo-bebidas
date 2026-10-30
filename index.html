@@ -701,7 +701,7 @@
     <!-- Invalidação automática de cache PWA/ServiceWorker para novas versões -->
     <script>
         (function() {
-            var VERSION = '20261029_v16';
+            var VERSION = '20261030_v17';
             if (localStorage.getItem('mc_sw_version') !== VERSION) {
                 localStorage.setItem('mc_sw_version', VERSION);
                 if ('caches' in window) {
@@ -717,9 +717,9 @@
             }
         })();
     </script>
-    <script src="images.js?v=20261029_v16"></script>
-    <script src="bottles.js?v=20261029_v16"></script>
-    <script src="app.js?v=20261029_v16"></script>
+    <script src="images.js?v=20261030_v17"></script>
+    <script src="bottles.js?v=20261030_v17"></script>
+    <script src="app.js?v=20261030_v17"></script>
     <script>
         if (window.lucide) {
             lucide.createIcons();
@@ -751,7 +751,7 @@
         // Register Service Worker com checagem ativa e transição suave
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js?v=20261029_v16')
+                navigator.serviceWorker.register('./sw.js?v=20261030_v17')
                     .then(reg => {
                         console.log('PWA ServiceWorker registrado:', reg.scope);
                         if (reg.update) reg.update();
